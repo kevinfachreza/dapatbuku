@@ -297,6 +297,16 @@ hr{
 	border:none;
 }
 
+hr.thin
+{
+	margin-top:8px;
+	margin-bottom:9px;
+	color: black; 
+	height: 1px; 
+	background-color:black;
+	border:none;
+}
+
 #footer hr{
 	color: black; 
 	height: 1px; 
@@ -650,20 +660,14 @@ a:focus {
 
 .book-star
 {
-	margin-top:1vh;
+	margin-top:0.5vh;
 	padding:0;
-	width:150px;
-	min-width:100px;
 	min-height:15px;
 	
 }
 
 .book-rating
 {
-	margin-left:5px;
-	padding:0;
-	border:1px solid #333;
-	padding:4px;
 	border-radius:5px;
 	font-size:15px;
 }
@@ -708,4 +712,74 @@ a:focus {
 .rating span.checked ~ span label {
 	
     color:#E69515;
+}
+
+.info-small>a
+{
+	color:orange;
+	font-size:2vh;
+}
+
+.info-small>a:hover{
+	text-decoration:underline;
+}
+
+.book-info{
+	font-weight:bold;
+}
+
+table.book-info{
+	font-weight:normal;
+	font-size:2vh;
+}
+
+td, th {
+    text-align: left;
+    padding-top: 3px;
+}
+
+.book-rating-star
+{
+	font-size:2em;
+}
+
+#book-buy-store
+{
+	margin-top:2vh;
+}
+
+.side-bar-item{
+	margin-bottom:2vh;
+}
+
+.side-bar-title
+{
+	font-size:2vh;
+	color:#333;
+	text-transform: uppercase;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+
+.book-review-bar
+{
+	background-color:#E69515;
+	color:white;
+	font-size:2vh;
+	padding:5px;
+	margin-bottom:3px;
+}
+.book-review-container
+{
+	margin-bottom:1vh;
+}
+
+.main-bar-item
+{
+	margin-bottom:5vh;
+}
+
+
+.book-side-bar{
+	padding-right:0px;
 }

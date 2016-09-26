@@ -130,15 +130,12 @@
 						<p style="margin-top:1em; font-size:1.2em">Sudah punya akun?</p>
 						<a href="#!" class="btn btn-sch-grey-inv" id="log-trig">LOGIN</a>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</div>
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-
-
-        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="<?php echo base_url()?>assets/js/jquery.min.js"></script>
+    <script type='text/javascript' src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).on('click','#reg-trig',function(e){
             e.preventDefault();
