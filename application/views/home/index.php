@@ -5,6 +5,7 @@
 
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
 	<?php echo $header; ?>
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-gallery.css">
   
 
 </head>

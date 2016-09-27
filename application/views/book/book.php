@@ -4,8 +4,8 @@
 <head>
 
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
 	
+	<?php echo $header; ?>
 
 </head>
 

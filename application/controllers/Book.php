@@ -22,6 +22,14 @@ class Book extends CI_Controller {
 		$this->load->view('book/book',$data);
 	}
 	
+	public function product()
+	{
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		$this->load->view('book/book-product',$data);
+	}
+	
 	
 }
 
