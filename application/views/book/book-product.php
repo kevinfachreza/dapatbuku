@@ -33,10 +33,10 @@
 										<!-- Carousel items -->
 										<div class="carousel-inner">
 											<div class="active item" data-slide-number="0">
-												<img src="http://placehold.it/470x480&text=zero"></div>
+												<img src="<?php echo base_url()?>assets/img/book/book2.jpg"></div>
 
 											<div class="item" data-slide-number="1">
-												<img src="http://placehold.it/470x480&text=1"></div>
+												<img src="<?php echo base_url()?>assets/img/book/book1.jpg"></div>
 
 											<div class="item" data-slide-number="2">
 												<img src="http://placehold.it/470x480&text=2"></div>
@@ -63,12 +63,12 @@
                 <ul class="hide-bullets">
                     <li class="col-xs-3 col-sm-3 padding-5px">
                         <a class="thumbnail" id="carousel-selector-0">
-                            <img src="http://placehold.it/150x150&text=zero">
+                            <img src="<?php echo base_url()?>assets/img/book/book2.jpg">
                         </a>
                     </li>
 
                     <li class="col-xs-3 col-sm-3 padding-5px">
-                        <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
+                        <a class="thumbnail" id="carousel-selector-1"><img src="<?php echo base_url()?>assets/img/book/book1.jpg"></a>
                     </li>
 
                     <li class="col-xs-3 col-sm-3 padding-5px">
