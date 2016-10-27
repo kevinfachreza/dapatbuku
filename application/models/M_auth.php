@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $this->db->insert('user', $datain);
     }
 
-    public function login($em_check, $pass_check){
+    public function login($user_check, $pass_check){
       $this -> db -> select('id_u');
       $this -> db -> from('user');
-      $this -> db -> where('email_u', $em_check);
-      $this -> db -> where('password_u', $pass_check);
+      $this -> db -> where('email_u', $user_check);
+      $this -> db -> or_where('username_u', $user_check);
       $this -> db -> limit(1);
 
       $query = $this -> db -> get();
@@ -23,13 +23,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       if($query -> num_rows() == 1){
         foreach($query->result() as $row)
         {
-          return $row->id_u;
+          $result = $this->pass_check($row->id_u, $pass_check);
+
+          if($result)
+            return $row->id_u;
+          else
+            return false;
         }
       }
-      else
-      {
+      else {
+        return false;
+      }
+
+    }
+
+    public function pass_check($id_in, $pass_in){
+      $this -> db -> from('user');
+      $this -> db -> where('id_u', $id_in);
+      $this -> db -> where('password_u', $pass_in);
+
+      $query = $this -> db -> get();
+
+      if($query -> num_rows() == 1){
+        return true;
+      }
+      else {
         return false;
       }
     }
+
+
   }
+
  ?>

@@ -23,24 +23,24 @@ class Auth extends CI_Controller {
 		$this->load->view('v_login');
   }
 
-  public function login(){
-    $this->form_validation->set_rules('emailin', 'Email', 'trim|required');
-    $this->form_validation->set_rules('passin', 'Password', 'trim|required');
+  public function do_login(){
+    $this->form_validation->set_rules('log-user_in', 'user_in', 'trim|required');
+    $this->form_validation->set_rules('log-pass', 'Password', 'trim|required');
 
-    $em = $this->input->post('emailin');
-    $pass = $this->input->post('passin');
+    $user_in = $this->input->post('log-user_in');
+    $pass = $this->input->post('log-pass');
 
-    $result = $this->M_auth->login($em, $pass);
+    $result = $this->M_auth->login($user_in, $pass);
 
     if($result){
       $newdata = array(
         'id_u' => $result
       );
       $this->session->set_userdata($newdata);
-      redirect(base_url().'Profile');
+      redirect(base_url().'Profile/log_in');
     }
     else{
-      //echo $result;
+
       $this->load->view('v_login', $result);
     }
   }
