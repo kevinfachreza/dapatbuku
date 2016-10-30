@@ -6,8 +6,8 @@
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
 	<?php echo $header; ?>
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-gallery.css">
-  
-
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/index.css">
+	
 </head>
 
 <body>
@@ -16,13 +16,13 @@
 	
 	<!--/////////////////////HEADER///////////////////////////////// -->
 	
-	<div class="container" style="margin-top:10vh; ">
-	 <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div id="HeaderContainer" class="container" >
+	 <div id="HeaderCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#HeaderCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#HeaderCarousel" data-slide-to="1"></li>
+        <li data-target="#HeaderCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item height-item active">
@@ -38,11 +38,11 @@
          
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <a class="left carousel-control" href="#HeaderCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <a class="right carousel-control" href="#HeaderCarousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -52,23 +52,23 @@
 	<!--/////////////////////HEADER///////////////////////////////// -->
 	
 	<!--/////////////////////BODY///////////////////////////////// -->
-	<div class="container">
-	<div id="BannerContainer1">
-		<div class="col-md-12 margin-bot-1" style="padding:0px;">
+	
+	<div id="BannerContainer1" class="container">
+		<div class="col-md-12 padding-0" >
 			<div class="row">
-				<div class="col-md-6 margin-bot-1">
+				<div class="col-md-6 padding-default">
 					<img src="<?php echo base_url()?>assets/img/banner/mini-banner1.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
 				</div>
-				<div class="col-md-6 margin-bot-1">
+				<div class="col-md-6 padding-default">
 					<img src="<?php echo base_url()?>assets/img/banner/mini-banner2.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="BestSellerContainer">
-		<div class="col-md-12 text-center"><h3>Best Seller</h3></div>
-		<div class="col-md-12 text-center"><hr class="width-10 bg-color-org" style="margin-top:0"></div>
-		<div class="col-md-12 ">
+	<div id="BestSellerContainer" class="container">
+		<div class="col-md-12 header-text"><h3>Best Seller</h3></div>
+		<div class="col-md-12 text-center"><hr></div>
+		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="Categories">
 			  <div class="carousel-inner carousel-inner3">
 				
@@ -81,8 +81,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -95,8 +96,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa</a></div>
+							<div class="author-container"><a href="" class="text-primary">Aikokita & Indha, Dkk</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -109,8 +111,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book7.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -123,8 +126,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book6.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -137,8 +141,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book5.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -151,8 +156,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book4.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -165,8 +171,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -178,10 +185,10 @@
 		</div>
 	</div>
 		
-	<div id="NewReleaseContainer">
-		<div class="col-md-12 text-center"><h3>New Release</h3></div>
-		<div class="col-md-12 text-center"><hr class="width-10 bg-color-org" style="margin-top:0"></div>
-		<div class="col-md-12">
+	<div id="NewReleaseContainer" class="container">
+		<div class="col-md-12 header-text"><h3>New Release</h3></div>
+		<div class="col-md-12 text-center"><hr></div>
+		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="NewRelease">
 			  <div class="carousel-inner carousel-inner3">
 				
@@ -191,8 +198,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -202,8 +210,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -213,8 +222,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book7.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -224,8 +234,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book6.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -235,8 +246,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book5.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -246,8 +258,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book4.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -257,8 +270,9 @@
 							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -270,10 +284,10 @@
 		</div>
 		</div>
 	
-	<div id="BestSellerContainer">
-		<div class="col-md-12 text-center"><h3>Yuk Tukar Poin</h3></div>
-		<div class="col-md-12 text-center"><hr class="width-10 bg-color-org" style="margin-top:0"></div>
-		<div class="col-md-12">
+	<div id="BestSellerContainer" class="container">
+		<div class="col-md-12 header-text"><h3>Yuk Tukar Poin</h3></div>
+		<div class="col-md-12 text-center"><hr></div>
+		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="Poin">
 			  <div class="carousel-inner carousel-inner3">
 				
@@ -370,10 +384,10 @@
 	</div>
 	
 	
-	<div class="col-md-12 margin-bot-3">
-		<div id="News">
-			<div class="col-md-12 text-center"><h3>News</h3></div>
-			<div class="col-md-12 text-center"><hr class="width-10 bg-color-org" style="margin-top:0"></div>
+	<div id="News" class="container">
+		<div class="col-md-12 margin-bot-3" >
+			<div class="col-md-12 header-text"><h3>News</h3></div>
+			<div class="col-md-12 text-center"><hr></div>
 			<div class="col-md-12">
 				<div class="row">
 					<a href="">
@@ -462,22 +476,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="BannerContainer2">
-		<div class="col-md-12 margin-bot-10" style="padding:0px;">
-			<div class="row">
-				<div class="col-md-6 margin-bot-1">
-					<img src="<?php echo base_url()?>assets/img/banner/mini-banner1.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
-				</div>
-				<div class="col-md-6 margin-bot-1">
-					<img src="<?php echo base_url()?>assets/img/banner/mini-banner2.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	</div>
-
 	<?php echo $footer; ?>
   
 	
@@ -489,7 +487,7 @@ $('.carousel[data-type="multi"] .item').each(function(){
   }
   next.children(':first-child').clone().appendTo($(this));
   
-  for (var i=0;i<2;i++) {
+  for (var i=0;i<3;i++) {
     next=next.next();
     if (!next.length) {
     	next = $(this).siblings(':first');

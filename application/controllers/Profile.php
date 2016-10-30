@@ -11,7 +11,7 @@ class Profile extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
-		$this->load->model('M_auth');
+		$this->load->model('M_Profile');
 	}
 
 	public function index()
@@ -31,10 +31,15 @@ class Profile extends CI_Controller {
 	public function set_in()
 	{
 		$this->session->logged_in = 1;
-		//$mydata = $this->M_auth->get_data($this->session->userdata('id_u'));
-		$this->session->set_userdata('my_name') = $newdata[0]['firstname_u'];
-		$this->session->set_userdata('my_point') = $newdata[0]['point'];
-		$this->session->set_userdata('my_money') = $newdata[0]['money'];
+		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
+
+		$newdata = array(
+					$newdata['name_in'] => $mydata[0]['firstname_u'],
+					$newdata['point_in'] => $mydata[0]['point'],
+					$newdata['money_in'] => $mydata[0]['money']
+		);
+		$this->session->set_userdata('my_name', $newdata['name_in']);
+
 
 		redirect('Profile');
 	}

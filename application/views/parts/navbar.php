@@ -8,25 +8,11 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav.png"></a>
+		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Blog</a></li>
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
-			  <ul class="dropdown-menu">
-				<li><a href="#">Rekomendasi</a></li>
-				<li><a href="#">Buku Paling Top</a></li>
-				<li><a href="#">Paling Banyak Dibaca</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="#">Kategori</a></li>
-			  </ul>
-			</li>
-		  </ul>
 		  <form class="navbar-form navbar-left" role="search">
 			<div class="form-group">
 			  <input type="text" class="form-control" placeholder="Search">
@@ -92,9 +78,39 @@
 			<?php } ?>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<nav class="navbar navbar-mini navbar-default navbar-padding navbar-static-top" style="padding-top:50px;background-color:#E68037">
+	  <div class="container-fluid" style="">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav navbar-nav-mini">
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a href="#">Rekomendasi</a></li>
+				<li><a href="#">Buku Paling Top</a></li>
+				<li><a href="#">Paling Banyak Dibaca</a></li>
+				<li role="separator" class="divider"></li>
+				 <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Kategori</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                </ul>
+              </li>
+			  </ul>
+			</li>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Blog</a></li>
+		  </ul>
+		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 
+	 <!-- Modal -->
 	 <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
@@ -119,13 +135,14 @@
 					<div id="reg-panel" style="display:none;margin:0 auto;width:70%;">
 						<h2> REGISTER </h2>
 						<hr>
-						<form action="<?php echo base_url();?>auth/doLogin" method="POST">
-							<input name="reg-name" type="text" class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required  autofocus>
+						<form action="<?php echo base_url();?>auth/do_register" method="POST">
+							<input name="reg-email" type="Email" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
 							<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
-							<input name="reg-email" type="email"  class="form-control" placeholder="Email" style="margin-bottom:0.5em" required autofocus>
+							<input name="reg-date" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
 							<input name="reg-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+							<input name="pass-conf" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
 
-							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">LOGIN</button>
+							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">REGISTER</button>
 						</form>
 						<p style="margin-top:1em; font-size:1.2em">Sudah punya akun?</p>
 						<a href="#!" class="btn btn-sch-grey-inv" id="log-trig">LOGIN</a>

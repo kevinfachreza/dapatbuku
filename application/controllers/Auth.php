@@ -37,7 +37,7 @@ class Auth extends CI_Controller {
         'id_u' => $result
       );
       $this->session->set_userdata($newdata);
-      redirect(base_url().'Profile/log_in');
+      redirect(base_url().'Profile/set_in');
     }
     else{
 
@@ -45,14 +45,47 @@ class Auth extends CI_Controller {
     }
   }
 
-  public function register_index()
-  {
-    $data['header']=$this->load->view('parts/header','',true);
-    $data['navbar']=$this->load->view('parts/navbar','',true);
-    $data['footer']=$this->load->view('parts/footer','',true);
-    $this->load->view('v_register');
+  public function do_register(){
+    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
+    $this->form_validation->set_rules('reg-email', 'Email', 'required|valid_email');
+
+    $this->form_validation->set_rules('reg-name', 'Username', 'required');
+
+    $this->form_validation->set_rules('reg-date', 'Date_of_Birth', 'required');
+
+    $this->form_validation->set_rules('reg-pass', 'Password', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      //redirect('Welcome');
+      $em = $this->input->post('reg-email');
+      $name = $this->input->post('reg-name');
+      $date = $this->input->post('reg-date');
+      $pass = $this->input->post('reg-pass');
+      echo $em;
+      echo $name;
+      echo $date;
+      echo $pass;
+      echo "GAGAL";
+    }
+    else{
+      echo "SINI";
+      $data_in = array(
+        'email_u' => $this->input->post('reg-email'),
+        'username_u' => $this->input->post('reg-name'),
+        'date_of_birth_u' => $this->input->post('reg-date'),
+        'password_u' => $this->input->post('reg-pass')
+      );
+      $result = $this->M_auth->register($data_in);
+      if($result){
+        echo "SUKSES";
+      }
+      else {
+        redirect('Welcome');
+      }
+    }
   }
+
   public function register(){
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 

@@ -8,7 +8,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function register($datain){
-      $this->db->insert('user', $datain);
+      $query = $this->db->insert('user', $datain);
+      if($query){
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     public function login($user_check, $pass_check){

@@ -18,22 +18,23 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 	
 	
-<div class="container" style="margin-top:15vh;margin-bottom:10vh; "> 
+<div class="container" id="book-container"> 
     <div id="main_area">
         <!-- Slider -->
         <div class="row">
-            <div class="col-md-9">
-				<div class="col-md-6">
+            <div class="col-md-12">
+				<div class="col-md-4">
 					<div class="col-sm-12 col-xs-12 padding-5px">
 					   <div class="col-xs-12 padding-5px" id="slider">
 							<!-- Top part of the slider -->
 							<div class="row">
 								<div class="col-sm-12 " id="carousel-bounding-box">
-									<div class="carousel slide" id="myCarousel">
+									<div class="carousel slide" id="ProductCarousel">
 										<!-- Carousel items -->
 										<div class="carousel-inner">
 											<div class="active item" data-slide-number="0">
-												<img src="<?php echo base_url()?>assets/img/book/book2.jpg"></div>
+												<img src="<?php echo base_url()?>assets/img/book/book2.jpg">
+											</div>
 
 											<div class="item" data-slide-number="1">
 												<img src="<?php echo base_url()?>assets/img/book/book1.jpg"></div>
@@ -47,10 +48,10 @@
 										   
 										</div>
 										<!-- Carousel nav -->
-										<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+										<a class="left carousel-control" href="#ProductCarousel" role="button" data-slide="prev">
 											<span class="glyphicon glyphicon-chevron-left"></span>
 										</a>
-										<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+										<a class="right carousel-control" href="#ProductCarousel" role="button" data-slide="next">
 											<span class="glyphicon glyphicon-chevron-right"></span>
 										</a>
 									</div>
@@ -58,33 +59,33 @@
 							</div>
 						</div>
 					</div>
-            <div class="col-xs-12 col-sm-12 padding-0" id="slider-thumbs">
-                <!-- Bottom switcher of slider -->
-                <ul class="hide-bullets">
-                    <li class="col-xs-3 col-sm-3 padding-5px">
-                        <a class="thumbnail" id="carousel-selector-0">
-                            <img src="<?php echo base_url()?>assets/img/book/book2.jpg">
-                        </a>
-                    </li>
+					<div class="col-xs-12 col-sm-12 padding-0" id="slider-thumbs">
+					<!-- Bottom switcher of slider -->
+						<ul class="hide-bullets">
+							<li class="col-xs-3 col-sm-3 padding-5px">
+								<a class="thumbnail" id="carousel-selector-0">
+									<img src="<?php echo base_url()?>assets/img/book/book2.jpg">
+								</a>
+							</li>
 
-                    <li class="col-xs-3 col-sm-3 padding-5px">
-                        <a class="thumbnail" id="carousel-selector-1"><img src="<?php echo base_url()?>assets/img/book/book1.jpg"></a>
-                    </li>
+							<li class="col-xs-3 col-sm-3 padding-5px">
+								<a class="thumbnail" id="carousel-selector-1">
+									<img src="<?php echo base_url()?>assets/img/book/book1.jpg">
+								</a>
+							</li>
 
-                    <li class="col-xs-3 col-sm-3 padding-5px">
-                        <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/150x150&text=2"></a>
-                    </li>
+							<li class="col-xs-3 col-sm-3 padding-5px">
+								<a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/150x150&text=2"></a>
+							</li>
 
-                    <li class="col-xs-3 col-sm-3 padding-5px">
-                        <a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/150x150&text=3"></a>
-                    </li>
-
-                   
-                </ul>
-            </div>
+							<li class="col-xs-3 col-sm-3 padding-5px">
+								<a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/150x150&text=3"></a>
+							</li>
+						</ul>
+					</div>
             <!--/Slider-->
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8">
 				<div class="book-header">
 								Perempuan Pencari Tuhan 3
 							</div>
@@ -170,59 +171,6 @@
 								<a href="#"><button type="button" class="btn btn-success">Kunjungi Jual Beli</button></a><br><br>
 								<a href="#">Cek Review Buku Ini</a>
 							</div>
-				</div>
-			</div>
-			<div class="col-md-3" id="sidebar">
-				<div id="about-seller" class="side-bar-item">
-					<div class="side-bar-title"> TENTANG PENJUAL </div>
-					<img src="http://www.famous-entrepreneurs.com/images/robert-kiyosaki.jpg" class="img-responsive-2" style="margin-bottom:7px">
-					<div class="seller-username"> RobertKiyosaki </div>
-					<div class="seller-location text-muted"> Jakarta </div>
-					<div class="seller-rank text-muted">Business Worm</div>
-					<div class="seller-sales">
-						<div class="row" id="seller-sales-container">
-							<div class="col-md-6">
-								<div class="seller-sales-percent">99%</div>
-								<div class="seller-sales-info">Transaksi Sukses</div>
-							</div>
-							<div class="col-md-6 seller-sales-divider">
-								<div class="seller-sales-percent">12321</div>
-								<div class="seller-sales-info">Buku Terjual</div>
-							</div>
-						</div>	
-					</div>
-				</div>
-				
-				<div id="recommend-book" class="side-bar-item">
-					<div class="side-bar-title"> BUKU LAIN MILIK PENJUAL </div>
-					<div class="row margin-0">
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						
-					</div>
-				</div>
-				
-				<div id="recommend-book" class="side-bar-item">
-					<div class="side-bar-title"> BUKU LAIN MILIK PENJUAL </div>
-					<div class="row margin-0">
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="col-md-4 book-side-bar">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						
-					</div>
 				</div>
 			</div>
         </div>

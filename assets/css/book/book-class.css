@@ -1,0 +1,145 @@
+.book-header
+{
+	font-size:5vh;
+}
+
+.book-writer
+{
+	font-size:3vh;
+}
+
+.book-star
+{
+	margin-top:0.5vh;
+	padding:0;
+	min-height:15px;
+	
+}
+
+.book-rating
+{
+	border-radius:5px;
+	font-size:15px;
+}
+
+.star-rating{
+	padding:0;
+}
+
+.book-image
+{
+	margin-bottom:1vh;
+	margin-top:1vh;
+}
+
+.rating {
+    float:left;
+}
+.rating span { float:right; position:relative; }
+.rating span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+
+
+.rating span label {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    text-align:center;
+    color:#777;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+	font-size:100%;
+	
+}
+.rating span:hover ~ span label,
+.rating span:hover label,
+.rating span.checked label,
+.rating span.checked ~ span label {
+	
+    color:#E69515;
+}
+
+#sidebar
+{
+	border-left: 1px solid #E69515;
+	padding-left:30px;
+}
+
+.info-small>a
+{
+	color:orange;
+	font-size:2vh;
+}
+
+.info-small>a:hover{
+	text-decoration:underline;
+}
+
+.book-info{
+	font-weight:bold;
+}
+
+table.book-info{
+	font-weight:normal;
+	font-size:2vh;
+}
+
+td, th {
+    text-align: left;
+    padding-top: 3px;
+}
+
+.book-rating-star
+{
+	font-size:2em;
+}
+
+#book-buy-store
+{
+	margin-top:2vh;
+}
+
+.side-bar-item{
+	padding-top:20px;
+	padding-bottom:20px;
+	border-bottom : 1px solid #CCC;
+}
+
+.side-bar-title
+{
+	font-size:2vh;
+	color:#333;
+	text-transform: uppercase;
+	font-weight:bold;
+	margin-bottom:5px;
+	text-align:center;
+}
+
+.book-review-bar
+{
+	background-color:#E69515;
+	color:white;
+	font-size:2vh;
+	padding:5px;
+	margin-bottom:3px;
+}
+.book-review-container
+{
+	margin-bottom:1vh;
+}
+
+.main-bar-item
+{
+	margin-bottom:5vh;
+}
+
+
+.book-side-bar{
+	padding-right:5px;
+	padding-left:5px;
+}

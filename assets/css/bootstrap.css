@@ -1093,14 +1093,9 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-@font-face {
-  font-family: 'Fabrica';
 
-  src: url('../fonts/fabrica.otf');
- }
 
 body {
-  font-family: "Fabrica";
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;

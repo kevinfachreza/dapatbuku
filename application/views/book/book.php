@@ -4,6 +4,8 @@
 <head>
 
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/book/book-class.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/index.css">
 	
 	<?php echo $header; ?>
 
