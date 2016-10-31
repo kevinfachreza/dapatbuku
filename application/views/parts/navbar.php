@@ -1,3 +1,38 @@
+	<nav class="navbar navbar-mini navbar-default navbar-padding navbar-fixed-top" style="padding-top:50px;background-color:#E68037">
+	  <div class="container-fluid" style="">
+		<div class="collapse navbar-collapse" id="secondary-navbar">
+		  <ul class="nav navbar-nav navbar-nav-mini">
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a href="#">Rekomendasi</a></li>
+				<li><a href="#">Buku Paling Top</a></li>
+				<li><a href="#">Paling Banyak Dibaca</a></li>
+				<li role="separator" class="divider"></li>
+				 <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Kategori</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                  <li><a href="#">Second level</a></li>
+                </ul>
+              </li>
+			  </ul>
+			</li>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Blog</a></li>
+			<li class="navbar-hide"><a href="#">Profile</a></li>
+		  </ul>
+		  <form class="navbar-form navbar-left  navbar-hide ""  role="search" id="NavbarSearch">
+			<div class="form-group form-group-navbar">
+			  <input type="text" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		  </form>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -65,40 +100,7 @@
 		</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
-	<nav class="navbar navbar-mini navbar-default navbar-padding navbar-static-top" style="padding-top:50px;background-color:#E68037">
-	  <div class="container-fluid" style="">
-		<div class="collapse navbar-collapse" id="secondary-navbar">
-		  <ul class="nav navbar-nav navbar-nav-mini">
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
-			  <ul class="dropdown-menu">
-				<li><a href="#">Rekomendasi</a></li>
-				<li><a href="#">Buku Paling Top</a></li>
-				<li><a href="#">Paling Banyak Dibaca</a></li>
-				<li role="separator" class="divider"></li>
-				 <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Kategori</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Second level</a></li>
-                  <li><a href="#">Second level</a></li>
-                  <li><a href="#">Second level</a></li>
-                </ul>
-              </li>
-			  </ul>
-			</li>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Blog</a></li>
-			<li class="navbar-hide"><a href="#">Profile</a></li>
-		  </ul>
-		  <form class="navbar-form navbar-left  navbar-hide ""  role="search" id="NavbarSearch">
-			<div class="form-group form-group-navbar">
-			  <input type="text" class="form-control" placeholder="Search">
-			</div>
-			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-		  </form>
-		</div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+	
 
 	 <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">

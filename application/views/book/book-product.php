@@ -139,13 +139,6 @@
 					</div>
 				</div>
 				
-				
-				
-				<div id="book-buy-store" class="text-center main-bar-item">
-					<a href="#"><button type="button" class="btn btn-primary">Tambahkan ke Wishlist</button></a>
-					<a href="#"><button type="button" class="btn btn-success">Kunjungi Jual Beli</button></a><br><br>
-					
-				</div>
 			</div>
 		</div>
 	</div>
@@ -162,18 +155,94 @@
 							<img class="img-responsive" src="https://pbs.twimg.com/profile_images/3743349988/7926e89ff14b79fd94d91a6b823cbd61_400x400.jpeg">
 						</div>
 						<div class="col-md-8 seller-container">
-							<div class="seller-container-text"><span class="seller-username">Amiko</span> <span class="seller-location">Surabaya</span></div>
-							<div class="seller-container-text"><span class="seller-rank">Il Professori </span></div>
+							<div class="seller-container-text"><span class="seller-username">Amiko</span></div>
+							<div class="seller-container-text"><span class="seller-location">Surabaya </span></div>
 							<div class="seller-container-text"><span class="text-muted">member sejak </span><span class="seller-member-date">15 Agustus 2016</span></div>
+							<div class="seller-send-message">
+							<a href="#"><button type="button" class="btn btn-success">Send Message</button></a>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6 padding-default">
-					<img src="<?php echo base_url()?>assets/img/banner/mini-banner2.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
+					<div class="row">
+						<div class="col-md-6 seller-container">
+							<div class="seller-contact-container seller-phone"><img src="https://image.freepik.com/free-icon/smartphone_318-33441.jpg" height="25"> 0881231232</div>
+							<div class="seller-contact-container seller-whatsapp"><img src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/whatsapp-official-logo-png-download.png" height="25"> 0881231232</div>
+							<div class="seller-contact-container seller-line"><img height="25" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRKRHTY5RL6cHrkwb-nmWX16if2typM10v6LIOVPKNj1b9t8hSC"> @kevinfachreza </div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div id="NewReleaseContainer" class="container">
+		<div class="col-md-12 header-text"><h3>New Release</h3></div>
+		<div class="col-md-12 text-center"><hr></div>
+		<div class="col-md-12 book-container">
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="margin-bot-1 home-book-img">
+					<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+				</div>
+				<div class="text-center">
+					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+				</div>
+			</div>
+		</div>
+		</div>
 	
 	<!--/////////////////////CUSTOMER ALSO BOUGHT///////////////////////////////// -->
 
