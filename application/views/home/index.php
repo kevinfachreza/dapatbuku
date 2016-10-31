@@ -284,164 +284,43 @@
 		</div>
 		</div>
 	
-	<div id="BestSellerContainer" class="container">
-		<div class="col-md-12 header-text"><h3>Yuk Tukar Poin</h3></div>
-		<div class="col-md-12 text-center"><hr></div>
-		<div class="col-md-12 book-container">
-			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="Poin">
-			  <div class="carousel-inner carousel-inner3">
-				
-				<div class="item active ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book4.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book5.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book6.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book7.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class=""><a href="" class="text-primary">Judul</a></div>
-							<div class=""><a href="" class="text-muted">Pengarang</a></div>
-							<div class=""><p class="text-third">500 Pts</p></div>
-						</div>
-					</div>
-				</div>
-				
-			  </div>
-			  <a class="left carousel-control" href="#Poin" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-			  <a class="right carousel-control" href="#Poin" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-			</div>
-		</div>
-	</div>
-	
-	
 	<div id="News" class="container">
 		<div class="col-md-12 margin-bot-3" >
 			<div class="col-md-12 header-text"><h3>News</h3></div>
 			<div class="col-md-12 text-center"><hr></div>
 			<div class="col-md-12">
 				<div class="row">
-					<a href="">
-					<div class="col-md-8 padding-5px">
-						<div class="col-md-12 padding-0 news-item">
+					<div class="col-md-12 padding-5px  news-item">
+						<div class="col-md-8 padding-0">
 							<div class="col-md-12 news-height padding-0">
-								<img src="<?php echo base_url()?>assets/img/banner/news-4.jpg" class="img-responsive-2">
+								<a href=""><img src="<?php echo base_url()?>assets/img/banner/news-4.jpg" class="img-responsive-2"></a>
 							</div>
-						
-							<div class="col-md-12 padding-20px home-news-title-1-2">
-								<div class="text-center">
-									<div class="text-primary text-bold">RUDY</div>
-									<div class="text-muted">Habibie Oh Habibie!</div>
-								</div>
-							</div>
-							<div class="home-news-title-2"><span>Habibie Oh Habibie!</span></div>
 						</div>
+						<div class="col-md-4"><a href="">
+							<div class="home-news-title-1">HARRY POTTER AND THE CURSED CHILD</div>
+							<div class="home-news-caption-1">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+						</a></div>
 					</div>
-					</a>
-					<a href="">
-						<div class="col-md-4 padding-5px">
-							<div class="col-md-12 padding-0 news-item">
-								<div class="col-md-12 news-height padding-0">
-									<img src="<?php echo base_url()?>assets/img/banner/news-5.jpg" class="img-responsive-2">
-								</div>
-								<div class="col-md-12 padding-20px home-news-title-1-2">
-									<div class="text-center">
-										<div class="text-primary text-bold">DETECTIVE CONAN</div>
-										<div class="text-muted">Conan Tamat? Shinichi Temui Ajalnya</div>
-									</div>
-								</div>
-								<div class="home-news-title-1"><span>Conan Tamat? Shinichi Temui Ajalnya</span></div>
-							</div>
-						</div>
-					</a>
+					
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="row">
-					<a href="">
 						<div class="col-md-4 padding-5px">
 							<div class="col-md-12 padding-0 news-item">
 								<div class="col-md-12 news-height padding-0">
-									<img src="<?php echo base_url()?>assets/img/banner/news-3.jpg" class="img-responsive-fit">
+									<a href=""><img src="<?php echo base_url()?>assets/img/banner/news-3.jpg" class="img-responsive-fit"></a>
 								</div>
 								<div class="col-md-12 padding-20px">
 									<div class="text-center">
-										<div class="text-primary text-bold">HARRY POTTER AND THE CURSED CHILD</div>
-										<div class="text-muted">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+										<a href="">
+										<div class="home-news-title-2">HARRY POTTER AND THE CURSED CHILDA</div>
+										<div class="home-news-caption-2">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+										</a>
 									</div>
 								</div>
 							</div>
 						</div>
-					</a>
 					<a href="">
 						<div class="col-md-4 padding-5px">
 							<div class="col-md-12 padding-0 news-item">
@@ -450,8 +329,10 @@
 								</div>
 								<div class="col-md-12 padding-20px">
 									<div class="text-center">
-										<div class="text-primary text-bold">HARRY POTTER AND THE CURSED CHILD</div>
-										<div class="text-muted">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+										<a href="">
+										<div class="home-news-title-2">HARRY POTTER AND THE CURSED CHILD</div>
+										<div class="home-news-caption-2">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -464,10 +345,10 @@
 									<img src="<?php echo base_url()?>assets/img/banner/news-2.jpg" class="img-responsive-fit">
 								</div>
 								<div class="col-md-12 padding-20px">
-									<div class="text-center">
-										<div class="text-primary text-bold">HARRY POTTER AND THE CURSED CHILD</div>
-										<div class="text-muted">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
-									</div>
+									<a href="">
+									<div class="home-news-title-2">HARRY POTTER AND THE CURSED CHILD</div>
+									<div class="home-news-caption-2">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
+									</a>
 								</div>
 							</div>
 						</div>

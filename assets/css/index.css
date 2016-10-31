@@ -66,22 +66,30 @@ hr
 /* PER-PAGE */
 
 .home-news-title-1{
-	position:absolute;
-	top:10%;
-	left:20px;
-	color:white;
+	color:black;
 	font-weight:bold;
-	font-size:7vh;
+	font-size:5vh;
+	text-align:left;
+}
+
+.home-news-caption-1{
+	color:black;
+	font-size:1em;
+	text-align:left;
+}
+
+
+.home-news-caption-2{
+	color:black;
+	font-size:1em;
+	text-align:center;
 }
 
 .home-news-title-2{
-	display:block;
-	position:absolute;
-	top:70%;
-	left:20px;
-	color:white;
+	color:black;
 	font-weight:bold;
-	font-size:7vh;
+	font-size:1em;
+	text-align:center;
 }	
 .home-news-title-1 span {
 	background-color:#E69515;
@@ -154,3 +162,9 @@ hr
     font-size: 20px;
 }
 }
+
+a > .home-news-title-1:hover, a > .home-news-title-2:hover
+{
+	color:orange;
+}
+

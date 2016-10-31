@@ -69,8 +69,10 @@
 	text-transform:uppercase;
 }
 
+
+
 .font-semibold{
-  font-family: SourceSansProSemiBold;
+	font-family: SourceSansProSemiBold;
 	font-weight:600;
 	
 }
@@ -117,8 +119,39 @@ body {
     border-color: #E68037;
 }
 
+
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
+
+#NavbarSearch input[type=text]{
+	width:300px!important;
+	
+	}
+	
+	
+
+@media (max-width: 1023px) {
+	#NavbarSearch input[type=text]{
+	width:50%!important;
+	}
+	
+	
+}
+
+@media (min-width:1024px)
+{
+	.navbar-hide
+	{
+		display:none !important;
+	}
+	
+.form-group-navbar
+{
+	padding-left:10%;
+}
+	
+}
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
@@ -261,7 +294,11 @@ body {
 }
 
 hr{
-	height: 3px; 
+	width:100%;
+	height:1px;
+	background-color:#F58634;
+	margin-bottom:20px;
+	margin-top:0;
 }
 
 hr.thin
@@ -379,10 +416,6 @@ padding-right: 117px;
 
 /*LINK A*/
 
-a .news-item:hover
-{
-	box-shadow: 0px 0px 10px #888888;
-}
 
 
 /*FONT TEXT ALL OF IT*/
@@ -492,7 +525,11 @@ a:focus {
 
 #footer h4
 {
-	color:#E69515;
+	color:#000;
+	font-family: Oswald;
+	font-weight:600;
+	font-size:3em;
+	padding-left:15px;
 }
 
 .footer-3 p{
@@ -519,8 +556,12 @@ a:focus {
 .footer-2{
 	padding-top:3vh;
 	padding-bottom:3vh;
-	background-color:#333333; 
-	font-size:12px;
+	background-color:#F58634; 
+}
+
+.footer-2 .col-md-6{
+	
+	font-size:1.1em;
 }
 
 .footer-3{

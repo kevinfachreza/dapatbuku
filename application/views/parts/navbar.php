@@ -1,19 +1,19 @@
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#secondary-navbar" aria-expanded="false">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
+		   
 		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
+		  
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <form class="navbar-form navbar-left" role="search">
+		<div class="collapse navbar-collapse" >
+		  <form class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
 			<div class="form-group">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
@@ -37,20 +37,6 @@
 				</div>
 			</a></li>
 
-			<li><a href="#" data-toggle="tooltip" title="Keranjang Belanja" data-placement="bottom"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-				<div class="icon-wrapper">
-					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
-					<span class="badge">100</span>
-				</div>
-			</a></li>
-
-			<li><a href="#" data-toggle="tooltip" title="Transaksi" data-placement="bottom"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
-				<div class="icon-wrapper">
-					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
-					<span class="badge">100</span>
-				</div>
-			</a></li>
-
 			<li><a href="#" data-toggle="tooltip" title="Tambah Buku" data-placement="bottom"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
 				<div class="icon-wrapper">
 					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
@@ -62,7 +48,6 @@
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
 			  <ul class="dropdown-menu">
 				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
-				<li role="separator" class="divider"></li>
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">MyBooks</a></li>
@@ -82,9 +67,7 @@
 	</nav>
 	<nav class="navbar navbar-mini navbar-default navbar-padding navbar-static-top" style="padding-top:50px;background-color:#E68037">
 	  <div class="container-fluid" style="">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="secondary-navbar">
 		  <ul class="nav navbar-nav navbar-nav-mini">
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
@@ -105,12 +88,18 @@
 			</li>
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Blog</a></li>
+			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
+		  <form class="navbar-form navbar-left  navbar-hide ""  role="search" id="NavbarSearch">
+			<div class="form-group form-group-navbar">
+			  <input type="text" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		  </form>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	 <!-- Modal -->
 	 <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
