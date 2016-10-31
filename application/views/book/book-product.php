@@ -58,7 +58,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-12 padding-0" id="slider-thumbs">
+				<div class="col-xs-12 col-sm-12  " id="slider-thumbs">
 				<!-- Bottom switcher of slider -->
 					<ul class="hide-bullets">
 						<li class="col-xs-3 col-sm-3 padding-5px">
@@ -99,9 +99,9 @@
 				</div>
 				
 				
-				<div class="col-md-12 product-item padding-0">
+				<div class="col-md-12 product-item padding-0 ">
 				<div class="product-header">Informasi Buku</div>
-					<div class="col-md-4 padding-0">
+					<div class="col-md-4  padding-0 ">
 					<div class="row">
 						<div class="col-md-12 table-container">
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Kondisi
@@ -133,11 +133,13 @@
 				</div>
 				
 				<div id="product-description" class="product-item">
-					<div class="product-header">Deskripsi</div>
+					<div class="product-header">Sinopsis</div>
 					<div class="product-description more">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet, nunc eget laoreet sa agittis, quam ligula sodales orci, congue imperdiet eros tortor ac lectus. Duis eget nisl orci. Aliquam mattis purus non mauris blandit id luctus felis convallis. Integer varius egestas vestibulum. Nullam a dolor arcu, ac tempor elit. Donec.
 					</div>
 				</div>
+				
+				
 				
 			</div>
 		</div>
@@ -145,7 +147,7 @@
 </div>
 
 	<div id="Seller-Info" class="container">
-		<div class="col-md-12 padding-0" >
+		<div class="col-md-12  " >
 			<div class="row">
 				<div class="col-md-12 header-text-2">Tentang Penjual</div>
 				<div class="col-md-12 text-center"><hr></div>
@@ -178,7 +180,7 @@
 	</div>
 	
 	<div id="NewReleaseContainer" class="container">
-		<div class="col-md-12 header-text"><h3>New Release</h3></div>
+		<div class="col-md-12 header-text-2">New Release</div>
 		<div class="col-md-12 text-center"><hr></div>
 		<div class="col-md-12 book-container">
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -188,7 +190,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -198,7 +199,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -208,7 +208,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -218,7 +217,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -228,7 +226,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-12">
@@ -238,7 +235,6 @@
 				<div class="text-center">
 					<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
 					<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-					<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 				</div>
 			</div>
 		</div>

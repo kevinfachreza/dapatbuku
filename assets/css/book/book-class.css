@@ -1,11 +1,45 @@
-.book-header
+.book-title
 {
+	font-family:SourceSansProSemiBold;
 	font-size:5vh;
+}
+
+.container
+{
+	padding-top:10px;
+	padding:20px;
+}
+
+#book-container
+{
+	margin-top:25px;
 }
 
 .book-writer
 {
 	font-size:3vh;
+	color:orange;
+}
+
+.book-writer span{
+	font-size:2vh;
+}
+
+.book-rating
+{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.book-header{
+	font-weight: bold;
+    font-size: 3vh;
+    margin-bottom: 7px;
+}
+
+.book-rating-count , .book-review-count{
+	font-size:2vh;
+	color:orange;
 }
 
 .book-star
@@ -16,10 +50,33 @@
 	
 }
 
-.book-rating
+.table-header, .table-content{
+	font-size:1em;
+}
+
+.table-header
 {
-	border-radius:5px;
-	font-size:15px;
+	font-weight:bold;
+	
+}
+
+.table-content
+{
+}
+
+.table-container > .col-md-6
+{
+	padding:0;
+	padding-bottom:2px;
+}
+
+a.morelink {
+	text-decoration:none;
+	outline: none;
+}
+.morecontent span {
+	display: none;
+
 }
 
 .star-rating{
@@ -32,9 +89,17 @@
 	margin-top:1vh;
 }
 
+.rating-book-text
+{
+	font-size:1em;
+	margin-top:5px;
+}
+
 .rating {
     float:left;
 }
+
+
 .rating span { float:right; position:relative; }
 .rating span input {
     position:absolute;
@@ -63,6 +128,11 @@
 	
     color:#E69515;
 }
+
+
+
+
+
 
 #sidebar
 {
@@ -142,4 +212,78 @@ td, th {
 .book-side-bar{
 	padding-right:5px;
 	padding-left:5px;
+}
+
+.review-wrapper
+{
+	margin-bottom:10px;
+}
+
+.review-item{
+	margin-bottom:3px;
+}
+
+.review-title
+{
+	font-family:SourceSansProSemiBold;
+	font-size:1.2em;
+}
+
+.review-date
+{
+	float:right;
+	color:#E69515;
+}
+
+.review-username{
+	font-family:SourceSansProSemiBold;
+}
+
+.review-content
+{
+	margin-bottom:10px;
+}
+
+.review-form
+{
+	margin-top:40px;
+}
+
+.review-form-input textarea
+{
+	margin-bottom:10px;
+}
+
+.rating2 {
+    float:left;
+}
+
+
+.rating2 span { float:right; position:relative; }
+.rating2 span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+
+
+.rating2 span label {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    text-align:center;
+    color:#777;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+	font-size:100%;
+	
+}
+.rating2 span:hover ~ span label,
+.rating2 span:hover label,
+.rating2 span.checked label,
+.rating2 span.checked ~ span label {
+	
+    color:#E69515;
 }
