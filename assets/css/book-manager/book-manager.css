@@ -1,0 +1,42 @@
+.button-books button{
+	margin-top:20px;
+	margin-right:10px;
+}
+
+.book-title
+{
+	font-family:SourceSansProSemiBold;
+	font-size:1.4em;
+}
+
+.book-writer
+{
+	font-size:1.2em;
+}
+
+.book-price{
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+.book-date{
+	font-size:0.8em;
+}
+
+.books-wrapper{
+	padding:5px;
+	margin:0;
+	background-color:#f5f8fa;
+}
+
+.manage-books-item
+{
+	margin-bottom:2em;
+	overflow:hidden;
+}
+
+.info-books-container
+{
+	margin-bottom:1em;
+	overflow:hidden;
+}

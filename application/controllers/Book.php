@@ -30,7 +30,6 @@ class Book extends CI_Controller {
 		$this->load->view('book/book-product',$data);
 	}
 	
-	
 }
 
 ?>

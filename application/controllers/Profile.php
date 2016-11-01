@@ -23,22 +23,48 @@ class Profile extends CI_Controller {
 		$this->load->view('profile/index',$data);
 	}
 	
-	public function edit()
+	public function settings($name='index')
 	{
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		//$data['user_name'] = $this->M_auth->get_data($this->sess)
-		$this->load->view('profile/profile-edit',$data);
+		
+		if($name == 'index')
+		{
+			$this->load->view('profile/profile-edit',$data);
+		}
+		else if($name == 'password')
+		{
+			$this->load->view('profile/profile-password',$data);
+		}
+		else if($name == 'book')
+		{
+			redirect('profile/book');
+		}
 	}
 	
-	public function changepassword()
+	public function book($function='manager')
 	{
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		//$data['user_name'] = $this->M_auth->get_data($this->sess)
-		$this->load->view('profile/profile-password',$data);
+		
+		if($function == 'manager') 
+		{
+			$this->load->view('book-manager/manage-books',$data);
+		}
+		else if($function == 'edit') {
+			$this->load->view('book-manager/edit-books',$data);
+		}
+		else if($function == 'add') {
+			$this->load->view('book-manager/add-books',$data);
+		}
+	}
+	
+	public function addbook()
+	{
+		
+		
 	}
 	
 	public function set_in()
