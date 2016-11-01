@@ -1,0 +1,97 @@
+.container{
+	padding-top:20px;
+}
+
+.search-side-item
+{
+	padding-bottom:10px;
+	margin-top:10px;
+	border-bottom:solid 1px #F58634;
+}
+
+
+.border-none{
+	border-bottom:none;
+}
+
+.activity-wrapper
+{
+	margin-top:10px;
+}
+
+.search-cat
+{
+	color:#F58634;
+}
+
+.container .row
+{
+	margin:0;
+	padding:15px;
+}
+
+.search-item
+{
+	font-size:1em;
+	margin-bottom:25px;
+}
+
+.book-image
+{
+	height:200px;
+	overflow:hidden;
+}
+
+.book-image img
+{
+	width:100%;
+}
+
+.book-info-section{
+	padding:5px;
+	border:solid 1px #ccc;
+}
+
+.book-title{
+	font-family:SourceSansProSemiBold;
+	border-bottom:solid 1px #F58634;
+	padding-bottom:5px;
+}
+
+.book-down-section
+{
+	padding-top:5px;
+}
+
+.book-price{
+	
+}
+
+.book-location{
+	color:#F58634;
+}
+
+.book-tag
+{
+	float:right;
+}
+
+.hr{
+	margin:0;
+}
+
+.tag-sewa, .tag-barter{
+	text-align:center;
+	color:white;
+	padding:2px;
+	font-size:0.7em;
+	margin-bottom:2px;
+}
+
+.tag-sewa{
+	background-color:orange;
+}
+
+.tag-barter{
+	background-color:green;
+}
