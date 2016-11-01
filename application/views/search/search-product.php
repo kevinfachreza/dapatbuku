@@ -127,24 +127,7 @@
 		
 		</div>
 		<div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-0	">
-			<div class="col-md-12 container">
-				<div class="col-md-12 header-text-2">Buku yang mungkin kamu cari</div>
-				<div class="col-md-12 text-center"><hr></div>
-				
-				<div class="row">
-				<?php for ($i=0;$i<4;$i++){ ?>
-					<div class="col-md-3 search-item">
-						<div class="book-class-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
-						</div>
-						<div class="book-class-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
-						</div>
-					</div>
-				<?php } ?>
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button>
-					</div>
-				</div>
-			</div>
+			
 			<div class="col-md-12 container">
 				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span></div>
 				<div class="col-md-12 text-center"><hr></div>

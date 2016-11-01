@@ -22,6 +22,22 @@ class Search extends CI_Controller {
 		$this->load->view('search/search',$data);
 	}
 	
+	public function book()
+	{
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		$this->load->view('search/search-book',$data);
+	}
+	
+	public function product()
+	{
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		$this->load->view('search/search-product',$data);
+	}
+	
 	
 }
 

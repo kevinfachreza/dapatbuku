@@ -49,73 +49,6 @@
 				</div>
 			</div>
 			
-			<div class="search-side-item">
-				<div class="header-text-2">Kondisi</div>
-				<div class="activity-wrapper">
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Bekas</label>
-					</div>
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Baru</label>
-					</div>
-				</div>
-			</div>
-			
-			<div class="search-side-item">
-				<div class="header-text-2">Lokasi</div>
-				<div class="activity-wrapper">
-					<label for="sel1">Provinsi</label>
-					<select class="form-control" id="provinsi">
-						<?php for($i=0; $i<100; $i++){ ?>
-						<option><?php echo $i?></option>
-						<?php } ?>
-					</select>
-				</div>
-				<div class="activity-wrapper">
-					<label for="sel1">Kota</label>
-					<select class="form-control" id="kota">
-						<?php for($i=0; $i<100; $i++){ ?>
-						<option><?php echo $i?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			
-			<div class="search-side-item">
-				<div class="header-text-2">Tebal</div>
-				<div class="activity-wrapper">
-					<input type="number"  class="form-control" name="points" min="0" max="100" step="10"  placeholder="Min">
-				</div>
-				<div class="activity-wrapper">
-					<input type="number"  class="form-control" name="points" min="0" max="100" step="10"  placeholder="Max">
-				</div>
-			</div>
-			
-			<div class="search-side-item">
-				<div class="header-text-2">Harga</div>
-				<div class="activity-wrapper">
-					<input type="number"  class="form-control" name="points" min="0" max="100" step="10"  placeholder="Min">
-				</div>
-				<div class="activity-wrapper">
-					<input type="number"  class="form-control" name="points" min="0" max="100" step="10"  placeholder="Max">
-				</div>
-			</div>
-			
-			<div class="search-side-item border-none">
-				<div class="header-text-2">Lainnya</div>
-				<div class="activity-wrapper">
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Jual</label>
-					</div>
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Sewa</label>
-					</div>
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Barter</label>
-					</div>
-				</div>
-			</div>
-			
 			<div class="search-side-item border-none">
 				<div class="activity-wrapper">
 					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
@@ -128,45 +61,15 @@
 		</div>
 		<div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-0	">
 			<div class="col-md-12 container">
-				<div class="col-md-12 header-text-2">Buku yang mungkin kamu cari</div>
-				<div class="col-md-12 text-center"><hr></div>
-				
-				<div class="row">
-				<?php for ($i=0;$i<4;$i++){ ?>
-					<div class="col-md-3 search-item">
-						<div class="book-class-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
-						</div>
-						<div class="book-class-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
-						</div>
-					</div>
-				<?php } ?>
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 container">
 				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span></div>
 				<div class="col-md-12 text-center"><hr></div>
 				
 				<div class="row">
 				<?php for ($i=0;$i<16;$i++){ ?>
 					<div class="col-md-3 search-item">
-						<div class="book-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
+						<div class="book-class-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
 						</div>
-						<div class="book-info-section">
-							<div class="book-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
-							</div>
-							<div class="book-down-section">
-								<div class="book-tag">
-									<div class="tag-sewa">Sewa</div>
-									<div class="tag-barter">Barter</div>
-								</div>
-								<div class="book-price">Rp 50.000
-								</div>
-								<div class="book-location">Surabaya
-								</div>
-							</div>
+						<div class="book-class-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
 						</div>
 					</div>
 				<?php } ?>

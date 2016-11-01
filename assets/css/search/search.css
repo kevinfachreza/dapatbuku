@@ -36,6 +36,21 @@
 	margin-bottom:25px;
 }
 
+.book-class-image{
+	height:150px;
+	overflow:hidden;
+	text-align:center;
+}
+
+.book-class-image img{
+	height:100%;
+}
+
+.book-class-title{
+	font-size:1em;
+	text-align:center
+}
+
 .book-image
 {
 	height:200px;
@@ -94,4 +109,11 @@
 
 .tag-barter{
 	background-color:green;
+}
+
+.sort-by
+{
+	float:right;
+	width:100px;
+	margin-bottom:10px;
 }
