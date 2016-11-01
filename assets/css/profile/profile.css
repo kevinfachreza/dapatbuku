@@ -1,0 +1,79 @@
+#profile-header,#book-container
+{
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+.img-circle{
+	border:solid 3px white;
+}
+
+.profile-name
+{
+	font-size:2em;
+	font-family:SourceSansProSemiBold;
+}
+
+.profile-data-container{
+	font-size:1.5em;
+	color:orange;
+}
+
+.profile-reviews-count{
+	margin-right:20px;
+}
+
+.profile-bio{
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.book-item
+{
+	margin-bottom:20px;
+}
+
+.form-container .form-control
+{
+	margin-bottom:0.5em;
+}
+
+.form-container button
+{
+	float:left;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.photo-profile-container 
+{
+	margin-bottom:25px;
+}
+
+
+.form-profile{
+	margin-bottom:100px;
+}
+
+.header-text-2
+{
+	margin-bottom:25px;
+}

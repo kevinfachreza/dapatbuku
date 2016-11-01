@@ -107,6 +107,7 @@ body {
     border-radius: 3px;
 	background-color:white;
 	margin-bottom:25px;
+	margin-top:25px;
 	
 }
 
@@ -677,6 +678,13 @@ a:focus {
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 
+	color:white;
+	background-color:#F58634;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus
+{
+	
 	color:white;
 	background-color:#F58634;
 }

@@ -20,14 +20,27 @@ class Profile extends CI_Controller {
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
 		//$data['user_name'] = $this->M_auth->get_data($this->sess)
-		$this->load->view('home/index',$data);
+		$this->load->view('profile/index',$data);
 	}
-
-	public function container()
+	
+	public function edit()
 	{
-		$this->load->view('home/carousel-container');
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		//$data['user_name'] = $this->M_auth->get_data($this->sess)
+		$this->load->view('profile/profile-edit',$data);
 	}
-
+	
+	public function changepassword()
+	{
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		//$data['user_name'] = $this->M_auth->get_data($this->sess)
+		$this->load->view('profile/profile-password',$data);
+	}
+	
 	public function set_in()
 	{
 		$this->session->logged_in = 1;
