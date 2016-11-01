@@ -129,7 +129,15 @@
 		<div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-0	">
 			
 			<div class="col-md-12 container">
-				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span></div>
+				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span>
+				<div class="sort-by">
+					<select class="form-control" id="kota">
+						<?php for($i=0; $i<100; $i++){ ?>
+						<option><?php echo $i?></option>
+						<?php } ?>
+					</select>
+				</div>
+				</div>
 				<div class="col-md-12 text-center"><hr></div>
 				
 				<div class="row">

@@ -7,7 +7,7 @@
 	<?php echo $header; ?>
 	
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-thumbnail.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/search/search.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/category/category.css">
 
 </head>
 
@@ -16,68 +16,37 @@
 	
 	
 	<!--/////////////////////BOOK///////////////////////////////// -->
-	
-	<div class="container container-blank"  id="book-container">
-		<div class="col-md-2 col-sm-3 col-xs-12 container">
-			<div class="search-side-item" style="margin-top:0">
-				<div class="header-text-2">Cari</div>
-				<div class="activity-wrapper">
-					<input name="reg-name" type="text" class="form-control" placeholder="Search" style="margin-bottom:0.5em" required  autofocus>
-				</div>
+		<div class="container" id="category-header">
+			<div class="jumbotron jumbotron-cat">
+			  <h1>Bisnis</h1>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a felis tellus. Duis egestas augue vel risus pulvinar, sed pharetra odio fringilla. Integer ligula arcu, pharetra nec dapibus nec, faucibus vitae lectus. Etiam lacinia, arcu quis laoreet molestie, nisi turpis efficitur dui, ut condimentum nulla mauris vitae est. Proin sit amet vehicula velit. Ut rhoncus elit in purus ornare, in elementum arcu convallis. Proin pellentesque dignissim viverra.
+			  </p>
 			</div>
-			
-			<div class="search-side-item">
-				<div class="header-text-2">Kategori</div>
-				<div class="activity-wrapper">
-					<select class="form-control" id="kategori">
-						<?php for($i=0; $i<100; $i++){ ?>
-						<option><?php echo $i?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			
-			<div class="search-side-item">
-				<div class="header-text-2">Kategori Lain</div>
-				<div class="activity-wrapper">
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Best Seller</label>
-					</div>
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Rekomendasi</label>
-					</div>
-				</div>
-			</div>
-			
-			<div class="search-side-item border-none">
-				<div class="activity-wrapper">
-					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
-					<button type="submit" class="btn btn-danger" value="reset" style="margin-left:10px;">Reset</button>
-									
-				</div>
-			</div>
-		
-		
 		</div>
-		<div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-0	">
-			<div class="col-md-12 container">
-				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span>
-				<div class="sort-by">
-					<select class="form-control" id="kota">
-						<?php for($i=0; $i<100; $i++){ ?>
-						<option><?php echo $i?></option>
-						<?php } ?>
-					</select>
-				</div>
-				</div>
+		
+		<div class="container"  id="category-container">
+			<div class="col-md-12">
+				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Bisnis</span></div>
 				<div class="col-md-12 text-center"><hr></div>
 				
 				<div class="row">
-				<?php for ($i=0;$i<16;$i++){ ?>
-					<div class="col-md-3 search-item">
-						<div class="book-class-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
+				<?php for ($i=0;$i<12;$i++){ ?>
+					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
+						<div class="margin-bot-1 home-book-img">
+							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
 						</div>
-						<div class="book-class-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
+						<div class="text-center">
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
+						<div class="margin-bot-1 home-book-img">
+							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
+						</div>
+						<div class="text-center">
+							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
+							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
 						</div>
 					</div>
 				<?php } ?>
