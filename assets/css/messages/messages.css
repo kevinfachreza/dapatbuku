@@ -1,0 +1,56 @@
+#messages
+{
+	padding-top:1em;
+	padding-bottom:1em;
+}
+
+#message-users
+{
+	padding-top:2em;
+	padding-bottom:2em;
+}
+
+#message-room
+{
+	padding-top:2em;
+	padding-bottom:2em;
+}
+
+.img-circle{
+	border:2px solid white;
+}
+
+.right-side
+{
+	text-align:right;
+}
+
+.chat-content{
+	margin-top:1em;
+}
+
+.chat-user
+{
+	margin-bottom:1em;
+}
+
+.chat-content
+{
+	padding:0.5em 1em;
+	border-radius:4px;
+	line-height:2em;
+	color:black;
+}
+
+.left-side .chat-content{
+	background-color:#F9AD77;
+}
+
+.right-side .chat-content{
+	background-color:#eee;
+}
+
+.chatbox
+{
+	margin-bottom:1em;
+}
