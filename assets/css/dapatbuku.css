@@ -141,12 +141,17 @@ body {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
+@media (min-width: 1024px) {
+
+.navbar-padding{
+	padding-left:100px;
+	padding-right:100px;
+}
+}
 #NavbarSearch input[type=text]{
 	width:300px!important;
 	
 	}
-	
-	
 
 @media (max-width: 1023px) {
 	#NavbarSearch input[type=text]{
@@ -457,7 +462,8 @@ a {
 }
 a:hover,
 a:focus {
-	color:#E69515;
+  text-decoration: none!important;
+	color:#E69515!important;
 }
 
 .text-center{
