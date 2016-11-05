@@ -31,8 +31,8 @@ class Auth extends CI_Controller {
     $pass = $this->input->post('log-pass');
 
     $result = $this->M_auth->login($user_in, $pass);
-	
-	
+
+
     if($result){
 	$id = $result[0]->id_u;
       $newdata = array(
@@ -57,27 +57,29 @@ class Auth extends CI_Controller {
 
     $this->form_validation->set_rules('reg-pass', 'Password', 'required');
 
+    $em = $this->input->post('reg-email');
+    $name = $this->input->post('reg-name');
+    $date = $this->input->post('reg-date');
+    $pass = $this->input->post('reg-pass');
+
     if($this->form_validation->run() == FALSE){
       //redirect('Welcome');
-      $em = $this->input->post('reg-email');
-      $name = $this->input->post('reg-name');
-      $date = $this->input->post('reg-date');
-      $pass = $this->input->post('reg-pass');
       echo $em;
       echo $name;
       echo $date;
       echo $pass;
       echo "GAGAL";
     }
+    
     else{
       echo "SINI";
-      $data_in = array(
+      /*$data_in = array(
         'email_u' => $this->input->post('reg-email'),
         'username_u' => $this->input->post('reg-name'),
         'date_of_birth_u' => $this->input->post('reg-date'),
         'password_u' => $this->input->post('reg-pass')
-      );
-      $result = $this->M_auth->register($data_in);
+      );*/
+      $result = $this->M_auth->register($em, $name, $date, $pass);
       if($result){
         echo "SUKSES";
       }

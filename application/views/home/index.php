@@ -7,15 +7,15 @@
 	<?php echo $header; ?>
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-gallery.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/index.css">
-	
+
 </head>
 
 <body>
 	<?php echo $navbar; ?>
-	
-	
+
+
 	<!--/////////////////////HEADER///////////////////////////////// -->
-	
+
 	<div id="HeaderContainer" class="container" >
 	 <div id="HeaderCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -27,15 +27,15 @@
       <div class="carousel-inner" role="listbox">
         <div class="item height-item active">
           <img class="first-slide" src="<?php echo base_url()?>assets/img/banner/banner1.jpg" class="img-responsive" alt="First slide">
-         
+
         </div>
         <div class="item height-item">
           <img class="second-slide" src="<?php echo base_url()?>assets/img/banner/banner1.png" class="img-responsive" alt="Second slide">
-         
+
         </div>
         <div class="item height-item">
           <img class="third-slide" src="<?php echo base_url()?>assets/img/banner/banner2.png" class="img-responsive"  alt="Third slide">
-         
+
         </div>
       </div>
       <a class="left carousel-control" href="#HeaderCarousel" role="button" data-slide="prev">
@@ -48,11 +48,11 @@
       </a>
     </div><!-- /.carousel -->
 	</div>
-	
+
 	<!--/////////////////////HEADER///////////////////////////////// -->
-	
+
 	<!--/////////////////////BODY///////////////////////////////// -->
-	
+
 	<div id="BannerContainer1" class="container">
 		<div class="col-md-12 padding-0" >
 			<div class="row">
@@ -71,37 +71,49 @@
 		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="Categories">
 			  <div class="carousel-inner carousel-inner3">
-				
+				<?php
+					$i = 0;
+					foreach ($best_sell as $key) {
+							if($i == 0){
+						?>
 				<div class="item active ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="text-center">
-							<div class="text-size-22 text-header margin-bot-1">#1</div>
+							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."Book".$key['id_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="author-container"><a href="<?php echo base_url()."Writer".$key['id_writer']; ?>" class="text-primary"><?php echo $key['name_writer'] ?></a></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
+				<?php }
+						else{
+				?>
 				<div class="item ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="text-center">
-							<div class="text-size-22 text-header margin-bot-1">#2</div>
+							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."Book".$key['id_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa</a></div>
-							<div class="author-container"><a href="" class="text-primary">Aikokita & Indha, Dkk</a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="author-container"><a href="<?php echo base_url()."Writer".$key['id_writer']; ?>" class="text-primary"><?php echo $key['name_writer']; ?></a></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
+				<?php }
+					$i++;
+				}
+				?>
+				<!---
 				<div class="item ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="text-center">
@@ -177,21 +189,21 @@
 						</div>
 					</div>
 				</div>
-				
+				--->
 			  </div>
 			  <a class="left carousel-control" href="#Categories" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 			  <a class="right carousel-control" href="#Categories" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
 			</div>
 		</div>
 	</div>
-		
+
 	<div id="NewReleaseContainer" class="container">
 		<div class="col-md-12 header-text"><h3>New Release</h3></div>
 		<div class="col-md-12 text-center"><hr></div>
 		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="NewRelease">
 			  <div class="carousel-inner carousel-inner3">
-				
+
 				<div class="item active ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
@@ -276,14 +288,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 			  </div>
 			  <a class="left carousel-control" href="#NewRelease" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 			  <a class="right carousel-control" href="#NewRelease" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
 			</div>
 		</div>
 		</div>
-	
+
 	<div id="News" class="container">
 		<div class="col-md-12 margin-bot-3" >
 			<div class="col-md-12 header-text"><h3>News</h3></div>
@@ -301,7 +313,7 @@
 							<div class="home-news-caption-1">Buku Harry Potter And The Cursed Child Ludes Terjual Dalam Waktu 24 Jam</div>
 						</a></div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -358,8 +370,8 @@
 		</div>
 	</div>
 	<?php echo $footer; ?>
-  
-	
+
+
 	<script type="text/javascript">
 $('.carousel[data-type="multi"] .item').each(function(){
   var next = $(this).next();
@@ -367,18 +379,18 @@ $('.carousel[data-type="multi"] .item').each(function(){
     next = $(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo($(this));
-  
+
   for (var i=0;i<3;i++) {
     next=next.next();
     if (!next.length) {
     	next = $(this).siblings(':first');
   	}
-    
+
     next.children(':first-child').clone().appendTo($(this));
   }
 });
   </script>
-  
+
   	<script type="text/javascript">
 $('.carousel[data-type="multi-2"] .item').each(function(){
   var next = $(this).next();
@@ -386,13 +398,13 @@ $('.carousel[data-type="multi-2"] .item').each(function(){
     next = $(this).siblings(':first');
   }
   next.children(':first-child').clone().appendTo($(this));
-  
+
   for (var i=0;i<4;i++) {
     next=next.next();
     if (!next.length) {
     	next = $(this).siblings(':first');
   	}
-    
+
     next.children(':first-child').clone().appendTo($(this));
   }
 });
@@ -401,18 +413,18 @@ $('.carousel[data-type="multi-2"] .item').each(function(){
 
 
   </script>
-  
-<script>  
-	$(document).ready(function() {  
-  		 $(".carousel-inner").swiperight(function() {  
-    		  $(this).parent().carousel('prev');  
-	    		});  
-		   $(".carousel-inner").swipeleft(function() {  
-		      $(this).parent().carousel('next');  
-	   });  
-	});  
-	</script>  
 
-  
+<script>
+	$(document).ready(function() {
+  		 $(".carousel-inner").swiperight(function() {
+    		  $(this).parent().carousel('prev');
+	    		});
+		   $(".carousel-inner").swipeleft(function() {
+		      $(this).parent().carousel('next');
+	   });
+	});
+	</script>
+
+
 </body>
 </html>

@@ -7,8 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
     }
 
-    public function register($datain){
-      $query = $this->db->insert('user', $datain);
+    public function register($em_in, $name_in, $date_in, $pass_in){
+      $query = $this->db->query("INSERT INTO user(email_u, username_u,
+          date_of_birth_u, password_u) VALUES('".$em_in."', '".$name_in."', '".$date_in."', SHA2('".$pass_in."', 256))");
       if($query){
         return true;
       }
@@ -18,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function login($user_check, $pass_check){
-      
+
 		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."' and password_u = SHA2('".$pass_check."',256)");
 
       if($query -> num_rows() == 1){
