@@ -22,13 +22,7 @@
 <div class="container" id="profile-header"> 
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-md-2  text-center">
-				<ul class="nav nav-pills nav-stacked">
-				  <li role="presentation"><a href="#">Edit Profile</a></li>
-				  <li role="presentation" ><a href="#">Change Password</a></li>
-				  <li role="presentation" class="active"><a href="#">Manage Books</a></li>
-				</ul>
-			</div>
+			<?php echo $navbar2?>
 			<div class="col-md-10">
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">

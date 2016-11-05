@@ -8,13 +8,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function get_data($id_in){
-      $this -> db -> select('firstname_u, point, money');
-      $this -> db -> from('user');
-      $this -> db -> where('id_u', $id_in);
+      $change = $this->db->query
+		("
+			SELECT * from USER where id_u = ".$id_in."
+		");
+		$result = $change->result();
+		return $result;
 
-      $mydata = $this -> db -> get();
-
-      return $mydata->result_array();
     }
 
   }

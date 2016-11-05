@@ -27,16 +27,24 @@ class Profile extends CI_Controller {
 	{
 		$this->session->logged_in = 1;
 		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
-
-		$newdata = array(
-					$newdata['name_in'] => $mydata[0]['firstname_u'],
-					$newdata['point_in'] => $mydata[0]['point'],
-					$newdata['money_in'] => $mydata[0]['money']
-		);
-		$this->session->set_userdata('my_name', $newdata['name_in']);
-
-
-		redirect('Profile');
+		
+		
+		$this->session->set_userdata('userdata', $mydata); 
+		
+		#how to get userdata
+		/*
+			controller
+			$user_profile   = $this->session->userdata('userdata');  
+			$data['user'] = $user_profile[0];
+			echo $data['user']->username_u;
+			
+			view
+			
+			$this->load->view('profile/profile-password',$data); <! Jangan lupa masukin $data !>
+			echo $user->username_u 
+		*/
+		
+		redirect('profile');
 	}
 	public function logging_out()
 	{

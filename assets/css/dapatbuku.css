@@ -694,3 +694,10 @@ a:focus {
 	color:white;
 	background-color:#F58634;
 }
+
+.banner-report{
+	background-color:#F58634;
+	color:white;
+	margin-bottom:20px;
+	padding:5px 7px;
+}

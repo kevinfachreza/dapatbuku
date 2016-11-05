@@ -27,6 +27,7 @@ class Mybooks extends CI_Controller {
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
+		$data['navbar2']=$this->load->view('profile/navbar-side','',true);
 		$this->load->view('book-manager/manage-books',$data);
 	}
 	

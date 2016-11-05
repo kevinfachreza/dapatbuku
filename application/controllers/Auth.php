@@ -31,17 +31,18 @@ class Auth extends CI_Controller {
     $pass = $this->input->post('log-pass');
 
     $result = $this->M_auth->login($user_in, $pass);
-
+	
+	
     if($result){
+	$id = $result[0]->id_u;
       $newdata = array(
-        'id_u' => $result
+        'id_u' => $id
       );
       $this->session->set_userdata($newdata);
-      redirect(base_url().'Profile/set_in');
+      redirect(base_url().'profile/set_in');
     }
     else{
-
-      $this->load->view('v_login', $result);
+		echo 'salah';
     }
   }
 

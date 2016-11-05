@@ -21,20 +21,17 @@
 <div class="container" id="profile-header"> 
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-md-2  text-center">
-				<ul class="nav nav-pills nav-stacked">
-				  <li role="presentation"><a href="#">Edit Profile</a></li>
-				  <li role="presentation" class="active"><a href="#">Change Password</a></li>
-				  <li role="presentation"><a href="#">Manage Books</a></li>
-				</ul>
-			</div>
+			<?php echo $navbar2; ?>
 			<div class="col-md-10 form-container">
 				
 				<div class="col-md-6 col-md-offset-3">
 				
 					<div class="form-profile">
 						<div class="header-text-2 text-center"> Ganti Password Kamu </div>
-						<form action="<?php echo base_url();?>auth/do_register" method="POST">
+						<?php if(!empty($this->session->flashdata('password_report'))){?> 
+							<div class="banner-report"><?php echo $this->session->flashdata('password_report'); ?></div>
+						<?php }?> 
+						<form action="<?php echo base_url();?>accounts/change_password" method="POST">
 							<input name="oldpassword" type="password" class="form-control" placeholder="Password Lama" required  autofocus>
 							<input name="newpassword" type="password" class="form-control" placeholder="Password Baru"  required  autofocus>
 							<input name="re-newpassword" type="password" class="form-control" placeholder="Ketik Lagi Password Baru"  required  autofocus>
