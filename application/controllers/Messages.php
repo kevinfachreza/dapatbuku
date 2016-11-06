@@ -26,56 +26,46 @@ class Messages extends CI_Controller {
 		$id = $user_profile[0]->id_u;
 		$username_login = $user_profile[0]->username_u;
 		
-		/*Get Room Yang Mengandung ID si User_Login*/
+		/*Get Room & user data Yang Mengandung ID si User_Login*/
 		$data['messages_room_list'] = $this->M_messages->getRoomChatList($id);
 		$count_messages_room = count($data['messages_room_list']);
 		#print_r($data['messages_room_list']);
 		
 		
-		/*Get other user data in the chat room*/
-		for($i = 0; $i< $count_messages_room ;$i++ ){
-			$user_id = $data['messages_room_list'][$i]->user;
-			if($i==0){
-				$data['messages_room_user'] = $this->M_messages->getUser($user_id);
-				}
-			else
-			{
-				$temp = $this->M_messages->getUser($user_id);
-				array_push($data['messages_room_user'],$temp[0]);
-			}
-		}
-		#print_r($data['messages_room_user']);
-		
 		/*Get Whose Messages Will be Opened*/
 		if(empty($user))
 		{
-			$openedMessages = $data['messages_room_user'][0]->username_u;
-			$data['openedUser']=$data['messages_room_user'][0]->username_u;
+			$openedUser = $data['messages_room_list'][0]->username_u;
+			$data['openedUser']=$data['messages_room_list'][0]->username_u;
 		}
 		else
 		{
-			$openedMessages = $user;
+			$openedUser = $user;
 			$data['openedUser']=$user;
 		}	
-		#echo $openedMessages;
+		#echo $openedUser;
 		
 		/*GET ID From openedUser*/
-		$OpenedID = $this->M_messages->getIdOpenUser($openedMessages);
-		$OpenedID = $OpenedID[0]->id_u;
-		#echo $OpenedID;
+		/* ID digunakan untuk mencari ID ChatRoom */
+		$OpenedUserID = $this->M_messages->getIdOpenUser($openedUser);
+		$OpenedUserID = $OpenedUserID[0]->id_u;
+		#echo $OpenedUserID;
+		
 		
 		/*Get ID ChatRoom That Will be Opened */
-		$OpenedRoomChatID = $this->M_messages->getRoomChatID($OpenedID,$id);
+		$OpenedRoomChatID = $this->M_messages->getRoomChatID($OpenedUserID,$id);
 		#echo $OpenedRoomChatID[0]->id_cr;
 		$OpenedRoomChatID = $OpenedRoomChatID[0]->id_cr;
 		$data['openedRoomChatID']=$OpenedRoomChatID;
-		
+	
 		
 		/*Get Messages from roomchat*/
 		$data['messages_list'] = $this->M_messages->getRoomChatMessages($OpenedRoomChatID);
 		#print_r($data['messages_list']);
 		
-
+		/*Update Semua Pesan Terbaca*/
+		$update_messages_read = $this->M_messages->updateMessageRead($OpenedRoomChatID,$id);
+		
 		$this->load->view('messages/index',$data);
 	}
 	

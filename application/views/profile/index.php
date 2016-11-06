@@ -30,11 +30,13 @@
 		<div class="profile-bio">
 			<?php echo $user->bio_u ?>
 		</div>
+		<?php if($this->session->logged_in==1)
+			{?>
 		<?php if($user->username_u == $user_login->username_u) {?>
 			<a href="<?php echo base_url()?>accounts/settings/"><button type="button" class="btn btn-success">Edit Profile</button></a>
 		<?php } else {?>
 			<a href="<?php echo base_url()?>messages/<?php echo $user->username_u ?>"><button type="button" class="btn btn-success">Send Messages</button></a>
-		<?php } ?>
+			<?php }} ?>
 							
 	</div>
 	

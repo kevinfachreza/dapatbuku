@@ -13,12 +13,13 @@ class Welcome extends CI_Controller {
 		$this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
 		$this->load->model('M_book');
+		$this->load->model('M_Profile');
 	}
 
 	public function index()
 	{
+		
 		$data_pass['best_sell'] = $this->M_book->get_b_seller();
-
 		$data_pass['header']=$this->load->view('parts/header','',true);
 		$data_pass['navbar']=$this->load->view('parts/navbar','',true);
 		$data_pass['footer']=$this->load->view('parts/footer','',true);

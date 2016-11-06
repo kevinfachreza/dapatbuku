@@ -23,11 +23,12 @@
 		<div class="row">
 			<div class="col-md-3" id="message-users">
 				<ul class="nav nav-pills nav-stacked">
-					<?php for($i=0;$i<count($messages_room_user);$i++){ ?>
+					<?php for($i=0;$i<count($messages_room_list);$i++){ ?>
 					<li role="presentation">
-						<a href="<?php echo base_url()?>messages/<?php echo $messages_room_user[$i]->username_u?>">
-							<img class="img-circle" src="<?php echo base_url().$messages_room_user[$i]->photo_profile_u ?> " height="30" width="30">  
-							<?php echo $messages_room_user[$i]->username_u?>
+						<a href="<?php echo base_url()?>messages/<?php echo $messages_room_list[$i]->username_u?>">
+							<img class="img-circle" src="<?php echo base_url().$messages_room_list[$i]->photo_profile_u ?> " height="30" width="30">  
+							<?php echo $messages_room_list[$i]->username_u?>
+							<span class="pull-right unread-messages" ><?php echo $messages_room_list[$i]->unread_messages?></span>
 						</a>
 					</li>
 					<?php } ?>
@@ -63,9 +64,6 @@
 					</div>
 					
 				<?php }} ?>
-				
-				
-				
 				
 				
 					<div class="col-md-12 chatbox">

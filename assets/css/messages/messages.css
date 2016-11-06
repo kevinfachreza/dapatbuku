@@ -58,3 +58,10 @@ textarea
 {
 	margin-bottom:10px;
 }
+
+.unread-messages{
+	background-color:#F9AD77;
+	border-radius:50%;
+	padding:0px 6px;
+	color:white
+}

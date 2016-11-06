@@ -23,16 +23,20 @@ class Profile extends CI_Controller {
 		#get User_login information untuk di compare di view
 		$user_profile   = $this->session->userdata('userdata');  
 		$data['user_login'] = $user_profile[0];
+		#print_r ($this->session->userdata('userdata'));
 		
 		#jika blank maka profile dia sendiri
 		if($username =='blank')
 		{
 			$username = $user_profile[0]->username_u;
+			if($this->session->logged_in==0)
+			{
+				redirect('/');
+			}
 		}
 		
 		#get data profile tujuan
 		$data['userdata'] = $this->M_Profile->get_data_username($username);
-		
 		$this->load->view('profile/index',$data);
 	}
 	
