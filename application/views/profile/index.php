@@ -33,7 +33,7 @@
 		<?php if($user->username_u == $user_login->username_u) {?>
 			<a href="<?php echo base_url()?>accounts/settings/"><button type="button" class="btn btn-success">Edit Profile</button></a>
 		<?php } else {?>
-			<a href="<?php echo base_url()?>messages"><button type="button" class="btn btn-success">Send Messages</button></a>
+			<a href="<?php echo base_url()?>messages/<?php echo $user->username_u ?>"><button type="button" class="btn btn-success">Send Messages</button></a>
 		<?php } ?>
 							
 	</div>

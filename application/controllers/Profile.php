@@ -20,17 +20,18 @@ class Profile extends CI_Controller {
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
 		
+		#get User_login information untuk di compare di view
 		$user_profile   = $this->session->userdata('userdata');  
 		$data['user_login'] = $user_profile[0];
 		
-		
+		#jika blank maka profile dia sendiri
 		if($username =='blank')
 		{
 			$username = $user_profile[0]->username_u;
 		}
 		
+		#get data profile tujuan
 		$data['userdata'] = $this->M_Profile->get_data_username($username);
-		
 		
 		$this->load->view('profile/index',$data);
 	}

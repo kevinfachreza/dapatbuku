@@ -23,45 +23,66 @@
 		<div class="row">
 			<div class="col-md-3" id="message-users">
 				<ul class="nav nav-pills nav-stacked">
-				  <li role="presentation"><a href="#"><img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">  Kevin</a></li>
-				  <li role="presentation"><a href="#"><img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">  The Reverse Kevin</a></li>
-				  <li role="presentation" class="active"><a href="#"><img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">  The Other Kevin</a></li>
+					<?php for($i=0;$i<count($messages_room_user);$i++){ ?>
+					<li role="presentation">
+						<a href="<?php echo base_url()?>messages/<?php echo $messages_room_user[$i]->username_u?>">
+							<img class="img-circle" src="<?php echo base_url().$messages_room_user[$i]->photo_profile_u ?> " height="30" width="30">  
+							<?php echo $messages_room_user[$i]->username_u?>
+						</a>
+					</li>
+					<?php } ?>
 				</ul>
 			</div>
 			<div class="col-md-9" id="message-room">
-				<div class="header-text-2 text-center"> Percakapan Dengan Kevin </div>
+				<div class="header-text-2 text-center"> Percakapan Dengan <?php echo $openedUser ?> </div>
 				<div class="manage-books-container">
-				<?php for($i=0;$i<2;$i++) { ?>
+				<?php 
+				if(count($messages_list)>0){
+				for($i=0;$i<count($messages_list);$i++) { ?>
 					
-					<div class="col-md-12 chatbox left-side">
+					<?php 
+						if($user_login->username_u == $messages_list[$i]->username_u)
+						{
+							$side = 'left-side';
+							$offset = '';
+						}
+						else 
+						{
+							$side = 'right-side';
+							$offset = 'col-md-offset-6';
+						}
+					?>
+					<div class="col-md-12 chatbox <?php echo $side ?>">
 						<div class="chat-user">
-							<img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">
-							<span class="chat-username ">The Other Kevin</span>
+							<img class="img-circle" src="<?php echo base_url().$messages_list[$i]->photo_profile_u ?>" height="30" width="30">
+							<span class="chat-username "><?php echo $messages_list[$i]->username_u?></span>
 						</div>
-						<div class="chat-content">
-							Hola
+						<div class="chat-content col-md-6 <?php echo $offset ?>">
+							<?php echo $messages_list[$i]->message?>
 						</div>
 					</div>
-					<div class="col-md-12 chatbox right-side">
-						<div class="chat-user">
-							<span class="chat-username ">The Other Kevin</span>
-							<img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">
-						</div>
-						<div class="chat-content">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non est quis diam egestas tempor sit amet et odio. Proin ac tortor eu augue vestibulum efficitur non eu velit. Aliquam lacinia sodales quam. Nam eu bibendum velit. Morbi ac est quis tellus commodo volutpat sed et velit. Pellentesque at nulla at neque facilisis sodales ut eget leo. Nunc id tellus venenatis, semper nulla ac, eleifend diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce aliquam sit amet ante nec porttitor. Donec porta erat non tellus aliquam mollis sed elementum tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-						</div>
-					</div>
-				<?php } ?>
+					
+				<?php }} ?>
+				
+				
+				
+				
 				
 					<div class="col-md-12 chatbox">
 						<div class="chat-user">
-							<img class="img-circle" src="https://scontent-sin6-1.cdninstagram.com/t51.2885-19/11849231_1115027588527403_1040877616_a.jpg" height="30" width="30">
-							<span class="chat-username ">The Other Kevin</span>
+							<img class="img-circle" src="<?php echo base_url().$user_login->photo_profile_u?>" height="30" width="30">
+							<span class="chat-username "><?php echo $user_login->username_u?></span>
 						</div>
 						<div class="">
-							<form action="<?php echo base_url();?>auth/do_register" method="POST">
-								<textarea class="form-control" rows="3" id="comment" placeholder="Deskripsi"></textarea>
-								<button type="submit"  class="btn btn-md btn-primary pull-right">Submit</button>
+							<form action="
+							<?php echo base_url();?>messages/send_message?
+								room=<?php echo $openedRoomChatID?>
+								&user2=<?php echo $openedUser ?>
+								"
+								
+							method="POST">
+								<textarea class="form-control" name="message" rows="3" id="comment" placeholder="Pesan"></textarea>
+								<button type="submit"  class="btn btn-md btn-primary pull-right">Send</button>
 							</form>
 						</div>
 					</div>

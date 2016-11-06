@@ -56,3 +56,5 @@ $route['profile/set_in'] = 'profile/set_in';
 $route['profile/logging_out'] = 'profile/logging_out';
 $route['profile/(:any)'] = 'profile/index/$1';
 $route['category/(:any)'] = 'category/index/$1';
+$route['messages/send_message'] = 'messages/send_message/';
+$route['messages/(:any)'] = 'messages/index/$1';
