@@ -14,7 +14,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		");
 		$result = $change->result();
 		return $result;
-
+    }
+	
+	 public function get_data_username($username){
+      $change = $this->db->query
+		("
+			SELECT * from USER where username_u = '".$username."'
+		");
+		$result = $change->result();
+		return $result;
     }
 
   }

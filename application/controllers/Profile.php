@@ -10,16 +10,28 @@ class Profile extends CI_Controller {
 		$this->load->library('fixstring');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
-    $this->load->helper(array('form', 'url'));
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Profile');
 	}
 
-	public function index()
+	public function index($username='blank')
 	{
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		//$data['user_name'] = $this->M_auth->get_data($this->sess)
+		
+		$user_profile   = $this->session->userdata('userdata');  
+		$data['user_login'] = $user_profile[0];
+		
+		
+		if($username =='blank')
+		{
+			$username = $user_profile[0]->username_u;
+		}
+		
+		$data['userdata'] = $this->M_Profile->get_data_username($username);
+		
+		
 		$this->load->view('profile/index',$data);
 	}
 	
@@ -27,8 +39,6 @@ class Profile extends CI_Controller {
 	{
 		$this->session->logged_in = 1;
 		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
-		
-		
 		$this->session->set_userdata('userdata', $mydata); 
 		
 		#how to get userdata
@@ -44,7 +54,7 @@ class Profile extends CI_Controller {
 			echo $user->username_u 
 		*/
 		
-		redirect('profile');
+		redirect('/profile');
 	}
 	public function logging_out()
 	{
