@@ -32,8 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		$query =
 		"
-			INSERT INTO book (title_b, no_isbn_b, writer, publisher, pages, date_published, language_b, photo_cover_b, description_b, cover_type_b)
-			VALUES ('".$data['judulbuku']."','".$data['isbn']."','".$data['pengarang']."','".$data['publisher']."','".$data['halaman']."','".$data['cetakan_pertama']."',
+			INSERT INTO book (title_b, slug_title_b, no_isbn_b, writer, publisher, pages, date_published, language_b, photo_cover_b, description_b, cover_type_b)
+			VALUES ('".$data['judulbuku']."','".$data['slug']."','".$data['isbn']."','".$data['pengarang']."','".$data['publisher']."','".$data['halaman']."','".$data['cetakan_pertama']."',
 			'".$data['bahasa']."','".$data['file']."','".$data['sinopsis']."','".$data['cover']."');
 		";
 		 $change = $this->db->query($query);

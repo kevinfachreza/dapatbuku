@@ -61,7 +61,7 @@ class Accounts extends CI_Controller {
 		}
 	}
 	
-	public function get_cities($prov=12){
+	public function get_cities($prov=0){
 		
 		//$prov = $this->input->post('prov_id');
 		$city = $this->M_accounts->get_cities($prov);

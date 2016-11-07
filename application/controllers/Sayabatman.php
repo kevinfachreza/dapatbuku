@@ -98,7 +98,14 @@ class Sayabatman extends CI_Controller {
 		$file = $this->do_upload_cover_book();
 		$sinopsis = $this->db->escape_str($this->input->post('sinopsis'));
 		
+		/*SLUG TITLE*/
+		$judulbuku = ucwords($judulbuku);
+		
+		$string = strtolower($judulbuku);
+		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+		
 		echo $file.'<br>';
+		echo $slug.'<br>';
 		echo $judulbuku.'<br>';
 		echo $pengarang.'<br>';
 		echo $publisher.'<br>';
@@ -111,6 +118,7 @@ class Sayabatman extends CI_Controller {
 	
 		$data = array(
 		'file' => $file,
+		'slug' => $slug,
 		'judulbuku' => $judulbuku,
 		'pengarang' => $pengarang,
 		'publisher' => $publisher,

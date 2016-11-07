@@ -14,7 +14,6 @@
 <body>
 	<?php echo $navbar; ?>
 
-
 	<!--/////////////////////BOOK///////////////////////////////// -->
 	<hr>
 	<?php
@@ -85,9 +84,15 @@
 						<div class="col-md-12 table-container">
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Kategori
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 table-content"><?php foreach($book_category as $key){
-								echo $key['name_b_category']; ?> , <?php
-							}?>
+							<div class="col-md-6 col-sm-6 col-xs-6 table-content">
+							<?php 
+								$counter=1; 
+								foreach($book_category as $key){
+									if($counter!=1)echo ', ';
+									echo $key['name_b_category'];
+									$counter++;
+								}
+								?> 
 							</div>
 						</div>
 
@@ -136,7 +141,6 @@
 			</div>
 		</div>
 	</div>
---->
 	<div id="recommended-book" class="container">
 		<div class="col-md-12 header-text-2">Buku Rekomendasi</div>
 		<div class="col-md-12 text-center"><hr></div>
@@ -198,77 +202,44 @@
 		</div>
 	</div>
 
+--->
 	<div id="ulasan-pembaca" class="container">
 		<div class="col-md-12" >
 			<div class="col-md-12 header-text-2">Ulasan Pembaca</div>
 			<div class="col-md-12 text-center"><hr></div>
 			<div class="col-md-8">
-				<?php foreach($review_data as $key){
-					?>
-				<div class="review-wrapper">
-					<div class="review-date"><?php echo $key['date_b_review']; ?></div>
-					<div class="review-title review-item"><?php echo $key['title_b_review']; ?></div>
-					<div class="review-rating review-item">
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#fff;" aria-hidden="true"></span>
-						<span class="text-muted" style="padding-left:7px">oleh </span>
-						<span class="review-username review-item"><?php echo $key['username_u']; ?></span>
-					</div>
-					<div class="review-content more">
-					<?php echo $key['content_b_review']; ?>
-					</div>
-					<div class="review-report"><a href="#"><button type="button" class="btn btn-danger  btn-xs">Report</button></a></div>
-				</div>
-				<?php
-					}
-					?>
-				<!---<div class="review-wrapper">
-					<div class="review-date">7 Oktober 2016</div>
-					<div class="review-title review-item">Buku terbaik yang pernah saya baca</div>
-					<div class="review-rating review-item">
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#fff;" aria-hidden="true"></span>
-						<span class="text-muted" style="padding-left:7px">oleh </span>
-						<span class="review-username review-item">Hari Setiawan</span>
-					</div>
-					<div class="review-content more">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel tellus gravida, posuere sapien eu, elementum ex. Ut mattis neque mi, in volutpat magna auctor commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus eget odio in erat consequat luctus. Nulla tincidunt dictum dui, at tincidunt mi scelerisque accumsan. Aenean vehicula massa vitae urna dapibus fringilla. Maecenas fringilla nunc id neque consectetur, sed ullamcorper erat venenatis. Ut nec blandit ipsum. Sed a tristique est. Donec ultrices eros ac nunc elementum, vel condimentum velit hendrerit. Morbi faucibus mattis faucibus. Sed fringilla justo felis, nec pretium lectus consequat sit amet.
-					</div>
-					<div class="review-report"><a href="#"><button type="button" class="btn btn-danger  btn-xs" >Report</button></a></div>
-				</div>
-
-				<div class="review-wrapper">
-					<div class="review-date">7 Oktober 2016</div>
-					<div class="review-title review-item">Buku terbaik yang pernah saya baca</div>
-					<div class="review-rating review-item">
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#fff;" aria-hidden="true"></span>
-						<span class="text-muted" style="padding-left:7px">oleh </span>
-						<span class="review-username review-item">Hari Setiawan</span>
-					</div>
-					<div class="review-content more">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel tellus gravida, posuere sapien eu, elementum ex. Ut mattis neque mi, in volutpat magna auctor commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus eget odio in erat consequat luctus. Nulla tincidunt dictum dui, at tincidunt mi scelerisque accumsan. Aenean vehicula massa vitae urna dapibus fringilla. Maecenas fringilla nunc id neque consectetur, sed ullamcorper erat venenatis. Ut nec blandit ipsum. Sed a tristique est. Donec ultrices eros ac nunc elementum, vel condimentum velit hendrerit. Morbi faucibus mattis faucibus. Sed fringilla justo felis, nec pretium lectus consequat sit amet.
-					</div>
-					<div class="review-report"><a href="#"><button type="button" class="btn btn-danger  btn-xs">Report</button></a></div>
-				</div>
-
-
-				<div class="review-wrapper review-form" id="review-form">
-					<div class="row">
-						<div class="col-md-2">
-							<img class="img-responsive" src="https://pbs.twimg.com/profile_images/3743349988/7926e89ff14b79fd94d91a6b823cbd61_400x400.jpeg">
+				<?php foreach($review_data as $key){?>
+					<div class="review-wrapper">
+						<div class="review-date">
+						<?php echo date('j-F-Y', strtotime($key['date_b_review']) );?></div>
+						<div class="review-title review-item"><?php echo $key['title_b_review']; ?></div>
+						<div class="review-rating review-item">
+							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#fff;" aria-hidden="true"></span>
+							<span class="text-muted" style="padding-left:7px">oleh </span>
+							<span class="review-username review-item"><?php echo $key['username_u']; ?></span>
 						</div>
-						--->
-						<div class="col-md-10">
+						<div class="review-content more">
+							<?php echo $key['content_b_review']; ?>
+						</div>
+					</div>
+				<?php } ?>	
+			</div>
+		</div>
+	</div>
+	
+	<?php if($review_flag==0){?>
+	<div  id="review-form" class="container">
+		<div class="col-md-12" >
+			<div class="col-md-12 header-text-2">Tulis Ulasanmu Sendiri</div>
+			<div class="col-md-12 text-center"><hr></div>
+			<div class="col-md-8">
+						
+							<?php if($rating_flag==0){?>
+							
 							<label for="comment">
 								<div class="rating">
 								Rate This Book &nbsp;&nbsp;
@@ -279,17 +250,34 @@
 								<span><input type="radio" name="rating" id="str1" value="1"><label for="str1"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></label></span>
 								</div>
 							</label>
-							<form action="<?php echo base_url();?>auth/do_register" method="POST">
-							<textarea class="form-control" rows="5" id="comment"></textarea>
-							<button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Submit</button>
+							
+							<?php } else {?>
+								<div class="review-rating review-item" id="user_rating_star">
+									<?php for($i=0;$i<$rating_data[0]['rating'];$i++){?>
+									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+									<?php } ?>
+									
+									<?php for($i=0;$i<5-$rating_data[0]['rating'];$i++){?>
+									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#777;" aria-hidden="true"></span>
+									<?php } ?>
+									
+									<span class="comment-for-star">Nilai kamu untuk buku ini</span>
+								</div>
+							<?php } ?>
+							
+							
+							<form action="<?php echo base_url();?>book/add_review_book?book=<?php echo $book_data[0]['slug_title_b']?>" method="POST">
+								<span class="label-for-textarea">Tulis ulasan kamu untuk buku ini</span>
+								<input name="title" type="text" class="form-control" placeholder="Judul Ulasan"  style="margin-bottom:10px;" required >
+							
+								<textarea name="review" class="form-control" rows="5" id="comment" placeholder="Tulis ulasan kamu"></textarea>
+								<button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Submit</button>
 							</form>
-						</div>
-					</div>
-				</div>
 			</div>
-
 		</div>
 	</div>
+
+						<?php } ?>
 
 	<!--/////////////////////CUSTOMER ALSO BOUGHT///////////////////////////////// -->
 
@@ -366,6 +354,8 @@
 
 </script>
 
+<?php if($this->session->logged_in==1){?>
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -379,13 +369,43 @@ $(document).ready(function(){
     $('input:radio').change(
     function(){
         var userRating = this.value;
-        alert(userRating);
+        console.log(userRating);
+         $.ajax({
+            type:'POST',
+            url:'<?php echo base_url();?>book/add_rate_book?star='+userRating+'&book=<?php echo $book_data[0]['id_b']?>&user=<?php echo $user->id_u ?>',
+            //contentType: "application/json; charset=utf-8",
+            dataType:"json",
+            //traditional: true,
+            success:function(response){
+                       alert(response);
+						
+                    },
+            error: function(response){
+						alert(response);
+                       
+                }
+            });
     });
 });
 
   </script>
+  
+  <script>
+	
+	$(".comment-for-star").hide();
+	$("#user_rating_star").hover(
+		function(e){
+			$(".comment-for-star").show();
+			
+		},
+		function(e){
+			$(".comment-for-star").hide();
+		} 
+	);
+  
+  </script>
 
-
+<?php } ?>
 
 </body>
 </html>
