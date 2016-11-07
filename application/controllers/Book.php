@@ -18,12 +18,12 @@ class Book extends CI_Controller {
 	public function index()
 	{
 		$id_in = $this->input->get('id');
-		//var_dump($id_in);
-		//exit();
+		$data['book_category'] = $this->M_book->get_b_category($id_in);
+		$data['book_rating'] = $this->M_book->get_rate_avg($id_in);
 		$data['book_data'] = $this->M_book->get_data_book($id_in);
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
-
+	
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);

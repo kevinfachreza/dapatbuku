@@ -86,7 +86,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?id=".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
-							<div class="author-container"><a href="<?php echo base_url()."Writer".$key['id_writer']; ?>" class="text-primary"><?php echo $key['name_writer'] ?></a></div>
+							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer'] ?></a></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?id=".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
-							<div class="author-container"><a href="<?php echo base_url()."Writer".$key['id_writer']; ?>" class="text-primary"><?php echo $key['name_writer']; ?></a></div>
+							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer']; ?></a></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
@@ -126,91 +126,42 @@
 		<div class="col-md-12 book-container">
 			<div class="carousel slide" data-ride="carousel" data-type="multi-2" data-interval="0" id="NewRelease">
 			  <div class="carousel-inner carousel-inner3">
-
+					<?php $i = 0;
+						foreach($new_release as $key){
+							if($i == 0){
+					?>
 				<div class="item active ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
+							<a href="#"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?id=".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="author-container"><?php echo $key['writer']; ?></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
+					<?php }
+						else {
+					?>
 				<div class="item ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."Book?id=".$key['id_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?id=".$key['id_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="author-container"><?php echo $key['writer']; ?></div>
 							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book7.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book6.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book5.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book4.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="item ">
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="margin-bot-1 home-book-img ">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book3.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-							<a href="#"><button type="button" class="font-light btn btn-primary">Beli</button></a>
-						</div>
-					</div>
-				</div>
+				<?php
+					}
+					$i++;
+				}
+				?>
 
 			  </div>
 			  <a class="left carousel-control" href="#NewRelease" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
