@@ -24,6 +24,10 @@
 					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Publisher</span>
+					<input type="text" name="publisher" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
+				</div>
+				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">ISBN</span>
 					<input type="text" name="isbn" class="form-control" placeholder="ISBN" aria-describedby="sizing-addon2">
 				</div>

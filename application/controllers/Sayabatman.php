@@ -88,6 +88,7 @@ class Sayabatman extends CI_Controller {
 	{
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
 		$pengarang = $this->db->escape_str($this->input->post('pengarang'));
+		$publisher = $this->db->escape_str($this->input->post('publisher'));
 		$isbn = $this->input->post('isbn');
 		$halaman = $this->input->post('halaman');
 		$cetakan_pertama = $this->input->post('cetakan_pertama');
@@ -100,18 +101,19 @@ class Sayabatman extends CI_Controller {
 		echo $file.'<br>';
 		echo $judulbuku.'<br>';
 		echo $pengarang.'<br>';
+		echo $publisher.'<br>';
 		echo $isbn.'<br>';
 		echo $halaman.'<br>';
 		echo $cetakan_pertama.'<br>';
 		echo $bahasa.'<br>';
-		echo $category[1].'<br>';
 		echo $cover.'<br>';
 		echo $sinopsis.'<br>';
-		
+	
 		$data = array(
 		'file' => $file,
 		'judulbuku' => $judulbuku,
 		'pengarang' => $pengarang,
+		'publisher' => $publisher,
 		'isbn' => $isbn,
 		'halaman' => $halaman,
 		'cetakan_pertama' => $cetakan_pertama,
@@ -136,11 +138,10 @@ class Sayabatman extends CI_Controller {
 				'category' => $category[$i]
 				);
 				$report = $this->M_sayabatman -> addBookCategory($data_cat);
-				echo $category[$i].'<br>';
 			}
 		}
 		
-		redirect('sayabatman');
+		//redirect('sayabatman');
 	}
 	
 	public function do_upload_cover_book()
