@@ -8,23 +8,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
     }
 
+    public function get_b_category($id_in)
+    {
+      $query = $this->db->query("select bc.name_b_category from book_category bc, book_category_connector bcc, book b
+                                 where b.id_b = '".$id_in."' and bcc.book_id = b.id_b and bc.id_b_category = bcc.cat_id;");
+      return $query->result_array();
+    }
+    public function get_rate_avg($id_in)
+    {
+      $query = $this->db->query("select round(avg(new.rate), 1) as avg from (select r.rating AS rate
+                                 from book_rating r, book b WHERE b.id_b = 2 and b.id_b = r.id_b) new;");
+      return $query->result_array();
+    }
     public function get_data_book($id_in)
     {
-      $query = $this->db->query("SELECT b.title_b, b.photo_cover_b, w.name_writer, b.total_ratings, b.total_reviews_b, b.no_isbn_b, b.pages,
-                                b.date_published, b.language_b, bc.name_b_category, b.thumb_cover_b, b.description_b, bc.name_b_category, b.cover_type_b
-                                FROM book b, writer w, book_rating bt, book_category bc WHERE b.id_b = '".$id_in."' AND w.id_writer = b.writer AND
-                                bc.id_b_category = b.category LIMIT 1;");
+      $query = $this->db->query("select id_b, title_b, no_isbn_b, writer, pages, date_published,
+                                 language_b, photo_cover_b, description_b, total_reviews_b, total_ratings,
+                                 cover_type_b from book where id_b = '".$id_in."';");
       return $query->result_array();
 
     }
 
     public function get_b_seller()
     {
-      $query = $this->db->query("select w.name_writer, w.id_writer, b.id_b, b.photo_cover_b, b.title_b from writer w, book b
-                        where w.id_writer = b.writer and b.best_seller_b = 1;");
+      $query = $this->db->query("select b.writer, b.id_b, b.photo_cover_b, b.title_b from book b
+                        where b.best_seller_b = 1;");
       return  $query->result_array();
     }
 
+    public function get_n_release()
+    {
+      $query = $this->db->query(" select b.id_b, b.title_b, b.photo_cover_b, b.writer, b.date_published
+                                  from book b ORDER by b.date_published DESC;");
+      return $query->result_array();
+    }
     public function get_writer_short($id_in)
     {
       $query = $this->db->query("select w.photo_writer, w.description_writer

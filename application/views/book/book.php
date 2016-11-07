@@ -42,12 +42,12 @@
 					<?php echo $book_data[0]['title_b']; ?>
 				</div>
 				<div class="col-md-12 book-writer">
-					<span class="text-muted">oleh</span> <?php echo $book_data[0]['name_writer']; ?>
+					<span class="text-muted">oleh</span> <?php echo $book_data[0]['writer']; ?>
 				</div>
 				<div class="col-md-12 book-rating">
 					<div class="book-rating-star">
 						<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
-						<span class="book-rating-text">4.8</span>
+						<span class="book-rating-text"><?php echo $book_rating[0]['avg']; ?></span>
 						<span class="book-rating-count"><?php echo $book_data[0]['total_ratings']; ?> Rating</span>
 						<span class="book-review-count"><?php echo $book_data[0]['total_reviews_b']; ?> Review</span>
 					</div>
@@ -85,7 +85,9 @@
 						<div class="col-md-12 table-container">
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Kategori
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 table-content"><?php echo $book_data[0]['name_b_category']; ?>
+							<div class="col-md-6 col-sm-6 col-xs-6 table-content"><?php foreach($book_category as $key){
+								echo $key['name_b_category']; ?> , <?php
+							}?>
 							</div>
 						</div>
 
@@ -114,8 +116,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-
+</div><!---
 	<div id="writer-Info" class="container">
 		<div class="col-md-12 0" >
 			<div class="row">
@@ -124,10 +125,10 @@
 				<div class="col-md-12 padding-default">
 					<div class="row">
 						<div class="col-md-2">
-							<img class="img-responsive" src="<?php echo base_url().$writer_data[0]['photo_writer']; ?>">
+							<img class="img-responsive" src="<?php echo base_url().$writer_data['photo_writer']; ?>">
 						</div>
 						<div class="col-md-10">
-							<p> <?php echo $writer_data[0]['description_writer']; ?></p>
+							<p> <?php echo $writer_data['description_writer']; ?></p>
 						</div>
 					</div>
 				</div>
@@ -135,7 +136,7 @@
 			</div>
 		</div>
 	</div>
-
+--->
 	<div id="recommended-book" class="container">
 		<div class="col-md-12 header-text-2">Buku Rekomendasi</div>
 		<div class="col-md-12 text-center"><hr></div>
