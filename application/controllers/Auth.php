@@ -81,7 +81,21 @@ class Auth extends CI_Controller {
       );*/
       $result = $this->M_auth->register($em, $name, $date, $pass);
       if($result){
-        echo "SUKSES";
+		
+		$get_user = $this->M_auth->login($em, $pass);
+
+
+		if($get_user){
+			$id = $get_user[0]->id_u;
+		}
+		
+		$path ="./assets/img/user/".$id."/book";
+		$path2 ="./assets/img/user/".$id."/profile-pict";		
+		
+		if(!is_dir($path)) mkdir($path, 0777, TRUE);
+		if(!is_dir($path2)) mkdir($path2, 0777, TRUE);
+		
+        echo "SUKSES".$id;
       }
       else {
         redirect('Welcome');
@@ -132,6 +146,9 @@ class Auth extends CI_Controller {
 
       //Load view
       $this->load->view('register');
+	  
+	  
+	  
     }
   }
 

@@ -36,12 +36,19 @@
 					<input type="number" name="halaman" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2">Cetakan Pertama</span>
-					<input type="date" name="cetakan_pertama" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2">
-				</div>
-				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Cover</span>
 					<input type="file" name="picture" class="form-control" aria-describedby="sizing-addon2">
+				</div>
+				
+				<div class="input-group">
+					<div class="form-group">
+					  <label for="cetakan_pertama">Cetakan Pertama</label>
+					  <select name="cetakan_pertama" class="form-control" id="cetakan_pertama">
+						<?php for($i=1980;$i<2017;$i++){?>
+						<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php } ?>
+					  </select>
+					</div>
 				</div>
 				<div class="input-group">
 					<div class="form-group">

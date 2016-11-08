@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_data($id_in){
       $change = $this->db->query
 		("
-			SELECT * from USER where id_u = ".$id_in."
+			SELECT * from user where id_u = ".$id_in."
 		");
 		$result = $change->result();
 		return $result;
@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 public function get_data_username($username){
       $change = $this->db->query
 		("
-			SELECT * from USER where username_u = '".$username."'
+			SELECT * from user where username_u = '".$username."'
 		");
 		$result = $change->result();
 		return $result;

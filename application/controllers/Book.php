@@ -17,11 +17,14 @@ class Book extends CI_Controller {
 
 	public function index()
 	{
+		if($this->session->logged_in == 1)
+		{
+			$user_profile   = $this->session->userdata('userdata');  
+			$data['user'] = $user_profile[0];
+			$id_user= $data['user']->id_u;
+		}
+		else $id_user = 0;
 		
-		$user_profile   = $this->session->userdata('userdata');  
-		$data['user'] = $user_profile[0];
-		$id_user= $data['user']->id_u;
-			
 		$slug = $this->input->get('title');
 		$data['book_data'] = $this->M_book->get_data_book($slug);
 		//print_r($data['book_data']);
@@ -32,9 +35,7 @@ class Book extends CI_Controller {
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
 		
-		
 		#print_r($data['review_data']);
-		
 		
 		$data['rating_data'] = $this->M_book->get_rating($id_in,$id_user);
 		if(!$data['rating_data'] ) $data['rating_flag'] = 0;
@@ -43,6 +44,8 @@ class Book extends CI_Controller {
 		$data['user_review_flag'] = $this->M_book->user_review_flag($id_in,$id_user);
 		if(!$data['user_review_flag'] ) $data['review_flag'] = 0;
 		else $data['review_flag'] = 1;
+		
+		if($this->session->logged_in == 0)  $data['review_flag'] = 1;
 		
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
