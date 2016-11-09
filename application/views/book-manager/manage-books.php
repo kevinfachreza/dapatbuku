@@ -5,7 +5,7 @@
 
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
 	<?php echo $header; ?>
-	
+
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-thumbnail.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/profile.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/manage-books.css">
@@ -14,43 +14,54 @@
 
 <body>
 	<?php echo $navbar; ?>
-	
-	
+
+
 	<!--/////////////////////BOOK///////////////////////////////// -->
-	
-	
-<div class="container" id="profile-header"> 
+
+<div class="container" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">
 			<?php echo $navbar2?>
 			<div class="col-md-10">
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
-					<?php for($i=0;$i<8;$i++) { ?>
+					<?php foreach($all_book as $key) { ?>
 						<div class="col-md-6 manage-books-item">
 							<div class="row books-wrapper">
 								<div class="col-md-12 info-books-container">
 									<div class="col-md-2 padding-0">
 										<div class="book-image">
-											<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
+											<a href="#"><img src="<?php echo base_url().$key['main_image_u_b']; ?>" class="img-responsive-2"></a>
 										</div>
 									</div>
 									<div class="col-md-10">
-										<div class="book-title"> <a href="#">Rudy Rudy Rudy Rudy Rudy Rudy</a></div>
-										<div class="book-writer"> Gina S Noer </div>
-										<div class="book-price"> Rp 50.000 </div>
+										<div class="book-title"> <a href="#"><?php echo $key['title_u_b']; ?></a></div>
+										<div class="book-writer"> <?php echo $key['writer']; ?> </div>
+										<div class="book-price"> <?php echo $key['price_sell_u_b']; ?> </div>
 										<div class="book-date"> Last Edit : 2 Oktober 2016 </div>
 									</div>
 								</div>
 								<div class="col-md-12" style="">
-									<button type="button" class="btn btn-primary">Edit</button>
-									<button type="button" class="btn btn-danger">Delete</button>
+									<a href="<?php echo base_url()."Mybooks/edit?id-books=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
+									<a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Delete</button></a>
+
+										<!---<a href="#!" data-toggle="modal" data-target="#notification" aria-haspopup="true" aria-expanded="false"><button type="button" class="btn btn-danger">Delete</button></a>--->
 								</div>
 							</div>
 						</div>
 					<?php } ?>
 					</div>
-					
+					<!--NOTIFICATION-->
+					<div class="modal fade" id="notification" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<h3>Are you sure to Delete this book?</h3>
+								<a href="<?php echo base_url()."Mybooks/delete?id-books=".$key['id_u_b']; ?>"><button type="button" class="btn btn-danger">YES</button></a>
+								<a href="<?php echo base_url()."Mybooks"; ?>"><button type="button" class="btn btn-warning">NO</button></a>
+							</div>
+						</div>
+					</div>
+
 					<div class="col-md-12">
 						<nav aria-label="Page navigation">
 						<div class="text-center">
@@ -76,13 +87,13 @@
 					</div>
 					</div>
 			</div>
-		</div>				
+		</div>
 	</div>
-	
+
 </div>
-	
+
 	<?php echo $footer; ?>
-	
+
 	<script>
 	$(function() {
 
@@ -109,7 +120,7 @@
 
       });
   });
-  
+
 });
 </script>
 </body>

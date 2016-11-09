@@ -8,23 +8,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
     }
 
-	
+
     public function get_b_category($id_in)
     {
       $query = $this->db->query("select bc.name_b_category from book_category bc, book_category_connector bcc, book b
                                  where b.id_b = '".$id_in."' and bcc.book_id = b.id_b and bc.id_b_category = bcc.cat_id;");
       return $query->result_array();
     }
-	
-	
+
+
     public function get_rate_avg($id_in)
     {
       $query = $this->db->query("select round(avg(new.rate), 1) as avg from (select r.rating AS rate
                                  from book_rating r, book b WHERE b.id_b = ".$id_in." and b.id_b = r.id_b) new;");
       return $query->result_array();
     }
-	
-	
+
+
     public function get_data_book($slug)
     {
       $query = $this->db->query("select id_b, slug_title_b, title_b, no_isbn_b, writer, pages, date_published,
@@ -37,13 +37,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_b_seller()
     {
       $query = $this->db->query("
-			SELECT b.writer, b.slug_title_b, b.best_seller_rank, b.id_b, b.photo_cover_b, b.title_b 
+			SELECT b.writer, b.slug_title_b, b.best_seller_rank, b.id_b, b.photo_cover_b, b.title_b
 			FROM book b
 			WHERE b.best_seller_flag = 1 ORDER BY best_seller_rank;");
       return  $query->result_array();
     }
 
-	
+
     public function get_n_release()
     {
       $query = $this->db->query(" select b.id_b, b.title_b, b.photo_cover_b, b.writer, b.date_published
@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
-	
+
     public function get_review($id_in)
     {
 		$query = $this->db->query("
@@ -66,81 +66,146 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		FROM book_rating AS r JOIN book_review AS br WHERE r.id_u = br.id_u AND r.id_b = br.id_b AND br.id_b =".$id_in."
 		GROUP BY br.id_b_review
 		) AS r,
-		USER u WHERE r.id_u = u.id_u ORDER BY date_b_review DESC;
-
-	  
-	  ");
+		USER u WHERE r.id_u = u.id_u ORDER BY date_b_review DESC;");
       return $query->result_array();
     }
-	
-	public function get_rating($id_in,$id_user)
+
+	  public function get_rating($id_in,$id_user)
     {
       $query = $this->db->query("select id_u, rating, id_b from book_rating where id_b = ".$id_in." and id_u = ".$id_user." ");
       return $query->result_array();
     }
-	
-	public function user_review_flag($id_in,$id_user)
+
+	  public function user_review_flag($id_in,$id_user)
     {
       $query = $this->db->query("select 1 from book_review where id_b = ".$id_in." and id_u = ".$id_user." ");
       return $query->result_array();
     }
-	
-	public function add_book_rating($star,$user,$book)
-	{
-		$query = "
-			INSERT INTO book_rating (rating, id_u, id_b)
-			VALUES (".$star.",".$user.",".$book.");
-		";
-		$result = $this->db->query($query);
-		$result = $this->increase_book_rating($book);
-		
-		if ($this->db->affected_rows() == '1') {
-			return TRUE;
-		}
-		else return FALSE;
-		
-	}
-	
-	public function increase_book_rating($book)
-	{
-		$query = "
-			UPDATE book 
-			SET
-			total_ratings = total_ratings+1
-			where id_b = ".$book.";
-		";
-		$result = $this->db->query($query);
-	}
-	
-	public function add_review_book($data)
-	{
-		$query = "
-			INSERT INTO book_review (title_b_review, content_b_review, id_u, id_b)
-			VALUES ('".$data['title']."','".$data['review']."',".$data['id_u'].",".$data['id_b'].");
-		
-		";
-		$result = $this->db->query($query);
-		$result = $this->increase_book_review($data['id_b']);
-		
-		if ($this->db->affected_rows() == '1') {
-			return TRUE;
-		}
-		else return FALSE;
-	}
-	
-	public function increase_book_review($book)
-	{
-		$query = "
-			UPDATE book 
-			SET
-			total_reviews_b = total_reviews_b+1
-			where id_b = ".$book.";
-		";
-		$result = $this->db->query($query);
-		return $result;
-	}
-	
-	
-	
+
+  	public function add_book_rating($star,$user,$book)
+  	{
+  		$query = "
+  			INSERT INTO book_rating (rating, id_u, id_b)
+  			VALUES (".$star.",".$user.",".$book.");
+  		";
+  		$result = $this->db->query($query);
+  		$result = $this->increase_book_rating($book);
+
+  		if ($this->db->affected_rows() == '1') {
+  			return TRUE;
+  		}
+  		else return FALSE;
+
+  	}
+
+  	public function increase_book_rating($book)
+  	{
+  		$query = "
+  			UPDATE book
+  			SET
+  			total_ratings = total_ratings+1
+  			where id_b = ".$book.";
+  		";
+  		$result = $this->db->query($query);
+  	}
+
+  	public function add_review_book($data)
+  	{
+  		$query = "
+  			INSERT INTO book_review (title_b_review, content_b_review, id_u, id_b)
+  			VALUES ('".$data['title']."','".$data['review']."',".$data['id_u'].",".$data['id_b'].");
+
+  		";
+  		$result = $this->db->query($query);
+  		$result = $this->increase_book_review($data['id_b']);
+
+  		if ($this->db->affected_rows() == '1') {
+  			return TRUE;
+  		}
+  		else return FALSE;
+  	}
+
+  	public function increase_book_review($book)
+  	{
+  		$query = "
+  			UPDATE book
+  			SET
+  			total_reviews_b = total_reviews_b+1
+  			where id_b = ".$book.";
+  		";
+  		$result = $this->db->query($query);
+  		return $result;
+  	}
+
+  	public function get_my_book($id_in)
+    {
+      $query = $this->db->query("select ub.title_u_b, b.writer, ub.price_sell_u_b, ub.id_u_b, ub.main_image_u_b
+                                 from book b, user_book ub where ub.id_u_owner = '".$id_in."'
+                                 and b.id_b = ub.id_b_source;");
+      return $query->result_array();
+    }
+
+    public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user)
+    {
+      $query = $this->db->query("insert into user_book(id_u_owner, id_b_source, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
+                                 berat_u_b, stock_u_b, description_u_b) VALUES('".$id_user."',13, '".$title."', '".$price_sell."',
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."');");
+      if($query)
+      {
+          return TRUE;
+
+      }
+      else
+      {
+          return FALSE;
+      }
+    }
+
+    public function get_inserted_book($id_in)
+    {
+      $query = $this->db->query("select id_u_b from user_book where id_u_owner = 5
+                                 order by id_u_b desc limit 1;");
+      return $query->result_array();
+    }
+
+    public function insert_user_book_img($id_in, $image)
+    {
+      $query = $this->db->query("insert into user_book_image(id_b_source, image_path) VALUES('".$id_in."', '".$image."');");
+
+      if($this->db->affected_rows() == 1)
+      {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    }
+
+    public function set_main_img($id_in, $image)
+    {
+      $query = $this->db->query("UPDATE user_book SET main_image_u_b = '".$image."' WHERE id_u_b = '".$id_in."';");
+
+      if($this->db->affected_rows() == 1)
+      {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    }
+
+    public function delete_book($id_in)
+    {
+      $query = $this->db->query("delete from user_book where id_u_b = '".$id_in."'; ");
+
+      //echo $query;
+      if($query)
+      {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    }
   }
 ?>

@@ -19,12 +19,11 @@ class Profile extends CI_Controller {
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		
+
 		#get User_login information untuk di compare di view
-		$user_profile   = $this->session->userdata('userdata');  
+		$user_profile   = $this->session->userdata('userdata');
 		$data['user_login'] = $user_profile[0];
-		#print_r ($this->session->userdata('userdata'));
-		
+
 		#jika blank maka profile dia sendiri
 		if($username =='blank')
 		{
@@ -34,31 +33,31 @@ class Profile extends CI_Controller {
 				redirect('/');
 			}
 		}
-		
+
 		#get data profile tujuan
 		$data['userdata'] = $this->M_Profile->get_data_username($username);
 		$this->load->view('profile/index',$data);
 	}
-	
+
 	public function set_in()
 	{
 		$this->session->logged_in = 1;
 		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
-		$this->session->set_userdata('userdata', $mydata); 
-		
+		$this->session->set_userdata('userdata', $mydata);
+
 		#how to get userdata
 		/*
 			controller
-			$user_profile   = $this->session->userdata('userdata');  
+			$user_profile   = $this->session->userdata('userdata');
 			$data['user'] = $user_profile[0];
 			echo $data['user']->username_u;
-			
+
 			view
-			
-			$this->load->view('profile/profile-password',$data); <! Jangan lupa masukin $data !>
-			echo $user->username_u 
+
+ 			$this->load->view('profile/profile-password',$data); <! Jangan lupa masukin $data !>
+			echo $user->username_u
 		*/
-		
+
 		redirect('/profile');
 	}
 	public function logging_out()

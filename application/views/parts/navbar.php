@@ -32,7 +32,7 @@
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	
+
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -42,9 +42,9 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		   
+
 		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
-		  
+
 		</div>
 
 		<div class="collapse navbar-collapse" >
@@ -85,7 +85,7 @@
 				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
-				<li><a href="#">MyBooks</a></li>
+				<li><a href="<?php echo base_url().'Mybooks'; ?>">MyBooks</a></li>
 				<li role="separator" class="divider"></li>
 				<li><a href="<?php echo base_url().'Profile/logging_out'; ?>">Log-out</a></li>
 			  </ul>
@@ -93,14 +93,14 @@
 			<?php }else {?>
 
 			<li>
-			  <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#myModal" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
+			  <a href="#" class="dropdown-toggle" data-toggle="modal" data-target ="#myModal" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
 			</li>
 			<?php } ?>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
-	
+
 
 	 <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">

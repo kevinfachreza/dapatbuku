@@ -64,74 +64,18 @@ class Auth extends CI_Controller {
 
     if($this->form_validation->run() == FALSE){
       //redirect('Welcome');
-      echo $em;
-      echo $name;
-      echo $date;
-      echo $pass;
-      echo "GAGAL";
     }
-    
+
     else{
-      echo "SINI";
-      /*$data_in = array(
-        'email_u' => $this->input->post('reg-email'),
-        'username_u' => $this->input->post('reg-name'),
-        'date_of_birth_u' => $this->input->post('reg-date'),
-        'password_u' => $this->input->post('reg-pass')
-      );*/
       $result = $this->M_auth->register($em, $name, $date, $pass);
       if($result){
-        echo "SUKSES";
-      }
-      else {
+        mkdir("assets/img/user/".$result);
+        mkdir("assets/img/user/".$result."/books");
         redirect('Welcome');
       }
-    }
-  }
-
-  public function register(){
-    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-    $this->form_validation->set_rules('userin', 'Username', 'required');
-
-    $this->form_validation->set_rules('emailin', 'Email', 'required|valid_email');
-
-    $this->form_validation->set_rules('passin', 'Password', 'required');
-
-    $this->form_validation->set_rules('fnamein', 'First name', 'required');
-
-    $this->form_validation->set_rules('birthin', 'Date of Birth', 'required');
-
-    $this->form_validation->set_rules('phonein', 'Phone number', 'required');
-
-    $this->form_validation->set_rules('addressin', 'Address', 'required');
-
-    $this->form_validation->set_rules('cityin', 'City', 'required');
-
-    $this->form_validation->set_rules('bioin', 'Biodata', 'required');
-
-    if($this->form_validation->run() == FALSE){
-      $this->load->view('welcome');
-    }
-    else{
-      $datain = array(
-        'username_u'  => $this->input->post('userin'),
-        'email_u'     => $this->input->post('emailin'),
-        'password_u'  => $this->input->post('passin'),
-        'firstname_u' => $this->input->post('fnamein'),
-        'surname_u'   => $this->input->post('snamein'),
-        'date_of_birth_u' =>  $this->input->post('birthin'),
-        'phone_number_u'  =>  $this->input->post('phonein'),
-        'address_u'   =>  $this->input->post('addressin'),
-        'city_u'      =>  $this->input->post('cityin'),
-        'bio_u'       =>  $this->input->post('bioin')
-      );
-      //Transfer to Model
-      $this->M_auth->register($datain);
-      $datain['message'] = 'Data Inserted succesfully';
-
-      //Load view
-      $this->load->view('register');
+      else {
+        echo "SALAH";
+      }
     }
   }
 
