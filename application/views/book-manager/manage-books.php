@@ -42,7 +42,7 @@
 									</div>
 								</div>
 								<div class="col-md-12" style="">
-									<a href="<?php echo base_url()."Mybooks/edit?id-books=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
+									<a href="<?php echo base_url()."Mybooks/edit?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
 									<a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Delete</button></a>
 
 										<!---<a href="#!" data-toggle="modal" data-target="#notification" aria-haspopup="true" aria-expanded="false"><button type="button" class="btn btn-danger">Delete</button></a>--->

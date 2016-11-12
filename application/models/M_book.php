@@ -207,5 +207,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return FALSE;
       }
     }
+
+    public function get_edit_book($id_in)
+    {
+      $query = $this->db->query("SELECT * FROM user_book where id_u_b = '".$id_in."'; ");
+
+      return $query->result_array();
+    }
+
+    public function get_current_photo($id_in)
+    {
+      $query = $this->db->query("SELECT * FROM user_book_image WHERE id_b_source = '".$id_in."'; ");
+
+      return $query->result_array();
+    }
+
+    public function edit_book($id_book, $judul, $harga_jual, $harga_sewa,
+																			 $barter, $kondisi, $berat, $stok, $deskripsi)
+    {
+      $query = $this->db->query("update user_book set title_u_b='".$judul."', price_sell_u_b='".$harga_jual."', price_rent_u_b='".$harga_sewa."',
+                                 barter_u_b='".$barter."', type_u_b='".$kondisi."', berat_u_b='".$berat."', stock_u_b='".$stok."', description_u_b='".$deskripsi."'
+                                 WHERE id_u_b='".$id_book."';");
+      if($query)
+      {
+        return TRUE;
+      }
+      else
+      {
+        return FALSE;
+      }
+    }
+
+    public function update_user_book_img($file, $fileold)
+    {
+      $query = $this->db->query("UPDATE user_book_image SET image_path = '".$file."' WHERE image_path='".$fileold."'; ");
+
+      if($this->db->affected_rows() == 1)
+      {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    }
   }
 ?>

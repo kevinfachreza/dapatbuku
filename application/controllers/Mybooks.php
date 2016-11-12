@@ -44,10 +44,67 @@ class Mybooks extends CI_Controller {
 
 	public function edit()
 	{
+		$id_in = $this->input->get('id-book');
+		$data['book_data'] = $this->M_book->get_edit_book($id_in);
+		$data['current_photo'] = $this->M_book->get_current_photo($id_in);
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
 		$this->load->view('book-manager/edit-books',$data);
+	}
+
+	public function do_edit(){
+		$id_book = $this->input->get('id-book');
+		$judul = $this->input->post('judul_in');
+		$harga_jual = $this->input->post('harga_jual_in');
+		$harga_sewa = $this->input->post('harga_sewa_in');
+		$barter = $this->input->post('barter_in');
+		$kondisi = $this->input->post('kondisi_in');
+		$berat = $this->input->post('berat_in');
+		$stok = $this->input->post('stok_in');
+		$deskripsi = $this->input->post('deskripsi_in');
+		$gambar_num = $this->input->post('gambar_num_in');
+
+		$result = $this->M_book->edit_book($id_book, $judul, $harga_jual, $harga_sewa,
+																			 $barter, $kondisi, $berat, $stok, $deskripsi);
+		if($result && $gambar_num != NULL)
+		{
+
+			$tmp				=	$this->session->userdata['userdata'];
+			$user_id		= $tmp[0];
+
+			$path = "assets/img/user/".$user_id->id_u."/books/".$id_book;
+
+			$gambar_num -= 1;
+			$filename = $_FILES['userfile']['name'];
+			$file_ext = substr($filename, stripos($filename, '.'));
+
+			//SET NAMA FILE DAN UPLOAD PATH
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['file_name'] = $gambar_num.$file_ext;
+			$config['overwrite'] = TRUE;
+
+			//SET CONFIG
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			$filedatabase = $path."/".$gambar_num.$file_ext;		//PATH TO CHANGE IN THE DATABASE
+			$fileold = $path."/".$gambar_num;			//NAME TO DETECT
+			if($this->upload->do_upload('userfile')){
+				$fileData = $this->upload->data();
+				$uploadData[$gambar_num]['file_name'] = $fileData['file_name'];
+				$uploadData[$gambar_num]['created'] = date("Y-m-d H:i:s");
+				$uploadData[$gambar_num]['modified'] = date("Y-m-d H:i:s");
+
+				$result = $this->M_book->update_user_book_img($filedatabase, $fileold);
+
+				if($gambar_num == 0)
+				{
+					$result = $this->M_book->set_main_img($id_book, $filedatabase);
+				}
+			}
+		}
+			redirect('mybooks');
 	}
 
 	public function add()
@@ -80,7 +137,7 @@ class Mybooks extends CI_Controller {
 
 			if($result)
 			{
-				//BUAT FOLDER DAN SET FOLDER PATH
+			 	//BUAT FOLDER DAN SET FOLDER PATH
 				mkdir("assets/img/user/".$user_id->id_u."/books/".$id_last);
 				$path = "assets/img/user/".$user_id->id_u."/books/".$id_last;
 
@@ -124,7 +181,6 @@ class Mybooks extends CI_Controller {
 										$result = $this->M_book->set_main_img($id_last, $filedatabase);
 										if(!$result)
 										{
-											echo "SALAH TRAKHIR";
 											return FALSE;
 										}
 									}

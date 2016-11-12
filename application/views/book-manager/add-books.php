@@ -81,7 +81,7 @@
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
-				<div class="col-md-4 col-sm-2 col-xs-2">Upload Gambar 1</div>
+				<div class="col-md-4 col-sm-2 col-xs-2">Upload Gambar</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<div class="input-group image-upload" style="margin-bottom:0.5em">
 						<label class="input-group-btn">
