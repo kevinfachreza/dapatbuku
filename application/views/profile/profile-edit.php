@@ -53,13 +53,15 @@
 						<div class="header-text-2 text-center"> Ganti Data Kamu </div>
 						<form action="<?php echo base_url();?>accounts/do_update_profile" method="POST">
 							<input name="email" type="Email" class="form-control" placeholder="Email" value="<?php echo $user[0]->email_u ?>"required  autofocus>
-							<input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $user[0]->username_u ?>" required  disabled autofocus>
+							<input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $user[0]->username_u ?>" required  disabled >
 							<input name="firstname" type="text" class="form-control" placeholder="First Name" value="<?php echo $user[0]->firstname_u ?>" style=" float:left;width:49%;margin-right:2%" required  autofocus>
-							<input name="lastname" type="text" class="form-control" placeholder="Last name" value="<?php echo $user[0]->lastname_u ?>" style="width:49%;" required  autofocus>
+							<input name="lastname" type="text" class="form-control" placeholder="Last name" value="<?php echo $user[0]->lastname_u ?>" style="width:49%;" required  >
 							
-							<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required autofocus>
+							<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required >
 							
-							<input name="phone" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  autofocus>
+							<input name="phone" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  >
+							<input name="whatsapp" type="text" class="form-control" placeholder="Whatsapp" value="<?php echo $user[0]->whatsapp_u ?>" required  >
+							<input name="line" type="text" class="form-control" placeholder="Line" value="<?php echo $user[0]->line_u ?>" required  >
 							
 							<select class="form-control" name="province" id="provinsi">
 								<option disabled>Provinsi</option>

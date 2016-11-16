@@ -18,35 +18,26 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 		<div class="container" id="category-header">
 			<div class="jumbotron jumbotron-cat">
-			  <h1>Bisnis</h1>
-			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a felis tellus. Duis egestas augue vel risus pulvinar, sed pharetra odio fringilla. Integer ligula arcu, pharetra nec dapibus nec, faucibus vitae lectus. Etiam lacinia, arcu quis laoreet molestie, nisi turpis efficitur dui, ut condimentum nulla mauris vitae est. Proin sit amet vehicula velit. Ut rhoncus elit in purus ornare, in elementum arcu convallis. Proin pellentesque dignissim viverra.
+			  <h1><?php echo ucwords($category_now) ?></h1>
+			  <p><?php echo $book[0]->desc_b_category ?>
 			  </p>
 			</div>
 		</div>
 		
 		<div class="container"  id="category-container">
 			<div class="col-md-12">
-				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Bisnis</span></div>
+				<div class="col-md-12 header-text-2">Kategori <span class="search-cat"><?php echo ucwords($category_now) ?></span></div>
 				<div class="col-md-12 text-center"><hr></div>
 				
 				<div class="row">
-				<?php for ($i=0;$i<12;$i++){ ?>
+				<?php for ($i=0;$i<count($book);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()?>book/<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary"><?php echo $book[$i]->title_b?></a></div>
+							<div class="author-container"><a href="" class="text-primary"><?php echo $book[$i]->writer?></a></div>
 						</div>
 					</div>
 				<?php } ?>
@@ -54,21 +45,17 @@
 						<nav aria-label="Page navigation">
 						<div class="text-center">
 						  <ul class="pagination">
-							<li>
-							  <a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							  </a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-							  <a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							  </a>
-							</li>
+							<li><a href="#">First</a></li>
+								<?php for($i=1;$i<=$page_total;$i++){ 
+									if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
+								?>
+									<li <?php if($i == $page_now) echo 'class="active"' ?>  >
+										<a href="<?php echo base_url()?>category/<?php echo $category_now?>?
+										page=<?php echo $i?>
+										">
+										<?php echo $i ?><span class="sr-only">(current)</span></a></li>
+								<?php }} ?>
+								<li><a href="#">Last</a></li>
 						  </ul>
 						</div>
 						</nav>

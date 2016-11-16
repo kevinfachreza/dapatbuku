@@ -13,9 +13,30 @@ class Profile extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Profile');
 	}
-
+	
+	
+	private function get_book_user($id, $page,$per_page)
+	{
+		$start = ($page-1)*$per_page;
+		$user_book = $this->M_Profile->get_user_book($id,$start,$per_page);
+		return $user_book;
+	}
+	
+	private function get_all_book_user($id, $page,$per_page)
+	{
+		$user_book = $this->M_Profile->get_all_book_user($id);
+		$page_total = $user_book[0]->count/$per_page;
+		return  ceil($page_total);
+	}
+	
 	public function index($username='blank')
 	{
+		if($this->input->get('page')!=null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page=1;
+		
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
@@ -28,15 +49,29 @@ class Profile extends CI_Controller {
 		#jika blank maka profile dia sendiri
 		if($username =='blank')
 		{
-			$username = $user_profile[0]->username_u;
 			if($this->session->logged_in==0)
 			{
 				redirect('/');
+			}
+			else
+			{
+				$username = $user_profile[0]->username_u;
+				redirect('/profile/'.$username);
 			}
 		}
 		
 		#get data profile tujuan
 		$data['userdata'] = $this->M_Profile->get_data_username($username);
+		$data['username_now']=$username;
+		
+		
+		#get book data
+		$per_page=12;
+		$data['book_user']=$this->get_book_user($data['userdata'][0]->id_u,$page,$per_page);
+		$data['page_now']=$page;
+		$data['page_total']=$this->get_all_book_user($data['userdata'][0]->id_u,$page,$per_page);
+		
+		
 		$this->load->view('profile/index',$data);
 	}
 	

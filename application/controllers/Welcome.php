@@ -18,15 +18,15 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		/*$data['new_release']	 = $this->M_book->get_n_release();
+		$data['new_release']	 = $this->M_book->get_n_release();
 		$data['best_sell'] 		 = $this->M_book->get_b_seller();
-		*/
+		
 		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar','',true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
-		//$this->load->view('home/index',$data);
+		$this->load->view('home/index',$data);
 		
-		$this->load->view('coming_soon',$data);
+		//$this->load->view('coming_soon',$data);
 	}
 
 }

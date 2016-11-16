@@ -74,6 +74,8 @@ class Accounts extends CI_Controller {
 		$username = $this->input->post('username');
 		$date = $this->input->post('date');
 		$phone = $this->input->post('phone');
+		$whatsapp = $this->input->post('whatsapp');
+		$line = $this->input->post('line');
 		$province = $this->input->post('province');
 		$city = $this->input->post('city');
 		$firstname = $this->db->escape_str($this->input->post('firstname'));
@@ -103,6 +105,8 @@ class Accounts extends CI_Controller {
 		'lastname' => $lastname,
 		'date' => $date,
 		'phone' => $phone,
+		'whatsapp' => $whatsapp,
+		'line' => $line,
 		'province' => $province,
 		'city' => $city,
 		'bio' => $bio

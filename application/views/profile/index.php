@@ -48,46 +48,32 @@
 			<div class="col-md-12">
 				
 				<div class="row">
-				<?php for ($i=0;$i<6;$i++){ ?>
+				<?php for ($i=0;$i<count($book_user);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg" class="img-responsive-2"></a>
+							<a href="#"><img src="<?php echo base_url()?><?php echo $book_user[$i]->main_image_u_b?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
-						<div class="margin-bot-1 home-book-img">
-							<a href="#"><img src="<?php echo base_url()?>assets/img/book/book1.jpg" class="img-responsive-2"></a>
-						</div>
-						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary">Rudy : Kisah Masa Muda Sang Visioner</a></div>
-							<div class="author-container"><a href="" class="text-primary">Pengarang</a></div>
+							<div class="font-semibold title-container"><a href="" class="text-primary"><?php echo $book_user[$i]->title_u_b ?></a></div>
 						</div>
 					</div>
 				<?php } ?>
 					<div class="col-md-12">
 						<nav aria-label="Page navigation">
 						<div class="text-center">
-						  <ul class="pagination">
-							<li>
-							  <a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							  </a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-							  <a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							  </a>
-							</li>
-						  </ul>
+							<ul class="pagination">
+								<li><a href="#">First</a></li>
+								<?php for($i=1;$i<=$page_total;$i++){ 
+									if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
+								?>
+									<li <?php if($i == $page_now) echo 'class="active"' ?>  >
+										<a href="<?php echo base_url()?>profile/<?php echo $username_now?>?
+										page=<?php echo $i?>
+										">
+										<?php echo $i ?><span class="sr-only">(current)</span></a></li>
+								<?php }} ?>
+								<li><a href="#">Last</a></li>
+							</ul>
 						</div>
 						</nav>
 					</div>

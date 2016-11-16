@@ -15,14 +15,23 @@ class Auth extends CI_Controller {
     $this->load->model('M_auth');
   }
 
-  public function login_index()
+  public function login()
   {
-    $data['header']=$this->load->view('parts/header','',true);
+		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		$this->load->view('v_login');
+		$this->load->view('auth/login',$data);
   }
-
+  
+  
+  public function register()
+  {
+		$data['header']=$this->load->view('parts/header','',true);
+		$data['navbar']=$this->load->view('parts/navbar','',true);
+		$data['footer']=$this->load->view('parts/footer','',true);
+		$this->load->view('auth/register',$data);
+  }
+	
   public function do_login(){
     $this->form_validation->set_rules('log-user_in', 'user_in', 'trim|required');
     $this->form_validation->set_rules('log-pass', 'Password', 'trim|required');
@@ -100,55 +109,6 @@ class Auth extends CI_Controller {
       else {
         redirect('Welcome');
       }
-    }
-  }
-
-  public function register(){
-    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-    $this->form_validation->set_rules('userin', 'Username', 'required');
-
-    $this->form_validation->set_rules('emailin', 'Email', 'required|valid_email');
-
-    $this->form_validation->set_rules('passin', 'Password', 'required');
-
-    $this->form_validation->set_rules('fnamein', 'First name', 'required');
-
-    $this->form_validation->set_rules('birthin', 'Date of Birth', 'required');
-
-    $this->form_validation->set_rules('phonein', 'Phone number', 'required');
-
-    $this->form_validation->set_rules('addressin', 'Address', 'required');
-
-    $this->form_validation->set_rules('cityin', 'City', 'required');
-
-    $this->form_validation->set_rules('bioin', 'Biodata', 'required');
-
-    if($this->form_validation->run() == FALSE){
-      $this->load->view('welcome');
-    }
-    else{
-      $datain = array(
-        'username_u'  => $this->input->post('userin'),
-        'email_u'     => $this->input->post('emailin'),
-        'password_u'  => $this->input->post('passin'),
-        'firstname_u' => $this->input->post('fnamein'),
-        'surname_u'   => $this->input->post('snamein'),
-        'date_of_birth_u' =>  $this->input->post('birthin'),
-        'phone_number_u'  =>  $this->input->post('phonein'),
-        'address_u'   =>  $this->input->post('addressin'),
-        'city_u'      =>  $this->input->post('cityin'),
-        'bio_u'       =>  $this->input->post('bioin')
-      );
-      //Transfer to Model
-      $this->M_auth->register($datain);
-      $datain['message'] = 'Data Inserted succesfully';
-
-      //Load view
-      $this->load->view('register');
-	  
-	  
-	  
     }
   }
 
