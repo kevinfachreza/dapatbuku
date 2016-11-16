@@ -113,7 +113,7 @@
 
 						<h2> LOGIN </h2>
 						<hr>
-						<form action="<?php echo base_url();?>Auth/do_login" method="POST">
+						<form name="login_form" action="<?php echo base_url();?>Auth/do_login" method="POST">
 							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
 							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
 							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">LOGIN</button>
@@ -126,7 +126,7 @@
 					<div id="reg-panel" style="display:none;margin:0 auto;width:70%;">
 						<h2> REGISTER </h2>
 						<hr>
-						<form action="<?php echo base_url();?>auth/do_register" method="POST">
+						<form name="reg_form" action="<?php echo base_url();?>auth/do_register" method="POST">
 							<input name="reg-email" type="Email" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
 							<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
 							<input name="reg-date" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
@@ -156,6 +156,7 @@
              $("#log-panel").css('display','inline-block');
         });
     </script>
+
 
 
 

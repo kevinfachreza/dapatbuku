@@ -22,7 +22,6 @@
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Tambahkan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_add'); ?>
-		<!---<form action="<?php echo base_url()."mybooks/do_add"; ?>" method="POST">	--->
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">

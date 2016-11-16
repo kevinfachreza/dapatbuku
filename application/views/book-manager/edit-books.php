@@ -24,20 +24,20 @@
 		<?php echo form_open_multipart('mybooks/do_edit?id-book='.$book_data[0]['id_u_b']); ?>	<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="judul_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['title_u_b']; ?>" required  autofocus>
+					<input name="judul_in" type="text" class="form-control" value="<?php echo $book_data[0]['title_u_b']; ?>" required  autofocus>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Harga Jual</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="harga_jual_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_sell_u_b']; ?>" autofocus>
+					<input name="harga_jual_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_sell_u_b']; ?>" value="<?php echo $book_data[0]['price_sell_u_b']; ?>" autofocus>
 					<div class="input-info">Kosongkan jika tidak ingin dijual</div>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Harga Sewa</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="harga_sewa_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_rent_u_b']; ?>" autofocus>
+					<input name="harga_sewa_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_rent_u_b']; ?>"  value="<?php echo $book_data[0]['price_rent_u_b']; ?>"autofocus>
 					<div class="input-info">Kosongkan jika tidak ingin dijual</div>
 				</div>
 			</div>
@@ -61,21 +61,21 @@
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Berat</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="berat_in" type="number" class="form-control" placeholder="<?php echo $book_data[0]['berat_u_b']; ?>" required autofocus>
+					<input name="berat_in" type="number" class="form-control" placeholder="<?php echo $book_data[0]['berat_u_b']; ?>" value="<?php echo $book_data[0]['berat_u_b']; ?>" required autofocus>
 				</div>
 			</div>
 
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Jumlah Stok</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="stok_in" type="number" class="form-control" placeholder="<?php echo $book_data[0]['stock_u_b']; ?>" required autofocus>
+					<input name="stok_in" type="number" class="form-control" placeholder="<?php echo $book_data[0]['stock_u_b']; ?>" value="<?php echo $book_data[0]['stock_u_b']; ?>" required autofocus>
 				</div>
 			</div>
 
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Deskripsi</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<textarea name="deskripsi_in" class="form-control" rows="3" id="comment" placeholder="<?php echo $book_data[0]['description_u_b']; ?>"></textarea>
+					<textarea name="deskripsi_in" class="form-control" rows="3" id="comment" placeholder="<?php echo $book_data[0]['description_u_b']; ?>" value="<?php echo $book_data[0]['description_u_b']; ?>"></textarea>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
@@ -111,15 +111,6 @@
 							<?php
 								$i++;
 								} ?>
-							<!---<div class="col-md-3 book-uploaded-image">
-								<img src="<?php echo base_url()?>assets/img/book/book2.jpg">
-							</div>
-							<div class="col-md-3 book-uploaded-image">
-								<img src="<?php echo base_url()?>assets/img/book/book2.jpg">
-							</div>
-							<div class="col-md-3 book-uploaded-image">
-								<img src="<?php echo base_url()?>assets/img/book/book2.jpg">
-							</div>--->
 						</div>
 					</div>
 				</div>
