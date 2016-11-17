@@ -124,7 +124,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="search-side-item border-none">
 			<div class="activity-wrapper">
 				<button type="submit" class="btn btn-primary" value="Submit">Submit</button>

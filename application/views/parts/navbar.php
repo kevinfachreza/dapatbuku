@@ -23,7 +23,7 @@
 			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
-		  <form class="navbar-form navbar-left  navbar-hide ""  role="search" id="NavbarSearch">
+		  <form class="navbar-form navbar-left  navbar-hide"  role="search" id="NavbarSearch">
 			<div class="form-group form-group-navbar">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
@@ -114,8 +114,8 @@
 						<h2> LOGIN </h2>
 						<hr>
 						<form name="login_form" action="<?php echo base_url();?>Auth/do_login" method="POST">
-							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
-							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" oninvalid="this.setCustomValidity('Tolong masukkan Email anda')" required autofocus>
+							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" oninvalid="this.setCustomValidity('Tolong masukkan password anda')" required  autofocus>
 							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">LOGIN</button>
 						</form>
 						<p style="margin-top:1em; font-size:1.2em">Belum punya akun?</p>
