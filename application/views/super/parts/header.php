@@ -6,3 +6,10 @@
     <meta name="author" content="">
 
     <link href="<?php echo base_url()?>assets/css/bootstrap.min.css" rel="stylesheet">
+	
+	<style>
+		body
+		{
+			background-color:white!important;
+		}
+	</style>

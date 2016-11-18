@@ -1,0 +1,28 @@
+#category-header, #category-container
+{
+	margin-top:25px;
+	padding-top:20px;
+}
+
+.row{
+	margin:0;
+}
+
+.book-item
+{
+	text-align:center;
+	margin-bottom:25px;
+}
+
+.book-image{
+	height:200px;
+}
+
+.book-image img{
+	height:100%;
+}
+
+.book-title{
+	font-size:1.1em;
+	font-family:SourceSansProSemiBold;
+}

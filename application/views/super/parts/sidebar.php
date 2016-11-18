@@ -8,7 +8,7 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li class="disabled"><a href="">Book</a></li>
-            <li class=""><a href="">Book Manager</a></li>
-            <li class=""><a href="<?php echo base_url()?>sayabatman/add_book">Add Book</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/bookmanager">Book Manager</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/add_book">Add Book</a></li>
           </ul>
         </div>

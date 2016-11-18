@@ -33,11 +33,11 @@
 				<?php for ($i=0;$i<count($book);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()?>book/<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="" class="text-primary"><?php echo $book[$i]->title_b?></a></div>
-							<div class="author-container"><a href="" class="text-primary"><?php echo $book[$i]->writer?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->title_b?></a></div>
+							<div class="author-container"><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->writer?></a></div>
 						</div>
 					</div>
 				<?php } ?>

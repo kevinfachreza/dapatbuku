@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-  Class M_sayabatman extends CI_Model
+  Class M_auth extends CI_Model
   {
     function __construct(){
 		parent::__construct();

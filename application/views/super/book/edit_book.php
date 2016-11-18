@@ -13,28 +13,29 @@
 		<div class="row">
 		<?php echo $sidebar?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">Add Book</h1>
-				<?php echo form_open_multipart('sayabatman/do_add_book');?>
+				<h1 class="page-header">Edit Book</h1>
+				<?php echo form_open_multipart('super/adminbook/do_edit_book?id='.$book[0]->id_b);?>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Judul Buku</span>
-					<input type="text" name="judulbuku" class="form-control" placeholder="Judul Buku" aria-describedby="sizing-addon2">
+					<input type="text" name="judulbuku" class="form-control" placeholder="Judul Buku" aria-describedby="sizing-addon2" value="<?php echo $book[0]->title_b ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Pengarang</span>
-					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
+					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2" value="<?php echo $book[0]->writer ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Publisher</span>
-					<input type="text" name="publisher" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
+					<input type="text" name="publisher" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2" value="<?php echo $book[0]->publisher ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">ISBN</span>
-					<input type="text" name="isbn" class="form-control" placeholder="ISBN" aria-describedby="sizing-addon2">
+					<input type="text" name="isbn" class="form-control" placeholder="ISBN" aria-describedby="sizing-addon2" value="<?php echo $book[0]->no_isbn_b ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Jumlah Halaman</span>
-					<input type="number" name="halaman" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2">
+					<input type="number" name="halaman" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2" value="<?php echo $book[0]->pages ?>">
 				</div>
+					<img src="<?php echo base_url()?><?php echo $book[0]->photo_cover_b ?>" style="margin-bottom:20px; max-height:100px;">
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Cover</span>
 					<input type="file" name="picture" class="form-control" aria-describedby="sizing-addon2">
@@ -45,7 +46,7 @@
 					  <label for="cetakan_pertama">Cetakan Pertama</label>
 					  <select name="cetakan_pertama" class="form-control" id="cetakan_pertama">
 						<?php for($i=1980;$i<2017;$i++){?>
-						<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<option value="<?php echo $i ?>" <?php if($book[0]->date_published == $i) echo 'selected' ?>><?php echo $i ?></option>
 						<?php } ?>
 					  </select>
 					</div>
@@ -54,16 +55,18 @@
 					<div class="form-group">
 					  <label for="sel1">Bahasa</label>
 					  <select name="bahasa" class="form-control" id="sel1">
-						<option value="indonesia">Indonesia</option>
-						<option value="inggris">Inggris</option>
+						<option value="indonesia" <?php if($book[0]->language_b == 'indonesia') echo 'selected' ?>>Indonesia</option>
+						<option value="inggris" <?php if($book[0]->language_b == 'inggris') echo 'selected' ?>>Inggris</option>
 					  </select>
 					</div>
 				</div>
 				<div class="input-group">
 					<label for="kategori">Kategori</label>
-					<?php for($i=0;$i<count($categories);$i++){?>
+					<?php 
+					$flag=0;
+					for($i=0;$i<count($categories);$i++){?>
 					<div class="checkbox" id="kategori">
-						<label><input name="category[]" type="checkbox" value="<?php echo $categories[$i]->id_b_category?>"><?php echo $categories[$i]->name_b_category?></label>
+						<label><input name="category[]" type="checkbox" value="<?php echo $categories[$i]->id_b_category?>" <?php echo $categories[$i]->checked?>><?php echo $categories[$i]->name_b_category?></label>
 					</div>
 					<?php } ?>
 				</div>
@@ -71,16 +74,16 @@
 					<div class="form-group">
 					  <label for="sel2">Cover</label>
 					  <select name="cover" class="form-control" id="sel2">
-						<option value="soft">Soft Cover</option>
-						<option value="hard">Hard Cover</option>
-						<option value="both">Keduanya</option>
+						<option value="soft" <?php if($book[0]->cover_type_b == 'soft') echo 'selected' ?>>Soft Cover</option>
+						<option value="hard" <?php if($book[0]->cover_type_b == 'hard') echo 'selected' ?>>Hard Cover</option>
+						<option value="both" <?php if($book[0]->cover_type_b == 'both') echo 'selected' ?>>Keduanya</option>
 					  </select>
 					</div>
 				</div>
 				<div class="input-group">
 					<div class="form-group">
 					  <label for="comment">Sinopsis:</label>
-					  <textarea name="sinopsis" class="form-control" rows="5" id="comment" placeholder="Sinopsis"></textarea>
+					  <textarea name="sinopsis" class="form-control" rows="5" id="comment" placeholder="Sinopsis"> <?php echo $book[0]->description_b?></textarea>
 					</div>
 				</div>
 				<div class="input-group">
