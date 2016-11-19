@@ -83,7 +83,7 @@
 				<select class="form-control" id="kota" name="regencies_in">
 					<option value="">-Pilih Kota-</option>
 					<?php foreach($location as $key){ ?>
-					<option value="<?php echo $key['id']; ?>" <?php if($key['id_b_category'] == $key_before[5])	echo "selected"; ?>><?php echo $key['name'];?></option>
+					<option value="<?php echo $key['id']; ?>" <?php if($key['name'] == $key_before[5])	echo "selected"; ?>><?php echo $key['name'];?></option>
 					<?php } ?>
 				</select>
 			</div>
@@ -155,10 +155,10 @@
 						foreach($result as $key){
 							?>
 							<div class="col-md-3 search-item">
-								<div class="book-image"><a href="#"><img src="<?php echo $key['main_image_u_b']; ?>"></a>
+								<div class="book-image"><a href="<?php echo base_url()."book/product?slug=".$key['slug_title_u_b']; ?>"><img src="<?php echo $key['main_image_u_b']; ?>"></a>
 								</div>
 								<div class="book-info-section">
-									<div class="book-title"><a href="#"><?php echo $key['title_u_b']; ?></a>
+									<div class="book-title"><a href="<?php echo base_url()."book/product?slug=".$key['slug_title_u_b']; ?>"><?php echo $key['title_u_b']; ?></a>
 									</div>
 									<div class="book-down-section">
 										<div class="book-tag">

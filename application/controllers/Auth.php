@@ -15,23 +15,14 @@ class Auth extends CI_Controller {
     $this->load->model('M_auth');
   }
 
-  public function login()
+  public function login_index()
   {
-		$data['header']=$this->load->view('parts/header','',true);
+    $data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		$this->load->view('auth/login',$data);
+		$this->load->view('v_login');
   }
-  
-  
-  public function register()
-  {
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
-		$this->load->view('auth/register',$data);
-  }
-	
+
   public function do_login(){
     $this->form_validation->set_rules('log-user_in', 'user_in', 'trim|required');
     $this->form_validation->set_rules('log-pass', 'Password', 'trim|required');
@@ -73,41 +64,17 @@ class Auth extends CI_Controller {
 
     if($this->form_validation->run() == FALSE){
       //redirect('Welcome');
-      echo $em;
-      echo $name;
-      echo $date;
-      echo $pass;
-      echo "GAGAL";
     }
-    
+
     else{
-      echo "SINI";
-      /*$data_in = array(
-        'email_u' => $this->input->post('reg-email'),
-        'username_u' => $this->input->post('reg-name'),
-        'date_of_birth_u' => $this->input->post('reg-date'),
-        'password_u' => $this->input->post('reg-pass')
-      );*/
       $result = $this->M_auth->register($em, $name, $date, $pass);
       if($result){
-		
-		$get_user = $this->M_auth->login($em, $pass);
-
-
-		if($get_user){
-			$id = $get_user[0]->id_u;
-		}
-		
-		$path ="./assets/img/user/".$id."/book";
-		$path2 ="./assets/img/user/".$id."/profile-pict";		
-		
-		if(!is_dir($path)) mkdir($path, 0777, TRUE);
-		if(!is_dir($path2)) mkdir($path2, 0777, TRUE);
-		
-        echo "SUKSES".$id;
+        mkdir("assets/img/user/".$result);
+        mkdir("assets/img/user/".$result."/books");
+        redirect('Welcome');
       }
       else {
-        redirect('Welcome');
+        echo "SALAH";
       }
     }
   }

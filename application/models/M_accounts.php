@@ -32,8 +32,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		lastname_u = '".$data['lastname']."',
 		date_of_birth_u = '".$data['date']."',
 		phone_number_u = '".$data['phone']."',
-		whatsapp_u = '".$data['whatsapp']."',
-		line_u = '".$data['line']."',
 		province_u = '".$data['province']."',
 		city_u = '".$data['city']."',
 		bio_u = '".$data['bio']."'

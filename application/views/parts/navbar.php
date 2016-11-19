@@ -23,7 +23,7 @@
 			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
-		  <form class="navbar-form navbar-left  navbar-hide ""  role="search" id="NavbarSearch">
+		  <form class="navbar-form navbar-left  navbar-hide"  role="search" id="NavbarSearch">
 			<div class="form-group form-group-navbar">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
@@ -32,7 +32,7 @@
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	
+
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -42,9 +42,9 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		   
+
 		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
-		  
+
 		</div>
 
 		<div class="collapse navbar-collapse" >
@@ -85,7 +85,7 @@
 				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
-				<li><a href="#">MyBooks</a></li>
+				<li><a href="<?php echo base_url().'Mybooks'; ?>">MyBooks</a></li>
 				<li role="separator" class="divider"></li>
 				<li><a href="<?php echo base_url().'Profile/logging_out'; ?>">Log-out</a></li>
 			  </ul>
@@ -93,14 +93,14 @@
 			<?php }else {?>
 
 			<li>
-			  <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#myModal" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
+			  <a href="#" class="dropdown-toggle" data-toggle="modal" data-target ="#myModal" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
 			</li>
 			<?php } ?>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
-	
+
 
 	 <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
@@ -113,9 +113,9 @@
 
 						<h2> LOGIN </h2>
 						<hr>
-						<form action="<?php echo base_url();?>Auth/do_login" method="POST">
-							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
-							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+						<form name="login_form" action="<?php echo base_url();?>Auth/do_login" method="POST">
+							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" oninvalid="this.setCustomValidity('Tolong masukkan Email anda')" required autofocus>
+							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" oninvalid="this.setCustomValidity('Tolong masukkan password anda')" required  autofocus>
 							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">LOGIN</button>
 						</form>
 						<p style="margin-top:1em; font-size:1.2em">Belum punya akun?</p>
@@ -126,7 +126,7 @@
 					<div id="reg-panel" style="display:none;margin:0 auto;width:70%;">
 						<h2> REGISTER </h2>
 						<hr>
-						<form action="<?php echo base_url();?>auth/do_register" method="POST">
+						<form name="reg_form" action="<?php echo base_url();?>auth/do_register" method="POST">
 							<input name="reg-email" type="Email" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
 							<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
 							<input name="reg-date" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
@@ -156,6 +156,7 @@
              $("#log-panel").css('display','inline-block');
         });
     </script>
+
 
 
 

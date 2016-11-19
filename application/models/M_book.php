@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function get_n_release()
     {
-      $query = $this->db->query(" select b.id_b, b.title_b, b.photo_cover_b, b.writer, b.date_published
+      $query = $this->db->query(" select *
                                   from book b ORDER by b.date_published DESC;");
       return $query->result_array();
     }
@@ -249,6 +249,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else {
         return FALSE;
       }
+    }
+
+    public function get_product_book($slug)
+    {
+      $query = $this->db->query("SELECT * FROM user_book ub where slug_title_u_b = '".$slug."'; ");
+
+      return $query->result_array();
+    }
+
+    public function get_product_img($id_in)
+    {
+      $query = $this->db->query("SELECT * FROM user_book_image WHERE id_b_source = '".$id_in."'; ");
+
+      return $query->result_array();
+    }
+
+    public function get_owner_book($slug)
+    {
+      $query = $this->db->query("SELECT u.*, rr.name FROM region_regencies rr, user u, user_book ub WHERE ub.slug_title_u_b = '".$slug."' AND u.id_u = ub.id_u_owner AND rr.id = u.city_u; ");
+
+      return $query->result_array();
     }
   }
 ?>

@@ -11,7 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $query = $this->db->query("INSERT INTO user(email_u, username_u,
           date_of_birth_u, password_u) VALUES('".$em_in."', '".$name_in."', '".$date_in."', SHA2('".$pass_in."', 256))");
       if($query){
-        return true;
+        $result = $this->db->insert_id();
+        return $result;
       }
       else {
         return false;
