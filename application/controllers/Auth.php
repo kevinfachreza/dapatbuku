@@ -15,13 +15,14 @@ class Auth extends CI_Controller {
     $this->load->model('M_auth');
   }
 
-  public function login_index()
+  public function login()
   {
     $data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		$this->load->view('v_login');
+		$this->load->view('auth/login', $data);
   }
+
 
   public function do_login(){
     $this->form_validation->set_rules('log-user_in', 'user_in', 'trim|required');
@@ -45,6 +46,14 @@ class Auth extends CI_Controller {
 		echo 'salah';
     }
   }
+
+  public function register(){
+    $data['header']=$this->load->view('parts/header','',true);
+    $data['navbar']=$this->load->view('parts/navbar','',true);
+    $data['footer']=$this->load->view('parts/footer','',true);
+    $this->load->view('auth/register', $data);
+  }
+
 
   public function do_register(){
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
