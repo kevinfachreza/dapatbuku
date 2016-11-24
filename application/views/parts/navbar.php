@@ -48,9 +48,9 @@
 		</div>
 
 		<div class="collapse navbar-collapse" >
-		  <form class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
+		  <form action="<?php echo base_url()."Search"?>" action="get" class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Search">
+			  <input type="text" class="form-control" placeholder="Search" name="key-in">
 			</div>
 			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		  </form>
