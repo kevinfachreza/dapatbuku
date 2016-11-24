@@ -43,24 +43,30 @@
 								</div>
 								<div class="col-md-12" style="">
 									<a href="<?php echo base_url()."Mybooks/edit?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
-									<a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Delete</button></a>
+									<a data-toggle="modal" href="#shortModal" ><button type="button" class="btn btn-primary">Delete</button></a>
 
-										<!---<a href="#!" data-toggle="modal" data-target="#notification" aria-haspopup="true" aria-expanded="false"><button type="button" class="btn btn-danger">Delete</button></a>--->
 								</div>
 							</div>
 						</div>
 					<?php } ?>
 					</div>
-					<!--NOTIFICATION-->
-					<div class="modal fade" id="notification" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<h3>Are you sure to Delete this book?</h3>
-								<a href="<?php echo base_url()."Mybooks/delete?id-books=".$key['id_u_b']; ?>"><button type="button" class="btn btn-danger">YES</button></a>
-								<a href="<?php echo base_url()."Mybooks"; ?>"><button type="button" class="btn btn-warning">NO</button></a>
-							</div>
-						</div>
-					</div>
+
+					<!--DELETE ALERT-->
+					<div id="shortModal" class="modal modal-wide fade">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					        <h4 class="modal-title">Apakah anda yakin menghapus buku ini?</h4>
+					      </div>
+					      <div class="modal-body">
+					        <a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
+									<button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
+								</div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+
 
 					<div class="col-md-12">
 						<nav aria-label="Page navigation">

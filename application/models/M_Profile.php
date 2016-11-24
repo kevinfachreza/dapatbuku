@@ -24,6 +24,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$result = $change->result();
 		return $result;
     }
+	
+	public function get_books_user($id,$limit,$offset)
+	{
+		$change = $this->db->query
+		("
+			SELECT * from user_book where id_u_owner = ".$id."
+			LIMIT ".$limit."
+			OFFSET ".$offset."
+		");
+		$result = $change->result();
+		return $result;
+	}
+	
+	 public function count_all_books_user($id){
+		$query = $this->db->query("
+			SELECT count(*) as count from user_book where id_u_owner = ".$id."
+		"
+		);
+		$temp = $query->result();
+        return $temp['0']->count;
+      
+    }
 
   }
 

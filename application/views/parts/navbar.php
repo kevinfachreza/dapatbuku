@@ -19,7 +19,7 @@
               </li>
 			  </ul>
 			</li>
-			<li><a href="#">Home</a></li>
+			<li><a href="<?php echo base_url().""; ?>">Home</a></li>
 			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
@@ -93,7 +93,7 @@
 			<?php }else {?>
 
 			<li>
-			  <a href="#" class="dropdown-toggle" data-toggle="modal" data-target ="#myModal" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
+			  <a href="<?php echo base_url()."auth/login"; ?>" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"> Login </a>
 			</li>
 			<?php } ?>
 		  </ul>

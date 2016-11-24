@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       
     }
 	
-    public function get_all_book_cat($category){
+    public function count_all_book_cat($category){
 		$query = $this->db->query("
 			SELECT count(*) as count from book b, book_category bc, book_category_connector bcc
 			WHERE bcc.book_id = b.id_b and
@@ -29,7 +29,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			bc.name_b_category = '".$category."'
 		"
 		);
-        return $query->result();
+		$temp = $query->result();
+        return $temp['0']->count;
+      
+    }
+	
+	public function get_category($category){
+		$query = $this->db->query("
+			SELECT * from book_category WHERE
+			name_b_category = '".$category."'
+		"
+		);
+		$temp = $query->result();
+        return $temp;
       
     }
 	

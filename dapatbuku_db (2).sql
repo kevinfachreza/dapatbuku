@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Nov 2016 pada 13.35
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Nov 21, 2016 at 03:29 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.24
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -22,7 +23,7 @@ SET time_zone = "+00:00";
 
 DELIMITER $$
 --
--- Prosedur
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createRoomChat` (`id_1` INT(11), `id_2` INT(11))  BEGIN
 	if exists( select * from chat_room where (user_1 = id_1 and user_2 = id_2) or (user_2 = id_1 and user_1 = id_2))
@@ -69,7 +70,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book`
+-- Table structure for table `book`
 --
 
 CREATE TABLE `book` (
@@ -93,7 +94,7 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book`
+-- Dumping data for table `book`
 --
 
 INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `publisher`, `pages`, `date_published`, `language_b`, `thumb_cover_b`, `photo_cover_b`, `cover_type_b`, `description_b`, `total_reviews_b`, `total_ratings`, `best_seller_flag`, `best_seller_rank`) VALUES
@@ -103,28 +104,29 @@ INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_category`
+-- Table structure for table `book_category`
 --
 
 CREATE TABLE `book_category` (
   `id_b_category` int(11) NOT NULL,
-  `name_b_category` varchar(100) NOT NULL
+  `name_b_category` varchar(100) NOT NULL,
+  `desc_b_category` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book_category`
+-- Dumping data for table `book_category`
 --
 
-INSERT INTO `book_category` (`id_b_category`, `name_b_category`) VALUES
-(1, 'Bisnis'),
-(2, 'Agama'),
-(3, 'Hukum'),
-(4, 'Novel');
+INSERT INTO `book_category` (`id_b_category`, `name_b_category`, `desc_b_category`) VALUES
+(1, 'Bisnis', 'Bisnis adalah usaha menjual barang atau jasa yang dilakukan oleh perorangan, sekelompok orang atau organisasi kepada konsumen (masyarakat) dengan tujuan utamanya adalah memperoleh keuntungan/laba (profit). Pada dasarnya, kita melakukan bisnis adalah untuk memperoleh laba atau keuntungan '),
+(2, 'Agama', NULL),
+(3, 'Hukum', NULL),
+(4, 'Novel', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_category_connector`
+-- Table structure for table `book_category_connector`
 --
 
 CREATE TABLE `book_category_connector` (
@@ -134,7 +136,7 @@ CREATE TABLE `book_category_connector` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book_category_connector`
+-- Dumping data for table `book_category_connector`
 --
 
 INSERT INTO `book_category_connector` (`id_bcc`, `book_id`, `cat_id`) VALUES
@@ -162,7 +164,7 @@ INSERT INTO `book_category_connector` (`id_bcc`, `book_id`, `cat_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_rating`
+-- Table structure for table `book_rating`
 --
 
 CREATE TABLE `book_rating` (
@@ -174,7 +176,7 @@ CREATE TABLE `book_rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book_rating`
+-- Dumping data for table `book_rating`
 --
 
 INSERT INTO `book_rating` (`id_b_rating`, `date_rating`, `rating`, `id_u`, `id_b`) VALUES
@@ -184,7 +186,7 @@ INSERT INTO `book_rating` (`id_b_rating`, `date_rating`, `rating`, `id_u`, `id_b
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_review`
+-- Table structure for table `book_review`
 --
 
 CREATE TABLE `book_review` (
@@ -198,7 +200,7 @@ CREATE TABLE `book_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book_review`
+-- Dumping data for table `book_review`
 --
 
 INSERT INTO `book_review` (`id_b_review`, `title_b_review`, `content_b_review`, `id_u`, `id_b`, `date_b_review`, `total_like`) VALUES
@@ -207,7 +209,7 @@ INSERT INTO `book_review` (`id_b_review`, `title_b_review`, `content_b_review`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_review_like`
+-- Table structure for table `book_review_like`
 --
 
 CREATE TABLE `book_review_like` (
@@ -220,7 +222,7 @@ CREATE TABLE `book_review_like` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_status`
+-- Table structure for table `book_status`
 --
 
 CREATE TABLE `book_status` (
@@ -231,7 +233,7 @@ CREATE TABLE `book_status` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_type`
+-- Table structure for table `book_type`
 --
 
 CREATE TABLE `book_type` (
@@ -240,7 +242,7 @@ CREATE TABLE `book_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `book_type`
+-- Dumping data for table `book_type`
 --
 
 INSERT INTO `book_type` (`id_b_type`, `name_b_type`) VALUES
@@ -250,7 +252,7 @@ INSERT INTO `book_type` (`id_b_type`, `name_b_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chat_messages`
+-- Table structure for table `chat_messages`
 --
 
 CREATE TABLE `chat_messages` (
@@ -263,7 +265,7 @@ CREATE TABLE `chat_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `chat_messages`
+-- Dumping data for table `chat_messages`
 --
 
 INSERT INTO `chat_messages` (`id_messages`, `chat_room_id`, `user_id`, `message`, `created_at`, `read_status`) VALUES
@@ -287,13 +289,15 @@ INSERT INTO `chat_messages` (`id_messages`, `chat_room_id`, `user_id`, `message`
 (18, 1, 3, 'this is totally new chat', '2016-11-06 09:08:51', 1),
 (19, 1, 3, 'sooo read this', '2016-11-06 09:10:40', 1),
 (20, 1, 4, 'hei kev\r\nkamu ganteng sekali', '2016-11-06 09:12:07', 1),
-(21, 1, 3, 'COBA', '2016-11-06 09:15:12', 0),
-(22, 4, 3, 'helo kevin im kev too', '2016-11-06 09:15:24', 0);
+(21, 1, 3, 'COBA', '2016-11-06 09:15:12', 1),
+(22, 4, 3, 'helo kevin im kev too', '2016-11-06 09:15:24', 0),
+(23, 1, 4, 'helo kev', '2016-11-21 02:10:05', 0),
+(24, 7, 4, 'hello harlan', '2016-11-21 02:10:40', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chat_room`
+-- Table structure for table `chat_room`
 --
 
 CREATE TABLE `chat_room` (
@@ -305,20 +309,22 @@ CREATE TABLE `chat_room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `chat_room`
+-- Dumping data for table `chat_room`
 --
 
 INSERT INTO `chat_room` (`id_cr`, `created_at`, `last_active`, `user_1`, `user_2`) VALUES
-(1, '2016-11-06', '2016-11-06 09:15:12', 3, 4),
+(1, '2016-11-06', '2016-11-21 02:10:05', 3, 4),
 (2, '2016-11-06', '2016-11-05 17:00:00', 4, 1),
 (4, '2016-11-06', '2016-11-06 09:15:24', 2, 3),
 (5, '2016-11-06', '2016-11-06 06:17:03', 1, 3),
-(6, '2016-11-06', '2016-11-06 06:19:37', 2, 4);
+(6, '2016-11-06', '2016-11-06 06:19:37', 2, 4),
+(7, '2016-11-21', '2016-11-21 02:10:40', 47, 4),
+(8, '2016-11-21', '2016-11-21 02:11:44', 1, 47);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `publishers`
+-- Table structure for table `publishers`
 --
 
 CREATE TABLE `publishers` (
@@ -333,7 +339,7 @@ CREATE TABLE `publishers` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `region_provinces`
+-- Table structure for table `region_provinces`
 --
 
 CREATE TABLE `region_provinces` (
@@ -342,7 +348,7 @@ CREATE TABLE `region_provinces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `region_provinces`
+-- Dumping data for table `region_provinces`
 --
 
 INSERT INTO `region_provinces` (`id`, `name`) VALUES
@@ -384,7 +390,7 @@ INSERT INTO `region_provinces` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `region_regencies`
+-- Table structure for table `region_regencies`
 --
 
 CREATE TABLE `region_regencies` (
@@ -394,7 +400,7 @@ CREATE TABLE `region_regencies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `region_regencies`
+-- Dumping data for table `region_regencies`
 --
 
 INSERT INTO `region_regencies` (`id`, `province_id`, `name`) VALUES
@@ -916,7 +922,7 @@ INSERT INTO `region_regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -943,14 +949,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`, `lastname_u`, `date_of_birth_u`, `phone_number_u`, `join_date_u`, `address_u`, `city_u`, `province_u`, `total_review_u`, `bio_u`, `photo_profile_u`, `photo_cover_u`, `point`, `money`, `line_u`, `whatsapp_u`) VALUES
 (1, 'haha', 'hahaha@gmail.com', '12345', 'hara', 'Hura', '2016-09-24', '1234567890', NULL, 'Kalimantan tengah barat', 0, NULL, NULL, 'Hola namanamanama', 'assets/img/default/profile-pict.png', NULL, NULL, NULL, '', ''),
 (2, 'kevinfachreza', 'kevinfachreza@yahoo.com', '12345', 'aa', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
 (3, 'kev', 'kevinfachreza@yahoo.coma', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'bbb', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
-(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-05-09-11-21.jpg', NULL, 0, NULL, '', ''),
+(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, '', ''),
 (5, 'hanah', 'hanah@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1998-02-13', '09898989', '2016-11-01 00:00:00', NULL, 1173, NULL, 0, NULL, './assets/img/user/5/profile-pict/default.png', NULL, 0, NULL, '@hanahanda', '0292828383'),
 (6, 'curlan', 'curlan@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1991-02-13', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
 (7, 'ibu', 'ibu@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1800-12-18', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
@@ -998,7 +1004,7 @@ INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_book`
+-- Table structure for table `user_book`
 --
 
 CREATE TABLE `user_book` (
@@ -1022,7 +1028,7 @@ CREATE TABLE `user_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_book`
+-- Dumping data for table `user_book`
 --
 
 INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point`, `price_rent_u_b`, `type_u_b`, `sell_u_b`, `barter_u_b`, `rent_u_b`, `description_u_b`, `id_u_owner`, `stock_u_b`, `main_image_u_b`, `title_u_b`, `berat_u_b`, `slug_title_u_b`, `tahun_beli_u_b`) VALUES
@@ -1035,12 +1041,14 @@ INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point
 (8, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
 (9, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
 (41, 13, 10, 0, 11, 1, NULL, 0, 127, 'Kenapa', 5, 22, 'assets/img/user/5/books/41/0.png', 'Apa', 2, '', 0000),
-(42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/5/books/42/0.png', 'Why', 111, '', 0000);
+(42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/4/books/42/0.jpg', 'Why', 111, '', 0000),
+(43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000),
+(44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_book_favourite`
+-- Table structure for table `user_book_favourite`
 --
 
 CREATE TABLE `user_book_favourite` (
@@ -1052,7 +1060,7 @@ CREATE TABLE `user_book_favourite` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_book_image`
+-- Table structure for table `user_book_image`
 --
 
 CREATE TABLE `user_book_image` (
@@ -1062,7 +1070,7 @@ CREATE TABLE `user_book_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_book_image`
+-- Dumping data for table `user_book_image`
 --
 
 INSERT INTO `user_book_image` (`id_u_b_img`, `id_b_source`, `image_path`) VALUES
@@ -1075,12 +1083,19 @@ INSERT INTO `user_book_image` (`id_u_b_img`, `id_b_source`, `image_path`) VALUES
 (9, 4, 'assets/img/user/5/books/4/0.png'),
 (10, 4, 'assets/img/user/5/books/4/0.png'),
 (11, 4, 'assets/img/user/5/books/4/0.png'),
-(12, 4, 'assets/img/user/5/books/4/0.png');
+(12, 4, 'assets/img/user/5/books/4/0.png'),
+(13, 42, 'assets/img/user/4/books/42/0.jpg'),
+(14, 42, 'assets/img/user/4/books/42/1.jpg'),
+(15, 42, 'assets/img/user/4/books/42/2.jpg'),
+(16, 42, 'assets/img/user/4/books/42/0.jpg'),
+(17, 42, 'assets/img/user/4/books/42/0.jpg'),
+(18, 42, 'assets/img/user/4/books/42/0.jpg'),
+(19, 42, 'assets/img/user/4/books/42/0.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `writer`
+-- Table structure for table `writer`
 --
 
 CREATE TABLE `writer` (
@@ -1093,7 +1108,7 @@ CREATE TABLE `writer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `writer`
+-- Dumping data for table `writer`
 --
 
 INSERT INTO `writer` (`id_writer`, `name_writer`, `origin_writer`, `date_of_birth_writer`, `description_writer`, `photo_writer`) VALUES
@@ -1278,12 +1293,12 @@ ALTER TABLE `book_type`
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id_messages` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_messages` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `chat_room`
 --
 ALTER TABLE `chat_room`
-  MODIFY `id_cr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_cr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `publishers`
 --
@@ -1298,7 +1313,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_book`
 --
 ALTER TABLE `user_book`
-  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `user_book_favourite`
 --
@@ -1308,45 +1323,45 @@ ALTER TABLE `user_book_favourite`
 -- AUTO_INCREMENT for table `user_book_image`
 --
 ALTER TABLE `user_book_image`
-  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `writer`
 --
 ALTER TABLE `writer`
   MODIFY `id_writer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `book_rating`
+-- Constraints for table `book_rating`
 --
 ALTER TABLE `book_rating`
   ADD CONSTRAINT `rating_book_FK` FOREIGN KEY (`id_b`) REFERENCES `book` (`id_b`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rating_user_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `book_review`
+-- Constraints for table `book_review`
 --
 ALTER TABLE `book_review`
   ADD CONSTRAINT `review_book_FK` FOREIGN KEY (`id_b`) REFERENCES `book` (`id_b`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `review_user_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `book_review_like`
+-- Constraints for table `book_review_like`
 --
 ALTER TABLE `book_review_like`
   ADD CONSTRAINT `book_like_FK` FOREIGN KEY (`id_b_review`) REFERENCES `book_review` (`id_b_review`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_like_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `region_regencies`
+-- Constraints for table `region_regencies`
 --
 ALTER TABLE `region_regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `region_provinces` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `user_book`
+-- Constraints for table `user_book`
 --
 ALTER TABLE `user_book`
   ADD CONSTRAINT `Book_owner_FK` FOREIGN KEY (`id_u_owner`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -1354,17 +1369,18 @@ ALTER TABLE `user_book`
   ADD CONSTRAINT `Book_type_FK` FOREIGN KEY (`type_u_b`) REFERENCES `book_type` (`id_b_type`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_book_favourite`
+-- Constraints for table `user_book_favourite`
 --
 ALTER TABLE `user_book_favourite`
   ADD CONSTRAINT `category_fav_FK` FOREIGN KEY (`id_category`) REFERENCES `book_category` (`id_b_category`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_fav_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_book_image`
+-- Constraints for table `user_book_image`
 --
 ALTER TABLE `user_book_image`
   ADD CONSTRAINT `Book_source_img_FK` FOREIGN KEY (`id_b_source`) REFERENCES `user_book` (`id_u_b`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
