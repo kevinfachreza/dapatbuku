@@ -45,7 +45,32 @@
       return $query->result_array();
     }
 
-    public function get_search($key)
+    public function search_book($key_search)
+    {
+      print_r($key_search);
+      $key_search[0]="%".$key_search."%";
+      $query = $this->db->query("SELECT b.* FROM book b, book_category_connector bcc WHERE ");
+
+      if($key_search[0] != NULL)
+      {
+        $query .= "b.title_b LIKE '".$key_search[0]."' OR b.writer LIKE '".$key_search[0]."'";
+      }
+      if($key_search[1] != NULL)
+      {
+        if($key_search[0] != NULL)
+        {
+          $query .= "AND bcc.cat_id='".$category."' AND b.id_b=bcc.book_id;";
+        }
+        else
+        {
+          $query .= "bcc.cat_id='".$category."' AND b.id_b=bcc.book_id;";
+        }
+      }
+
+      return $query->result_array();
+    }
+
+    public function search_product($key)
     {
 
       $query = "SELECT res.id_u_b, res.slug_title_u_b, res.main_image_u_b, res.title_u_b, res.price_sell_u_b, res.city_u, res.rent_u_b, res.barter_u_b FROM (SELECT * FROM (SELECT ub.id_u_b, ub.slug_title_u_b, ub.main_image_u_b, ub.title_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b,

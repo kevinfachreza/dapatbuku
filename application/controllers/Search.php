@@ -40,7 +40,8 @@ class Search extends CI_Controller {
 			$key_search = array($keyword, $category, $best_sell, $bekas,
 												$baru, $regencies, $tebal_min, $tebal_max,
 											  $harga_min, $harga_max, $jual, $sewa, $barter);
-			$data['result']=$this->M_search->get_search($key_search);
+			$data['book_result']=$this->M_search->search_book($key_search);
+			$data['user_book_result']=$this->M_search->search_product($key_search);
 			$data['has_result'] = 1;
 			$data['key_before'] = $key_search;
 			$data['provincies_pass'] = $provincies;
@@ -119,7 +120,7 @@ class Search extends CI_Controller {
 			$key_search = array($keyword, $category, $best_sell, $bekas,
 												$baru, $regencies, $tebal_min, $tebal_max,
 											  $harga_min, $harga_max, $jual, $sewa, $barter);
-			$data['result']=$this->M_search->get_search($key_search);
+			$data['result']=$this->M_search->search_product($key_search);
 			$data['has_result'] = 1;
 			$data['key_before'] = $key_search;
 			$data['provincies_pass'] = $provincies;
