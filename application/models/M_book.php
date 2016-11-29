@@ -139,20 +139,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   	public function get_my_book($id_in)
     {
-      $query = $this->db->query("select ub.title_u_b, b.writer, ub.price_sell_u_b, ub.id_u_b, ub.main_image_u_b
+      $query = $this->db->query("select b.writer, ub.*
                                  from book b, user_book ub where ub.id_u_owner = '".$id_in."'
                                  and b.id_b = ub.id_b_source;");
       return $query->result_array();
     }
 
-    public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user)
+    public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)
     {
       $query = $this->db->query("insert into user_book(id_u_owner, id_b_source, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
-                                 berat_u_b, stock_u_b, description_u_b) VALUES('".$id_user."',13, '".$title."', '".$price_sell."',
-                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."');");
+                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b) VALUES('".$id_user."',13, '".$title."', '".$price_sell."',
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."', '".$slug."');");
       if($query)
       {
-          return TRUE;
+        $result = $this->db->insert_id();
+          return $result;
 
       }
       else
@@ -210,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function get_edit_book($id_in)
     {
-      $query = $this->db->query("SELECT * FROM user_book where id_u_b = '".$id_in."'; ");
+      $query = $this->db->query("SELECT * FROM user_book where slug_title_u_b = '".$id_in."'; ");
 
       return $query->result_array();
     }

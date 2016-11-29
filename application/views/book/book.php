@@ -85,14 +85,14 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Kategori
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">
-							<?php 
-								$counter=1; 
+							<?php
+								$counter=1;
 								foreach($book_category as $key){
 									if($counter!=1)echo ', ';
 									echo $key['name_b_category'];
 									$counter++;
 								}
-								?> 
+								?>
 							</div>
 						</div>
 
@@ -226,20 +226,22 @@
 							<?php echo $key['content_b_review']; ?>
 						</div>
 					</div>
-				<?php } ?>	
+				<?php } ?>
 			</div>
 		</div>
 	</div>
-	
-	<?php if($review_flag==0){?>
+
+	<?php
+		if($this->session->logged_in==1){
+	if($review_flag==0){?>
 	<div  id="review-form" class="container">
 		<div class="col-md-12" >
 			<div class="col-md-12 header-text-2">Tulis Ulasanmu Sendiri</div>
 			<div class="col-md-12 text-center"><hr></div>
 			<div class="col-md-8">
-						
+
 							<?php if($rating_flag==0){?>
-							
+
 							<label for="comment">
 								<div class="rating">
 								Rate This Book &nbsp;&nbsp;
@@ -250,26 +252,26 @@
 								<span><input type="radio" name="rating" id="str1" value="1"><label for="str1"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></label></span>
 								</div>
 							</label>
-							
+
 							<?php } else {?>
 								<div class="review-rating review-item" id="user_rating_star">
 									<?php for($i=0;$i<$rating_data[0]['rating'];$i++){?>
 									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
 									<?php } ?>
-									
+
 									<?php for($i=0;$i<5-$rating_data[0]['rating'];$i++){?>
 									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#777;" aria-hidden="true"></span>
 									<?php } ?>
-									
+
 									<span class="comment-for-star">Nilai kamu untuk buku ini</span>
 								</div>
 							<?php } ?>
-							
-							
+
+
 							<form action="<?php echo base_url();?>book/add_review_book?book=<?php echo $book_data[0]['slug_title_b']?>" method="POST">
 								<span class="label-for-textarea">Tulis ulasan kamu untuk buku ini</span>
 								<input name="title" type="text" class="form-control" placeholder="Judul Ulasan"  style="margin-bottom:10px;" required >
-							
+
 								<textarea name="review" class="form-control" rows="5" id="comment" placeholder="Tulis ulasan kamu"></textarea>
 								<button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Submit</button>
 							</form>
@@ -277,8 +279,19 @@
 		</div>
 	</div>
 
-						<?php } ?>
+						<?php }
 
+					}
+					else{
+							?>
+					<div  id="review-form" class="container">
+						<div class="col-md-12" >
+							<div class="col-md-12 header-text-2">Silahkan Login untuk bisa memberikan Review/Rating</div>
+						</div>
+					</div>
+					<?php
+					}
+					?>
 	<!--/////////////////////CUSTOMER ALSO BOUGHT///////////////////////////////// -->
 
 
@@ -378,31 +391,31 @@ $(document).ready(function(){
             //traditional: true,
             success:function(response){
                        alert(response);
-						
+
                     },
             error: function(response){
 						alert(response);
-                       
+
                 }
             });
     });
 });
 
   </script>
-  
+
   <script>
-	
+
 	$(".comment-for-star").hide();
 	$("#user_rating_star").hover(
 		function(e){
 			$(".comment-for-star").show();
-			
+
 		},
 		function(e){
 			$(".comment-for-star").hide();
-		} 
+		}
 	);
-  
+
   </script>
 
 <?php } ?>

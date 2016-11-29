@@ -8,6 +8,16 @@
       parent::__construct();
     }
 
+    public function get_book_by_slug($slug_in)
+    {
+      $query = $this->db->query("select b.id_b from book b where b.slug_title_b='".$slug_in."';");
+
+      $result_id = $query->result_array();
+      $result = $this->db->query("select ub.* from user_book ub where ub.id_b_source = '".$result_id[0]['id_b']."';");
+
+      return $result->result_array();
+    }
+
     public function get_category()
     {
       $query = $this->db->query("SELECT * FROM book_category");

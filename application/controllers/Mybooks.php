@@ -34,7 +34,7 @@ class Mybooks extends CI_Controller {
 		$user_data = $this->session->userdata('userdata');
 		$data['user'] = $user_data[0];
 		$data['all_book'] =	$this->M_book->get_my_book($data['user']->id_u);
-		//print_r($data['all_book']);
+
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
@@ -44,7 +44,7 @@ class Mybooks extends CI_Controller {
 
 	public function edit()
 	{
-		$id_in = $this->input->get('id-book');
+		$id_in = $this->input->get('title');
 		$data['book_data'] = $this->M_book->get_edit_book($id_in);
 		$data['current_photo'] = $this->M_book->get_current_photo($id_in);
 		$data['header']=$this->load->view('parts/header','',true);
@@ -126,17 +126,19 @@ class Mybooks extends CI_Controller {
 			$berat			= $this->input->post('berat_in');
 			$stock			= $this->input->post('stok_in');
 			$deskripsi	= $this->input->post('deskripsi_in');
+			$slug1 = str_replace(' ', '', $title);
 
 			$tmp				=	$this->session->userdata['userdata'];
 			$user_id		= $tmp[0];
+			$slug2 = hash('sha256', 'user_id');
+			$slug2 = substr($slug2, 0, 5);
 
+			$slug_final = $slug1.$slug2;
 			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
-																					 $barter, $kondisi, $berat, $stock, $deskripsi, $user_id->id_u);
-			$tmp = $this->M_book->get_inserted_book($user_id->id_u);
-			$id_last = $tmp[0]['id_u_b'];
-
-			if($result)
+																					 $barter, $kondisi, $berat, $stock, $deskripsi, $user_id->id_u, $slug_final);
+			if($result != FALSE)
 			{
+				$id_last = $result;
 			 	//BUAT FOLDER DAN SET FOLDER PATH
 				mkdir("assets/img/user/".$user_id->id_u."/books/".$id_last);
 				$path = "assets/img/user/".$user_id->id_u."/books/".$id_last;

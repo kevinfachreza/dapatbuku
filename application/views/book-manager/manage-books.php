@@ -25,7 +25,8 @@
 			<div class="col-md-10">
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
-					<?php foreach($all_book as $key) { ?>
+					<?php
+					foreach($all_book as $key) { ?>
 						<div class="col-md-6 manage-books-item">
 							<div class="row books-wrapper">
 								<div class="col-md-12 info-books-container">
@@ -42,31 +43,30 @@
 									</div>
 								</div>
 								<div class="col-md-12" style="">
-									<a href="<?php echo base_url()."Mybooks/edit?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
+									<a href="<?php echo base_url()."Mybooks/edit?title=".$key['slug_title_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
 									<a data-toggle="modal" href="#shortModal" ><button type="button" class="btn btn-primary">Delete</button></a>
 
 								</div>
 							</div>
 						</div>
+
+						<!--DELETE ALERT-->
+						<div id="shortModal" class="modal modal-wide fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title">Apakah anda yakin menghapus buku ini?</h4>
+									</div>
+									<div class="modal-body">
+										<a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
+										<button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
 					<?php } ?>
 					</div>
-
-					<!--DELETE ALERT-->
-					<div id="shortModal" class="modal modal-wide fade">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					        <h4 class="modal-title">Apakah anda yakin menghapus buku ini?</h4>
-					      </div>
-					      <div class="modal-body">
-					        <a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
-									<button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
-								</div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
-
 
 					<div class="col-md-12">
 						<nav aria-label="Page navigation">

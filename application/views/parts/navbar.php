@@ -43,7 +43,7 @@
 			<span class="icon-bar"></span>
 		  </button>
 
-		  <a class="navbar-brand" href="#"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
+		  <a class="navbar-brand" href="<?php echo base_url().""; ?>"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
 
 		</div>
 
@@ -56,7 +56,6 @@
 		  </form>
 		  <ul class="nav navbar-nav navbar-right">
 			<?php
-			#$this->session->logged_in = 1;
 			if ($this->session->logged_in == 1){?>
 			<li><a href="<?php echo base_url()?>messages" data-toggle="tooltip" title="Pesan" data-placement="bottom"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 				<div class="icon-wrapper">
@@ -83,8 +82,8 @@
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
 			  <ul class="dropdown-menu">
 				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="#">Settings</a></li>
+				<li><a href="<?php echo base_url()."Profile"; ?>">Dashboard</a></li>
+				<li><a href="<?php echo base_url()."Accounts/settings"; ?>">Settings</a></li>
 				<li><a href="<?php echo base_url().'Mybooks'; ?>">MyBooks</a></li>
 				<li role="separator" class="divider"></li>
 				<li><a href="<?php echo base_url().'Profile/logging_out'; ?>">Log-out</a></li>

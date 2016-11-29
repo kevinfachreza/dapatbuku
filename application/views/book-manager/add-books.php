@@ -88,7 +88,7 @@
 								Browse&hellip; <input name="userfiles[]" type="file" style="display: none;" multiple>
 							</span>
 						</label>
-						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" readonly>
+						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" required readonly>
 					</div>
 				</div>
 			</div>

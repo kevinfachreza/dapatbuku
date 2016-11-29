@@ -196,7 +196,7 @@
 						<div class="text-center">
 							Maaf, hasil pencarian tidak ditemukan...
 						</div>
-					 <?php } ?>
+					 <?php } 
 					}
 							else{
 				 ?>
