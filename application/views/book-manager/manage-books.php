@@ -72,21 +72,15 @@
 						<nav aria-label="Page navigation">
 						<div class="text-center">
 						  <ul class="pagination">
-							<li>
-							  <a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							  </a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-							  <a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							  </a>
-							</li>
+								<li><a href="#">First</a></li>
+									<?php for($i=1;$i<=$page_total;$i++){
+										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
+									?>
+										<li <?php if($i == $page_now) echo 'class="active"' ?>  >
+											<a href="<?php echo base_url()."mybooks/manager?page=".$i;?>">
+											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
+									<?php }} ?>
+									<li><a href="#">Last</a></li>
 						  </ul>
 						</div>
 						</nav>

@@ -24,7 +24,8 @@
 				<div class="header-text-2">Cari</div>
 				<div class="activity-wrapper">
 					<label>Masukkan judul atau nama penulis</label>
-					<input name="search-key" type="text" class="form-control" placeholder="Search" style="margin-bottom:0.5em" autofocus>
+					<input name="search-key" type="text" class="form-control" placeholder="Search" style="margin-bottom:0.5em"
+					 			<?php if($key_before[0] != null) echo "value=".$key_before[0]; ?> autofocus>
 				</div>
 			</div>
 
@@ -34,7 +35,7 @@
 					<select class="form-control" name="category-in" id="kategori">
 						<option>-Pilih Kategori-</option>
 						<?php foreach($category as $key){ ?>
-						<option value="<?php echo $key['id_b_category'];?>"><?php echo $key['name_b_category']; ?></option>
+						<option value="<?php echo $key['id_b_category'];?>" <?php if($key_before[1] == $key['id_b_category']) echo "selected"; ?> ><?php echo $key['name_b_category']; ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -44,10 +45,10 @@
 				<div class="header-text-2">Kategori Lain</div>
 				<div class="activity-wrapper">
 					<div class="checkbox">
-					  <label><input name="best_seller_flag" type="checkbox" value="">Best Seller</label>
+					  <label><input name="best_seller_flag" type="checkbox" value="1" <?php if($key_before[2] == 1) echo "checked"; ?> >Best Seller</label>
 					</div>
 					<div class="checkbox">
-					  <label><input name="rekomendasi_flag" type="checkbox" value="">Rekomendasi</label>
+					  <label><input name="rekomendasi_flag" type="checkbox" value="1">Rekomendasi</label>
 					</div>
 				</div>
 			</div>
@@ -77,9 +78,10 @@
 				<div class="row">
 
 				<?php
+				//var_dump($book_result);
 				if($has_result == 1){
-					if(count($result) > 0){
-						foreach ($result as $key) { ?>
+					if(count($book_result) > 0){
+						foreach ($book_result as $key) { ?>
 						<div class="col-md-3 search-item">
 							<div class="book-class-image"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>"></a>
 							</div>
@@ -91,7 +93,7 @@
 					}
 					?>
 				<?php
-					if(count($result) == 0) {	?>
+					if(count($book_result) == 0) {	?>
 						<div class="text-center">
 							Maaf, hasil pencarian tidak ditemukan...
 						</div>
@@ -109,21 +111,15 @@
 						<nav aria-label="Page navigation">
 						<div class="text-center">
 						  <ul class="pagination">
-							<li>
-							  <a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							  </a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-							  <a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							  </a>
-							</li>
+								<li><a href="#">First</a></li>
+									<?php for($i=1;$i<=$page_total;$i++){
+										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
+									?>
+										<li <?php if($i == $page_now) echo 'class="active"' ?>  >
+											<a href="<?php echo base_url()."search/book?page=".$i;?>">
+											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
+									<?php }} ?>
+									<li><a href="#">Last</a></li>
 						  </ul>
 						</div>
 						</nav>

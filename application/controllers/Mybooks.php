@@ -33,7 +33,21 @@ class Mybooks extends CI_Controller {
 	{
 		$user_data = $this->session->userdata('userdata');
 		$data['user'] = $user_data[0];
-		$data['all_book'] =	$this->M_book->get_my_book($data['user']->id_u);
+
+		//LOCATING PAGE NOW
+		if($this->input->get('page') != null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page = 1;
+
+		$limit = 24;
+		$offset = ($page-1)*$limit;
+		$data['page_now'] = $page;
+		$count_books = count($this->M_book->get_my_book($data['user']->id_u));
+
+		$data['page_total'] = ceil($count_books/$limit);
+		$data['all_book'] = $this->M_book->get_my_book($data['user']->id_u, $limit, $offset);
 
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);

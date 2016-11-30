@@ -39,12 +39,60 @@
       return $query->result_array();
     }
 
-    public function get_result_no_category($keyword)
+    /*public function get_result_no_category($keyword)
     {
       $findkey="%".$keyword."%";
       $query = $this->db->query("SELECT * FROM book WHERE title_b LIKE '".$findkey."' OR writer LIKE '".$findkey."';");
 
       return $query->result_array();
+    }*/
+
+    public function search_book_only($key, $limit=0, $offset=null)
+    {
+      $query = "SELECT b.* FROM book b, book_category_connector bcc, writer w WHERE b.id_b=bcc.book_id ";
+      if($key[0] != "%%")
+      {
+        $query .= "AND b.title_b LIKE '".$key[0]."' OR b.writer LIKE '".$key[0]."' ";
+      }
+      if($key[1] != NULL)
+      {
+        $query .= "AND bcc.cat_id = '".$key[1]."' ";
+      }
+      if($key[2] != NULL)
+      {
+        $query .= "AND b.best_seller_flag = 1 ";
+      }
+      $query .= "GROUP BY b.id_b ";
+      if($limit != 0 && $offset != null)
+        $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
+      $result = $this->db->query($query);
+      //var_dump($result->result_array());
+      return $result->result_array();
+    }
+    public function search_book($key)
+    {
+      $query = "SELECT * FROM (book b join book_category_connector bcc ON b.id_b = bcc.book_id) WHERE b.title_b LIKE '".$key[0]."' OR writer LIKE '".$key[0]."'";
+      $got_value = 0;
+
+      //CATEGORY CHECK
+      if($key[1] != NULL)
+      {
+        $query .= "AND bcc.cat_id = $key[1]";
+      }
+
+      if($key[2] != NULL)
+      {
+        $query .= " AND b.best_seller_flag = 1 ";
+      }
+
+      if($key[6] != NULL)
+      {
+        $query .= " AND b.pages BETWEEN '".$key[6]."' AND '".$key[7]."' ";
+      }
+      $query .= "GROUP BY b.id_b;";
+
+      $result = $this->db->query($query);
+      return $result->result_array();
     }
 
     public function get_result_category($keyword, $category)
@@ -55,7 +103,7 @@
       return $query->result_array();
     }
 
-    public function get_search($key)
+    public function search_product($key, $limit=null, $offset=null)
     {
 
       $query = "SELECT res.id_u_b, res.slug_title_u_b, res.main_image_u_b, res.title_u_b, res.price_sell_u_b, res.city_u, res.rent_u_b, res.barter_u_b FROM (SELECT * FROM (SELECT ub.id_u_b, ub.slug_title_u_b, ub.main_image_u_b, ub.title_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b,
@@ -208,7 +256,11 @@
           $got_value = 1;
         }
       }
-      $query .= "GROUP BY res.id_u_b";
+      $query .= "GROUP BY res.id_u_b ";
+      if($limit != null)
+      {
+        $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
+      }
       $result = $this->db->query($query);
       return $result->result_array();
     }

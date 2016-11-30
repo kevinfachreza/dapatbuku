@@ -45,7 +45,7 @@
 				<div class="col-md-4 col-sm-2 col-xs-2">Barter</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<div class="checkbox">
-						<label><input type="checkbox" value=""	name="barter_in" <?php if($book_data[0]['barter_u_b'] == 1){ echo "checked"; } ?> >Barter</label>
+						<label><input type="checkbox" value="1"	name="barter_in" <?php if($book_data[0]['barter_u_b'] == 1){ echo "checked"; } ?> >Barter</label>
 					</div>
 				</div>
 			</div>

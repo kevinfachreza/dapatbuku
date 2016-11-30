@@ -137,12 +137,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		return $result;
   	}
 
-  	public function get_my_book($id_in)
+  	public function get_my_book($id_in, $limit=null, $offset=null)
     {
-      $query = $this->db->query("select b.writer, ub.*
+      $query = "select b.writer, ub.*
                                  from book b, user_book ub where ub.id_u_owner = '".$id_in."'
-                                 and b.id_b = ub.id_b_source;");
-      return $query->result_array();
+                                 and b.id_b = ub.id_b_source ";
+      if($limit != null)
+        $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
+      $result = $this->db->query($query);
+      return $result->result_array();
     }
 
     public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)

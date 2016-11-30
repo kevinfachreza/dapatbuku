@@ -18,6 +18,7 @@ class Search extends CI_Controller {
 	public function index()
 	{
 		$keyword = $this->input->get('key-in');
+		$keyword = "%".$keyword."%";
 		$category = $this->input->get('category-in');
 		$best_sell = $this->input->get('best_seller_flag');
 		$bekas 		 = $this->input->get('bekas_flag');
@@ -40,7 +41,9 @@ class Search extends CI_Controller {
 			$key_search = array($keyword, $category, $best_sell, $bekas,
 												$baru, $regencies, $tebal_min, $tebal_max,
 											  $harga_min, $harga_max, $jual, $sewa, $barter);
-			$data['result']=$this->M_search->get_search($key_search);
+			$this->session->search_data = $key_search;
+			$data['book_result'] = $this->M_search->search_book($key_search);
+			$data['product_result']=$this->M_search->search_product($key_search);
 			$data['has_result'] = 1;
 			$data['key_before'] = $key_search;
 			$data['provincies_pass'] = $provincies;
@@ -70,23 +73,49 @@ class Search extends CI_Controller {
 
 	public function book()
 	{
-		$keyword=$this->input->get('search-key');
-		$category=$this->input->get('category-in');
-
-		if($keyword != NULL && $category == NULL)
+		if($this->session->search_data != NULL)
 		{
-			$data['result']=$this->M_search->get_result_no_category($keyword);
-			$data['has_result'] = 1;
+			$keyword = $this->session->search_data[0];
+			$category = $this->session->search_data[1];
+			$best_sell = $this->session->search_data[2];
 		}
-		else if($keyword != NULL && $category != NULL)
+		else
 		{
-			$data['result']=$this->M_search->get_result_category($keyword, $category);
+			$keyword=$this->input->get('search-key');
+			$keyword = "%".$keyword."%";
+			$category=$this->input->get('category-in');
+			$best_sell = $this->input->get('best_seller_flag');
+		}
+		$this->session->search_data = null;
+		$key_search = array($keyword, $category, $best_sell);
+
+		//LOCATING PAGE NOW
+		if($this->input->get('page') != null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page = 1;
+
+		$limit = 24;
+		$offset = ($page-1)*$limit;
+		$data['page_now'] = $page;
+		$count_books = count($this->M_search->search_book_only($key_search));
+		$data['page_total'] = ceil($count_books/$limit);
+
+		//GET THE BOOK
+		if($key_search != NULL)
+		{
+			$data['book_result'] = $this->M_search->search_book_only($key_search, $limit, $offset);
 			$data['has_result'] = 1;
+			$key_search[0] = preg_replace("/[^a-zA-Z]/", "", $key_search[0]);
+			$data['key_before'] = $key_search;
 		}
 		else {
+			$data['key_before'] = null;
 			$data['has_result'] = 0;
-			$data['result'] = array();
+			$data['book_result'] = array();
 		}
+
 		$data['category']=$this->M_search->get_category();
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
@@ -96,11 +125,12 @@ class Search extends CI_Controller {
 
 	public function product()
 	{
+		//REFERRED FROM HOMEPAGE
 		$use_slug = 0;
 		$tmp_in = $this->input->get('title');
 		if($tmp_in != NULL)
 		{
-			$data['result'] = $this->M_search->get_book_by_slug($tmp_in);
+			$data['product_result'] = $this->M_search->get_book_by_slug($tmp_in);
 			$use_slug = 1;
 			$data['provincies_pass'] = NULL;
 			$data['key_before'] = NULL;
@@ -131,7 +161,20 @@ class Search extends CI_Controller {
 				$key_search = array($keyword, $category, $best_sell, $bekas,
 													$baru, $regencies, $tebal_min, $tebal_max,
 												  $harga_min, $harga_max, $jual, $sewa, $barter);
-				$data['result']=$this->M_search->get_search($key_search);
+				//LOCATING PAGE NOW
+				if($this->input->get('page') != null)
+				{
+					$page = $this->input->get('page');
+				}
+				else $page = 1;
+
+				$limit = 24;
+				$offset = ($page-1)*$limit;
+				$data['page_now'] = $page;
+				$count_books = count($this->M_search->search_product($key_search));
+
+				$data['page_total'] = ceil($count_books/$limit);
+				$data['product_result'] = $this->M_search->search_product($key_search, $limit, $offset);
 				$data['has_result'] = 1;
 				$data['key_before'] = $key_search;
 				$data['provincies_pass'] = $provincies;

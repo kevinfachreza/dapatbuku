@@ -23,12 +23,7 @@
 			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
-		  <form class="navbar-form navbar-left  navbar-hide"  role="search" id="NavbarSearch">
-			<div class="form-group form-group-navbar">
-			  <input type="text" class="form-control" placeholder="Search">
-			</div>
-			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-		  </form>
+
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
@@ -50,7 +45,7 @@
 		<div class="collapse navbar-collapse" >
 		  <form action="<?php echo base_url()."Search"?>" action="get" class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Search" name="key-in">
+			  <input type="text" class="form-control" placeholder="Search" name="key-in" required>
 			</div>
 			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		  </form>

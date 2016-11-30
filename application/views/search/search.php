@@ -140,16 +140,28 @@
 				<div class="col-md-12 text-center"><hr></div>
 
 				<div class="row">
-				<?php for ($i=0;$i<4;$i++){ ?>
+				<?php if(count($book_result > 0)){
+					$i = 0;
+				foreach($book_result as $key){
+					if($i >= 4){
+						break;
+					}?>
 					<div class="col-md-3 search-item">
-						<div class="book-class-image"><a href="#"><img src="<?php echo base_url()?>assets/img/book/book2.jpg"></a>
+						<div class="book-class-image"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>"></a>
 						</div>
-						<div class="book-class-title"><a href="#">Rudy Habibie : Visioner Murah Meriah</a>
+						<div class="book-class-title"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
 						</div>
 					</div>
-				<?php } ?>
+				<?php
+						$i++; }
+					}
+						 if(count($book_result) == 0){?>
+							 <div class="text-center">
+	 							Maaf, hasil pencarian tidak ditemukan...
+	 						</div>
+							<?php } ?>
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button>
+						<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
 					</div>
 				</div>
 			</div>
@@ -167,8 +179,8 @@
 
 				<?php
 				if($has_result == 1){
-					if(count($result) > 0){
-						foreach ($result as $key) { ?>
+					if(count($product_result) > 0){
+						foreach ($product_result as $key) { ?>
 							<div class="col-md-3 search-item">
 								<div class="book-image"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b'];?>"><img src="<?php echo $key['main_image_u_b']?>"></a>
 								</div>
@@ -192,11 +204,11 @@
 					}
 					?>
 				<?php
-					if(count($result) == 0) {	?>
+					if(count($product_result) == 0) {	?>
 						<div class="text-center">
 							Maaf, hasil pencarian tidak ditemukan...
 						</div>
-					 <?php } 
+					 <?php }
 					}
 							else{
 				 ?>
