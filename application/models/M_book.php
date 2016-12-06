@@ -27,9 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function get_data_book($slug)
     {
-      $query = $this->db->query("select id_b, slug_title_b, title_b, no_isbn_b, writer, pages, date_published,
-                                 language_b, photo_cover_b, description_b, total_reviews_b, total_ratings,
-                                 cover_type_b from book where slug_title_b = '".$slug."';");
+      $query = $this->db->query("select * from book where slug_title_b = '".$slug."';");
       return $query->result_array();
 
     }

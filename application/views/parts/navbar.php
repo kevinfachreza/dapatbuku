@@ -12,9 +12,10 @@
 				 <li class="dropdown-submenu">
                 <a tabindex="-1" href="#">Kategori</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Second level</a></li>
-                  <li><a href="#">Second level</a></li>
-                  <li><a href="#">Second level</a></li>
+                  <li><a href="<?php echo base_url()."category/c/1" ?>">Bisnis</a></li>
+                  <li><a href="<?php echo base_url()."category/c/2" ?>">Agama</a></li>
+                  <li><a href="<?php echo base_url()."category/c/3" ?>">Hukum</a></li>
+									<li><a href="<?php echo base_url()."category/c/4" ?>">Novel</a></li>
                 </ul>
               </li>
 			  </ul>

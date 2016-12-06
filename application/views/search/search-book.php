@@ -83,9 +83,9 @@
 					if(count($book_result) > 0){
 						foreach ($book_result as $key) { ?>
 						<div class="col-md-3 search-item">
-							<div class="book-class-image"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>"></a>
+							<div class="book-class-image"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>"></a>
 							</div>
-							<div class="book-class-title"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
+							<div class="book-class-title"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
 							</div>
 						</div>
 					<?php
@@ -111,7 +111,7 @@
 						<nav aria-label="Page navigation">
 						<div class="text-center">
 						  <ul class="pagination">
-								<li><a href="#">First</a></li>
+								<li><a href="<?php echo base_url()."search/book?page=1"; ?>">First</a></li>
 									<?php for($i=1;$i<=$page_total;$i++){
 										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
 									?>
@@ -119,7 +119,7 @@
 											<a href="<?php echo base_url()."search/book?page=".$i;?>">
 											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
 									<?php }} ?>
-									<li><a href="#">Last</a></li>
+									<li><a href="<?php echo base_url()."search/book?page=1"; ?>">Last</a></li>
 						  </ul>
 						</div>
 						</nav>

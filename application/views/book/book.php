@@ -115,7 +115,7 @@
 
 				<div id="book-buy-store" class="col-md-12 text-center main-bar-item">
 					<a href="#"><button type="button" class="btn btn-primary">Tambahkan ke Wishlist</button></a>
-					<a href="#"><button type="button" class="btn btn-success">Kunjungi Jual Beli</button></a>
+					<a href="<?php echo base_url()."search/product/".$book_data[0]['slug_title_b']; ?>"><button type="button" class="btn btn-success">Kunjungi Jual Beli</button></a>
 				</div>
 
 			</div>

@@ -82,12 +82,12 @@
 							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
 							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer'] ?></a></div>
-							<a href="<?php echo base_url()."Search/product?title=".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -100,12 +100,12 @@
 							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
 							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer']; ?></a></div>
-							<a href="<?php echo base_url()."Search/product?title=".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -133,12 +133,12 @@
 				<div class="item active ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
 							<div class="author-container"><?php echo $key['writer']; ?></div>
-							<a href="<?php echo base_url()."Search/product?title=".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>
@@ -148,12 +148,12 @@
 				<div class="item ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
 							<div class="author-container"><?php echo $key['writer']; ?></div>
-							<a href="<?php echo base_url()."Search/product?title=".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
 				</div>

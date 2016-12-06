@@ -8,13 +8,19 @@
       parent::__construct();
     }
 
-    public function get_book_by_slug($slug_in)
+    public function get_book_by_slug($slug_in, $limit = null, $offset = null)
     {
       $query = $this->db->query("select b.id_b from book b where b.slug_title_b='".$slug_in."';");
 
       $result_id = $query->result_array();
-      $result = $this->db->query("select ub.* from user_book ub where ub.id_b_source = '".$result_id[0]['id_b']."';");
-
+      if($limit == null)
+      {
+        $result = $this->db->query("select ub.*, rr.name from user_book ub, user u, region_regencies rr where u.city_u = rr.id AND ub.id_u_owner = u.id_u AND ub.id_b_source = '".$result_id[0]['id_b']."';");
+      }
+      else
+      {
+        $result = $this->db->query("select ub.*, rr.name from user_book ub, user u, region_regencies rr where u.city_u = rr.id AND ub.id_u_owner = u.id_u AND ub.id_b_source = '".$result_id[0]['id_b']."' LIMIT ".$limit." OFFSET ".$offset.";");
+      }
       return $result->result_array();
     }
 
@@ -39,14 +45,6 @@
       return $query->result_array();
     }
 
-    /*public function get_result_no_category($keyword)
-    {
-      $findkey="%".$keyword."%";
-      $query = $this->db->query("SELECT * FROM book WHERE title_b LIKE '".$findkey."' OR writer LIKE '".$findkey."';");
-
-      return $query->result_array();
-    }*/
-
     public function search_book_only($key, $limit=0, $offset=null)
     {
       $query = "SELECT b.* FROM book b, book_category_connector bcc, writer w WHERE b.id_b=bcc.book_id ";
@@ -69,6 +67,7 @@
       //var_dump($result->result_array());
       return $result->result_array();
     }
+
     public function search_book($key)
     {
       $query = "SELECT * FROM (book b join book_category_connector bcc ON b.id_b = bcc.book_id) WHERE b.title_b LIKE '".$key[0]."' OR writer LIKE '".$key[0]."'";
@@ -106,11 +105,11 @@
     public function search_product($key, $limit=null, $offset=null)
     {
 
-      $query = "SELECT res.id_u_b, res.slug_title_u_b, res.main_image_u_b, res.title_u_b, res.price_sell_u_b, res.city_u, res.rent_u_b, res.barter_u_b FROM (SELECT * FROM (SELECT ub.id_u_b, ub.slug_title_u_b, ub.main_image_u_b, ub.title_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b,
+      $query = "SELECT rr.name, res.id_u_b, res.slug_title_u_b, res.main_image_u_b, res.title_u_b, res.price_sell_u_b, res.city_u, res.rent_u_b, res.barter_u_b FROM (SELECT * FROM (SELECT ub.id_u_b, ub.slug_title_u_b, ub.main_image_u_b, ub.title_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b,
                 ub.rent_u_b, ub.barter_u_b, ub.price_sell_u_b, ub.price_rent_u_b, u.city_u FROM user_book ub
                 join user u on ub.id_u_owner = u.id_u) u_detail join (SELECT b.id_b, b.best_seller_flag, b.pages,
                 b.writer, bcc.cat_id FROM book b join book_category_connector bcc on b.id_b = bcc.book_id) b_detail
-                on u_detail.id_b_source = b_detail.id_b) res WHERE ";
+                on u_detail.id_b_source = b_detail.id_b) res, region_regencies rr WHERE res.city_u = rr.id AND ";
       $got_value = 0;
       //echo $got_value;
       for($i = 0;$i<10;$i++){
@@ -261,6 +260,7 @@
       {
         $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
       }
+
       $result = $this->db->query($query);
       return $result->result_array();
     }

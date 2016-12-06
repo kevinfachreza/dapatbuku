@@ -31,19 +31,15 @@
 								<div class="carousel slide" id="ProductCarousel">
 									<!-- Carousel items -->
 									<div class="carousel-inner" style="height:300px;">
-										<div class="active item" data-slide-number="0">
-											<img src="<?php echo $book_image[0]['image_path']; ?>">
+										<?php $i = 0;
+											foreach($book_image as $key){
+											?>
+										<div class="<?php if($i == 0)	echo "active"; ?>item" data-slide-number="0">
+											<img src="<?php echo base_url().$key['image_path']; ?>">
 										</div>
-
-										<div class="item" data-slide-number="1">
-											<img src="<?php echo $book_image[1]['image_path']; ?>"></div>
-
-										<div class="item" data-slide-number="2">
-											<img src="<?php echo $book_image[2]['image_path']; ?>"></div>
-
-										<div class="item" data-slide-number="3">
-											<img src="<?php echo $book_image[3]['image_path']; ?>"></div>
-
+										<?php
+											$i++;
+										} ?>
 
 									</div>
 									<!-- Carousel nav -->
@@ -62,24 +58,12 @@
 				<!-- Bottom switcher of slider -->
 					<ul class="hide-bullets">
 						<li class="col-xs-3 col-sm-3 padding-5px">
+							<?php foreach($book_image as $key){	?>
 							<a class="thumbnail" id="carousel-selector-0">
-								<img src="<?php echo $book_image[0]['image_path']; ?>">
+								<img src="<?php echo base_url().$key['image_path']; ?>">
 							</a>
 						</li>
-
-						<li class="col-xs-3 col-sm-3 padding-5px">
-							<a class="thumbnail" id="carousel-selector-1">
-								<img src="<?php echo $book_image[1]['image_path']; ?>">
-							</a>
-						</li>
-
-						<li class="col-xs-3 col-sm-3 padding-5px">
-							<a class="thumbnail" id="carousel-selector-2"><img src="<?php echo $book_image[2]['image_path']; ?>"></a>
-						</li>
-
-						<li class="col-xs-3 col-sm-3 padding-5px">
-							<a class="thumbnail" id="carousel-selector-3"><img src="<?php echo $book_image[2]['image_path']; ?>"></a>
-						</li>
+						<?php } ?>
 					</ul>
 				</div>
 		<!--/Slider-->
@@ -169,7 +153,7 @@
 				<div class="col-md-6 padding-default">
 					<div class="row">
 						<div class="col-md-4">
-							<img class="img-responsive" src="<?php echo $user_result[0]['photo_profile_u']; ?>">
+							<img class="img-responsive" src="<?php echo base_url().$user_result[0]['photo_profile_u']; ?>">
 						</div>
 						<div class="col-md-8 seller-container">
 							<div class="seller-container-text"><span class="seller-username"><?php echo $user_result[0]['username_u']; ?></span></div>
@@ -201,11 +185,11 @@
 			<?php foreach($n_release as $key){ ?>
 			<div class="col-md-2 col-sm-4 col-xs-12">
 				<div class="margin-bot-1 home-book-img">
-					<a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+					<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
 				</div>
 				<div class="text-center">
-					<div class="font-semibold title-container"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
-					<div class="author-container"><a href="" class="text-primary"><?php echo $key['writer']; ?></a></div>
+					<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
+					<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer']; ?></a></div>
 				</div>
 			</div>
 			<?php } ?>

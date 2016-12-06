@@ -80,7 +80,7 @@
 				<div class="activity-wrapper">
 					<label for="sel1">Kota</label>
 					<select class="form-control" id="kota" name="regencies_in">
-						<option>-Pilih Kota-</option>
+						<option value="">-Pilih Kota-</option>
 						<?php foreach($location as $key){ ?>
 						<option value="<?php echo $key['id']; ?>"><?php echo $key['name'];?></option>
 						<?php } ?>
@@ -113,13 +113,13 @@
 				<div class="header-text-2">Lainnya</div>
 				<div class="activity-wrapper">
 					<div class="checkbox">
-					  <label><input type="checkbox" value="" name="jual-in">Jual</label>
+					  <label><input type="checkbox" value="1" name="jual-in">Jual</label>
 					</div>
 					<div class="checkbox">
-					  <label><input type="checkbox" value="" name="sewa-in">Sewa</label>
+					  <label><input type="checkbox" value="1" name="sewa-in">Sewa</label>
 					</div>
 					<div class="checkbox">
-					  <label><input type="checkbox" value="" name="barter_in">Barter</label>
+					  <label><input type="checkbox" value="1" name="barter_in">Barter</label>
 					</div>
 				</div>
 			</div>
@@ -147,9 +147,9 @@
 						break;
 					}?>
 					<div class="col-md-3 search-item">
-						<div class="book-class-image"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>"></a>
+						<div class="book-class-image"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>"></a>
 						</div>
-						<div class="book-class-title"><a href="<?php echo base_url()."book?title=".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
+						<div class="book-class-title"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
 						</div>
 					</div>
 				<?php
@@ -182,15 +182,18 @@
 					if(count($product_result) > 0){
 						foreach ($product_result as $key) { ?>
 							<div class="col-md-3 search-item">
-								<div class="book-image"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b'];?>"><img src="<?php echo $key['main_image_u_b']?>"></a>
+								<div class="book-image"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b'];?>"><img src="<?php echo $key['main_image_u_b']?>"></a>
 								</div>
 								<div class="book-info-section">
-									<div class="book-title"><a href="<?php echo base_url()."Book?title=".$key['slug_title_b'];?>"><?php echo $key['title_u_b']; ?></a>
+									<div class="book-title"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b'];?>"><?php echo $key['title_u_b']; ?></a>
 									</div>
 									<div class="book-down-section">
 										<div class="book-tag">
+											<?php if($key['rent_u_b'] == 1){ ?>
 											<div class="tag-sewa">Sewa</div>
+											<?php } if($key['barter_u_b'] == 1){ ?>
 											<div class="tag-barter">Barter</div>
+											<?php } ?>
 										</div>
 										<div class="book-price"><?php echo $key['price_sell_u_b']; ?>
 										</div>
@@ -198,6 +201,9 @@
 										</div>
 									</div>
 								</div>
+							</div>
+							<div class="col-md-12">
+									<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
 							</div>
 					<?php
 							}
@@ -218,31 +224,6 @@
 					<?php
 							}
 					?>
-				<div class="row">
-					<div class="col-md-12">
-						<nav aria-label="Page navigation">
-						<div class="text-center">
-						  <ul class="pagination">
-							<li>
-							  <a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							  </a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-							  <a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							  </a>
-							</li>
-						  </ul>
-						</div>
-						</nav>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

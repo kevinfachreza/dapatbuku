@@ -17,12 +17,15 @@ class Book extends CI_Controller {
 
 	public function index()
 	{
+
+	}
+	public function b($slug)
+	{
 		$user_profile   = $this->session->userdata('userdata');
 		if($user_profile != NULL){
 			$data['user'] = $user_profile[0];
 			$id_user= $data['user']->id_u;
 		}
-		$slug = $this->input->get('title');
 		$data['book_data'] = $this->M_book->get_data_book($slug);
 
 		$id_in = $data['book_data'][0]['id_b'];
@@ -51,10 +54,8 @@ class Book extends CI_Controller {
 		$this->load->view('book/book',$data);
 	}
 
-	public function product()
+	public function product($slug)
 	{
-		$slug=$this->input->get('slug');
-
 		$data['n_release']=$this->M_book->get_n_release();
 		$data['user_result']=$this->M_book->get_owner_book($slug);
 		$data['book_result']=$this->M_book->get_product_book($slug);

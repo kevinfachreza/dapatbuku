@@ -155,10 +155,10 @@
 						foreach($product_result as $key){
 							?>
 							<div class="col-md-3 search-item">
-								<div class="book-image"><a href="<?php echo base_url()."book/product?slug=".$key['slug_title_u_b']; ?>"><img src="<?php echo $key['main_image_u_b']; ?>"></a>
+								<div class="book-image"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b']; ?>"><img src="<?php echo base_url().$key['main_image_u_b']; ?>"></a>
 								</div>
 								<div class="book-info-section">
-									<div class="book-title"><a href="<?php echo base_url()."book/product?slug=".$key['slug_title_u_b']; ?>"><?php echo $key['title_u_b']; ?></a>
+									<div class="book-title"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b']; ?>"><?php echo $key['title_u_b']; ?></a>
 									</div>
 									<div class="book-down-section">
 										<div class="book-tag">
@@ -173,7 +173,7 @@
 										</div>
 										<div class="book-price">Rp <?php echo $key['price_sell_u_b']; ?>
 										</div>
-										<div class="book-location"><?php echo $key['city_u']; ?>
+										<div class="book-location"><?php echo $key['name']; ?>
 										</div>
 									</div>
 								</div>
@@ -202,15 +202,17 @@
 						<nav aria-label="Page navigation">
 						<div class="text-center">
 						  <ul class="pagination">
-								<li><a href="#">First</a></li>
+								<li><a href="<?php echo base_url()."search/product?title=".$title; ?>">First</a></li>
 									<?php for($i=1;$i<=$page_total;$i++){
 										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
 									?>
 										<li <?php if($i == $page_now) echo 'class="active"' ?>  >
-											<a href="<?php echo base_url()."search/product?page=".$i;?>">
+											<a href="<?php if($use_slug == 1)	echo base_url()."search/product?title=".$title."&page=".$i;
+																		 else  echo base_url()."search/product?page=".$i; ?>">
 											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
 									<?php }} ?>
-									<li><a href="#">Last</a></li>
+									<li><a href="<?php if($use_slug == 1)	echo base_url()."search/product?title=".$title."&page=".$page_total;
+																 else  echo base_url()."search/product?page=".$page_total; ?>">Last</a></li>
 						  </ul>
 						</div>
 						</nav>

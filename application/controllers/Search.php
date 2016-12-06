@@ -73,7 +73,9 @@ class Search extends CI_Controller {
 
 	public function book()
 	{
-		if($this->session->search_data != NULL)
+
+
+		if($this->session->search_data != NULL)											//TO TAKE SEARCH DATA FROM PREVIOUS SEARCHING KEY
 		{
 			$keyword = $this->session->search_data[0];
 			$category = $this->session->search_data[1];
@@ -81,7 +83,7 @@ class Search extends CI_Controller {
 		}
 		else
 		{
-			$keyword=$this->input->get('search-key');
+			$keyword=$this->input->get('search-key');									//TO TAKE SEARCH DATA FROM NORMAL FORM
 			$keyword = "%".$keyword."%";
 			$category=$this->input->get('category-in');
 			$best_sell = $this->input->get('best_seller_flag');
@@ -116,6 +118,7 @@ class Search extends CI_Controller {
 			$data['book_result'] = array();
 		}
 
+		$this->session->search_data = $key_search;
 		$data['category']=$this->M_search->get_category();
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
@@ -123,21 +126,37 @@ class Search extends CI_Controller {
 		$this->load->view('search/search-book',$data);
 	}
 
-	public function product()
+	public function product($tmp_in = NULL)
 	{
 		//REFERRED FROM HOMEPAGE
-		$use_slug = 0;
-		$tmp_in = $this->input->get('title');
+		$data['use_slug'] = 0;
+		//$tmp_in = $this->input->get('title');
 		if($tmp_in != NULL)
 		{
 			$data['product_result'] = $this->M_search->get_book_by_slug($tmp_in);
-			$use_slug = 1;
+			$data['use_slug'] = 1;
 			$data['provincies_pass'] = NULL;
 			$data['key_before'] = NULL;
 			$data['has_result'] = 1;
+			$data['title'] = $tmp_in;
+			//LOCATING PAGE NOW
+			if($this->input->get('page') != null)
+			{
+				$page = $this->input->get('page');
+			}
+			else $page = 1;
+
+			$limit = 24;
+			$offset = ($page-1)*$limit;
+			$data['page_now'] = $page;
+			$count_books = count($this->M_search->get_book_by_slug($tmp_in));
+
+			$data['page_total'] = ceil($count_books/$limit);
+			$data['product_result'] = $this->M_search->get_book_by_slug($tmp_in, $limit, $offset);
+			$data['has_result'] = 1;
 		}
 
-		if($use_slug == 0)
+		if($tmp_in == null)
 		{
 			$keyword = $this->input->get('key-in');
 			$category = $this->input->get('category-in');
@@ -178,6 +197,7 @@ class Search extends CI_Controller {
 				$data['has_result'] = 1;
 				$data['key_before'] = $key_search;
 				$data['provincies_pass'] = $provincies;
+				$data['title'] = null;
 			}
 			else if($keyword == NULL and $category == NULL and $best_sell == NULL and $bekas == NULL
 				 or $baru == NULL and $ $provincies == NULL and $ $regencies == NULL and $tebal_min == NULL
@@ -187,13 +207,13 @@ class Search extends CI_Controller {
 				$data['key_before'] = NULL;
 				$data['has_result'] = 0;
 			}
-
 			if($provincies != NULL)
 			{
 				$this->session->province_search=$provincies;
 				$data['location'] = $this->M_search->get_regencies($provincies);
 			}
 		}
+
 
 		$data['category']=$this->M_search->get_category();
 		$data['provincies']=$this->M_search->get_provincies();
