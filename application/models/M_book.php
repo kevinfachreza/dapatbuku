@@ -224,12 +224,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
-    public function edit_book($id_book, $judul, $harga_jual, $harga_sewa,
+    public function get_id_by_slug($slug)
+    {
+      $query = $this->db->query("SELECT id_u_b FROM user_book WHERE slug_title_u_b = '".$slug."';");
+
+      return $query->result();
+    }
+
+    public function get_img_path($id)
+    {
+      $query = $this->db->query("SELECT image_path FROM user_book_image WHERE id_u_b_img = '".$id."';");
+
+      return $query->result();
+    }
+    public function edit_book($slug, $judul, $harga_jual, $harga_sewa,
 																			 $barter, $kondisi, $berat, $stok, $deskripsi)
     {
       $query = $this->db->query("update user_book set title_u_b='".$judul."', price_sell_u_b='".$harga_jual."', price_rent_u_b='".$harga_sewa."',
                                  barter_u_b='".$barter."', type_u_b='".$kondisi."', berat_u_b='".$berat."', stock_u_b='".$stok."', description_u_b='".$deskripsi."'
-                                 WHERE id_u_b='".$id_book."';");
+                                 WHERE slug_title_u_b = '".$slug."';");
       if($query)
       {
         return TRUE;
