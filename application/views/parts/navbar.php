@@ -3,24 +3,38 @@
 		<div class="collapse navbar-collapse" id="secondary-navbar">
 		  <ul class="nav navbar-nav navbar-nav-mini">
 			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buku <span class="caret"></span></a>
-			  <ul class="dropdown-menu">
-				<li><a href="#">Rekomendasi</a></li>
-				<li><a href="#">Buku Paling Top</a></li>
-				<li><a href="#">Paling Banyak Dibaca</a></li>
-				<li role="separator" class="divider"></li>
-				 <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Kategori</a>
-                <ul class="dropdown-menu">
-                  <li><a href="<?php echo base_url()."category/c/1" ?>">Bisnis</a></li>
-                  <li><a href="<?php echo base_url()."category/c/2" ?>">Agama</a></li>
-                  <li><a href="<?php echo base_url()."category/c/3" ?>">Hukum</a></li>
-									<li><a href="<?php echo base_url()."category/c/4" ?>">Novel</a></li>
-                </ul>
-              </li>
-			  </ul>
+			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hot List<span class="caret"></span></a>
+			  	<ul class="dropdown-menu">
+					<li><a href="#">Rekomendasi</a></li>
+					<li><a href="#">Buku Paling Top</a></li>
+					<li><a href="#">Paling Banyak Dibaca</a></li>
+			  	</ul>
 			</li>
-			<li><a href="<?php echo base_url().""; ?>">Home</a></li>
+			<li class="dropdown">
+			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
+			  	<ul class="dropdown-menu">
+					<li><a href="#">Rekomendasi</a></li>
+					<li class="dropdown-submenu">
+                	<a tabindex="-1" href="#">Agama</a>
+	                <ul class="dropdown-menu">
+	                  	<li><a href="<?php echo base_url()."category/c/1" ?>">Islam</a></li>
+	                  	<li><a href="<?php echo base_url()."category/c/2" ?>">Kristen</a></li>
+	                  	<li><a href="<?php echo base_url()."category/c/3" ?>">Katolik</a></li>
+						<li><a href="<?php echo base_url()."category/c/4" ?>">Buddha</a></li>
+						<li><a href="<?php echo base_url()."category/c/4" ?>">Hindu</a></li>
+						<li><a href="<?php echo base_url()."category/c/4" ?>">Lain lain</a></li>
+	                </ul>
+             		</li>
+             		<li class="dropdown-submenu">
+                	<a tabindex="-1" href="#">Bisnis</a>
+	                <ul class="dropdown-menu">
+	                  	<li><a href="<?php echo base_url()."category/c/1" ?>">Pemasaran</a></li>
+	                  	<li><a href="<?php echo base_url()."category/c/2" ?>">Startup</a></li>
+	                  	<li><a href="<?php echo base_url()."category/c/3" ?>">Ide Bisnis</a></li>
+	                </ul>
+             		</li>
+			  	</ul>
+			</li>
 			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
@@ -38,19 +52,19 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-
 		  <a class="navbar-brand" href="<?php echo base_url().""; ?>"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
 
 		</div>
 
 		<div class="collapse navbar-collapse" >
-		  <form action="<?php echo base_url()."Search"?>" action="get" class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
-			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Search" name="key-in" required>
-			</div>
-			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-		  </form>
+		  	<form action="<?php echo base_url()."Search"?>" action="get" class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
+				<div class="form-group">
+				  	<input type="text" class="form-control" placeholder="Search" name="key-in" required>
+				</div>
+				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		  	</form>
 		  <ul class="nav navbar-nav navbar-right">
+			
 			<?php
 			if ($this->session->logged_in == 1){?>
 			<li><a href="<?php echo base_url()?>messages" data-toggle="tooltip" title="Pesan" data-placement="bottom"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -98,45 +112,7 @@
 
 
 	 <!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-footer" style="text-align: center;padding-top:7vh;padding-bottom:7vh;">
-
-					<!--- LOGIN ------------------------------------------------->
-					<div id="log-panel" style="margin:0 auto;width:70%;">
-
-						<h2> LOGIN </h2>
-						<hr>
-						<form name="login_form" action="<?php echo base_url();?>Auth/do_login" method="POST">
-							<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" oninvalid="this.setCustomValidity('Tolong masukkan Email anda')" required autofocus>
-							<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" oninvalid="this.setCustomValidity('Tolong masukkan password anda')" required  autofocus>
-							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">LOGIN</button>
-						</form>
-						<p style="margin-top:1em; font-size:1.2em">Belum punya akun?</p>
-						<a href="#!" class="btn btn-sch-grey-inv" id="reg-trig">REGISTER</a>
-					</div>
-
-					<!--- REGISTER ------------------------------------------------->
-					<div id="reg-panel" style="display:none;margin:0 auto;width:70%;">
-						<h2> REGISTER </h2>
-						<hr>
-						<form name="reg_form" action="<?php echo base_url();?>auth/do_register" method="POST">
-							<input name="reg-email" type="Email" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
-							<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
-							<input name="reg-date" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
-							<input name="reg-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
-							<input name="pass-conf" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
-
-							<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color">REGISTER</button>
-						</form>
-						<p style="margin-top:1em; font-size:1.2em">Sudah punya akun?</p>
-						<a href="#!" class="btn btn-sch-grey-inv" id="log-trig">LOGIN</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
     <script type='text/javascript' src="<?php echo base_url()?>assets/js/jquery.min.js"></script>
     <script type='text/javascript' src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">

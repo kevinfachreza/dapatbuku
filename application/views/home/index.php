@@ -53,7 +53,7 @@
 
 	<!--/////////////////////BODY///////////////////////////////// -->
 
-	<div id="BannerContainer1" class="container">
+	<div id="BannerContainer1" class="custom-container container">
 		<div class="col-md-12 padding-0" >
 			<div class="row">
 				<div class="col-md-6 padding-default">
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="BestSellerContainer" class="container">
+	<div id="BestSellerContainer" class="custom-container container">
 		<div class="col-md-12 header-text"><h3>Best Seller</h3></div>
 		<div class="col-md-12 text-center"><hr></div>
 		<div class="col-md-12 book-container">
@@ -120,7 +120,7 @@
 		</div>
 	</div>
 
-	<div id="NewReleaseContainer" class="container">
+	<div id="NewReleaseContainer" class="custom-container container">
 		<div class="col-md-12 header-text"><h3>New Release</h3></div>
 		<div class="col-md-12 text-center"><hr></div>
 		<div class="col-md-12 book-container">
@@ -170,7 +170,7 @@
 		</div>
 		</div>
 
-	<div id="News" class="container">
+	<div id="News" class="custom-container container">
 		<div class="col-md-12 margin-bot-3" >
 			<div class="col-md-12 header-text"><h3>News</h3></div>
 			<div class="col-md-12 text-center"><hr></div>

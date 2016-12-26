@@ -35,7 +35,7 @@ class Book extends CI_Controller {
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
 
-		if($this->session->logged_in = 0){
+		if($this->session->logged_in == 0){
 			$data['rating_data'] = $this->M_book->get_rating($id_in,$id_user);
 			if(!$data['rating_data'] ) $data['rating_flag'] = 0;
 			else $data['rating_flag'] = 1;
@@ -51,6 +51,8 @@ class Book extends CI_Controller {
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
+		$data['bookright']=$this->load->view('book/book-right',$data,true);
+		$data['bookleft']=$this->load->view('book/book-left',$data,true);
 		$this->load->view('book/book',$data);
 	}
 
