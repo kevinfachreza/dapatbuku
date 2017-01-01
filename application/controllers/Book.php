@@ -11,7 +11,7 @@ class Book extends CI_Controller {
 		$this->load->library('fixstring');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
-    $this->load->helper(array('form', 'url'));
+    	$this->load->helper(array('form', 'url'));
 		$this->load->model('M_book');
 	}
 
@@ -21,6 +21,7 @@ class Book extends CI_Controller {
 	}
 	public function b($slug)
 	{
+		$id_user = 0;
 		$user_profile   = $this->session->userdata('userdata');
 		if($user_profile != NULL){
 			$data['user'] = $user_profile[0];
@@ -44,16 +45,16 @@ class Book extends CI_Controller {
 			if(!$data['user_review_flag'] ) $data['review_flag'] = 0;
 			else $data['review_flag'] = 1;
 		}
-		else{
+		else{	
 			$data['review_flag'] = 0;
 			$data['rating_flag'] = 0;
 		}
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		$data['bookright']=$this->load->view('book/book-right',$data,true);
+		#$data['bookright']=$this->load->view('book/book-right',$data,true);
 		$data['bookleft']=$this->load->view('book/book-left',$data,true);
-		$this->load->view('book/book',$data);
+		$this->load->view('book/book-old',$data);
 	}
 
 	public function product($slug)
