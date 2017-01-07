@@ -5,9 +5,9 @@
 			<li class="dropdown">
 			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hot List<span class="caret"></span></a>
 			  	<ul class="dropdown-menu">
-					<li><a href="#">Rekomendasi</a></li>
-					<li><a href="#">Buku Paling Top</a></li>
-					<li><a href="#">Paling Banyak Dibaca</a></li>
+					<li><a href="#">Best Seller</a></li>
+					<li><a href="#">New Release</a></li>
+					<li><a href="#">Most Viewed</a></li>
 			  	</ul>
 			</li>
 			<li class="dropdown">
@@ -35,7 +35,6 @@
              		</li>
 			  	</ul>
 			</li>
-			<li><a href="#">Blog</a></li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>
 
@@ -64,23 +63,9 @@
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		  	</form>
 		  <ul class="nav navbar-nav navbar-right">
-			
+
 			<?php
 			if ($this->session->logged_in == 1){?>
-			<li><a href="<?php echo base_url()?>messages" data-toggle="tooltip" title="Pesan" data-placement="bottom"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-				<div class="icon-wrapper">
-					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
-					<span class="badge">100</span>
-				</div>
-			</a></li>
-
-			<li><a href="<?php echo base_url()?>messages" data-toggle="tooltip" title="Poin" data-placement="bottom"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-				<div class="icon-wrapper">
-					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
-					<span class="badge">100</span>
-				</div>
-			</a></li>
-
 			<li><a href="<?php echo base_url()?>mybooks/add" data-toggle="tooltip" title="Tambah Buku" data-placement="bottom"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
 				<div class="icon-wrapper">
 					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
@@ -112,7 +97,7 @@
 
 
 	 <!-- Modal -->
-	
+
     <script type='text/javascript' src="<?php echo base_url()?>assets/js/jquery.min.js"></script>
     <script type='text/javascript' src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">

@@ -45,14 +45,14 @@ class Book extends CI_Controller {
 			if(!$data['user_review_flag'] ) $data['review_flag'] = 0;
 			else $data['review_flag'] = 1;
 		}
-		else{	
+		else{
 			$data['review_flag'] = 0;
 			$data['rating_flag'] = 0;
 		}
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
-		#$data['bookright']=$this->load->view('book/book-right',$data,true);
+		$data['bookright']=$this->load->view('book/book-right',$data,true);
 		$data['bookleft']=$this->load->view('book/book-left',$data,true);
 		$this->load->view('book/book-old',$data);
 	}

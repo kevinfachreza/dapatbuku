@@ -39,7 +39,7 @@
 				<div class="col-md-4 col-sm-2 col-xs-2">Harga Sewa</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="harga_sewa_in" type="text" class="form-control" placeholder="Harga Sewa" autofocus>
-					<div class="input-info">Kosongkan jika tidak ingin dijual</div>
+					<div class="input-info">Kosongkan jika tidak ingin disewakan</div>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
