@@ -17,7 +17,7 @@
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
-	<div class="container container-blank"  id="book-container">
+	<div class="container custom-container container-blank"  id="book-container">
 		<div class="col-md-2 col-sm-3 col-xs-12 container">
 			<div class="search-side-item" style="margin-top:0">
 				<form action="<?php echo base_url()."Search/book"?>" method="get" ?>

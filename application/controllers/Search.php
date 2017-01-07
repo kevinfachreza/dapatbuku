@@ -47,7 +47,12 @@ class Search extends CI_Controller {
 			$data['has_result'] = 1;
 			$data['key_before'] = $key_search;
 			$data['provincies_pass'] = $provincies;
+
+			$money = $data['product_result'][0]['price_sell_u_b'];
+			$data['product_result'][0]['price_sell_u_b'] = 'Rp ' . number_format($money, 0);
 		}
+
+		
 		else if($keyword == NULL and $category == NULL and $best_sell == NULL and $bekas == NULL
 			 or $baru == NULL and $ $provincies == NULL and $ $regencies == NULL and $tebal_min == NULL
 			 or $harga_min == NULL and $jual == NULL and $sewa == NULL and $barter == NULL)

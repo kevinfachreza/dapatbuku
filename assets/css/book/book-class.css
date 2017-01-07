@@ -326,3 +326,9 @@ td, th {
 .panel-collapse div.list-group div.list-group{margin: 0;}
 .panel-collapse div.list-group .list-group a.list-group-item {border-top: 1px solid #ddd !important;border-bottom: 0;padding-left: 30px;}
 .panel-collapse .list-group-item li.list-group-item {border-top: 1px solid #DDD !important;}
+
+.group-panel-hr
+{
+	margin-top:5px;
+	margin-bottom: 5px;
+}

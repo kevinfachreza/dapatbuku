@@ -18,18 +18,16 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 
-<div class="container" id="book-container">
+<div class="container custom-container" id="book-container">
 	<!-- Slider -->
 	<div class="row">
 		<div class="col-md-12">
 			<div class="col-md-4">
 				<div class="col-sm-12 col-xs-12 padding-5px">
 				   <div class="col-xs-12 padding-5px" id="slider">
-						<!-- Top part of the slider -->
 						<div class="row">
 							<div class="col-sm-12 " id="carousel-bounding-box">
 								<div class="carousel slide" id="ProductCarousel">
-									<!-- Carousel items -->
 									<div class="carousel-inner" style="height:300px;">
 										<?php $i = 0;
 											foreach($book_image as $key){
@@ -42,7 +40,6 @@
 										} ?>
 
 									</div>
-									<!-- Carousel nav -->
 									<a class="left carousel-control" href="#ProductCarousel" role="button" data-slide="prev">
 										<span class="glyphicon glyphicon-chevron-left"></span>
 									</a>
@@ -73,18 +70,18 @@
 					<?php echo $book_result[0]['title_u_b']; ?>
 				</div>
 				<div class="book-price">
-					<?php if($book_result[0]['sell_u_b'] == 1)
+					<?php if($book_result[0]['sell_u_b'] != 1)
 					{
 						echo "Buku ini tidak dijual";
 					}
 					else
 					{
-						echo "Rp ".$book_result[0]['price_sell_u_b'];
+						echo $book_result[0]['price_sell_u_b'];
 					}
 					 ?>
 				</div>
 				<div class="book-rent">
-					<?php if($book_result[0]['rent_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span>Sewa : Rp <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php } ?>
+					<?php if($book_result[0]['rent_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span> Sewa : <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php } ?>
 					<?php if($book_result[0]['rent_u_b'] == 0){ ?><span class="book-ok-icon glyphicon glyphicon-remove" aria-hidden="true"></span>Sewa :<?php } ?>
 				</div>
 				<div class="book-barter">
@@ -145,7 +142,7 @@
 	</div>
 </div>
 
-	<div id="Seller-Info" class="container">
+	<div id="Seller-Info" class=" custom-container container">
 		<div class="col-md-12  " >
 			<div class="row">
 				<div class="col-md-12 header-text-2">Tentang Penjual</div>
@@ -160,7 +157,7 @@
 							<div class="seller-container-text"><span class="seller-location"><?php echo $user_result[0]['name']; ?> </span></div>
 							<div class="seller-container-text"><span class="text-muted">member sejak </span><span class="seller-member-date"><?php echo $user_result[0]['join_date_u']; ?></span></div>
 							<div class="seller-send-message">
-							<a href="#"><button type="button" class="btn btn-success">Send Message</button></a>
+							
 							</div>
 						</div>
 					</div>
@@ -168,9 +165,9 @@
 				<div class="col-md-6 padding-default">
 					<div class="row">
 						<div class="col-md-6 seller-container">
-							<div class="seller-contact-container seller-phone"><img src="https://image.freepik.com/free-icon/smartphone_318-33441.jpg" height="25"> <?php echo $user_result[0]['phone_number_u']; ?></div>
-							<div class="seller-contact-container seller-whatsapp"><img src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/whatsapp-official-logo-png-download.png" height="25"> <?php echo $user_result[0]['whatsapp_u']; ?></div>
-							<div class="seller-contact-container seller-line"><img height="25" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRKRHTY5RL6cHrkwb-nmWX16if2typM10v6LIOVPKNj1b9t8hSC"> <?php echo $user_result[0]['line_u']; ?> </div>
+							<div class="seller-contact-container seller-phone"><img src="<?php echo base_url()?>assets/img/socialmedia/phone-2.png" height="25"> <?php echo $user_result[0]['phone_number_u']; ?></div>
+							<div class="seller-contact-container seller-whatsapp"><img src="<?php echo base_url()?>assets/img/socialmedia/whatsapp-2.png" height="25"> <?php echo $user_result[0]['whatsapp_u']; ?></div>
+							<div class="seller-contact-container seller-line"><img height="25" src="<?php echo base_url()?>assets/img/socialmedia/line-2.png"> <?php echo $user_result[0]['line_u']; ?> </div>
 						</div>
 					</div>
 				</div>
@@ -178,8 +175,8 @@
 		</div>
 	</div>
 
-	<div id="NewReleaseContainer" class="container">
-		<div class="col-md-12 header-text-2">New Release</div>
+	<div id="NewReleaseContainer" class=" custom-container container">
+		<div class="col-md-12 header-text-2">Buku Sejenis</div>
 		<div class="col-md-12 text-center"><hr></div>
 		<div class="col-md-12 book-container">
 			<?php foreach($n_release as $key){ ?>

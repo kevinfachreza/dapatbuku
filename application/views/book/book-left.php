@@ -205,7 +205,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 
 
 			<?php
@@ -216,7 +215,7 @@
 	<div  id="review-form" class="custom-container">
 		<div class="row">
 			<div class="col-md-12" >
-				<div class="col-md-12 header-text-2">Silahkan Login untuk bisa memberikan Review/Rating</div>
+				<div class="col-md-12 header-text-2">Silahkan <a href="<?php echo base_url() ?>login">Login </a> untuk bisa memberikan Review/Rating</div>
 			</div>
 		</div>
 	</div>

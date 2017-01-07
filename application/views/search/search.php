@@ -18,7 +18,7 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 	<div class="container container-blank"  id="book-container">
-		<div class="col-md-2 col-sm-3 col-xs-12 container">
+		<div class="col-md-3 col-sm-3 col-xs-12 custom-container container">
 			<div class="search-side-item" style="margin-top:0">
 				<form action="<?php echo base_url()."Search"; ?>">
 				<div class="header-text-2">Cari</div>
@@ -134,8 +134,8 @@
 		</form>
 
 		</div>
-		<div class="col-md-9 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-0	">
-			<div class="col-md-12 container">
+		<div class="col-md-8 col-sm-8 col-xs-12 col-xs-offset-0	">
+			<div class="col-md-12 container custom-container ">
 				<div class="col-md-12 header-text-2">Buku yang mungkin kamu cari</div>
 				<div class="col-md-12 text-center"><hr></div>
 
@@ -165,15 +165,8 @@
 							<?php } ?>
 				</div>
 			</div>
-			<div class="col-md-12 container">
+			<div class="col-md-12 container custom-container">
 				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span>
-				<div class="sort-by">
-					<select class="form-control" id="kota">
-						<?php for($i=0; $i<100; $i++){ ?>
-						<option><?php echo $i?></option>
-						<?php } ?>
-					</select>
-				</div>
 				</div>
 				<div class="col-md-12 text-center"><hr></div>
 

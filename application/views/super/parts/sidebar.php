@@ -11,4 +11,9 @@
             <li class=""><a href="<?php echo base_url()?>super/adminbook/bookmanager">Book Manager</a></li>
             <li class=""><a href="<?php echo base_url()?>super/adminbook/add_book">Add Book</a></li>
           </ul>
+          <ul class="nav nav-sidebar">
+            <li class="disabled"><a href="">User Book</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/userbook_permission">Book Manager</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/userbook">Add Book</a></li>
+          </ul>
         </div>

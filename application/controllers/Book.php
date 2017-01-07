@@ -36,6 +36,7 @@ class Book extends CI_Controller {
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
 		$data['my_review'] = $this->M_book->get_user_review($id_in, $id_user);
+		$data['book_sale'] = $this->M_book->get_book_sale_in($id_in);
 
 		if($this->session->logged_in == 0){
 			$data['rating_data'] = $this->M_book->get_rating($id_in,$id_user);
@@ -55,7 +56,7 @@ class Book extends CI_Controller {
 		$data['footer']=$this->load->view('parts/footer','',true);
 		$data['bookright']=$this->load->view('book/book-right',$data,true);
 		$data['bookleft']=$this->load->view('book/book-left',$data,true);
-		$this->load->view('book/book-old',$data);
+		$this->load->view('book/book',$data);
 	}
 
 	public function product($slug)
@@ -68,6 +69,15 @@ class Book extends CI_Controller {
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
+
+
+		$money = $data['book_result'][0]['price_sell_u_b'];
+		$data['book_result'][0]['price_sell_u_b'] = 'Rp ' . number_format($money, 0);
+		$money = $data['book_result'][0]['price_rent_u_b'];
+		$data['book_result'][0]['price_rent_u_b'] = 'Rp ' . number_format($money, 0);
+
+
+
 		$this->load->view('book/book-product',$data);
 	}
 

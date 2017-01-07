@@ -298,5 +298,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       return $query->result_array();
     }
+
+    public function get_book_sale_in($id)
+    {
+      $query = "SELECT * FROM user_book, region_regencies, user WHERE region_regencies.id = user.city_u and user_book.id_b_source = ".$id." AND user_book.active = 1 AND user_book.id_u_owner = user.id_u";
+     
+      $do = $this->db->query($query);
+      return $do->result_array();
+    }
   }
 ?>
