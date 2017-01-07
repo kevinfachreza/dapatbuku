@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2016 at 03:29 AM
+-- Generation Time: Jan 07, 2017 at 03:09 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.24
+-- PHP Version: 7.0.13
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -98,7 +98,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `publisher`, `pages`, `date_published`, `language_b`, `thumb_cover_b`, `photo_cover_b`, `cover_type_b`, `description_b`, `total_reviews_b`, `total_ratings`, `best_seller_flag`, `best_seller_rank`) VALUES
-(13, 'Judul Buku '' Ini Ada Koma', 'judul-buku-ini-ada-koma', '0', 'pengarang', 'publisher', 123, '2016-11-08', 'indonesia', NULL, './assets/img/book/13/cover_13.jpg', 'hard', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non imperdiet lorem, vitae fermentum sapien. Nulla rhoncus tempus viverra. Aenean nibh urna, pretium a velit non, tempus luctus magna. In at nunc nisi. Praesent efficitur nisi fermentum, blandit erat et, tristique dolor. Vestibulum et arcu aliquet libero gravida laoreet vel nec justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nVestibulum maximus sollicitudin tellus, id posuere nisi varius at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean quis purus id orci ultricies eleifend. Donec ac ante mauris. Praesent sit amet feugiat augue, nec ullamcorper arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin dictum tellus eros, faucibus dictum nisl sagittis quis. Vestibulum lobortis vehicula augue. Etiam non cursus libero. Phasellus sit amet lacinia eros, non imperdiet mi.\r\n\r\nDonec congue ante quis euismod malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed et augue ac eros fringilla porttitor et a est. Cras consectetur erat ut est volutpat, at venenatis dolor ultricies. Nam a sollicitudin tellus. Nam id ante dictum, feugiat velit id, faucibus purus. Cras eget mollis nibh, vitae fringilla dolor. Donec auctor commodo felis, sit amet suscipit dui varius vitae. Fusce in odio eget ante lobortis commodo vel sed eros. Suspendisse bibendum iaculis nibh et semper.\r\n\r\nVivamus justo sapien, porttitor at hendrerit sit amet, ultrices nec urna. Sed eu imperdiet nulla, aliquet imperdiet urna. Morbi eu neque nulla. Nulla posuere, purus at euismod auctor, nisl libero pellentesque tellus, ut gravida ante lectus non nisi. Suspendisse sit amet odio sed quam viverra rutrum in eu nibh. Aenean ultrices pulvinar purus, ac convallis elit ornare vel. Nam pulvinar bibendum euismod. Sed id cursus dolor. Integer nec pulvinar elit. Etiam lectus dolor, suscipit non porttitor eu, molestie quis urna. Praesent consequat purus imperdiet mi ultricies, quis mattis ex bibendum. Pellentesque nec convallis tellus. Integer sed faucibus velit. Curabitur eu turpis arcu. Quisque molestie, mi at blandit tincidunt, urna tortor cursus neque, eu consequat orci magna vitae mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nSuspendisse volutpat posuere ligula at suscipit. Nam nec gravida sem, eu consectetur est. Aenean ipsum nunc, semper at felis a, varius varius ipsum. Donec sed sem et nibh volutpat elementum. Maecenas rutrum odio ut ipsum dictum placerat. Donec ligula odio, euismod in elementum consequat, pretium id odio. Nunc blandit hendrerit tortor a accumsan. Fusce quis mauris at massa cursus posuere et et dolor.', 0, 1, 1, 2),
+(13, 'Judul Buku '' Ini Ada Koma', 'judul-buku-ini-ada-koma', '0', 'pengarang', 'publisher', 123, '2016-11-08', 'indonesia', NULL, './assets/img/book/13/cover_13.jpg', 'hard', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non imperdiet lorem, vitae fermentum sapien. Nulla rhoncus tempus viverra. Aenean nibh urna, pretium a velit non, tempus luctus magna. In at nunc nisi. Praesent efficitur nisi fermentum, blandit erat et, tristique dolor. Vestibulum et arcu aliquet libero gravida laoreet vel nec justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nVestibulum maximus sollicitudin tellus, id posuere nisi varius at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean quis purus id orci ultricies eleifend. Donec ac ante mauris. Praesent sit amet feugiat augue, nec ullamcorper arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin dictum tellus eros, faucibus dictum nisl sagittis quis. Vestibulum lobortis vehicula augue. Etiam non cursus libero. Phasellus sit amet lacinia eros, non imperdiet mi.\r\n\r\nDonec congue ante quis euismod malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed et augue ac eros fringilla porttitor et a est. Cras consectetur erat ut est volutpat, at venenatis dolor ultricies. Nam a sollicitudin tellus. Nam id ante dictum, feugiat velit id, faucibus purus. Cras eget mollis nibh, vitae fringilla dolor. Donec auctor commodo felis, sit amet suscipit dui varius vitae. Fusce in odio eget ante lobortis commodo vel sed eros. Suspendisse bibendum iaculis nibh et semper.\r\n\r\nVivamus justo sapien, porttitor at hendrerit sit amet, ultrices nec urna. Sed eu imperdiet nulla, aliquet imperdiet urna. Morbi eu neque nulla. Nulla posuere, purus at euismod auctor, nisl libero pellentesque tellus, ut gravida ante lectus non nisi. Suspendisse sit amet odio sed quam viverra rutrum in eu nibh. Aenean ultrices pulvinar purus, ac convallis elit ornare vel. Nam pulvinar bibendum euismod. Sed id cursus dolor. Integer nec pulvinar elit. Etiam lectus dolor, suscipit non porttitor eu, molestie quis urna. Praesent consequat purus imperdiet mi ultricies, quis mattis ex bibendum. Pellentesque nec convallis tellus. Integer sed faucibus velit. Curabitur eu turpis arcu. Quisque molestie, mi at blandit tincidunt, urna tortor cursus neque, eu consequat orci magna vitae mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nSuspendisse volutpat posuere ligula at suscipit. Nam nec gravida sem, eu consectetur est. Aenean ipsum nunc, semper at felis a, varius varius ipsum. Donec sed sem et nibh volutpat elementum. Maecenas rutrum odio ut ipsum dictum placerat. Donec ligula odio, euismod in elementum consequat, pretium id odio. Nunc blandit hendrerit tortor a accumsan. Fusce quis mauris at massa cursus posuere et et dolor.', 2, 2, 1, 2),
 (14, 'Buku Best Seller 2', 'buku-best-seller-2', 'isbn', 'pengarang', 'publisher', 500, '2016-11-08', 'indonesia', NULL, './assets/img/book/14/cover_14.jpg', 'hard', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non imperdiet lorem, vitae fermentum sapien. Nulla rhoncus tempus viverra. Aenean nibh urna, pretium a velit non, tempus luctus magna. In at nunc nisi. Praesent efficitur nisi fermentum, blandit erat et, tristique dolor. Vestibulum et arcu aliquet libero gravida laoreet vel nec justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nVestibulum maximus sollicitudin tellus, id posuere nisi varius at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean quis purus id orci ultricies eleifend. Donec ac ante mauris. Praesent sit amet feugiat augue, nec ullamcorper arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin dictum tellus eros, faucibus dictum nisl sagittis quis. Vestibulum lobortis vehicula augue. Etiam non cursus libero. Phasellus sit amet lacinia eros, non imperdiet mi.\r\n\r\nDonec congue ante quis euismod malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed et augue ac eros fringilla porttitor et a est. Cras consectetur erat ut est volutpat, at venenatis dolor ultricies. Nam a sollicitudin tellus. Nam id ante dictum, feugiat velit id, faucibus purus. Cras eget mollis nibh, vitae fringilla dolor. Donec auctor commodo felis, sit amet suscipit dui varius vitae. Fusce in odio eget ante lobortis commodo vel sed eros. Suspendisse bibendum iaculis nibh et semper.\r\n\r\nVivamus justo sapien, porttitor at hendrerit sit amet, ultrices nec urna. Sed eu imperdiet nulla, aliquet imperdiet urna. Morbi eu neque nulla. Nulla posuere, purus at euismod auctor, nisl libero pellentesque tellus, ut gravida ante lectus non nisi. Suspendisse sit amet odio sed quam viverra rutrum in eu nibh. Aenean ultrices pulvinar purus, ac convallis elit ornare vel. Nam pulvinar bibendum euismod. Sed id cursus dolor. Integer nec pulvinar elit. Etiam lectus dolor, suscipit non porttitor eu, molestie quis urna. Praesent consequat purus imperdiet mi ultricies, quis mattis ex bibendum. Pellentesque nec convallis tellus. Integer sed faucibus velit. Curabitur eu turpis arcu. Quisque molestie, mi at blandit tincidunt, urna tortor cursus neque, eu consequat orci magna vitae mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\r\n\r\nSuspendisse volutpat posuere ligula at suscipit. Nam nec gravida sem, eu consectetur est. Aenean ipsum nunc, semper at felis a, varius varius ipsum. Donec sed sem et nibh volutpat elementum. Maecenas rutrum odio ut ipsum dictum placerat. Donec ligula odio, euismod in elementum consequat, pretium id odio. Nunc blandit hendrerit tortor a accumsan. Fusce quis mauris at massa cursus posuere et et dolor.', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -181,7 +181,8 @@ CREATE TABLE `book_rating` (
 
 INSERT INTO `book_rating` (`id_b_rating`, `date_rating`, `rating`, `id_u`, `id_b`) VALUES
 (8, '2016-11-07 18:47:46', 4, 4, 13),
-(9, '2016-11-07 18:53:51', 3, 4, 14);
+(9, '2016-11-07 18:53:51', 3, 4, 14),
+(10, '2017-01-05 04:33:50', 5, 4, 13);
 
 -- --------------------------------------------------------
 
@@ -204,7 +205,9 @@ CREATE TABLE `book_review` (
 --
 
 INSERT INTO `book_review` (`id_b_review`, `title_b_review`, `content_b_review`, `id_u`, `id_b`, `date_b_review`, `total_like`) VALUES
-(16, 'Mau Nulis Ulasan', 'ini ulasanku lo bagus kann', 4, 14, '2016-11-07 18:54:04', 0);
+(16, 'Mau Nulis Ulasan', 'ini ulasanku lo bagus kann', 4, 14, '2016-11-07 18:54:04', 0),
+(17, 'Judul', 'Banana', 4, 13, '2017-01-05 04:34:18', 0),
+(18, 'Judul', 'Banana', 4, 13, '2017-01-05 04:34:26', 0);
 
 -- --------------------------------------------------------
 
@@ -944,8 +947,8 @@ CREATE TABLE `user` (
   `photo_cover_u` varchar(150) DEFAULT NULL,
   `point` int(11) DEFAULT '0',
   `money` int(11) DEFAULT NULL,
-  `line_u` varchar(100) NOT NULL,
-  `whatsapp_u` varchar(100) NOT NULL
+  `line_u` varchar(32) NOT NULL,
+  `whatsapp_u` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -956,7 +959,7 @@ INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`
 (1, 'haha', 'hahaha@gmail.com', '12345', 'hara', 'Hura', '2016-09-24', '1234567890', NULL, 'Kalimantan tengah barat', 0, NULL, NULL, 'Hola namanamanama', 'assets/img/default/profile-pict.png', NULL, NULL, NULL, '', ''),
 (2, 'kevinfachreza', 'kevinfachreza@yahoo.com', '12345', 'aa', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
 (3, 'kev', 'kevinfachreza@yahoo.coma', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'bbb', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
-(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, '', ''),
+(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, 'koko', '12345'),
 (5, 'hanah', 'hanah@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1998-02-13', '09898989', '2016-11-01 00:00:00', NULL, 1173, NULL, 0, NULL, './assets/img/user/5/profile-pict/default.png', NULL, 0, NULL, '@hanahanda', '0292828383'),
 (6, 'curlan', 'curlan@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1991-02-13', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
 (7, 'ibu', 'ibu@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1800-12-18', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', ''),
@@ -1024,26 +1027,30 @@ CREATE TABLE `user_book` (
   `title_u_b` varchar(100) NOT NULL,
   `berat_u_b` int(11) NOT NULL,
   `slug_title_u_b` varchar(500) NOT NULL,
-  `tahun_beli_u_b` year(4) NOT NULL
+  `tahun_beli_u_b` year(4) NOT NULL,
+  `active` int(2) DEFAULT NULL,
+  `activated_by` varchar(12) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_book`
 --
 
-INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point`, `price_rent_u_b`, `type_u_b`, `sell_u_b`, `barter_u_b`, `rent_u_b`, `description_u_b`, `id_u_owner`, `stock_u_b`, `main_image_u_b`, `title_u_b`, `berat_u_b`, `slug_title_u_b`, `tahun_beli_u_b`) VALUES
-(1, 13, 75000, 0, 15000, 1, 1, 1, 1, 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum', 5, 1, 'assets/img/user/5/1.jpg', '', 0, '', 0000),
-(2, 14, 90000, 0, 10000, 2, 1, 0, 1, 'LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum', 5, 3, 'assets/img/user/5/2.jpg', '', 0, '', 0000),
-(4, 14, 90000, 0, 10000, 2, 1, 0, 1, 'Hanya bisa dibuat', 5, 3, 'assets/img/user/5/2.jpg', 'Tetap mencoba', 0, 'Tetap-mencoba', 2009),
-(5, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
-(6, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
-(7, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
-(8, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
-(9, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000),
-(41, 13, 10, 0, 11, 1, NULL, 0, 127, 'Kenapa', 5, 22, 'assets/img/user/5/books/41/0.png', 'Apa', 2, '', 0000),
-(42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/4/books/42/0.jpg', 'Why', 111, '', 0000),
-(43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000),
-(44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000);
+INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point`, `price_rent_u_b`, `type_u_b`, `sell_u_b`, `barter_u_b`, `rent_u_b`, `description_u_b`, `id_u_owner`, `stock_u_b`, `main_image_u_b`, `title_u_b`, `berat_u_b`, `slug_title_u_b`, `tahun_beli_u_b`, `active`, `activated_by`, `created_at`, `updated_at`) VALUES
+(1, 13, 75000, 0, 15000, 1, 1, 1, 1, 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum', 5, 1, 'assets/img/user/5/1.jpg', '', 0, '', 0000, NULL, NULL, NULL, NULL),
+(2, 14, 90000, 0, 10000, 2, 1, 0, 1, 'LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum', 5, 3, 'assets/img/user/5/2.jpg', '', 0, '', 0000, NULL, NULL, NULL, NULL),
+(4, 14, 90000, 0, 10000, 2, 1, 0, 1, 'Hanya bisa dibuat', 5, 3, 'assets/img/user/5/2.jpg', 'Tetap mencoba', 0, 'Tetap-mencoba', 2009, 1, NULL, NULL, NULL),
+(5, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, NULL, NULL, NULL, NULL),
+(6, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, NULL, NULL, NULL, NULL),
+(7, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, NULL, NULL, NULL, NULL),
+(8, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, NULL, NULL, NULL, NULL),
+(9, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, NULL, NULL, NULL, NULL),
+(41, 13, 10, 0, 11, 1, NULL, 0, 127, 'Kenapa', 5, 22, 'assets/img/user/5/books/41/0.png', 'Apa', 2, '', 0000, NULL, NULL, NULL, NULL),
+(42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/4/books/42/0.jpg', 'Why', 111, '', 0000, NULL, NULL, NULL, NULL),
+(43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000, NULL, NULL, NULL, NULL),
+(44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1268,12 +1275,12 @@ ALTER TABLE `book_category_connector`
 -- AUTO_INCREMENT for table `book_rating`
 --
 ALTER TABLE `book_rating`
-  MODIFY `id_b_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_b_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `book_review`
 --
 ALTER TABLE `book_review`
-  MODIFY `id_b_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_b_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `book_review_like`
 --
@@ -1313,7 +1320,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_book`
 --
 ALTER TABLE `user_book`
-  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `user_book_favourite`
 --
