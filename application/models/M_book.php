@@ -8,6 +8,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
     }
 
+    public function get_book_slug_by_product($product_slug)
+    {
+      $query = $this->db->query("select * from book b, user_book ub where b.id_b = ub.id_b_source and ub.slug_title_u_b = '".$product_slug."';");
+
+      return $query->result();
+    }
 
     public function get_b_category($id_in)
     {
@@ -280,6 +286,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
+    public function get_user_review($id_in, $user)
+    {
+      $query = $this->db->query("select ba.*, be.* from book_rating ba, book_review be where ba.id_u = '".$user."' and ba.id_b = '".$id_in."' and be.id_u = '".$user."' and be.id_b = '".$id_in."';");
+
+      return $query->result();
+    }
     public function get_owner_book($slug)
     {
       $query = $this->db->query("SELECT u.*, rr.name FROM region_regencies rr, user u, user_book ub WHERE ub.slug_title_u_b = '".$slug."' AND u.id_u = ub.id_u_owner AND rr.id = u.city_u; ");

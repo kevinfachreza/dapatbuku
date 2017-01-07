@@ -35,6 +35,7 @@ class Book extends CI_Controller {
 		$data['book_rating'] = $this->M_book->get_rate_avg($id_in);
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
+		$data['my_review'] = $this->M_book->get_user_review($id_in, $id_user);
 
 		if($this->session->logged_in == 0){
 			$data['rating_data'] = $this->M_book->get_rating($id_in,$id_user);
@@ -62,6 +63,7 @@ class Book extends CI_Controller {
 		$data['n_release']=$this->M_book->get_n_release();
 		$data['user_result']=$this->M_book->get_owner_book($slug);
 		$data['book_result']=$this->M_book->get_product_book($slug);
+		$data['book_origin'] = $this->M_book->get_book_slug_by_product($slug);
 		$data['book_image']=$this->M_book->get_product_img($data['book_result'][0]['id_u_b']);
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
@@ -116,7 +118,7 @@ class Book extends CI_Controller {
 		else
 			$response = 0;
 
-		redirect('/book?title='.$slug);
+		redirect('/book/b/'.$slug);
 
 
 	}

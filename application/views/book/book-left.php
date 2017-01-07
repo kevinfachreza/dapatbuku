@@ -26,17 +26,12 @@
 						<span class="book-review-count"><?php echo $book_data[0]['total_reviews_b']; ?> Review</span>
 					</div>
 				</div>
-				
+
 				<div id="book-description" class="col-md-12 product-item">
 					<div class="book-header">Deskripsi</div>
 					<div class="book-description more">
 						<?php echo $book_data[0]['description_b']; ?>
 					</div>
-				</div>
-
-				<div id="book-buy-store" class="col-md-12 text-center main-bar-item">
-					<a href="#"><button type="button" class="btn btn-primary">Tambahkan ke Wishlist</button></a>
-					<a href="<?php echo base_url()."search/product/".$book_data[0]['slug_title_b']; ?>"><button type="button" class="btn btn-success">Tambahkan ke Perpustakaan Saya</button></a>
 				</div>
 
 			</div>
@@ -137,7 +132,7 @@
 
 	<?php
 		if($this->session->logged_in==1){
-	if($review_flag==0){?>
+	if($my_review == null){?>
 	<div  id="review-form" class="custom-container">
 		<div class="row">
 			<div class="col-md-12" >
@@ -184,7 +179,37 @@
 	</div>
 
 	<?php }
+		if($my_review != null){	?>
+			<div  id="review-form" class="custom-container">
+				<div class="row">
+					<div class="col-md-12" >
+						<div class="col-md-12 header-text-2">Ulasan Kamu</div>
+						<div class="col-md-12 text-center"><hr></div>
+						<div class="review-date">
+						<?php echo date('j-F-Y', strtotime($my_review[0]->date_b_review) );?></div>
+						<div class="review-title review-item"><?php echo $my_review[0]->title_b_review; ?></div>
+								<div class="review-rating review-item" id="user_rating_star">
+									<?php for($i=0;$i<$my_review[0]->rating;$i++){?>
+									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
+									<?php } ?>
 
+									<?php for($i=0;$i<5-$my_review[0]->rating;$i++){?>
+									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#777;" aria-hidden="true"></span>
+									<?php } ?>
+
+									<span class="comment-for-star">Nilai kamu untuk buku ini</span>
+									<div class="review-content more">
+										<?php echo $my_review[0]->content_b_review; ?>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<?php
+		}
 	}
 	else{
 			?>

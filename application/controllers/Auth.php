@@ -80,6 +80,7 @@ class Auth extends CI_Controller {
       if($result){
         mkdir("assets/img/user/".$result);
         mkdir("assets/img/user/".$result."/books");
+        mkdir("assets/img/user/".$result."/profile-pict");
         redirect('Welcome');
       }
       else {

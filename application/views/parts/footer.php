@@ -1,23 +1,14 @@
 <div id="footer" class="col-md-12 padding-0" >
-	
+
 	<div class="col-md-12 navbar-padding footer-2" >
 		<div class="row">
 			<div class="col-md-6">
 				<h4> Dapatbuku </h4>
 				<div class="col-md-6">
 					<p><a href="#">Tentang Dapatbuku</a></p>
-					<p><a href="#">Berita & Pengumuman</a></p>
-					<p><a href="#">Karir</a></p>
-					<p><a href="#">Iklan di Dapatbuku</a></p>
-				</div>
-				<div class="col-md-6">
-					<p><a href="#">Tentang TukarPoin</a></p>
-					<p><a href="#">Best Seller</a></p>
-					<p><a href="#">New Release</a></p>
-					<p><a href="#">Rekomendasi Buat Kamu</a></p>
+					<p><a href="#">Contact Us</a></p>
 					<p><a href="#">Tidak Menemukan Buku Yang Kamu Cari?</a></p>
 				</div>
-				
 			</div>
 			<div class="col-md-6">
 			<h4>Temukan Kami Di</h4>
@@ -33,15 +24,14 @@
 			</div>
 		</div>
 		</div>
-		
+
 	</div>
-	
+
 		<div class="col-md-12 footer-3">
 			<p style="text-align:center">CopyRight</p>
 		</div>
-	
-	
-	
-		
-</div>
 
+
+
+
+</div>

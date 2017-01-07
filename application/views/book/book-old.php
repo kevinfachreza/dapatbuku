@@ -29,6 +29,7 @@
 		</div>
 	</div>
 </div>
+
 	<?php echo $footer; ?>
 	<script src="<?php echo base_url()?>assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
 

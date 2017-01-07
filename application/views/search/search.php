@@ -153,16 +153,16 @@
 						</div>
 					</div>
 				<?php
-						$i++; }
-					}
-						 if(count($book_result) == 0){?>
+						$i++; } if(count($book_result > 0)){ ?>
+            <div class="col-md-12">
+  						<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
+  					</div>
+            <?php   } }
+						 if(count($book_result) == 0){  ?>
 							 <div class="text-center">
 	 							Maaf, hasil pencarian tidak ditemukan...
 	 						</div>
 							<?php } ?>
-					<div class="col-md-12">
-						<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
-					</div>
 				</div>
 			</div>
 			<div class="col-md-12 container">
