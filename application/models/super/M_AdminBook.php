@@ -133,6 +133,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$change = $this->db->query($query);
 		return $this->db->affected_rows();
 	}
+
+	public function searchBook($keyword)
+	{
+
+		$query =
+		"
+			SELECT *, MATCH (tags, title_b)  AGAINST ('".$keyword."' IN NATURAL LANGUAGE MODE)
+			AS score FROM book where MATCH (tags, title_b)  AGAINST ('".$keyword."' IN NATURAL LANGUAGE MODE) > 0 ORDER BY score DESC;
+
+		";
+		$change = $this->db->query($query);
+		return $change->result();
+	}
 	
   }
 

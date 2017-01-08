@@ -4,7 +4,16 @@
             <li class=""><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li class=""><a href="#">Reports</a></li>
             <li class=""><a href="#">Analytics</a></li>
-            <li class=""><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="disabled"><a href="">Categories</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/bookmanager">Categories Manager</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/a_bestseller">Best Seller</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="disabled"><a href="">Banner</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/a_banner/manager">Banner Manager</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/adminbook/add_book">Add Banner</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li class="disabled"><a href="">Book</a></li>

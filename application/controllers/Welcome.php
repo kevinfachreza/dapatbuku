@@ -11,8 +11,9 @@ class Welcome extends CI_Controller {
 		$this->load->library('fixstring');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
-    $this->load->helper(array('form', 'url'));
+    	$this->load->helper(array('form', 'url'));
 		$this->load->model('M_book');
+		$this->load->model('M_Banner');
 		$this->load->model('M_Profile');
 	}
 
@@ -23,6 +24,7 @@ class Welcome extends CI_Controller {
 		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar','',true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
+		$data['banner']			 = $this->M_Banner->getBanner();
 		
 		$this->load->view('home/index',$data);
 	}
