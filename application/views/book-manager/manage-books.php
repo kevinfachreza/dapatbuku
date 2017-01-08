@@ -15,7 +15,6 @@
 <body>
 	<?php echo $navbar; ?>
 
-
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 <div class="container" id="profile-header">
