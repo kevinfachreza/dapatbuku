@@ -1,0 +1,22 @@
+#content-container
+{
+	padding:100px 0px;
+}
+
+.about-hr{
+	width: 50%;
+}
+
+.about-header h1{
+	font-weight: 700;
+	text-align: center;
+}
+
+.about-header{
+	margin-bottom: 7vh;
+}
+
+.about-content{
+	font-size: 1.2em;
+	text-align: justify;
+}

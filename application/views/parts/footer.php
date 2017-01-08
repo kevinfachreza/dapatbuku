@@ -5,7 +5,7 @@
 			<div class="col-md-6">
 				<h4> Dapatbuku </h4>
 				<div class="col-md-6">
-					<p><a href="#">Tentang Dapatbuku</a></p>
+					<p><a href="<?php echo base_url()?>aboutus">Tentang Dapatbuku</a></p>
 					<p><a href="#">Contact Us</a></p>
 					<p><a href="#">Tidak Menemukan Buku Yang Kamu Cari?</a></p>
 				</div>

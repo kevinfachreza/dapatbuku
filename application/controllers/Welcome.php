@@ -29,6 +29,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('home/index',$data);
 	}
 
+	public function aboutus()
+	{
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar','',true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+		$this->load->view('home/about_us',$data);
+	}
+
 }
 
 ?>
