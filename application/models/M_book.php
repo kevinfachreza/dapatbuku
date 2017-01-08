@@ -302,9 +302,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_book_sale_in($id)
     {
       $query = "SELECT * FROM user_book, region_regencies, user WHERE region_regencies.id = user.city_u and user_book.id_b_source = ".$id." AND user_book.active = 1 AND user_book.id_u_owner = user.id_u";
-     
+
       $do = $this->db->query($query);
       return $do->result_array();
     }
+
+    public function insert_request($data)
+    {
+      // var_dump($data);
+      // exit();
+      $query = $this->db->query("INSERT INTO book_request(title_br, category_br, author_br) values('".$data[0]."', '".$data[1]."', '".$data[2]."');");
+
+      if($this->db->affected_rows() == 1){
+        return TRUE;
+      }
+      else
+        return FALSE;
+    }
+
   }
 ?>

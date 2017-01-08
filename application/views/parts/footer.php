@@ -5,9 +5,15 @@
 			<div class="col-md-6">
 				<h4> Dapatbuku </h4>
 				<div class="col-md-6">
+<<<<<<< HEAD
 					<p><a href="<?php echo base_url(); ?>welcome/about">Tentang Dapatbuku</a></p>
 					<p><a href="<?php echo base_url(); ?>auth/contact_us">Contact Us</a></p>
 					<p><a href="<?php echo base_url(); ?>auth/book_request">Tidak Menemukan Buku Yang Kamu Cari?</a></p>
+=======
+					<p><a href="<?php echo base_url()?>aboutus">Tentang Dapatbuku</a></p>
+					<p><a href="#">Contact Us</a></p>
+					<p><a href="#">Tidak Menemukan Buku Yang Kamu Cari?</a></p>
+>>>>>>> 49b27b8b13395f1ca854adbbe3c3ed975fa76e9f
 				</div>
 			</div>
 			<div class="col-md-6">

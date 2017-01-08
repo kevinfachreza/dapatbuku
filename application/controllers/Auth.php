@@ -13,6 +13,7 @@ class Auth extends CI_Controller {
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
     $this->load->model('M_auth');
+    $this->load->model('M_book');
   }
 
   public function login()
@@ -86,6 +87,71 @@ class Auth extends CI_Controller {
       else {
         echo "SALAH";
       }
+    }
+  }
+
+  public function contact_us(){
+    $data['header']=$this->load->view('parts/header','',true);
+    $data['navbar']=$this->load->view('parts/navbar','',true);
+    $data['footer']=$this->load->view('parts/footer','',true);
+    $this->load->view('auth/contact_us', $data);
+  }
+
+  public function do_contact_us(){
+    $name = $this->input->post('name');
+    $email = $this->input->post('email');
+    $pass = $this->input->post('pass');
+    $message = $this->input->post('message');
+    // The mail sending protocol.
+    $config['protocol'] = 'smtp';
+    // SMTP Server Address for Gmail.
+    $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+    // SMTP Port - the port that you is required
+    $config['smtp_port'] = 465;
+    // SMTP Username like. (abc@gmail.com)
+    $config['smtp_user'] = $email;
+    // SMTP Password like (abc***##)
+    $config['smtp_pass'] = $pass;
+
+    $config['mailtype'] = 'html';
+    $config['starttls'] = 'true';
+    // Load email library and passing configured values to email library
+    $this->load->library('email', $config);
+    // Sender email address
+    $this->email->set_newline("\r\n");
+    $this->email->from($email, $name);
+    // Receiver email address.for single email
+    $this->email->to('harrysw6@gmail.com');
+    // Subject of email
+    $this->email->subject('Pesan untuk Dapatbuku');
+    // Message in email
+    $this->email->message($message);
+    // It returns boolean TRUE or FALSE based on success or failure
+    if($this->email->send())  echo "OKE";
+    else {
+      show_error($this->email->print_debugger());
+    }
+  }
+
+  public function book_request(){
+    $data['header']=$this->load->view('parts/header','',true);
+    $data['navbar']=$this->load->view('parts/navbar','',true);
+    $data['footer']=$this->load->view('parts/footer','',true);
+    $this->load->view('auth/book_request', $data);
+  }
+
+  public function do_book_request(){
+    $title = $this->input->post('title');
+    $category = $this->input->post('category');
+    $author = $this->input->post('author');
+
+    $data_request = array($title, $category, $author);
+
+    $result = $this->M_book->insert_request($data_request);
+
+    if($result) redirect('auth/book_request');
+    else {
+      echo "GAGAL";
     }
   }
 

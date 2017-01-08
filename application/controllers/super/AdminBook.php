@@ -303,6 +303,20 @@ class AdminBook extends CI_Controller {
 		$file = $path.'cover_'.$new_name;
 		return $file;
 	}
+
+	public function search()
+	{
+		$keyword = $this->db->escape_str($this->input->post('keyword'));
+		
+		$data['header']=$this->load->view('super/parts/header','',true);
+		$data['navbar']=$this->load->view('super/parts/navbar','',true);
+		$data['sidebar']=$this->load->view('super/parts/sidebar','',true);
+		$data['footer']=$this->load->view('super/parts/footer','',true);
+		
+		$data['book'] = $this->M_AdminBook->searchBook($keyword);
+		
+		$this->load->view('super/book/search_book',$data);
+	}
 	
 }
 

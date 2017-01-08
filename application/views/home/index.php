@@ -21,22 +21,33 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#HeaderCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#HeaderCarousel" data-slide-to="1"></li>
-        <li data-target="#HeaderCarousel" data-slide-to="2"></li>
+
+        <?php for($i=1;$i<count($banner);$i++){?>
+        	<li data-target="#HeaderCarousel" data-slide-to="<?php echo $i ?>"></li>
+        <?php } ?>
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item height-item active">
-          <img class="first-slide" src="<?php echo base_url()?>assets/img/banner/banner1.jpg" class="img-responsive" alt="First slide">
+     	<?php $i = 1;?>
+      	<?php foreach($banner as $data){?>
+	      <?php 
+	      if($i==1) {$numbering = 'first';$alt='First';$active='active';}
+	      else if($i==2) {$numbering = 'second';$alt='Second';}
+	      else if($i==3) {$numbering = 'third';$alt='Third';}
+	      else if($i==4) {$numbering = 'fourth';$alt='Fourth';}
+	      else if($i==5) {$numbering = 'fifth';$alt='Fifth';}
 
-        </div>
-        <div class="item height-item">
-          <img class="second-slide" src="<?php echo base_url()?>assets/img/banner/banner1.png" class="img-responsive" alt="Second slide">
+	      $numbering.='-slide';
+	       ?>
 
-        </div>
-        <div class="item height-item">
-          <img class="third-slide" src="<?php echo base_url()?>assets/img/banner/banner2.png" class="img-responsive"  alt="Third slide">
+		    <div class="item height-item <?php echo $active?>">
+	      		<a href="<?php echo $data->link?>">
+		          	<img class="<?php echo $numbering?> img-responsive img-responsive-2" src="<?php echo base_url()?>assets/img/banner/<?php echo $data->pict?>" alt="<?php echo $alt?> slide">
+	       		</a>
+		    </div>
 
-        </div>
+
+       	<?php $i++; $active='';?>
+        <?php } ?>
       </div>
       <a class="left carousel-control" href="#HeaderCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

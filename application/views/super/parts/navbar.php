@@ -10,14 +10,9 @@
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-          </ul>
 
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+          <form method="POST" action="<?php echo base_url()?>super/AdminBook/search" class="navbar-form navbar-right">
+            <input type="text" name="keyword" class="form-control" placeholder="Search...">
           </form>
         </div>
       </div>
