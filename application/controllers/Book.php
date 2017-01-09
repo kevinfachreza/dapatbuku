@@ -169,8 +169,36 @@ class Book extends CI_Controller {
 			$response = 0;
 
 		redirect('/book/b/'.$slug);
+	}
 
+	public function best_seller(){
+		$data['header'] = $this->load->view('parts/header', '', true);
+		$data['navbar'] = $this->load->view('parts/navbar', '', true);
+		$data['footer'] = $this->load->view('parts/footer', '', true);
 
+		$data['book_result'] = $this->M_book->view_best_seller();
+
+		$this->load->view('category/best_seller', $data);
+	}
+
+	public function new_release(){
+		$data['header'] = $this->load->view('parts/header', '', true);
+		$data['navbar'] = $this->load->view('parts/navbar', '', true);
+		$data['footer'] = $this->load->view('parts/footer', '', true);
+
+		$data['book_result'] = $this->M_book->view_new_release();
+
+		$this->load->view('category/new_released', $data);
+	}
+
+	public function most_viewed(){
+		$data['header'] = $this->load->view('parts/header', '', true);
+		$data['navbar'] = $this->load->view('parts/navbar', '', true);
+		$data['footer'] = $this->load->view('parts/footer', '', true);
+
+		$data['book_result'] = $this->M_book->view_most_viewed();
+
+		$this->load->view('category/most_viewed', $data);
 	}
 
 }

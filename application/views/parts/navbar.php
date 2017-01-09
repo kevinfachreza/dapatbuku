@@ -5,9 +5,9 @@
 			<li class="dropdown">
 			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hot List<span class="caret"></span></a>
 			  	<ul class="dropdown-menu">
-					<li><a href="#">Best Seller</a></li>
-					<li><a href="#">New Release</a></li>
-					<li><a href="#">Most Viewed</a></li>
+					<li><a href="<?php echo base_url(); ?>book/best_seller">Best Seller</a></li>
+					<li><a href="<?php echo base_url(); ?>book/new_release">New Release</a></li>
+				<li><a href="<?php echo base_url(); ?>book/most_viewed">Most Viewed</a></li>
 			  	</ul>
 			</li>
 			<li class="dropdown">

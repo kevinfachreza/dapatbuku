@@ -47,11 +47,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return  $query->result_array();
     }
 
+    public function view_best_seller(){
+      $query = $this->db->query("SELECT * FROM book WHERE best_seller_flag = 1");
+
+      return $query->result_array();
+    }
 
     public function get_n_release()
     {
       $query = $this->db->query(" select *
                                   from book b ORDER by b.date_published DESC;");
+      return $query->result_array();
+    }
+
+    public function view_new_release()
+    {
+      $query = $this->db->query("SELECT * FROM book ORDER BY date_published DESC LIMIT 50;");
+
+      return $query->result_array();
+    }
+
+    public function view_most_viewed()
+    {
+      $query = $this->db->query("SELECT * FROM book ORDER BY views_b ASC LIMIT 50;");
+
       return $query->result_array();
     }
     public function get_writer_short($id_in)
