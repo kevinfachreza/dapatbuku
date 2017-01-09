@@ -24,30 +24,17 @@ class Welcome extends CI_Controller {
 		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar','',true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
-<<<<<<< HEAD
-
-		$this->load->view('home/index',$data);
-	}
-
-	public function about()
-=======
 		$data['banner']			 = $this->M_Banner->getBanner();
 		
 		$this->load->view('home/index',$data);
 	}
 
 	public function aboutus()
->>>>>>> 49b27b8b13395f1ca854adbbe3c3ed975fa76e9f
 	{
 		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar','',true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
-<<<<<<< HEAD
-
-		$this->load->view('home/about',$data);
-=======
 		$this->load->view('home/about_us',$data);
->>>>>>> 49b27b8b13395f1ca854adbbe3c3ed975fa76e9f
 	}
 
 }

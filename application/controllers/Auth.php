@@ -100,7 +100,6 @@ class Auth extends CI_Controller {
   public function do_contact_us(){
     $name = $this->input->post('name');
     $email = $this->input->post('email');
-    $pass = $this->input->post('pass');
     $message = $this->input->post('message');
     // The mail sending protocol.
     $config['protocol'] = 'smtp';
@@ -109,9 +108,9 @@ class Auth extends CI_Controller {
     // SMTP Port - the port that you is required
     $config['smtp_port'] = 465;
     // SMTP Username like. (abc@gmail.com)
-    $config['smtp_user'] = $email;
+    $config['smtp_user'] = 'dapatbuku1@gmail.com';
     // SMTP Password like (abc***##)
-    $config['smtp_pass'] = $pass;
+    $config['smtp_pass'] = '12log12=1';
 
     $config['mailtype'] = 'html';
     $config['starttls'] = 'true';
@@ -121,13 +120,16 @@ class Auth extends CI_Controller {
     $this->email->set_newline("\r\n");
     $this->email->from($email, $name);
     // Receiver email address.for single email
-    $this->email->to('harrysw6@gmail.com');
+    $this->email->to('dapatbuku1@gmail.com');
     // Subject of email
-    $this->email->subject('Pesan untuk Dapatbuku');
+    $this->email->subject('CONTACTUS@dapatbuku.com');
     // Message in email
     $this->email->message($message);
     // It returns boolean TRUE or FALSE based on success or failure
-    if($this->email->send())  echo "OKE";
+    if($this->email->send())  
+    {
+      redirect('contactus');
+    }
     else {
       show_error($this->email->print_debugger());
     }

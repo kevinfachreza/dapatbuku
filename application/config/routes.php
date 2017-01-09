@@ -61,3 +61,5 @@ $route['profile/(:any)'] = 'profile/index/$1';
 $route['category/(:any)'] = 'category/index/$1';
 $route['messages/send_message'] = 'messages/send_message/';
 $route['messages/(:any)'] = 'messages/index/$1';
+$route['contactus'] = 'auth/contact_us';
+$route['requestbook'] = 'auth/book_request';

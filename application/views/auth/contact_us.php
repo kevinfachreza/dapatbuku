@@ -16,26 +16,26 @@
 
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
-		<div class="container" id="category-header">
+		<div class="container custom-container"" id="category-header">
 			<div class="jumbotron jumbotron-cat">
 			  <h1>Contact Us</h1>
 			</div>
 		</div>
 
-		<div class="container"  id="category-container">
+		<div class="container custom-container"  id="category-container">
 			<div class="col-md-12">
 				<div class="col-md-12 header-text-2">Kirimkan pesan, kritik, ataupun saran</div>
 				<div class="col-md-12 text-center"><hr></div>
 
 				<div class="row">
-          <form action="<?php echo base_url(); ?>/auth/do_contact_us" method="post">
-            <input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
-						<p><small>*Hanya dapat menggunakan gmail</small></p>
+					<div class="col-md-12 col-sm-12 col-xs-12">
+		        	<form action="<?php echo base_url(); ?>/auth/do_contact_us" method="post">
+		            	<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
 						<input name="email" type="text" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>
-            <input name="pass" type="password" class="form-control" placeholder="Password Email" style="margin-bottom:0.5em" required autofocus>
-            <textarea name="message" class="form-control" rows="5" id="messages" placeholder="Tulis pesan kamu disini"></textarea>
-            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
-          </form>
+		            	<textarea name="message" class="form-control" rows="5" id="messages" placeholder="Tulis pesan kamu disini"></textarea>
+		            	<button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
+		          </form>
+		          </div>		
 				</div>
 			</div>
 		</div>
