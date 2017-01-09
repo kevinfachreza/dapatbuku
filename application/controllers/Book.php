@@ -11,7 +11,8 @@ class Book extends CI_Controller {
 		$this->load->library('fixstring');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
-    	$this->load->helper(array('form', 'url'));
+    $this->load->helper(array('form', 'url'));
+		$this->load->model('M_auth');
 		$this->load->model('M_book');
 	}
 
@@ -51,12 +52,31 @@ class Book extends CI_Controller {
 			$data['review_flag'] = 0;
 			$data['rating_flag'] = 0;
 		}
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
-		$data['bookright']=$this->load->view('book/book-right',$data,true);
-		$data['bookleft']=$this->load->view('book/book-left',$data,true);
-		$this->load->view('book/book',$data);
+
+		//ADD TO LOG_VISIT
+		if($this->session->logged_in == 1){
+			$temp = $this->session->userdata('userdata');
+			$id_user = $temp[0]->id_u;
+
+			$add_log = $this->M_auth->add_log_view($id_user, 'book', $id_in);
+		}
+		else{
+			$ip = $this->input->ip_address();
+
+			$add_log = $this->M_auth->add_log_view($ip, 'book', $id_in);
+		}
+
+		if($add_log){
+			$data['header']=$this->load->view('parts/header','',true);
+			$data['navbar']=$this->load->view('parts/navbar','',true);
+			$data['footer']=$this->load->view('parts/footer','',true);
+			$data['bookright']=$this->load->view('book/book-right',$data,true);
+			$data['bookleft']=$this->load->view('book/book-left',$data,true);
+			$this->load->view('book/book',$data);
+		}
+		else{
+			redirect('/');
+		}
 	}
 
 	public function product($slug)
@@ -77,8 +97,28 @@ class Book extends CI_Controller {
 		$data['book_result'][0]['price_rent_u_b'] = 'Rp ' . number_format($money, 0);
 
 
+		//ADD TO LOG_VISIT
+		$temp = $data['book_result'][0];
+		$id_in = $temp['id_u_b'];
 
-		$this->load->view('book/book-product',$data);
+		if($this->session->logged_in == 1){
+			$temp = $this->session->userdata('userdata');
+			$id_user = $temp[0]->id_u;
+
+
+			$add_log = $this->M_auth->add_log_view($id_user, 'product', $id_in);
+		}
+		else{
+			$ip = $this->input->ip_address();
+
+			$add_log = $this->M_auth->add_log_view($ip, 'product', $id_in);
+		}
+		if($add_log){
+				$this->load->view('book/book-product',$data);
+		}
+		else{
+			redirect('/');
+		}
 	}
 
 	public function add_rate_book()
