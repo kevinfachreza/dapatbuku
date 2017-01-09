@@ -37,24 +37,38 @@ class Profile extends CI_Controller {
 		#get data profile tujuan
 		$data['userdata'] = $this->M_Profile->get_data_username($username);
 		$id = $data['userdata'][0]->id_u;
-		
+
+		//ADD TO LOG_VISIT
+		if($this->session->logged_in == 1){
+			$temp = $this->session->userdata('userdata');
+			$id_user = $temp[0]->id_u;
+
+			$add_log = $this->M_auth->add_log_view($id_user, 'profile', $id);
+		}
+		else{
+			$ip = $this->input->ip_address();
+
+			$add_log = $this->M_auth->add_log_view($ip, 'profile', $id);
+		}
+
+
 		#get book profile
 		if($this->input->get('page')!=null)
 		{
 			$page = $this->input->get('page');
 		}
 		else $page=1;
-		
+
 		$limit=24;
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
-		
+
 		$data['books'] = $this->M_Profile->get_books_user($id,$limit,$offset);
 		$count_books = $this->M_Profile->count_all_books_user($id);
 		$data['page_total'] = ceil($count_books/$limit);
-		
+
 		$this->load->view('profile/index',$data);
-		
+
 	}
 
 	public function set_in()
