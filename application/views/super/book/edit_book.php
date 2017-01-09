@@ -35,6 +35,10 @@
 					<span class="input-group-addon" id="sizing-addon2">Jumlah Halaman</span>
 					<input type="number" name="halaman" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2" value="<?php echo $book[0]->pages ?>">
 				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Tags</span>
+					<input type="text" name="tags" class="form-control" placeholder="Tags" aria-describedby="sizing-addon2" value="<?php echo $book[0]->tags ?>">
+				</div>
 					<img src="<?php echo base_url()?><?php echo $book[0]->photo_cover_b ?>" style="margin-bottom:20px; max-height:100px;">
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Cover</span>

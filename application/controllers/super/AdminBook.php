@@ -75,6 +75,7 @@ class AdminBook extends CI_Controller {
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
 		$pengarang = $this->db->escape_str($this->input->post('pengarang'));
 		$publisher = $this->db->escape_str($this->input->post('publisher'));
+		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
 		$halaman = $this->input->post('halaman');
 		$cetakan_pertama = $this->input->post('cetakan_pertama');
@@ -113,7 +114,8 @@ class AdminBook extends CI_Controller {
 		'cetakan_pertama' => $cetakan_pertama,
 		'bahasa' => $bahasa,
 		'cover' => $cover,
-		'sinopsis' => $sinopsis
+		'sinopsis' => $sinopsis,
+		'tags' => $tags
 		);
 		
 		$report = $this->M_AdminBook-> addBook($data);
@@ -162,24 +164,40 @@ class AdminBook extends CI_Controller {
 		#get data info
 		$data['categories'] = $this->getCategories();
 		$data['book'] = $this->M_AdminBook->getBook($id);
+		$data['selected_categories'] = $this->M_AdminBook->getSelectedCategories($id);
+
 		
 		#Set Checboxes Check
 		$total_cat = count($data['categories']);
-		$total_cat2 = count($data['book']);
+		$total_cat2 = count($data['selected_categories']);
 		$j=0;
 		
-		for($i=0;$i<$total_cat;$i++){
-			
-			if($data['categories'][$i]->id_b_category == $data['book'][$j]->cat_id){
-				$data['categories'][$i]->checked =  'checked';
-				if($j < $total_cat2-1) $j++;
-			}
-			else{
-				
-				$data['categories'][$i]->checked =  '';
+		if(!empty($data['selected_categories']))
+		{
+			for($i=0;$i<$total_cat;$i++){
+					
+				#echo $data['selected_categories'][$j]->cat_id;
+				#echo $data['categories'][$i]->id_b_category;
+				#echo $j.'<br>';
+
+				if($data['categories'][$i]->id_b_category == $data['selected_categories'][$j]->cat_id){
+					#print_r($data['selected_categories']);
+					#echo '<br><br>';
+					$data['categories'][$i]->checked =  'checked';
+					if($j < $total_cat2-1) $j++;
+				}
+				else{
+					$data['categories'][$i]->checked =  '';
+				}
 			}
 		}
-		
+		else
+		{
+			for($i=0;$i<$total_cat;$i++){
+					$data['categories'][$i]->checked =  '';
+			}
+		}
+		#print_r($data['categories']);
 		#load view		
 		$this->load->view('super/book/edit_book',$data);
 	}
@@ -189,6 +207,7 @@ class AdminBook extends CI_Controller {
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
 		$pengarang = $this->db->escape_str($this->input->post('pengarang'));
 		$publisher = $this->db->escape_str($this->input->post('publisher'));
+		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
 		$halaman = $this->input->post('halaman');
 		$cetakan_pertama = $this->input->post('cetakan_pertama');
@@ -238,7 +257,8 @@ class AdminBook extends CI_Controller {
 		'cetakan_pertama' => $cetakan_pertama,
 		'bahasa' => $bahasa,
 		'cover' => $cover,
-		'sinopsis' => $sinopsis
+		'sinopsis' => $sinopsis,
+		'tags' => $tags
 		);
 		
 		$report = $this->M_AdminBook-> editBook($id,$data);
