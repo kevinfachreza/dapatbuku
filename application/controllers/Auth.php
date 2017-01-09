@@ -45,9 +45,8 @@ class Auth extends CI_Controller {
       redirect(base_url().'profile/set_in');
     }
     else{
-		echo 'salah';
-    echo $pass;
-    echo $user_in;
+		  $this->session->set_flashdata('warning', 'Email atau password salah');
+      redirect('auth/login');
     }
   }
 
@@ -80,18 +79,27 @@ class Auth extends CI_Controller {
     if($this->form_validation->run() == FALSE){
       //redirect('Welcome');
     }
+    $check = $this->M_auth->check_register($em, $name);
 
-    else{
-      $result = $this->M_auth->register($em, $name, $date, $pass);
-      if($result){
-        mkdir("assets/img/user/".$result);
-        mkdir("assets/img/user/".$result."/books");
-        mkdir("assets/img/user/".$result."/profile-pict");
-        redirect('Welcome');
-      }
-      else {
-        echo "SALAH";
-      }
+    if($check == '2'){
+      $this->session->set_flashdata('warning', 'Maaf Email sudah terdaftar');
+      redirect('Auth/register');
+    }
+    else if($check == '3'){
+      $this->session->set_flashdata('warning', 'Maaf Username sudah terdaftar, gunakan username yang lain');
+      redirect('Auth/register');
+    }
+    else {
+        $result = $this->M_auth->register($em, $name, $date, $pass);
+        if($result){
+          mkdir("assets/img/user/".$result);
+          mkdir("assets/img/user/".$result."/books");
+          mkdir("assets/img/user/".$result."/profile-pict");
+          redirect('Welcome');
+        }
+        else{
+            $this->session->set_flashdata('warning', 'Registrasi gagal, silahkan coba lagi');
+        }
     }
   }
 
@@ -131,7 +139,7 @@ class Auth extends CI_Controller {
     // Message in email
     $this->email->message($message);
     // It returns boolean TRUE or FALSE based on success or failure
-    if($this->email->send())  
+    if($this->email->send())
     {
       redirect('contactus');
     }

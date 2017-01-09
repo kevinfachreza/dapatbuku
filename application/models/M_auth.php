@@ -19,6 +19,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
     }
 
+    public function check_register($em_in, $name_in){
+      $query1 = $this->db->query("SELECT * FROM user WHERE email_u ='".$em_in."';");
+
+      if($query1->result() != NULL){
+        return 2;
+      }
+      else{
+        $query2 = $this->db->query("SELECT * FROM user WHERE username_u ='".$name_in."';");
+        if($query2->result() != NULL){
+          return 3;
+        }
+        else{
+          return false;
+        }
+      }
+    }
+
     public function login($user_check, $pass_check){
 
 		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."'");
