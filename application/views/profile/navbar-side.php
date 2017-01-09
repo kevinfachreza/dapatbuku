@@ -1,5 +1,5 @@
 
-			<div class="col-md-2  text-center">
+			<div class="custom-container text-center">
 				<ul class="nav nav-pills nav-stacked">
 				  <li role="presentation"><a href="<?php echo base_url()?>accounts/settings">Edit Profile</a></li>
 				  <li role="presentation" ><a href="<?php echo base_url()?>accounts/settings/change-password">Change Password</a></li>

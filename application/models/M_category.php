@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			SELECT * from book b, book_category bc, book_category_connector bcc
 			WHERE bcc.book_id = b.id_b and
 			bcc.cat_id = bc.id_b_category and
-			bc.id_b_category = '".$category."'
+			bc.slug_category = '".$category."'
 			LIMIT ".$per_page."
 			OFFSET ".$start.";
 		"
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			SELECT count(*) as count from book b, book_category bc, book_category_connector bcc
 			WHERE bcc.book_id = b.id_b and
 			bcc.cat_id = bc.id_b_category and
-			bc.id_b_category = '".$category."'
+			bc.slug_category = '".$category."'
 		"
 		);
 		$temp = $query->result();
@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function get_category($category){
 		$query = $this->db->query("
 			SELECT * from book_category WHERE
-			id_b_category = '".$category."'
+			slug_category = '".$category."'
 		"
 		);
 		$temp = $query->result();

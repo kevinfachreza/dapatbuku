@@ -16,24 +16,22 @@
 
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
-		<div class="container" id="category-header">
-			<div class="jumbotron jumbotron-cat">
-			  <h1>Tidak Menemukan Buku yang Anda Cari?</h1>
-			</div>
-		</div>
-
-		<div class="container"  id="category-container">
-			<div class="col-md-12">
-				<div class="col-md-12 header-text-2">Request buku yang anda inginkan disini</div>
-				<div class="col-md-12 text-center"><hr></div>
-
+	<div class="row" style="margin:30px 0px;">
+		<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
+			<div class="custom-container"  id="category-container">
 				<div class="row">
-          <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
-            <input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
-						<input name="category" type="text" class="form-control" placeholder="Genre Buku" style="margin-bottom:0.5em" autofocus>
-            <input name="author" type="text" class="form-control" placeholder="Pengarang" style="margin-bottom:0.5em" autofocus>
-            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
-          </form>
+				<div class="col-md-12">
+					<div class="col-md-12 header-text-2">Tidak Menemukan Buku yang Kamu Cari?</div>
+					<div class="col-md-12 text-center"><hr></div>
+					<div class="row">
+			          <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
+			            <input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
+									<input name="category" type="text" class="form-control" placeholder="Genre Buku" style="margin-bottom:0.5em" autofocus>
+			            <input name="author" type="text" class="form-control" placeholder="Pengarang" style="margin-bottom:0.5em" autofocus>
+			            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
+			          </form>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>

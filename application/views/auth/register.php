@@ -14,7 +14,7 @@
 	<?php echo $navbar; ?>
 		
 	<div class="col-md-12 main-body-wrapper">
-		<div class="col-md-6 col-md-offset-3 container panel-form text-center">
+		<div class="col-md-6 col-md-offset-3 custom-container container panel-form text-center">
 			<h2> REGISTER </h2>
 			<hr>
 			<form action="<?php echo base_url();?>auth/do_register" method="POST">

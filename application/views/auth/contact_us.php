@@ -13,19 +13,14 @@
 
 <body>
 	<?php echo $navbar; ?>
-
-
-	<!--/////////////////////BOOK///////////////////////////////// -->
-		<div class="container custom-container"" id="category-header">
-			<div class="jumbotron jumbotron-cat">
-			  <h1>Contact Us</h1>
-			</div>
-		</div>
-
-		<div class="container custom-container"  id="category-container">
-			<div class="col-md-12">
-				<div class="col-md-12 header-text-2">Kirimkan pesan, kritik, ataupun saran</div>
-				<div class="col-md-12 text-center"><hr></div>
+	<div class="row">
+	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
+		<div class="custom-container"  id="category-container">
+			<div class="row">
+				<div class="header text-center">
+			  	<h1>Contact Us</h1>
+			  	<hr>
+			  	</div>
 
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
@@ -39,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 

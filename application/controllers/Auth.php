@@ -14,6 +14,7 @@ class Auth extends CI_Controller {
     $this->load->helper(array('form', 'url'));
     $this->load->model('M_auth');
     $this->load->model('M_book');
+    $this->load->library('bcrypt');
   }
 
   public function login()
@@ -31,12 +32,12 @@ class Auth extends CI_Controller {
 
     $user_in = $this->input->post('log-user_in');
     $pass = $this->input->post('log-pass');
-
+    #$pass = $this->bcrypt->hash_password($pass);
     $result = $this->M_auth->login($user_in, $pass);
 
 
     if($result){
-	$id = $result[0]->id_u;
+	     $id = $result[0]->id_u;
       $newdata = array(
         'id_u' => $id
       );
@@ -45,6 +46,8 @@ class Auth extends CI_Controller {
     }
     else{
 		echo 'salah';
+    echo $pass;
+    echo $user_in;
     }
   }
 
@@ -71,6 +74,8 @@ class Auth extends CI_Controller {
     $name = $this->input->post('reg-name');
     $date = $this->input->post('reg-date');
     $pass = $this->input->post('reg-pass');
+
+    $pass = $this->bcrypt->hash_password($pass);
 
     if($this->form_validation->run() == FALSE){
       //redirect('Welcome');

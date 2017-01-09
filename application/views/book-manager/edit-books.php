@@ -18,7 +18,7 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 
-<div class="form-container container" id="profile-header">
+<div class="form-container custom-container container" id="profile-header">
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Ubah Iklan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_edit?title='.$book_data[0]['slug_title_u_b']); ?>	<div class="row form-book-wrapper">

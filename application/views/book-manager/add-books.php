@@ -18,7 +18,7 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 
-<div class="form-container container" id="profile-header">
+<div class="form-container custom-container container" id="profile-header">
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Tambahkan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_add'); ?>
@@ -90,9 +90,10 @@
 						</label>
 						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" required readonly>
 					</div>
+					<div class="input-info">Gunakan gambar pertama untuk gambar utama. Bisa Lebih dari 1 Gambar</div>
 				</div>
 			</div>
-					<div class="input-info">Gunakan gambar pertama untuk gambar utama. Bisa Lebih dari 1 Gambar</div>
+
 			<div class="col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-1">
 			<button type="submit" style="width:100%" class="btn btn-md btn-primary" value="mybooks" name="filesubmit">Submit</button>
 			</div>

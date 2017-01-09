@@ -1,4 +1,4 @@
-<?php
+	<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category extends CI_Controller {
@@ -15,13 +15,13 @@ class Category extends CI_Controller {
 		$this->load->model('M_category');
 	}
 
-	public function c($category = 'blank')
+	public function index($category = 'blank')
 	{
 		if($this->input->get('page')!=null)
 		{
 			$page = $this->input->get('page');
 		}
-		else $page=1;
+		else $page=1;	
 		if($category=='blank')
 		{
 			redirect('/');

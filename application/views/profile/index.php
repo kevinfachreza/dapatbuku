@@ -18,7 +18,7 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
 <?php foreach ($userdata as $user ) { ?>
-<div class="container" id="profile-header">
+<div class="custom-container container" id="profile-header">
 	<div class="col-md-12 text-center">
 		<img src="<?php echo base_url()?><?php echo $user->photo_profile_u ?>" class="img-circle" alt="Cinque Terre" width="150" height="150">
 		<div class="profile-name">
@@ -44,7 +44,7 @@
 
 <?php } ?>
 
-	<div class="container"  id="book-container">
+	<div class="custom-container container"  id="book-container">
 			<div class="col-md-12">
 
 				<div class="row">

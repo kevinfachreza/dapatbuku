@@ -26,6 +26,8 @@ class Welcome extends CI_Controller {
 		$data['footer']			 = $this->load->view('parts/footer','',true);
 		$data['banner']			 = $this->M_Banner->getBanner();
 		
+		$ip = $this->input->ip_address();
+
 		$this->load->view('home/index',$data);
 	}
 

@@ -18,8 +18,8 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 		<div class="container" id="category-header">
 			<div class="jumbotron jumbotron-cat">
-			  <h1><?php echo $category_now[0]->name_b_category ?></h1>
-			  <!--<p><?php echo $category_now[0]->desc_b_category ?></p>-->
+			  <h1><?php echo $category_now[0]->name_b_category?></h1>
+			  <p><?php echo $category_now[0]->desc_b_category ?></p>
 			</div>
 		</div>
 
@@ -44,17 +44,19 @@
 						<nav aria-label="Page navigation">
 							<div class="text-center">
 							  <ul class="pagination">
-								<li><a href="#">First</a></li>
+								<li><a href="<?php echo base_url()?>category/<?php echo $category_now[0]->slug_category?>?
+											page=1">First</a></li>
 									<?php for($i=1;$i<=$page_total;$i++){
 										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
 									?>
 										<li <?php if($i == $page_now) echo 'class="active"' ?>  >
-											<a href="<?php echo base_url()?>super/adminbook/bookmanager?
+											<a href="<?php echo base_url()?>category/<?php echo $category_now[0]->slug_category?>?
 											page=<?php echo $i?>
 											">
 											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
 									<?php }} ?>
-									<li><a href="#">Last</a></li>
+									<li><a href="<?php echo base_url()?>category/<?php echo $category_now[0]->slug_category?>?
+											page=<?php echo $page_total?>">Last</a></li>
 							  </ul>
 							</div>
 						</nav>

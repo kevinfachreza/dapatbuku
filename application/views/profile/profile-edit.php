@@ -21,8 +21,10 @@
 <div class="container" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">
-			<?php echo $navbar2; ?>
-			<div class="col-md-10 form-container">
+			<div class="col-md-2">
+				<?php echo $navbar2; ?>
+			</div>
+			<div class="col-md-10 custom-container form-container">
 
 				<div class="col-md-6 col-md-offset-3">
 					<div class="form-profile">

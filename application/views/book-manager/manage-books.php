@@ -20,8 +20,10 @@
 <div class="container" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">
-			<?php echo $navbar2?>
-			<div class="col-md-10">
+			<div class="col-md-2">
+				<?php echo $navbar2; ?>
+			</div>
+			<div class="custom-container col-md-10">
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
 					<?php

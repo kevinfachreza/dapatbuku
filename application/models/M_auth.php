@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function register($em_in, $name_in, $date_in, $pass_in){
       $query = $this->db->query("INSERT INTO user(email_u, username_u,
-          date_of_birth_u, password_u) VALUES('".$em_in."', '".$name_in."', '".$date_in."', SHA2('".$pass_in."', 256))");
+          date_of_birth_u, password_u, created_at) VALUES('".$em_in."', '".$name_in."', '".$date_in."', '".$pass_in."', CURRENT_TIMESTAMP)");
       if($query){
         $result = $this->db->insert_id();
         return $result;
@@ -21,10 +21,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function login($user_check, $pass_check){
 
-		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."' and password_u = SHA2('".$pass_check."',256)");
+		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."'");
 
       if($query -> num_rows() == 1){
-        return $query->result();
+
+        $result = $query->result();
+        $pass = $result[0]->password_u;
+        $id = $result[0]->id_u;
+        if ($this->bcrypt->check_password($pass_check, $pass )) {
+          $query = $this->db->query("UPDATE  user SET last_login = CURRENT_TIMESTAMP where id_u = ".$id."");
+          if ($this->db->affected_rows() >= 0) {
+            return $result;
+            } else {
+                return false; // your code
+            }
+        }
+        else {
+        return false;
+        }
       }
       else {
         return false;
