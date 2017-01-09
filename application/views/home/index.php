@@ -13,6 +13,31 @@
 <body>
 	<?php echo $navbar; ?>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#regisModal").modal('show');
+    });
+</script>
+<?php if($register == 1) {?>
+<div id="regisModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Registrasi Selesai</h4>
+            </div>
+            <div class="modal-body">
+                <p>Silahkan login untuk mulai menggunakan dapatbuku</p>
+								<form action="<?php echo base_url();?>Auth/do_login" method="POST">
+									<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
+									<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+									<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color btn-primary">LOGIN</button>
+								</form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
 
 	<!--/////////////////////HEADER///////////////////////////////// -->
 
@@ -29,7 +54,7 @@
       <div class="carousel-inner" role="listbox">
      	<?php $i = 1;?>
       	<?php foreach($banner as $data){?>
-	      <?php 
+	      <?php
 	      if($i==1) {$numbering = 'first';$alt='First';$active='active';}
 	      else if($i==2) {$numbering = 'second';$alt='Second';}
 	      else if($i==3) {$numbering = 'third';$alt='Third';}

@@ -12,6 +12,7 @@ class Profile extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Profile');
+		$this->load->model('M_auth');
 	}
 
 	public function index($username='blank')

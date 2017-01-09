@@ -139,7 +139,7 @@
 				<div class="col-md-12 header-text-2">Tulis Ulasanmu Sendiri</div>
 				<div class="col-md-12 text-center"><hr></div>
 				<div class="col-md-8">
-					<?php if($rating_flag==0){?>
+					<?php if( $my_rating == null){?>
 					<label for="comment">
 						<div class="rating">
 						Rate This Book &nbsp;&nbsp;
@@ -153,11 +153,11 @@
 
 					<?php } else {?>
 						<div class="review-rating review-item" id="user_rating_star">
-							<?php for($i=0;$i<$rating_data[0]['rating'];$i++){?>
+							<?php for($i=0;$i<$my_rating[0]->rating;$i++){?>
 							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
 							<?php } ?>
 
-							<?php for($i=0;$i<5-$rating_data[0]['rating'];$i++){?>
+							<?php for($i=0;$i<5-$my_rating[0]->rating;$i++){?>
 							<span class="glyphicon glyphicon-star glyphicon-large" style="color:#777;" aria-hidden="true"></span>
 							<?php } ?>
 
@@ -189,11 +189,11 @@
 						<?php echo date('j-F-Y', strtotime($my_review[0]->date_b_review) );?></div>
 						<div class="review-title review-item"><?php echo $my_review[0]->title_b_review; ?></div>
 								<div class="review-rating review-item" id="user_rating_star">
-									<?php for($i=0;$i<$my_review[0]->rating;$i++){?>
+									<?php for($i=0;$i<$my_rating[0]->rating;$i++){?>
 									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#E69515;" aria-hidden="true"></span>
 									<?php } ?>
 
-									<?php for($i=0;$i<5-$my_review[0]->rating;$i++){?>
+									<?php for($i=0;$i<5-$my_rating[0]->rating;$i++){?>
 									<span class="glyphicon glyphicon-star glyphicon-large" style="color:#777;" aria-hidden="true"></span>
 									<?php } ?>
 

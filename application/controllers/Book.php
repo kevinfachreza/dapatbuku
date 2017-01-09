@@ -36,7 +36,9 @@ class Book extends CI_Controller {
 		$data['book_rating'] = $this->M_book->get_rate_avg($id_in);
 		$data['writer_data'] = $this->M_book->get_writer_short($id_in);
 		$data['review_data'] = $this->M_book->get_review($id_in);
+
 		$data['my_review'] = $this->M_book->get_user_review($id_in, $id_user);
+		$data['my_rating'] = $this->M_book->get_user_rating($id_in, $id_user);
 		$data['book_sale'] = $this->M_book->get_book_sale_in($id_in);
 
 		if($this->session->logged_in == 0){

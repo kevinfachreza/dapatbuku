@@ -40,6 +40,12 @@ class Welcome extends CI_Controller {
 		}
 
 		if($add_log){
+			if($this->session->flashdata('register') != null){
+				$data['register'] = 1;
+			}
+			else{
+				$data['register'] = 0;
+			}
 				$this->load->view('home/index',$data);
 		}
 		else{

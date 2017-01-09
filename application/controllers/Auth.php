@@ -95,6 +95,7 @@ class Auth extends CI_Controller {
           mkdir("assets/img/user/".$result);
           mkdir("assets/img/user/".$result."/books");
           mkdir("assets/img/user/".$result."/profile-pict");
+          $this->session->set_flashdata('register', 'done');
           redirect('Welcome');
         }
         else{

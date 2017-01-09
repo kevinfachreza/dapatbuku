@@ -307,7 +307,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function get_user_review($id_in, $user)
     {
-      $query = $this->db->query("select ba.*, be.* from book_rating ba, book_review be where ba.id_u = '".$user."' and ba.id_b = '".$id_in."' and be.id_u = '".$user."' and be.id_b = '".$id_in."';");
+      $query = $this->db->query("select * from book_review where id_u = '".$user."' and id_b = '".$id_in."';");
+
+      return $query->result();
+    }
+
+    public function get_user_rating($id_in, $user)
+    {
+      $query = $this->db->query("SELECT * FROM book_rating WHERE id_b = '".$id_in."' and id_u = '".$user."';");
 
       return $query->result();
     }
