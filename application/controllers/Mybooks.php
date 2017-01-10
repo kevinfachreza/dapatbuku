@@ -162,6 +162,9 @@ class Mybooks extends CI_Controller {
 
 	public function add()
 	{
+    if($this->session->flashdata('warning') != null){
+      $this->session->set_flashdata('kosong', 'Maaf, Anda harus menjual, menyewakan, atau barter');
+    }
 		$user_data = $this->session->userdata('userdata');
 		$user = $user_data[0];
 		$id = $user->id_u;
@@ -194,74 +197,80 @@ class Mybooks extends CI_Controller {
 			$slug1 = str_replace(' ', '-', $title);
       $slug1 = preg_replace('/[^A-Za-z0-9-]+/','-',$slug1);
 
-			$tmp				=	$this->session->userdata['userdata'];
-			$user_id		= $tmp[0];
-      $slug2 = '-';
-			$hash = hash('sha256', 'user_id');
-			$hash = substr($slug2, 0, 5);
-      $slug2.=$hash;
+      if($price_sell == null && $rent_sell == null && $barter == null){
+        $this->session->set_flashdata('warning', 'Maaf, Anda harus menjual, menyewakan, atau barter');
+        redirect('mybooks/add');
+      }
+      else{
+  			$tmp				=	$this->session->userdata['userdata'];
+  			$user_id		= $tmp[0];
+        $slug2 = '-';
+  			$hash = hash('sha256', 'user_id');
+  			$hash = substr($slug2, 0, 5);
+        $slug2.=$hash;
 
-			$slug_final = $slug1.$slug2;
-			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
-																					 $barter, $kondisi, $berat, $stock, $deskripsi, $user_id->id_u, $slug_final);
+  			$slug_final = $slug1.$slug2;
+  			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
+  																					 $barter, $kondisi, $berat, $stock, $deskripsi, $user_id->id_u, $slug_final);
 
-      if($result != null)
-			{
+        if($result != null)
+  			{
 
-				$id_last = $result[0];
-        $slug_final = $result[1];
-			 	//BUAT FOLDER DAN SET FOLDER PATH
-				mkdir("assets/img/user/".$user_id->id_u."/books/".$slug_final);
-				$path = "assets/img/user/".$user_id->id_u."/books/".$slug_final;
+  				$id_last = $result[0];
+          $slug_final = $result[1];
+  			 	//BUAT FOLDER DAN SET FOLDER PATH
+  				mkdir("assets/img/user/".$user_id->id_u."/books/".$slug_final);
+  				$path = "assets/img/user/".$user_id->id_u."/books/".$slug_final;
 
-				if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
-            $filesCount = count($_FILES['userfiles']['name']);			//HITUNG BANYAK FILE
-	          for($i = 0; $i <= $filesCount; $i++){
-								//DECLARE TIAP FILE
-                $_FILES['userfile']['name'] = $_FILES['userfiles']['name'][$i];
-                $_FILES['userfile']['type'] = $_FILES['userfiles']['type'][$i];
-                $_FILES['userfile']['tmp_name'] = $_FILES['userfiles']['tmp_name'][$i];
-                $_FILES['userfile']['error'] = $_FILES['userfiles']['error'][$i];
-                $_FILES['userfile']['size'] = $_FILES['userfiles']['size'][$i];
+  				if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
+              $filesCount = count($_FILES['userfiles']['name']);			//HITUNG BANYAK FILE
+  	          for($i = 0; $i <= $filesCount; $i++){
+  								//DECLARE TIAP FILE
+                  $_FILES['userfile']['name'] = $_FILES['userfiles']['name'][$i];
+                  $_FILES['userfile']['type'] = $_FILES['userfiles']['type'][$i];
+                  $_FILES['userfile']['tmp_name'] = $_FILES['userfiles']['tmp_name'][$i];
+                  $_FILES['userfile']['error'] = $_FILES['userfiles']['error'][$i];
+                  $_FILES['userfile']['size'] = $_FILES['userfiles']['size'][$i];
 
-								//RENAME NAMA FILE
-								$filename = $_FILES['userfile']['name'];
-								$file_ext = substr($filename, strrpos($filename, '.', -1));
+  								//RENAME NAMA FILE
+  								$filename = $_FILES['userfile']['name'];
+  								$file_ext = substr($filename, strrpos($filename, '.', -1));
 
-                //SET NAMA FILE DAN UPLOAD PATH
-                $config['upload_path'] = $path;
-                $config['allowed_types'] = 'gif|jpg|png';
-								$config['file_name'] = $i.$file_ext;
+                  //SET NAMA FILE DAN UPLOAD PATH
+                  $config['upload_path'] = $path;
+                  $config['allowed_types'] = 'gif|jpg|png';
+  								$config['file_name'] = $i.$file_ext;
 
-								//SET CONFIG
-                $this->load->library('upload', $config);
-                $this->upload->initialize($config);
-								$filedatabase = $path."/".$i.$file_ext;		//PATH TO SAVE IN THE DATABASE
-                if($this->upload->do_upload('userfile')){
-                  $fileData = $this->upload->data();
-                  $uploadData[$i]['file_name'] = $fileData['file_name'];
-                  $uploadData[$i]['created'] = date("Y-m-d H:i:s");
-                  $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
+  								//SET CONFIG
+                  $this->load->library('upload', $config);
+                  $this->upload->initialize($config);
+  								$filedatabase = $path."/".$i.$file_ext;		//PATH TO SAVE IN THE DATABASE
+                  if($this->upload->do_upload('userfile')){
+                    $fileData = $this->upload->data();
+                    $uploadData[$i]['file_name'] = $fileData['file_name'];
+                    $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+                    $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
 
-									$result = $this->M_book->insert_user_book_img($id_last, $filedatabase);
-									if(!$result)
-									{
-										echo $result;
-										break;
-									}
-									if($i == 0)
-									{
-										$result = $this->M_book->set_main_img($id_last, $filedatabase);
-										if(!$result)
-										{
-											return FALSE;
-										}
-									}
-	        			}
-							}
-					}
-				}
-				redirect('mybooks/manager');
+  									$result = $this->M_book->insert_user_book_img($id_last, $filedatabase);
+  									if(!$result)
+  									{
+  										echo $result;
+  										break;
+  									}
+  									if($i == 0)
+  									{
+  										$result = $this->M_book->set_main_img($id_last, $filedatabase);
+  										if(!$result)
+  										{
+  											return FALSE;
+  										}
+  									}
+  	        			}
+  							}
+  					}
+  				}
+  				redirect('mybooks/manager');
+      }
 		}
 
 	public function delete()

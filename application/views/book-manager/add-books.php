@@ -23,6 +23,7 @@
 		<div class="header-text-2 text-center"> Tambahkan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_add'); ?>
 			<div class="row form-book-wrapper">
+				<p style="color:rgb(230, 0, 0)" class="text-center"><?php echo $this->session->flashdata('kosong'); ?></p>
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="judul_in" type="text" class="form-control" placeholder="Judul" required  autofocus>
