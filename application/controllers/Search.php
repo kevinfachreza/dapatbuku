@@ -48,8 +48,11 @@ class Search extends CI_Controller {
 			$data['key_before'] = $key_search;
 			$data['provincies_pass'] = $provincies;
 
-			$money = $data['product_result'][0]['price_sell_u_b'];
-			$data['product_result'][0]['price_sell_u_b'] = 'Rp ' . number_format($money, 0);
+			if(count($data['product_result'])>0)
+			{
+				$money = $data['product_result'][0]['price_sell_u_b'];
+				$data['product_result'][0]['price_sell_u_b'] = 'Rp ' . number_format($money, 0);
+			}
 		}
 
 		

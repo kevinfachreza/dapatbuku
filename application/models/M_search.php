@@ -71,6 +71,7 @@
     public function search_book($key)
     {
       $query = "SELECT * FROM (book b join book_category_connector bcc ON b.id_b = bcc.book_id) WHERE b.title_b LIKE '".$key[0]."' OR writer LIKE '".$key[0]."'";
+      
       $got_value = 0;
 
       //CATEGORY CHECK
