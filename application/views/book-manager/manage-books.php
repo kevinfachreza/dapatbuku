@@ -27,20 +27,25 @@
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
 					<?php
-					foreach($all_book as $key) { ?>
+					foreach($all_book as $key) { if($key['active'] != 2){?>
 						<div class="col-md-6 manage-books-item">
 							<div class="row books-wrapper">
 								<div class="col-md-12 info-books-container">
 									<div class="col-md-2 padding-0">
 										<div class="book-image">
-											<a href="#"><img src="<?php echo base_url().$key['main_image_u_b']; ?>" class="img-responsive-2"></a>
+											<img src="<?php echo base_url().$key['main_image_u_b']; ?>" class="img-responsive-2">
 										</div>
 									</div>
 									<div class="col-md-10">
 										<div class="book-title"> <a href="#"><?php echo $key['title_u_b']; ?></a></div>
-										<div class="book-writer"> <?php echo $key['writer']; ?> </div>
 										<div class="book-price"> <?php echo $key['price_sell_u_b']; ?> </div>
 										<div class="book-date"> Last Edit : 2 Oktober 2016 </div>
+										<?php if($key['active'] == 1){ ?>
+											<div class="active-book">Tervalidasi</div>
+											<?php }
+											else if($key['active'] == 0){ ?>
+												<div class="inactive-book">Belum Divalidasi</div>
+												<?php } ?>
 									</div>
 								</div>
 								<div class="col-md-12" style="">
@@ -66,7 +71,7 @@
 								</div><!-- /.modal-content -->
 							</div><!-- /.modal-dialog -->
 						</div><!-- /.modal -->
-					<?php } ?>
+					<?php } } ?>
 					</div>
 
 					<div class="col-md-12">

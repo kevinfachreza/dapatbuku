@@ -93,3 +93,15 @@
 {
 	margin-bottom:10px;
 }
+
+.active-book
+{
+	color:#5cf442;
+	font-weight: bold;
+}
+
+.inactive-book
+{
+	color:#f44245;
+	font-weight: bold;
+}

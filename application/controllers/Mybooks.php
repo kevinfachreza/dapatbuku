@@ -49,6 +49,7 @@ class Mybooks extends CI_Controller {
 		$data['page_total'] = ceil($count_books/$limit);
 		$data['all_book'] = $this->M_book->get_my_book($data['user']->id_u, $limit, $offset);
 
+
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
@@ -175,22 +176,28 @@ class Mybooks extends CI_Controller {
 			$berat			= $this->input->post('berat_in');
 			$stock			= $this->input->post('stok_in');
 			$deskripsi	= $this->input->post('deskripsi_in');
-			$slug1 = str_replace(' ', '', $title);
+			$slug1 = str_replace(' ', '-', $title);
+      $slug1 = preg_replace('/[^A-Za-z0-9-]+/','-',$slug1);
 
 			$tmp				=	$this->session->userdata['userdata'];
 			$user_id		= $tmp[0];
-			$slug2 = hash('sha256', 'user_id');
-			$slug2 = substr($slug2, 0, 5);
+      $slug2 = '-';
+			$hash = hash('sha256', 'user_id');
+			$hash = substr($slug2, 0, 5);
+      $slug2.=$hash;
 
 			$slug_final = $slug1.$slug2;
 			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
 																					 $barter, $kondisi, $berat, $stock, $deskripsi, $user_id->id_u, $slug_final);
-			if($result != FALSE)
+
+      if($result != null)
 			{
-				$id_last = $result;
+
+				$id_last = $result[0];
+        $slug_final = $result[1];
 			 	//BUAT FOLDER DAN SET FOLDER PATH
-				mkdir("assets/img/user/".$user_id->id_u."/books/".$id_last);
-				$path = "assets/img/user/".$user_id->id_u."/books/".$id_last;
+				mkdir("assets/img/user/".$user_id->id_u."/books/".$slug_final);
+				$path = "assets/img/user/".$user_id->id_u."/books/".$slug_final;
 
 				if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
             $filesCount = count($_FILES['userfiles']['name']);			//HITUNG BANYAK FILE
@@ -204,9 +211,9 @@ class Mybooks extends CI_Controller {
 
 								//RENAME NAMA FILE
 								$filename = $_FILES['userfile']['name'];
-								$file_ext = substr($filename, stripos($filename, '.'));
+								$file_ext = substr($filename, strrpos($filename, '.', -1));
 
-								//SET NAMA FILE DAN UPLOAD PATH
+                //SET NAMA FILE DAN UPLOAD PATH
                 $config['upload_path'] = $path;
                 $config['allowed_types'] = 'gif|jpg|png';
 								$config['file_name'] = $i.$file_ext;
@@ -253,14 +260,14 @@ class Mybooks extends CI_Controller {
 
 		}
 		else {
-			//DELETE FOLDER
-			$tmp				=	$this->session->userdata['userdata'];
-			$user_id		= $tmp[0];
-
-			$path = "assets/img/user/".$user_id->id_u."/books/".$id_in;
-
-			array_map('unlink', glob("$path/*.*"));
-			rmdir($path);
+			// //DELETE FOLDER
+			// $tmp				=	$this->session->userdata['userdata'];
+			// $user_id		= $tmp[0];
+      //
+			// $path = "assets/img/user/".$user_id->id_u."/books/".$id_in;
+      //
+			// array_map('unlink', glob("$path/*.*"));
+			// rmdir($path);
 
 			$data['header']=$this->load->view('parts/header','',true);
 			$data['navbar']=$this->load->view('parts/navbar','',true);
