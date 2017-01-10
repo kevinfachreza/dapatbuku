@@ -23,9 +23,9 @@
 			</div>
 		</div>
 
-		<div class="container"  id="category-container">
+		<div class="custom-container container"  id="category-container">
 			<div class="col-md-12">
-				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Bisnis</span></div>
+				<div class="col-md-12 header-text-2">Buku Kategori <span class="search-cat"><?php echo $category_now[0]->name_b_category?></span></div>
 				<div class="col-md-12 text-center"><hr></div>
 
 				<div class="row">

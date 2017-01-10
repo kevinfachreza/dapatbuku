@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 03:02 AM
+-- Generation Time: Jan 10, 2017 at 05:20 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -81,10 +82,6 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `banner`:
---
-
---
 -- Dumping data for table `banner`
 --
 
@@ -124,17 +121,13 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `book`:
---
-
---
 -- Dumping data for table `book`
 --
 
 INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `publisher`, `pages`, `date_published`, `language_b`, `thumb_cover_b`, `photo_cover_b`, `cover_type_b`, `description_b`, `total_reviews_b`, `total_ratings`, `best_seller_flag`, `best_seller_rank`, `tags`, `views_b`) VALUES
 (1, 'Quantum Ikhlas', 'quantum-ikhlas', '9786020267050', 'Erbe Sentanu', 'Elex Media Komputindo', 290, '2007-10-01', 'Indonesia', NULL, '', '', '', 0, 0, 1, 1, 'kuantum, ikhlas, agama, islam, jujur', 0),
 (2, 'Kenali Ragam Kepribafian Yang disukai dan Dibenci', 'kenali-ragam-kepribafian-yang-disukai-dan-dibenci', '9786029789584 ', 'Naylil Moena', 'DIVA', 0, '2011-11-01', 'Indonesia', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(3, 'Terapi Kejujuran', 'terapi-kejujuran', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(3, 'Terapi Kejujuran', 'terapi-kejujuran', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 4),
 (4, 'Jurus Jitu Mengelola Amarah', 'jurus-jitu-mengelola-amarah', 'Tidak Tersedia', 'Harrista Adiati', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (5, 'Analisis Tulisan Tangan', 'analisis-tulisan-tangan', 'Tidak Tersedia', 'Bayu Ludvianto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (6, 'Sepatu Dahlan', 'sepatu-dahlan', 'Tidak Tersedia', 'Khrisna Pabichara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
@@ -162,7 +155,7 @@ INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `p
 (28, 'Fat Bulous', 'fat-bulous', 'Tidak Tersedia', 'Fidriwida', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 9, '', 0),
 (29, 'Kitab Anti Bangkrut', 'kitab-anti-bangkrut', 'Tidak Tersedia', 'Jaya Setiabudi', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 8, '', 0),
 (30, 'Young On Top Campus Ambassador', 'young-on-top-campus-ambassador', 'Tidak Tersedia', 'Youn On Top', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(31, 'The 5 Level of Leadership', 'the-5-level-of-leadership', 'Tidak Tersedia', 'John C Maxwell', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 10, '', 0),
+(31, 'The 5 Level of Leadership', 'the-5-level-of-leadership', 'Tidak Tersedia', 'John C Maxwell', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 10, '', 1),
 (32, 'Kun Fayakuun', 'kun-fayakuun', 'Tidak Tersedia', 'M. Arifin Ilham', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (33, '50 Ritual Pagi Miliarder Sedunia', '50-ritual-pagi-miliarder-sedunia', 'Tidak Tersedia', 'Budi Safa''at', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (34, 'Secangkir Kopi Tanpa Kafein', 'secangkir-kopi-tanpa-kafein', 'Tidak Tersedia', 'Rose Kusumaning R', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
@@ -296,10 +289,6 @@ CREATE TABLE `book_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `book_category`:
---
-
---
 -- Dumping data for table `book_category`
 --
 
@@ -320,10 +309,6 @@ CREATE TABLE `book_category_connector` (
   `book_id` int(11) DEFAULT NULL,
   `cat_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `book_category_connector`:
---
 
 --
 -- Dumping data for table `book_category_connector`
@@ -365,14 +350,6 @@ CREATE TABLE `book_rating` (
   `id_b` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `book_rating`:
---   `id_b`
---       `book` -> `id_b`
---   `id_u`
---       `user` -> `id_u`
---
-
 -- --------------------------------------------------------
 
 --
@@ -385,10 +362,6 @@ CREATE TABLE `book_request` (
   `category_br` varchar(100) NOT NULL,
   `author_br` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `book_request`:
---
 
 --
 -- Dumping data for table `book_request`
@@ -415,14 +388,6 @@ CREATE TABLE `book_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `book_review`:
---   `id_b`
---       `book` -> `id_b`
---   `id_u`
---       `user` -> `id_u`
---
-
---
 -- Dumping data for table `book_review`
 --
 
@@ -445,14 +410,6 @@ CREATE TABLE `book_review_like` (
   `id_u` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `book_review_like`:
---   `id_b_review`
---       `book_review` -> `id_b_review`
---   `id_u`
---       `user` -> `id_u`
---
-
 -- --------------------------------------------------------
 
 --
@@ -464,10 +421,6 @@ CREATE TABLE `book_status` (
   `name_b_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `book_status`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -478,10 +431,6 @@ CREATE TABLE `book_type` (
   `id_b_type` int(11) NOT NULL,
   `name_b_type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `book_type`:
---
 
 --
 -- Dumping data for table `book_type`
@@ -505,10 +454,6 @@ CREATE TABLE `chat_messages` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `read_status` int(2) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `chat_messages`:
---
 
 --
 -- Dumping data for table `chat_messages`
@@ -555,10 +500,6 @@ CREATE TABLE `chat_room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `chat_room`:
---
-
---
 -- Dumping data for table `chat_room`
 --
 
@@ -579,126 +520,253 @@ INSERT INTO `chat_room` (`id_cr`, `created_at`, `last_active`, `user_1`, `user_2
 
 CREATE TABLE `log_visit` (
   `id_lv` int(11) NOT NULL,
-  `user_id_lv` int(11) NOT NULL,
-  `ip_lv` varchar(18) NOT NULL,
+  `user_id_lv` int(24) NOT NULL,
   `jenis_lv` varchar(100) NOT NULL,
   `id_halaman_lv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `log_visit`:
---
-
---
 -- Dumping data for table `log_visit`
 --
 
-INSERT INTO `log_visit` (`id_lv`, `user_id_lv`, `ip_lv`, `jenis_lv`, `id_halaman_lv`) VALUES
-(1, 0, '::1', 'home', 0),
-(2, 0, '::1', 'home', 0),
-(3, 0, '::1', 'home', 0),
-(4, 0, '::1', 'home', 0),
-(5, 0, '::1', 'home', 0),
-(6, 0, '::1', 'home', 0),
-(7, 0, '::1', 'home', 0),
-(8, 0, '::1', 'home', 0),
-(9, 0, '::1', 'home', 0),
-(10, 0, '::1', 'home', 0),
-(11, 0, '::1', 'home', 0),
-(12, 0, '::1', 'home', 0),
-(13, 0, '::1', 'home', 0),
-(14, 0, '::1', 'home', 0),
-(15, 0, '::1', 'home', 0),
-(16, 0, '::1', 'book', 21),
-(17, 0, '::1', 'home', 0),
-(18, 0, '::1', 'home', 0),
-(19, 0, '::1', 'home', 0),
-(20, 0, '::1', 'home', 0),
-(21, 0, '::1', 'home', 0),
-(22, 0, '::1', 'home', 0),
-(23, 0, '::1', 'home', 0),
-(24, 0, '::1', 'home', 0),
-(25, 0, '::1', 'home', 0),
-(26, 0, '::1', 'home', 0),
-(27, 0, '::1', 'home', 0),
-(28, 0, '::1', 'home', 0),
-(29, 0, '::1', 'home', 0),
-(30, 0, '::1', 'home', 0),
-(31, 0, '::1', 'home', 0),
-(32, 0, '::1', 'home', 0),
-(33, 0, '::1', 'home', 0),
-(34, 0, '::1', 'book', 1),
-(35, 0, '::1', 'home', 0),
-(36, 0, '52', 'home', 0),
-(37, 0, '52', 'home', 0),
-(38, 0, '52', 'book', 1),
-(39, 0, '52', 'home', 0),
-(40, 0, '52', 'book', 1),
-(41, 0, '52', 'home', 0),
-(42, 0, '52', 'book', 1),
-(43, 0, '52', 'home', 0),
-(44, 0, '::1', 'home', 0),
-(45, 0, '::1', 'home', 0),
-(46, 0, '::1', 'home', 0),
-(47, 0, '53', 'profile', 53),
-(48, 0, '53', 'home', 0),
-(49, 0, '53', 'home', 0),
-(50, 0, '53', 'product', 45),
-(51, 0, '53', 'home', 0),
-(52, 0, '53', 'product', 45),
-(53, 0, '53', 'home', 0),
-(54, 0, '53', 'product', 45),
-(55, 0, '53', 'home', 0),
-(56, 0, '53', 'product', 45),
-(57, 0, '53', 'home', 0),
-(58, 0, '53', 'product', 45),
-(59, 0, '53', 'home', 0),
-(60, 0, '53', 'book', 13),
-(61, 0, '53', 'home', 0),
-(62, 0, '53', 'book', 13),
-(63, 0, '53', 'home', 0),
-(64, 0, '53', 'home', 0),
-(65, 0, '53', 'home', 0),
-(66, 0, '53', 'home', 0),
-(67, 0, '53', 'home', 0),
-(68, 0, '53', 'home', 0),
-(69, 0, '53', 'home', 0),
-(70, 0, '53', 'home', 0),
-(71, 0, '53', 'home', 0),
-(72, 0, '53', 'home', 0),
-(73, 0, '53', 'home', 0),
-(74, 0, '53', 'home', 0),
-(75, 0, '53', 'home', 0),
-(76, 0, '53', 'home', 0),
-(77, 0, '53', 'home', 0),
-(78, 0, '53', 'home', 0),
-(79, 0, '53', 'home', 0),
-(80, 0, '53', 'home', 0),
-(81, 0, '53', 'home', 0),
-(82, 0, '53', 'home', 0),
-(83, 0, '53', 'home', 0),
-(84, 0, '53', 'home', 0),
-(85, 0, '53', 'home', 0),
-(86, 0, '53', 'home', 0),
-(87, 0, '53', 'home', 0),
-(88, 0, '53', 'home', 0),
-(89, 0, '53', 'home', 0),
-(90, 0, '53', 'home', 0),
-(91, 0, '53', 'home', 0),
-(92, 0, '53', 'home', 0),
-(93, 0, '53', 'home', 0),
-(94, 0, '53', 'home', 0),
-(95, 0, '53', 'home', 0),
-(96, 0, '53', 'home', 0),
-(97, 0, '53', 'home', 0),
-(98, 0, '53', 'home', 0),
-(99, 0, '53', 'home', 0),
-(100, 0, '53', 'home', 0),
-(101, 0, '53', 'home', 0),
-(102, 0, '53', 'home', 0),
-(103, 0, '53', 'home', 0),
-(104, 0, '53', 'home', 0),
-(105, 0, '53', 'home', 0);
+INSERT INTO `log_visit` (`id_lv`, `user_id_lv`, `jenis_lv`, `id_halaman_lv`) VALUES
+(1, 0, 'home', 0),
+(2, 0, 'home', 0),
+(3, 0, 'home', 0),
+(4, 0, 'home', 0),
+(5, 0, 'home', 0),
+(6, 0, 'home', 0),
+(7, 0, 'home', 0),
+(8, 0, 'home', 0),
+(9, 0, 'home', 0),
+(10, 0, 'home', 0),
+(11, 0, 'home', 0),
+(12, 0, 'home', 0),
+(13, 0, 'home', 0),
+(14, 0, 'home', 0),
+(15, 0, 'home', 0),
+(16, 0, 'book', 21),
+(17, 0, 'home', 0),
+(18, 0, 'home', 0),
+(19, 0, 'home', 0),
+(20, 0, 'home', 0),
+(21, 0, 'home', 0),
+(22, 0, 'home', 0),
+(23, 0, 'home', 0),
+(24, 0, 'home', 0),
+(25, 0, 'home', 0),
+(26, 0, 'home', 0),
+(27, 0, 'home', 0),
+(28, 0, 'home', 0),
+(29, 0, 'home', 0),
+(30, 0, 'home', 0),
+(31, 0, 'home', 0),
+(32, 0, 'home', 0),
+(33, 0, 'home', 0),
+(34, 0, 'book', 1),
+(35, 0, 'home', 0),
+(36, 0, 'home', 0),
+(37, 0, 'home', 0),
+(38, 0, 'book', 1),
+(39, 0, 'home', 0),
+(40, 0, 'book', 1),
+(41, 0, 'home', 0),
+(42, 0, 'book', 1),
+(43, 0, 'home', 0),
+(44, 0, 'home', 0),
+(45, 0, 'home', 0),
+(46, 0, 'home', 0),
+(47, 0, 'profile', 53),
+(48, 0, 'home', 0),
+(49, 0, 'home', 0),
+(50, 0, 'product', 45),
+(51, 0, 'home', 0),
+(52, 0, 'product', 45),
+(53, 0, 'home', 0),
+(54, 0, 'product', 45),
+(55, 0, 'home', 0),
+(56, 0, 'product', 45),
+(57, 0, 'home', 0),
+(58, 0, 'product', 45),
+(59, 0, 'home', 0),
+(60, 0, 'book', 13),
+(61, 0, 'home', 0),
+(62, 0, 'book', 13),
+(63, 0, 'home', 0),
+(64, 0, 'home', 0),
+(65, 0, 'home', 0),
+(66, 0, 'home', 0),
+(67, 0, 'home', 0),
+(68, 0, 'home', 0),
+(69, 0, 'home', 0),
+(70, 0, 'home', 0),
+(71, 0, 'home', 0),
+(72, 0, 'home', 0),
+(73, 0, 'home', 0),
+(74, 0, 'home', 0),
+(75, 0, 'home', 0),
+(76, 0, 'home', 0),
+(77, 0, 'home', 0),
+(78, 0, 'home', 0),
+(79, 0, 'home', 0),
+(80, 0, 'home', 0),
+(81, 0, 'home', 0),
+(82, 0, 'home', 0),
+(83, 0, 'home', 0),
+(84, 0, 'home', 0),
+(85, 0, 'home', 0),
+(86, 0, 'home', 0),
+(87, 0, 'home', 0),
+(88, 0, 'home', 0),
+(89, 0, 'home', 0),
+(90, 0, 'home', 0),
+(91, 0, 'home', 0),
+(92, 0, 'home', 0),
+(93, 0, 'home', 0),
+(94, 0, 'home', 0),
+(95, 0, 'home', 0),
+(96, 0, 'home', 0),
+(97, 0, 'home', 0),
+(98, 0, 'home', 0),
+(99, 0, 'home', 0),
+(100, 0, 'home', 0),
+(101, 0, 'home', 0),
+(102, 0, 'home', 0),
+(103, 0, 'home', 0),
+(104, 0, 'home', 0),
+(105, 0, 'home', 0),
+(106, 0, 'home', 0),
+(107, 0, 'home', 0),
+(108, 0, 'home', 0),
+(109, 0, 'home', 0),
+(110, 0, 'home', 0),
+(111, 0, 'home', 0),
+(112, 0, 'home', 0),
+(113, 0, 'home', 0),
+(114, 0, 'home', 0),
+(115, 0, 'home', 0),
+(116, 0, 'product', 46),
+(117, 0, 'home', 0),
+(118, 0, 'home', 0),
+(119, 0, 'home', 0),
+(120, 0, 'home', 0),
+(121, 0, 'home', 0),
+(122, 0, 'home', 0),
+(123, 0, 'home', 0),
+(124, 0, 'home', 0),
+(125, 0, 'home', 0),
+(126, 0, 'home', 0),
+(127, 0, 'home', 0),
+(128, 0, 'home', 0),
+(129, 0, 'home', 0),
+(130, 0, 'home', 0),
+(131, 0, 'home', 0),
+(132, 0, 'home', 0),
+(133, 0, 'home', 0),
+(134, 0, 'home', 0),
+(135, 0, 'home', 0),
+(136, 0, 'home', 0),
+(137, 0, 'home', 0),
+(138, 0, 'home', 0),
+(139, 0, 'home', 0),
+(140, 0, 'home', 0),
+(141, 0, 'home', 0),
+(142, 0, 'home', 0),
+(143, 0, 'home', 0),
+(144, 0, 'home', 0),
+(145, 0, 'home', 0),
+(146, 0, 'home', 0),
+(147, 0, 'home', 0),
+(148, 0, 'home', 0),
+(149, 0, 'home', 0),
+(150, 0, 'home', 0),
+(151, 0, 'home', 0),
+(152, 0, 'home', 0),
+(153, 0, 'home', 0),
+(154, 0, 'home', 0),
+(155, 0, 'home', 0),
+(156, 0, 'home', 0),
+(157, 0, 'home', 0),
+(158, 0, 'home', 0),
+(159, 0, 'home', 0),
+(160, 0, 'home', 0),
+(161, 0, 'home', 0),
+(162, 0, 'home', 0),
+(163, 0, 'home', 0),
+(164, 0, 'home', 0),
+(165, 0, 'home', 0),
+(166, 0, 'home', 0),
+(167, 0, 'home', 0),
+(168, 0, 'home', 0),
+(169, 0, 'home', 0),
+(170, 0, 'home', 0),
+(171, 0, 'home', 0),
+(172, 0, 'home', 0),
+(173, 0, 'book', 1),
+(174, 0, 'book', 2),
+(175, 0, 'home', 0),
+(176, 0, 'book', 12),
+(177, 0, 'home', 0),
+(178, 0, 'book', 12),
+(179, 0, 'home', 0),
+(180, 0, 'home', 0),
+(181, 0, 'book', 3),
+(182, 0, 'home', 0),
+(183, 0, 'book', 3),
+(184, 0, 'home', 0),
+(185, 0, 'book', 3),
+(186, 0, 'home', 0),
+(187, 0, 'book', 3),
+(188, 0, 'home', 0),
+(189, 0, 'book', 3),
+(190, 0, 'home', 0),
+(191, 0, 'book', 3),
+(192, 0, 'book', 3),
+(193, 0, 'home', 0),
+(194, 0, 'book', 3),
+(195, 0, 'home', 0),
+(196, 53, 'book', 3),
+(197, 53, 'home', 0),
+(198, 53, 'book', 3),
+(199, 53, 'home', 0),
+(200, 53, 'book', 3),
+(201, 53, 'home', 0),
+(202, 53, 'book', 3),
+(203, 53, 'home', 0),
+(204, 53, 'home', 0),
+(205, 53, 'home', 0),
+(206, 53, 'home', 0),
+(207, 53, 'home', 0),
+(208, 53, 'book', 31),
+(209, 53, 'home', 0),
+(210, 53, 'home', 0),
+(211, 53, 'home', 0),
+(212, 53, 'home', 0),
+(213, 0, 'home', 0),
+(214, 0, 'home', 0),
+(215, 53, 'profile', 53),
+(216, 53, 'home', 0),
+(217, 0, 'home', 0),
+(218, 0, 'home', 0),
+(219, 53, 'profile', 53),
+(220, 53, 'home', 0),
+(221, 53, 'home', 0),
+(222, 53, 'home', 0),
+(223, 53, 'profile', 53),
+(224, 53, 'home', 0),
+(225, 53, 'home', 0),
+(226, 53, 'home', 0),
+(227, 53, 'home', 0),
+(228, 0, 'home', 0),
+(229, 0, 'home', 0),
+(230, 0, 'home', 0),
+(231, 0, 'home', 0),
+(232, 54, 'profile', 54),
+(233, 0, 'home', 0),
+(234, 0, 'home', 0),
+(235, 0, 'home', 0),
+(236, 0, 'home', 0),
+(237, 56, 'profile', 56);
 
 -- --------------------------------------------------------
 
@@ -715,10 +783,6 @@ CREATE TABLE `publishers` (
   `description_publishers` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `publishers`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -729,10 +793,6 @@ CREATE TABLE `region_provinces` (
   `id` char(2) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `region_provinces`:
---
 
 --
 -- Dumping data for table `region_provinces`
@@ -785,12 +845,6 @@ CREATE TABLE `region_regencies` (
   `province_id` char(2) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `region_regencies`:
---   `province_id`
---       `region_provinces` -> `id`
---
 
 --
 -- Dumping data for table `region_regencies`
@@ -1327,39 +1381,38 @@ CREATE TABLE `user` (
   `lastname_u` varchar(100) DEFAULT NULL,
   `date_of_birth_u` date DEFAULT NULL,
   `phone_number_u` varchar(15) DEFAULT NULL,
-  `join_date_u` datetime DEFAULT NULL,
-  `address_u` varchar(150) DEFAULT NULL,
+  `address_u` varchar(150) DEFAULT '-',
   `city_u` int(6) DEFAULT NULL,
   `province_u` int(6) DEFAULT NULL,
   `total_review_u` int(11) DEFAULT '0',
   `bio_u` varchar(200) DEFAULT NULL,
   `photo_profile_u` varchar(150) DEFAULT 'assets/img/default/profile-pict.png',
-  `photo_cover_u` varchar(150) DEFAULT NULL,
+  `photo_cover_u` varchar(150) DEFAULT '0',
   `point` int(11) DEFAULT '0',
-  `money` int(11) DEFAULT NULL,
-  `line_u` varchar(32) NOT NULL,
-  `whatsapp_u` varchar(15) NOT NULL,
+  `money` int(11) DEFAULT '0',
+  `line_u` varchar(32) NOT NULL DEFAULT '-',
+  `whatsapp_u` varchar(15) NOT NULL DEFAULT '-',
   `created_at` timestamp NULL DEFAULT NULL,
   `last_login` timestamp NULL DEFAULT NULL,
-  `views_u` int(11) NOT NULL DEFAULT '0'
+  `views_u` int(11) NOT NULL DEFAULT '0',
+  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `user`:
---
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`, `lastname_u`, `date_of_birth_u`, `phone_number_u`, `join_date_u`, `address_u`, `city_u`, `province_u`, `total_review_u`, `bio_u`, `photo_profile_u`, `photo_cover_u`, `point`, `money`, `line_u`, `whatsapp_u`, `created_at`, `last_login`, `views_u`) VALUES
-(1, 'haha', 'hahaha@gmail.com', '12345', 'hara', 'Hura', '2016-09-24', '1234567890', NULL, 'Kalimantan tengah barat', 0, NULL, NULL, 'Hola namanamanama', 'assets/img/default/profile-pict.png', NULL, NULL, NULL, '', '', NULL, NULL, 0),
-(2, 'kevinfachreza', 'kevinfachreza@yahoo.com', '12345', 'aa', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', NULL, NULL, 0),
-(3, 'kev', 'kevinfachreza@yahoo.coma', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'bbb', NULL, '2016-10-30', NULL, NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', NULL, NULL, 0),
-(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, 'koko', '12345', NULL, NULL, 0),
-(5, 'hanah', 'hanah@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1998-02-13', '09898989', '2016-11-01 00:00:00', NULL, 1173, NULL, 0, NULL, './assets/img/user/5/profile-pict/default.png', NULL, 0, NULL, '@hanahanda', '0292828383', NULL, NULL, 0),
-(52, '123', 'halahalahal@gmail.com', '$2a$08$ovqYY9Ym7tD3Cmdn.Dsh1Op/g2vs.HZRPinevBejSn9yMXTjyrjJe', NULL, NULL, '2000-01-01', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', '2017-01-09 10:24:55', '2017-01-09 14:00:45', 0),
-(53, 'kevin', 'kevin@kevin.com', '$2a$08$ne0P57bKB.yJV4EAHJbpzORkSMjlLmESQ0h1Jx7WfDj3LzK9CxCLa', 'Kevin ', 'Fachreza', '2017-01-01', '082233073237', NULL, NULL, 3578, 35, 0, 'Aku Adalah Superman\r\n', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '-', '-', '2017-01-09 14:03:02', '2017-01-10 01:18:23', 0);
+INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`, `lastname_u`, `date_of_birth_u`, `phone_number_u`, `address_u`, `city_u`, `province_u`, `total_review_u`, `bio_u`, `photo_profile_u`, `photo_cover_u`, `point`, `money`, `line_u`, `whatsapp_u`, `created_at`, `last_login`, `views_u`, `last_update`) VALUES
+(1, 'haha', 'hahaha@gmail.com', '12345', 'hara', 'Hura', '2016-09-24', '1234567890', 'Kalimantan tengah barat', 0, NULL, NULL, 'Hola namanamanama', 'assets/img/default/profile-pict.png', NULL, NULL, NULL, '', '', NULL, NULL, 0, NULL),
+(2, 'kevinfachreza', 'kevinfachreza@yahoo.com', '12345', 'aa', NULL, '2016-10-30', NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', NULL, NULL, 0, NULL),
+(3, 'kev', 'kevinfachreza@yahoo.coma', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'bbb', NULL, '2016-10-30', NULL, NULL, NULL, NULL, 0, ' ', 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', NULL, NULL, 0, NULL),
+(4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, 'koko', '12345', NULL, NULL, 0, NULL),
+(5, 'hanah', 'hanah@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1998-02-13', '09898989', NULL, 1173, NULL, 0, NULL, './assets/img/user/5/profile-pict/default.png', NULL, 0, NULL, '@hanahanda', '0292828383', NULL, NULL, 0, NULL),
+(52, '123', 'halahalahal@gmail.com', '$2a$08$ovqYY9Ym7tD3Cmdn.Dsh1Op/g2vs.HZRPinevBejSn9yMXTjyrjJe', NULL, NULL, '2000-01-01', NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', '2017-01-09 10:24:55', '2017-01-09 14:00:45', 0, NULL),
+(53, 'kevin', 'kevin@kevin.com', '$2a$08$P3BQDTQ8uMgAQ3lJhxX4B.Yi3Loa01PUV7aBlRZ0uAhLDZBFGuoZK', 'Kevin ', 'Fachreza', '2017-01-01', '082233073237', 'aaaa', 3578, 35, 1, 'Aku Adalah Superman\r\n', './assets/img/user/53/profile-pict/532017-01-10-03-22-59.jpg', '0', 0, 0, '-', '-', '2017-01-09 14:03:02', '2017-01-10 03:21:50', 3, '2017-01-10 03:32:11'),
+(54, 'bananabanana', 'kevin@banana.com', '$2a$08$JqgxPzjd3eO2Iung8CkbOuvACUYzbrjMAZ3rrFUE/i7vkaK9nI98i', 'Kevin', 'Banana', '2017-01-01', '123123', NULL, 1506, 15, 0, 'asdad', 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:31', '2017-01-10 04:07:08', 1, NULL),
+(55, '', '', '$2a$08$9N4fwpmi8.74rCVBRdl2j.uF5HhFQBZXYckTY4zEFDq9cXcYNzNUW', NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:57', NULL, 0, NULL),
+(56, 'dummya', 'dummy@dummy.coma', '$2a$08$BRSZ3XiftN87WTpq3J/n4Oqi5bwEYSlfvFWdyIc59FVcq0MdvVBXS', 'dummy', 'dummy', '1900-01-10', '123', '-', 1101, 11, 0, '123', './assets/img/user/56/profile-pict/562017-01-10-05-11-37.jpg', '0', 0, 0, '-', '-', '2017-01-10 04:09:57', '2017-01-10 04:10:03', 1, '2017-01-10 04:11:47');
 
 -- --------------------------------------------------------
 
@@ -1395,14 +1448,6 @@ CREATE TABLE `user_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `user_book`:
---   `id_u_owner`
---       `user` -> `id_u`
---   `type_u_b`
---       `book_type` -> `id_b_type`
---
-
---
 -- Dumping data for table `user_book`
 --
 
@@ -1419,7 +1464,8 @@ INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point
 (42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/4/books/42/0.jpg', 'Why', 111, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
 (43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
 (44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:25', 0),
-(45, 13, 123, 0, NULL, 1, NULL, 0, 123, 'asdasdad', 53, 12, 'assets/img/user/53/books/45/0.jpg', 'Banana Boat Ada 5', 123, 'BananaBoatAda5f89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0);
+(45, 13, 123, 0, NULL, 1, NULL, 0, 123, 'asdasdad', 53, 12, 'assets/img/user/53/books/45/0.jpg', 'Banana Boat Ada 5', 123, 'BananaBoatAda5f89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(46, 13, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, NULL, 'Juancoookk', 123, 'Juancoookkf89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1433,14 +1479,6 @@ CREATE TABLE `user_book_favourite` (
   `id_category` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `user_book_favourite`:
---   `id_category`
---       `book_category` -> `id_b_category`
---   `id_u`
---       `user` -> `id_u`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1452,12 +1490,6 @@ CREATE TABLE `user_book_image` (
   `id_b_source` int(11) NOT NULL,
   `image_path` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `user_book_image`:
---   `id_b_source`
---       `user_book` -> `id_u_b`
---
 
 --
 -- Dumping data for table `user_book_image`
@@ -1495,10 +1527,6 @@ CREATE TABLE `user_book_rejectcode` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONS FOR TABLE `user_book_rejectcode`:
---
-
---
 -- Dumping data for table `user_book_rejectcode`
 --
 
@@ -1520,10 +1548,6 @@ CREATE TABLE `writer` (
   `description_writer` varchar(300) DEFAULT NULL,
   `photo_writer` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `writer`:
---
 
 --
 -- Dumping data for table `writer`
@@ -1757,7 +1781,7 @@ ALTER TABLE `chat_room`
 -- AUTO_INCREMENT for table `log_visit`
 --
 ALTER TABLE `log_visit`
-  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 --
 -- AUTO_INCREMENT for table `publishers`
 --
@@ -1767,12 +1791,12 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `user_book`
 --
 ALTER TABLE `user_book`
-  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `user_book_favourite`
 --
@@ -1843,6 +1867,7 @@ ALTER TABLE `user_book_favourite`
 --
 ALTER TABLE `user_book_image`
   ADD CONSTRAINT `Book_source_img_FK` FOREIGN KEY (`id_b_source`) REFERENCES `user_book` (`id_u_b`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

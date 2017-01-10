@@ -38,12 +38,8 @@
     </div>
 </div>
 <?php } ?>
-
-	<!--/////////////////////HEADER///////////////////////////////// -->
-
 	<div id="HeaderContainer" class="container" >
 	 <div id="HeaderCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#HeaderCarousel" data-slide-to="0" class="active"></li>
 
@@ -82,24 +78,7 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div><!-- /.carousel -->
-	</div>
-
-	<!--/////////////////////HEADER///////////////////////////////// -->
-
-	<!--/////////////////////BODY///////////////////////////////// -->
-
-	<div id="BannerContainer1" class="custom-container container">
-		<div class="col-md-12 padding-0" >
-			<div class="row">
-				<div class="col-md-6 padding-default">
-					<img src="<?php echo base_url()?>assets/img/banner/mini-banner1.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
-				</div>
-				<div class="col-md-6 padding-default">
-					<img src="<?php echo base_url()?>assets/img/banner/mini-banner2.jpg" style="object-fit:cover;min-width:100%" class="img-responsive">
-				</div>
-			</div>
-		</div>
+    </div>
 	</div>
 	<div id="BestSellerContainer" class="custom-container container">
 		<div class="col-md-12 header-text"><h3>Best Seller</h3></div>

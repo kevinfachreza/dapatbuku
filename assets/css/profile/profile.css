@@ -86,3 +86,10 @@
 {
 	margin-bottom:25px;
 }
+
+.form-profile-wrapper .col-md-3
+{
+    text-align: right;
+    padding: 5px;
+    font-size: 2.5vh;
+}

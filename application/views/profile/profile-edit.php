@@ -54,16 +54,63 @@
 					<div class="form-profile">
 						<div class="header-text-2 text-center"> Ganti Data Kamu </div>
 						<form action="<?php echo base_url();?>accounts/do_update_profile" method="POST">
-							<input name="email" type="Email" class="form-control" placeholder="Email" value="<?php echo $user[0]->email_u ?>"required  autofocus>
-							<input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $user[0]->username_u ?>" required  disabled autofocus>
-							<input name="firstname" type="text" class="form-control" placeholder="First Name" value="<?php echo $user[0]->firstname_u ?>" style=" float:left;width:49%;margin-right:2%" required  autofocus>
-							<input name="lastname" type="text" class="form-control" placeholder="Last name" value="<?php echo $user[0]->lastname_u ?>" style="width:49%;" required  autofocus>
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Email</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+								<input name="email" type="Email" class="form-control" placeholder="Email" value="<?php echo $user[0]->email_u ?>"required >
+							</div>
+						</div>
 
-							<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required autofocus>
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Username</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+								<input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $user[0]->username_u ?>" required  disabled >
+							</div>
+						</div>
 
-							<input name="phone" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  autofocus>
-							<input name="line_in" type="text" class="form-control" placeholder="ID Line" value="<?php echo $user[0]->line_u ?>" required  autofocus>
-							<input name="whatsapp_in" type="text" class="form-control" placeholder="Nomor Whatsapp" value="<?php echo $user[0]->whatsapp_u ?>" required  autofocus>
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Nama</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+								<input name="firstname" type="text" class="form-control" placeholder="First Name" value="<?php echo $user[0]->firstname_u ?>" style=" float:left;width:49%;margin-right:2%" required  >
+								<input name="lastname" type="text" class="form-control" placeholder="Last name" value="<?php echo $user[0]->lastname_u ?>" style="width:49%;" required  >
+							</div>
+						</div>
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Tanggal Lahir</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+								<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required >
+							</div>
+						</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">No HP</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+							<input name="phone" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  >
+							</div>
+							</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">LINE</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+							<input name="line_in" type="text" class="form-control" placeholder="ID Line" value="<?php echo $user[0]->line_u ?>"  >
+							</div>
+							</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Whatsapp</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+							<input name="whatsapp_in" type="text" class="form-control" placeholder="Nomor Whatsapp" value="<?php echo $user[0]->whatsapp_u ?>"  >
+							</div>
+							</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Provinsi</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
 							<select class="form-control" name="province" id="provinsi">
 								<option disabled>Provinsi</option>
 								 <?php
@@ -79,11 +126,33 @@
 									}
 								?>
 							</select>
+							</div>
+							</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Kota</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
 							<select id="kota" name="city" class="form-control">
 								<option disabled selected>Kota</option>
 							</select>
-							<textarea name="bio" class="form-control" rows="3" id="comment" placeholder="Bio"><?php echo $user[0]->bio_u ?></textarea>
+							</div>
+							</div>
+
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2">Biodata</div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
+							<textarea name="bio" class="form-control" rows="3" id="comment" placeholder="Bio" required><?php echo $user[0]->bio_u ?></textarea>
+							</div>
+							</div>
+
+						<div class="row form-profile-wrapper">
+							<div class="col-md-3 col-sm-2 col-xs-2"></div>
+							<div class="col-md-9 col-sm-8 col-xs-10">
 							<button type="submit" class="btn btn-md btn-primary">Edit</button>
+							</div>
+							</div>
 						</form>
 					</div>
 				</div>

@@ -59,8 +59,8 @@ class Book extends CI_Controller {
 		if($this->session->logged_in == 1){
 			$temp = $this->session->userdata('userdata');
 			$id_user = $temp[0]->id_u;
-
 			$add_log = $this->M_auth->add_log_view($id_user, 'book', $id_in);
+			
 		}
 		else{
 			$ip = $this->input->ip_address();
@@ -175,33 +175,80 @@ class Book extends CI_Controller {
 	}
 
 	public function best_seller(){
+		$data['slug_page'] = 'best_seller';
+		$data['title_page'] = 'Best Seller';
+		
+		if($this->input->get('page')!=null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page=1;	
+
+		$limit=24;
+		$offset = ($page-1)*$limit;
+		$data['page_now']=$page;
+
 		$data['header'] = $this->load->view('parts/header', '', true);
 		$data['navbar'] = $this->load->view('parts/navbar', '', true);
 		$data['footer'] = $this->load->view('parts/footer', '', true);
 
-		$data['book_result'] = $this->M_book->view_best_seller();
 
+
+		$data['book_result'] = $this->M_book->view_best_seller($offset,$limit);
+		$count_books = $this->M_book->count_all_book_best_seller();
+		$data['page_total'] = ceil($count_books/$limit);
 		$this->load->view('category/best_seller', $data);
 	}
 
 	public function new_release(){
+
+		$data['slug_page'] = 'new_release';
+		$data['title_page'] = 'New Release';
+
+		if($this->input->get('page')!=null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page=1;	
+		$limit=24;
+		$offset = ($page-1)*$limit;
+		$data['page_now']=$page;
+
 		$data['header'] = $this->load->view('parts/header', '', true);
 		$data['navbar'] = $this->load->view('parts/navbar', '', true);
 		$data['footer'] = $this->load->view('parts/footer', '', true);
 
-		$data['book_result'] = $this->M_book->view_new_release();
 
-		$this->load->view('category/new_released', $data);
+		$data['book_result'] = $this->M_book->view_new_release($offset,$limit);
+		$count_books = $this->M_book->count_all_book_new_release();
+		$data['page_total'] = ceil($count_books/$limit);
+
+		$this->load->view('category/best_seller', $data);
 	}
 
 	public function most_viewed(){
+		$data['slug_page'] = 'most_viewed';
+		$data['title_page'] = 'Most Viewed';
+
+		if($this->input->get('page')!=null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page=1;	
+		$limit=24;
+		$offset = ($page-1)*$limit;
+		$data['page_now']=$page;
+
+
 		$data['header'] = $this->load->view('parts/header', '', true);
 		$data['navbar'] = $this->load->view('parts/navbar', '', true);
 		$data['footer'] = $this->load->view('parts/footer', '', true);
 
-		$data['book_result'] = $this->M_book->view_most_viewed();
+		$data['book_result'] = $this->M_book->view_most_viewed($offset,$limit);
+		$count_books = $this->M_book->count_all_book_most_viewed();
+		$data['page_total'] = ceil($count_books/$limit);
 
-		$this->load->view('category/most_viewed', $data);
+		$this->load->view('category/best_seller', $data);
 	}
 
 }

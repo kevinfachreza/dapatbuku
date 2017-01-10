@@ -36,7 +36,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		city_u = '".$data['city']."',
 		bio_u = '".$data['bio']."',
     line_u = '".$data['line']."',
-    whatsapp_u = '".$data['whatsapp']."'
+    whatsapp_u = '".$data['whatsapp']."',
+    last_update=CURRENT_TIMESTAMP
 
 		where id_u = ".$data['id']."
 		");
@@ -52,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$query = $this->db->query("UPDATE user SET
 
-		photo_profile_u = '".$data['img']."'
+		photo_profile_u = '".$data['img']."',
+		last_update=CURRENT_TIMESTAMP
 
 		where id_u = ".$data['id']."
 		");
@@ -65,13 +67,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		else return 0;
 	}
 
-	public function change_password($data)
+	public function change_password($id,$pass)
 	{
-		$query = $this->db->query("CALL sp_user_change_password(".$data['id'].",'".$data['oldpassword']."','".$data['newpassword']."','".$data['renewpassword']."')
-		");
+		$query = $this->db->query("UPDATE user SET password_u = '".$pass."', last_update=CURRENT_TIMESTAMP where id_u = ".$id."");
 
-        return $query->result();
+        if ($this->db->affected_rows() >= 0) {
+            return 1;
+            } else {
+                return 0; // your code
+            }
 	}
+
+	public function checkpassword($data, $pass_check){
+
+		$query = $this->db->query("SELECT * FROM user where id_u = ".$data['id']."");
+
+      if($query -> num_rows() == 1){
+      	#echo 'here';
+        $result = $query->result();
+        $pass = $result[0]->password_u;
+        $id = $result[0]->id_u;
+
+        if ($this->bcrypt->check_password($pass_check, $pass )) {
+          $query = $this->db->query("UPDATE user SET last_update = CURRENT_TIMESTAMP where id_u = ".$id."");
+          if ($this->db->affected_rows() >= 0) {
+            return 1;
+            } else {
+                return 0; // your code
+            }
+        }
+        else {
+        return 0;
+        }
+      }
+      else {
+        return 0;
+      }
+
+    }
+
 
   }
 

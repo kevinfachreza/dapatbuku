@@ -155,13 +155,28 @@ class Mybooks extends CI_Controller {
 		}
 			redirect('mybooks');
 	}
+	private function emptyElementExists($arr) {
+	  return array_search("", $arr) !== false;
+	 }
 
 	public function add()
 	{
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
-		$this->load->view('book-manager/add-books',$data);
+		$user_data = $this->session->userdata('userdata');
+		$user = $user_data[0];
+		$id = $user->id_u;
+		$check_null = $this->M_book->checknullprofile($id);
+		if(!$this->emptyElementExists($check_null))
+		{
+			$data['header']=$this->load->view('parts/header','',true);
+			$data['navbar']=$this->load->view('parts/navbar','',true);
+			$data['footer']=$this->load->view('parts/footer','',true);
+			$this->load->view('book-manager/add-books',$data);
+		}
+		else
+		{
+				$this->session->set_flashdata('profile_report', 'Kamu Harus Mengisi Data Dahulu Sebelum Menjual Bukumu');
+			redirect('accounts/settings');
+		}
 	}
 
 	public function do_add()

@@ -47,10 +47,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return  $query->result_array();
     }
 
-    public function view_best_seller(){
-      $query = $this->db->query("SELECT * FROM book WHERE best_seller_flag = 1");
+    public function view_best_seller($offset,$limit){
+      $query = $this->db->query("SELECT * FROM book WHERE best_seller_flag = 1 
+      LIMIT ".$limit."
+      OFFSET ".$offset.";");
 
       return $query->result_array();
+    }
+
+    public function count_all_book_best_seller(){
+      $query = $this->db->query("SELECT count(1) as count FROM book WHERE best_seller_flag = 1");
+
+      $result = $query->result();
+      return $result[0]->count;
     }
 
     public function get_n_release()
@@ -60,19 +69,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
-    public function view_new_release()
+    public function view_new_release($offset,$limit)
     {
-      $query = $this->db->query("SELECT * FROM book ORDER BY date_published DESC LIMIT 50;");
+      $query = $this->db->query("SELECT * FROM book ORDER BY date_published DESC 
+      LIMIT ".$limit."
+      OFFSET ".$offset.";");
 
       return $query->result_array();
     }
 
-    public function view_most_viewed()
+    public function count_all_book_new_release()
     {
-      $query = $this->db->query("SELECT * FROM book ORDER BY views_b ASC LIMIT 50;");
+      $query = $this->db->query("SELECT count(1) as count FROM book ORDER BY date_published;");
+
+      $result = $query->result();
+      return $result[0]->count;
+    }
+
+    public function view_most_viewed($offset,$limit)
+    {
+      $query = $this->db->query("SELECT * FROM book ORDER BY views_b DESC
+        LIMIT ".$limit."
+        OFFSET ".$offset.";
+      ");
 
       return $query->result_array();
     }
+
+
+    public function count_all_book_most_viewed()
+    {
+      $query = $this->db->query("SELECT count(1) as count FROM book");
+      $result = $query->result();
+      return $result[0]->count;
+    }
+
     public function get_writer_short($id_in)
     {
       $query = $this->db->query("select w.photo_writer, w.description_writer
@@ -344,6 +375,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
       else
         return FALSE;
+    }
+
+    public function checknullprofile($id)
+    {
+      $query = "SELECT * from user where id_u = ".$id." ";
+      $query = $this->db->query($query);
+      $array = $query->result_array();
+      return $array[0];
     }
 
   }

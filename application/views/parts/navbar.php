@@ -13,7 +13,6 @@
 			<li class="dropdown">
 			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
 			  	<ul class="dropdown-menu">
-					<li><a href="#">Rekomendasi</a></li>
 					<li class="dropdown-submenu">
                 	<a tabindex="-1" href="#">Agama</a>
 	                <ul class="dropdown-menu">

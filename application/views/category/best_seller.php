@@ -18,12 +18,13 @@
 	<!--/////////////////////BOOK///////////////////////////////// -->
 		<div class="container" id="category-header">
 			<div class="jumbotron jumbotron-cat">
-			  <h1>Best Seller</h1>
+			  <h1><?php echo $title_page; ?></h1>
 			</div>
 		</div>
 
-		<div class="container"  id="category-container">
+		<div class="custom-container container"  id="category-container">
 			<div class="col-md-12">
+				<div class="col-md-12 header-text-2">Buku <span class="search-cat">Best Seller</span></div>
 				<div class="col-md-12 text-center"><hr></div>
 
 				<div class="row">
@@ -38,6 +39,27 @@
 						</div>
 					</div>
 				<?php } ?>
+					<div class="col-md-12">
+						<nav aria-label="Page navigation">
+							<div class="text-center">
+							  <ul class="pagination">
+								<li><a href="<?php echo base_url()?>book/<?php echo $slug_page; ?>?
+											page=1">First</a></li>
+									<?php for($i=1;$i<=$page_total;$i++){
+										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
+									?>
+										<li <?php if($i == $page_now) echo 'class="active"' ?>  >
+											<a href="<?php echo base_url()?>book/<?php echo $slug_page; ?>?
+											page=<?php echo $i?>
+											">
+											<?php echo $i ?><span class="sr-only">(current)</span></a></li>
+									<?php }} ?>
+									<li><a href="<?php echo base_url()?>book/<?php echo $slug_page; ?>?
+											page=<?php echo $page_total?>">Last</a></li>
+							  </ul>
+							</div>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</div>

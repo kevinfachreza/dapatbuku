@@ -79,37 +79,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function add_log_view($id, $jenis, $halaman){
-      if(is_int($id)){
-        $query = $this->db->query("INSERT INTO log_visit(user_id_lv, jenis_lv, id_halaman_lv) VALUES('".$id."', '".$jenis."', '".$halaman."');");
+      $query = $this->db->query("INSERT INTO log_visit(user_id_lv, jenis_lv, id_halaman_lv) VALUES('".$id."', '".$jenis."', '".$halaman."');");
+      
+      if ($this->db->affected_rows() >= 0) {
+        $query = true;
+        } else {
+        $query = false; // your code
+        }
 
-        if($query){
-          if($halaman != '0'){
-            if($jenis == "book"){
-              $query2 = $this->db->query("UPDATE book SET views_b = views_b + 1 WHERE id_b = '".$halaman."';");
-            }
-            else if($jenis == "product"){
-              $query2 = $this->db->query("UPDATE user_book SET views_ub = views_ub + 1 WHERE id_u_b = '".$halaman."';");
-            }
-            else if($jenis == "profile"){
-              $query2 = $this->db->query("UPDATE user SET views_u = views_u + 1 WHERE id_u ='".$halaman."';");
-            }
+      if($query){
+        if($halaman != '0'){
+          if($jenis == "book"){
+            $query2 = $this->db->query("UPDATE book SET views_b = views_b + 1 WHERE id_b = '".$halaman."';");
           }
+          else if($jenis == "product"){
+            $query2 = $this->db->query("UPDATE user_book SET views_ub = views_ub + 1 WHERE id_u_b = '".$halaman."';");
+          }
+          else if($jenis == "profile"){
+            $query2 = $this->db->query("UPDATE user SET views_u = views_u + 1 WHERE id_u ='".$halaman."';");
+          }
+        }
           return TRUE;
         }
         else{
           return FALSE;
         }
-      }
-      else{
-        $query = $this->db->query("INSERT INTO log_visit(ip_lv, jenis_lv, id_halaman_lv) VALUES('".$id."', '".$jenis."', '".$halaman."');");
-
-        if($query){
-          return TRUE;
-        }
-        else{
-          return FALSE;
-        }
-      }
+     
     }
 
 

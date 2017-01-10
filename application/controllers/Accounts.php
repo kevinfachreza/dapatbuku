@@ -14,6 +14,7 @@ class Accounts extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_accounts');
+    	$this->load->library('bcrypt');
 	}
 
 	public function index()
@@ -79,6 +80,9 @@ class Accounts extends CI_Controller {
 
 		$line = $this->input->post('line_in');
 		$whatsapp = $this->input->post('whatsapp_in');
+
+		if($line==NULL)	 $line = '-';
+		if($whatsapp==NULL)	 $whatsapp = '-';
 
 		$firstname = $this->db->escape_str($this->input->post('firstname'));
 		$lastname = $this->db->escape_str($this->input->post('lastname'));
@@ -210,11 +214,11 @@ class Accounts extends CI_Controller {
 
 		if($newpassword == $oldpassword)
 		{
-			$report = 1;
+			$report = 2;
 		}
 		else if($newpassword != $renewpassword)
 		{
-			$report = 2;
+			$report = 3;
 		}
 
 		$data = array(
@@ -230,13 +234,20 @@ class Accounts extends CI_Controller {
 
 
 
-		if($report>2)
+		if($report==99)
 		{
-			$report = $this->M_accounts-> change_password($data);
-			$report = $report[0]->report;
+			#cek kebenaran password
+			$report = $this->M_accounts-> checkpassword($data,$oldpassword);
+
+		}
+		if($report==1)
+		{
+			$pass = $this->bcrypt->hash_password($newpassword);
+			$report = $this->M_accounts-> change_password($id,$pass);
 		}
 
-		if($report == 1)
+		#echo $report;
+		if($report == 2)
 		{
 			$this->session->set_flashdata('password_report', 'Password Lama & Baru Sama');
 		}
@@ -244,15 +255,15 @@ class Accounts extends CI_Controller {
 		{
 			$this->session->set_flashdata('password_report', 'Password Salah');
 		}
-		else if($report == 2)
+		else if($report == 3)
 		{
 			$this->session->set_flashdata('password_report', 'Password & Re-Password Tidak Sama');
 		}
-		else if($report == 99)
+		else if($report == 1)
 		{
 			$this->session->set_flashdata('password_report', 'Pergantian Password Sukses!');
 		}
-
+		#echo $report;
 		redirect('accounts/settings/change-password');
 
 	}
