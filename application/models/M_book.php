@@ -193,9 +193,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   	public function get_my_book($id_in, $limit=null, $offset=null)
     {
-      $query = "select b.writer, ub.*
-                                 from book b, user_book ub where ub.id_u_owner = '".$id_in."'
-                                 and b.id_b = ub.id_b_source ";
+      $query = "select * from user_book where id_u_owner = '".$id_in."' ";
       if($limit != null)
         $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
       $result = $this->db->query($query);
@@ -204,15 +202,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)
     {
-      $query = $this->db->query("insert into user_book(id_u_owner, id_b_source, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
-                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b) VALUES('".$id_user."',13, '".$title."', '".$price_sell."',
-                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."', '".$slug."');");
+      $query = $this->db->query("insert into user_book(id_u_owner, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
+                                 berat_u_b, stock_u_b, description_u_b) VALUES('".$id_user."', '".$title."', '".$price_sell."',
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."');");
       if($query)
       {
         $result = $this->db->insert_id();
-          return $result;
+          $slug3 = hash('sha256', $result);
+          $slug3 = substr($slug3, 0, 5);
+          $slug .= $slug3;
+          $result_arr = array($result, $slug);
+          $query2 = $this->db->query("UPDATE user_book SET slug_title_u_b ='".$slug."' WHERE id_u_b = '".$id_user."';");
+          return $result_arr;
 
       }
+
       else
       {
           return FALSE;
@@ -254,7 +258,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function delete_book($id_in)
     {
-      $query = $this->db->query("delete from user_book where id_u_b = '".$id_in."'; ");
+      $query = $this->db->query("UPDATE user_book SET active = 2 where id_u_b = '".$id_in."'; ");
 
       //echo $query;
       if($query)
