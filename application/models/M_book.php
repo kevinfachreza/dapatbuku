@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_n_release()
     {
       $query = $this->db->query(" select *
-                                  from book b ORDER by b.date_published DESC;");
+                                  from book b ORDER by b.date_published DESC  LIMIT 6");
       return $query->result_array();
     }
 

@@ -283,6 +283,30 @@ class AdminBook extends CI_Controller {
 		redirect('super/adminbook/');
 	}
 	
+
+	public function edit_all_slug()
+	{
+		for($i=1;$i<151;$i++)
+		{
+
+			$data['book'] = $this->M_AdminBook->getBook($i);
+
+			$title = $this->db->escape_str($data['book'][0]->title_b);
+			$writer = $this->db->escape_str($data['book'][0]->writer);
+			$judulbuku = ucwords($title);
+			
+			$string = strtolower($judulbuku);
+			$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+			$data['book'][0]->slug_title_b = $slug;
+			$data['book'][0]->title_b = $title;
+			$data['book'][0]->writer = $writer;
+			$array = json_decode(json_encode($data['book'][0]),true);
+			print_r($array);
+			echo '<br><br>';
+
+			$report = $this->M_AdminBook-> editBookAll($i,$array);
+		}
+	}
 	public function do_upload_cover_book()
 	{
 		$flag=1;

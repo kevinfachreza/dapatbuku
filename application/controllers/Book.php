@@ -93,6 +93,7 @@ class Book extends CI_Controller {
 		$data['footer']=$this->load->view('parts/footer','',true);
 
 
+
 		$money = $data['book_result'][0]['price_sell_u_b'];
 		$data['book_result'][0]['price_sell_u_b'] = 'Rp ' . number_format($money, 0);
 		$money = $data['book_result'][0]['price_rent_u_b'];

@@ -133,6 +133,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$change = $this->db->query($query);
 		return $this->db->affected_rows();
 	}
+
+	public function editBookAll($id,$data)
+	{
+		$query =
+		"
+			UPDATE book
+			SET 
+				title_b = '".$data['title_b']."',
+				slug_title_b = '".$data['slug_title_b']."',
+				no_isbn_b = '".$data['no_isbn_b']."',
+				writer = '".$data['writer']."',
+				publisher = '".$data['publisher']."',
+				pages = '".$data['pages']."',
+				date_published ='".$data['date_published']."',
+				language_b = '".$data['language_b']."',
+				photo_cover_b = '".$data['photo_cover_b']."',
+				cover_type_b = '".$data['cover_type_b']."',
+				description_b = '".$data['description_b']."',
+				tags = '".$data['tags']."'
+			WHERE id_b = ".$id.";
+		";
+		$change = $this->db->query($query);
+		return $this->db->affected_rows();
+	}
 	
 	public function deleteBookCategory($id)
 	{
