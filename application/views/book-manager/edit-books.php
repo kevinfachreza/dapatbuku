@@ -87,33 +87,31 @@
 			</div>		-->
 
 
-			<?php foreach($current_photo as $key){ ?>
-				<div class="row form-book-wrapper">
-					<div class="col-md-4 col-sm-2 col-xs-2"><img src="<?php echo base_url().$key['image_path']; ?>"></div>
-					<div class="col-md-6 col-sm-8 col-xs-10">
-						<div class="checkbox">
-							<input type="checkbox" value="1"	name="<?php echo $key['id_u_b_img']; ?>" >
-						</div>
-					</div>
-				</div>
-				<?php } ?>
+			<div class="row form-book-wrapper   text-center">
+			<?php $i=1;	
+			foreach($current_photo as $key){ ?>
+				<div class="col-md-4" style="padding:20px;">
+ 					<div class="row">
 
-			<div class="row form-book-wrapper">
-				<div class="col-md-4 col-sm-2 col-xs-2">Upload Gambar</div>
-				<div class="col-md-6 col-sm-8 col-xs-10">
-					<div class="input-group image-upload" style="margin-bottom:0.5em">
+					<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:0.5em">
+						<img src="<?php echo base_url().$key['image_path']; ?>" class="img-responsive-2">
+					</div>
+
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="input-group image-upload" style="margin-bottom:0.5em">
 						<label class="input-group-btn">
 							<span class="btn btn-primary">
-								Browse&hellip; <input type="file" name="userfiles[]" style="display: none;" multiple>
+								Ganti<input type="file" name="userfiles[]" style="display: none;">
 							</span>
 						</label>
-						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" readonly>
+						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
+						</div>
 					</div>
-					<div class="input-info">Bisa Lebih dari 1 Gambar</div>
-
+					</div>
+					</div>
+					
+				<?php $i++; } ?>
 				</div>
-			</div>
-
 			<div class="col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-1">
 			<button type="submit" style="width:100%" class="btn btn-md btn-primary" name="filesubmit" value="1">Edit</button>
 			</div>

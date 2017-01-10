@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 05:20 AM
+-- Generation Time: Jan 10, 2017 at 02:50 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -21,51 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `dapatbuku_db`
 --
 
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createRoomChat` (`id_1` INT(11), `id_2` INT(11))  BEGIN
-	if exists( select * from chat_room where (user_1 = id_1 and user_2 = id_2) or (user_2 = id_1 and user_1 = id_2))
-	then
-		SELECT * FROM chat_room WHERE (user_1 = id_1 AND user_2 = id_2) OR (user_2 = id_1 AND user_1 = id_2);
-	else
-		INSERT into chat_room (created_at, user_1, user_2)
-		values (now(),id_1,id_2);
-		SELECT * FROM chat_room WHERE (user_1 = id_1 AND user_2 = id_2) OR (user_2 = id_1 AND user_1 = id_2);
-	end if;
-    END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_product` (`keyword` VARCHAR(100), `kategori_in` INT, `b_sell_flag` BOOL, `bekas_flag` BOOL, `baru_flag` BOOL, `province_in` INT, `regency_in` INT, `jual_flag` BOOL, `sewa_flag` BOOL, `barter_flag` BOOL)  BEGIN
-	select new.id_u_b, new.price_sell_u_b
-	FROM (SELECT * FROM ((SELECT ub.id_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b, ub.rent_u_b, ub.barter_u_b, ub.price_sell_u_b, ub.price_rent_u_b, u.city_u FROM user_book ub JOIN
-               USER u ON ub.id_u_owner = u.id_u) u_detail JOIN (SELECT b.id_b, b.best_seller_flag,
-               b.pages, b.writer, bcc.cat_id FROM book b JOIN book_category_connector bcc ON b.id_b = bcc.book_id) b_detail ON u_detail.id_b_source = b_detail.id_b)) NEW
-        where new.id_b_source = 13;
-        
-	END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_user_change_password` (`id` INT(11), `old_pass` VARCHAR(256), `new_pass` VARCHAR(256), `renew_pass` VARCHAR(256))  BEGIN
-	IF EXISTS(SELECT * from user where id_u = id and password_u = SHA2(old_pass,256))
-	then
-		if(SHA2(new_pass,256) = SHA2(old_pass,256) )
-		then 
-			select 1 as report;
-		elseif (new_pass != renew_pass) 
-		then
-			select 2 as report;
-		else
-			update user
-			set password_u = SHA2(new_pass,256)
-			where id_u = id;
-			select 99 as report;
-		end if;
-	else
-	select 0 as report;
-	end if;
-    END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +57,7 @@ CREATE TABLE `book` (
   `id_b` int(11) NOT NULL,
   `title_b` varchar(200) NOT NULL,
   `slug_title_b` varchar(200) DEFAULT NULL COMMENT 'slug for link',
-  `no_isbn_b` varchar(20) DEFAULT 'Tidak Tersedia',
+  `no_isbn_b` varchar(20) DEFAULT NULL,
   `writer` varchar(128) DEFAULT NULL,
   `publisher` varchar(128) DEFAULT NULL,
   `pages` int(11) DEFAULT NULL,
@@ -118,162 +73,165 @@ CREATE TABLE `book` (
   `best_seller_rank` int(3) DEFAULT NULL,
   `tags` text,
   `views_b` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `book`
 --
 
 INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `publisher`, `pages`, `date_published`, `language_b`, `thumb_cover_b`, `photo_cover_b`, `cover_type_b`, `description_b`, `total_reviews_b`, `total_ratings`, `best_seller_flag`, `best_seller_rank`, `tags`, `views_b`) VALUES
-(1, 'Quantum Ikhlas', 'quantum-ikhlas', '9786020267050', 'Erbe Sentanu', 'Elex Media Komputindo', 290, '2007-10-01', 'Indonesia', NULL, '', '', '', 0, 0, 1, 1, 'kuantum, ikhlas, agama, islam, jujur', 0),
-(2, 'Kenali Ragam Kepribafian Yang disukai dan Dibenci', 'kenali-ragam-kepribafian-yang-disukai-dan-dibenci', '9786029789584 ', 'Naylil Moena', 'DIVA', 0, '2011-11-01', 'Indonesia', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(3, 'Terapi Kejujuran', 'terapi-kejujuran', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 4),
-(4, 'Jurus Jitu Mengelola Amarah', 'jurus-jitu-mengelola-amarah', 'Tidak Tersedia', 'Harrista Adiati', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(5, 'Analisis Tulisan Tangan', 'analisis-tulisan-tangan', 'Tidak Tersedia', 'Bayu Ludvianto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(6, 'Sepatu Dahlan', 'sepatu-dahlan', 'Tidak Tersedia', 'Khrisna Pabichara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(7, 'Si Cacing dan Kotoran Kesayangannya', 'si-cacing-dan-kotoran-kesayangannya', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(8, 'Si Cacing dan Kotoran Kesayangannya 2', 'si-cacing-dan-kotoran-kesayangannya-2', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(9, 'Si Cacing dan Kotoran Kesayangannya 3', 'si-cacing-dan-kotoran-kesayangannya-3', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(10, 'Cara Mutakhir Jago Desain Logo', 'cara-mutakhir-jago-desain-logo', 'Tidak Tersedia', 'Ferri Caniago', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 2, '', 0),
-(11, '99 Ideas for Happy Teens', '99-ideas-for-happy-teens', 'Tidak Tersedia', 'Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(12, 'Benabook', 'benabook', 'Tidak Tersedia', 'Benazio Rizky', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(13, 'Ngenest', 'ngenest', 'Tidak Tersedia', 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(14, 'Ngenest 2', 'ngenest-2', 'Tidak Tersedia', 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(15, 'Ngenest 3', 'ngenest-3', 'Tidak Tersedia', 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(16, 'First Time In Beijing', 'first-time-in-beijing', 'Tidak Tersedia', 'Riawani Elyta', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(17, 'Kwaidan', 'kwaidan', 'Tidak Tersedia', 'Koizumi Yakumo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(18, 'Heart Emergency', 'heart-emergency', 'Tidak Tersedia', 'Falla Adinda', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(19, 'Hore Guru Si Cacing Datang', 'hore-guru-si-cacing-datang', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(20, 'Daun yang Jatuh Tak Pernah Membenci Angin', 'daun-yang-jatuh-tak-pernah-membenci-angin', 'Tidak Tersedia', 'Tere Liye', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
-(21, 'Habibie & Ainun', 'habibie-ainun', 'Tidak Tersedia', 'B.J. Habibie', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
-(22, '101 Creative Notes', '101-creative-notes', 'Tidak Tersedia', 'Yoris Sebastians', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
-(23, 'Managing People', 'managing-people', 'Tidak Tersedia', 'A.M. Lilik Agung', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 5, '', 0),
-(24, 'It''s My Startup', 'it-s-my-startup', 'Tidak Tersedia', 'Lahandi Baskoro', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 6, '', 0),
-(25, '100 Kecerdasan Setan', '100-kecerdasan-setan', 'Tidak Tersedia', 'Wiwid Prasetyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 7, '', 0),
-(26, '60 Inovasi Pilihan Kompas', '60-inovasi-pilihan-kompas', 'Tidak Tersedia', 'Nawa Tunggal', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
-(27, 'Yakuza Moon', 'yakuza-moon', 'Tidak Tersedia', 'Shoko Tendo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
-(28, 'Fat Bulous', 'fat-bulous', 'Tidak Tersedia', 'Fidriwida', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 9, '', 0),
-(29, 'Kitab Anti Bangkrut', 'kitab-anti-bangkrut', 'Tidak Tersedia', 'Jaya Setiabudi', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 8, '', 0),
-(30, 'Young On Top Campus Ambassador', 'young-on-top-campus-ambassador', 'Tidak Tersedia', 'Youn On Top', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(31, 'The 5 Level of Leadership', 'the-5-level-of-leadership', 'Tidak Tersedia', 'John C Maxwell', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 10, '', 1),
-(32, 'Kun Fayakuun', 'kun-fayakuun', 'Tidak Tersedia', 'M. Arifin Ilham', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(33, '50 Ritual Pagi Miliarder Sedunia', '50-ritual-pagi-miliarder-sedunia', 'Tidak Tersedia', 'Budi Safa''at', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(34, 'Secangkir Kopi Tanpa Kafein', 'secangkir-kopi-tanpa-kafein', 'Tidak Tersedia', 'Rose Kusumaning R', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(35, 'Kamus Istilah Komentator Bola', 'kamus-istilah-komentator-bola', 'Tidak Tersedia', 'Mice Cartoon', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(36, 'Buka Langsung Laris', 'buka-langsung-laris', 'Tidak Tersedia', 'Jaya Setiabudi', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(37, 'Ken & Kaskus Cerita Sukses di Usia Muda', 'ken-kaskus-cerita-sukses-di-usia-muda', 'Tidak Tersedia', 'Alberthiene Endah', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(38, 'Total Habibie', 'total-habibie', 'Tidak Tersedia', 'A. Makmur Makka', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(39, 'Bertambah Bijak Setiap Hari 8 x 3 = 23', 'bertambah-bijak-setiap-hari-8-x-3-23', 'Tidak Tersedia', 'Budi S Tanuwibowo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(40, 'Alex Ferguson Autobiografi Saya', 'alex-ferguson-autobiografi-saya', 'Tidak Tersedia', 'Alex Ferguson', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(41, 'Surat Dahlan', 'surat-dahlan', 'Tidak Tersedia', 'Khrisna Pabichara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(42, 'Top Words 2', 'top-words-2', 'Tidak Tersedia', 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(43, 'Sholat Tahajjud Khusus Para Pebisnis', 'sholat-tahajjud-khusus-para-pebisnis', 'Tidak Tersedia', 'Sitiatava Rizema Putra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(44, 'Positive Thinking Itu Dipraktekin', 'positive-thinking-itu-dipraktekin', 'Tidak Tersedia', 'Tim Wesfix', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(45, 'Dosa-Dosa Besar Yang Telah Dianggap Biasa Dalam Keseharian Kita', 'dosa-dosa-besar-yang-telah-dianggap-biasa-dalam-keseharian-kita', 'Tidak Tersedia', 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(46, 'Seni Bertengkar Suami Istri Untuk Mengharmoniskan Rumah Tangga', 'seni-bertengkar-suami-istri-untuk-mengharmoniskan-rumah-tangga', 'Tidak Tersedia', 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(47, 'Buat Suami Bertekuk Lutut di Hadapan Istri', 'buat-suami-bertekuk-lutut-di-hadapan-istri', 'Tidak Tersedia', 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(48, 'The Miracle Of Sabar', 'the-miracle-of-sabar', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(49, 'Mukjizat Gerakan Shalat', 'mukjizat-gerakan-shalat', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(50, 'Presiden Mursi (Kisah Ketakutan Dunia Pada Kekuatan Ikhwanul Muslimin)', 'presiden-mursi-kisah-ketakutan-dunia-pada-kekuatan-ikhwanul-muslimin-', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(51, 'Kekuatan Memaafkan', 'kekuatan-memaafkan', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(52, 'Ternyata Sayap Lalat Mengandung Obat', 'ternyata-sayap-lalat-mengandung-obat', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(53, 'Facebook Sebelah Surga Sebelah Neraka', 'facebook-sebelah-surga-sebelah-neraka', 'Tidak Tersedia', 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(54, 'Kindfulness', 'kindfulness', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(55, 'I Love Mediation', 'i-love-mediation', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(56, 'Hello Happiness', 'hello-happiness', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(57, 'Dont Worry Be Hopey', 'dont-worry-be-hopey', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(58, 'Hidup Senang Mati Tenang', 'hidup-senang-mati-tenang', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(59, 'Membuka Pintu Hati', 'membuka-pintu-hati', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(60, 'Superpower Mindfulness', 'superpower-mindfulness', 'Tidak Tersedia', 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(61, 'Antologi Cinta', 'antologi-cinta', 'Tidak Tersedia', 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(62, 'Kamus Nama Indah Islami', 'kamus-nama-indah-islami', 'Tidak Tersedia', 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(63, 'Gadis Pakarena', 'gadis-pakarena', 'Tidak Tersedia', 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(64, '10 Rahasia Pembelajar Kreatif', '10-rahasia-pembelajar-kreatif', 'Tidak Tersedia', 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(65, 'Mengawini Ibu Senarai Kisah Yang Menggetarkan', 'mengawini-ibu-senarai-kisah-yang-menggetarkan', 'Tidak Tersedia', 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(66, 'Kisah Pengantar Tidur Dari Al Quran Untuk Buah Hati', 'kisah-pengantar-tidur-dari-al-quran-untuk-buah-hati', 'Tidak Tersedia', 'Adrian R. Nugraha, Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(67, 'Cerita-Cerita Al Qur''an Menakjubkan', 'cerita-cerita-al-qur-an-menakjubkan', 'Tidak Tersedia', 'Adrian R. Nugraha, Deny Riana ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(68, 'Menjadi Isteri yang Layak Dicintai', 'menjadi-isteri-yang-layak-dicintai', 'Tidak Tersedia', 'Uken Junaedi, Deny Riana ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(69, 'Refresh Your Life', 'refresh-your-life', 'Tidak Tersedia', 'Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(70, 'Chicken Soup Tumpah', 'chicken-soup-tumpah', 'Tidak Tersedia', 'Nur Novilina', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(71, 'Ayah', 'ayah', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(72, 'Edensor', 'edensor', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(73, 'Laskar Pelangi', 'laskar-pelangi', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(74, 'Sang Pemimpi', 'sang-pemimpi', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(75, 'Maryamah Karpov', 'maryamah-karpov', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(76, 'Sebelas Patriot', 'sebelas-patriot', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(77, 'Padang Bulan', 'padang-bulan', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(78, 'Cinta di Dalam Gelas', 'cinta-di-dalam-gelas', 'Tidak Tersedia', 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(79, 'Primbon Mantra Uang', 'primbon-mantra-uang', 'Tidak Tersedia', 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(80, 'Mobile Mantra Uang', 'mobile-mantra-uang', 'Tidak Tersedia', 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(81, 'Mantra Uang dari WordPress Blog', 'mantra-uang-dari-wordpress-blog', 'Tidak Tersedia', 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(82, 'Mantra Uang dari WordPress Blog 2.0', 'mantra-uang-dari-wordpress-blog-2-0', 'Tidak Tersedia', 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(83, 'The Bridesmaids Tale', 'the-bridesmaids-tale', 'Tidak Tersedia', 'Fala Amalina @Kaleela', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(84, 'Top Words', 'top-words', 'Tidak Tersedia', 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(85, 'Young On Top', 'young-on-top', 'Tidak Tersedia', 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(86, 'Young On Top New Edition', 'young-on-top-new-edition', 'Tidak Tersedia', 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(87, 'Air Mata Nayla', 'air-mata-nayla', 'Tidak Tersedia', 'Muhammad Ardiansha El Zemani', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(89, 'Beruntungnya Si Bahlul', 'beruntungnya-si-bahlul', 'Tidak Tersedia', 'Yoyok Dwi Prastyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(90, 'Mengapa Si Penjudi Masuk Surga Sedangkan Si Sufi Masuk Neraka?', 'mengapa-si-penjudi-masuk-surga-sedangkan-si-sufi-masuk-neraka-', 'Tidak Tersedia', 'Yoyok Dwi Prastyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 3, '', 0),
-(91, 'Relationshit', 'relationshit', 'Tidak Tersedia', 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(92, 'Kancut Keblenger: Digital Love', 'kancut-keblenger-digital-love', 'Tidak Tersedia', 'Alit Susanto, Irvina Lioni, Anggi Tristiyono', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(93, 'Gado-Gado Kualat', 'gado-gado-kualat', 'Tidak Tersedia', 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(94, 'Skripshit', 'skripshit', 'Tidak Tersedia', 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(95, 'My Other Half', 'my-other-half', 'Tidak Tersedia', 'Cyndi Dianing Ratri', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(96, 'Pada Senja Yang Membawamu Pergi', 'pada-senja-yang-membawamu-pergi', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(97, 'Sebuah Usaha Melupakan', 'sebuah-usaha-melupakan', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(98, 'Seperti Hujan Yang Jatuh Ke Bumi', 'seperti-hujan-yang-jatuh-ke-bumi', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(99, 'Setelah Hujan Reda', 'setelah-hujan-reda', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(100, 'Kuajak Kau ke Hutan dan Tersesat Berdua', 'kuajak-kau-ke-hutan-dan-tersesat-berdua', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(101, 'Surat Kecil Untuk Ayah', 'surat-kecil-untuk-ayah', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(102, 'Satu Hari di 2018', 'satu-hari-di-2018', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(103, 'Sepasang Kekasih yang Belum Bertemu', 'sepasang-kekasih-yang-belum-bertemu', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(104, 'Senja, Hujan, Dan Cerita Yang Telah Usai', 'senja-hujan-dan-cerita-yang-telah-usai', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(105, 'Catatan Pendek untuk Cinta yang Panjang', 'catatan-pendek-untuk-cinta-yang-panjang', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(106, 'Origami Hati', 'origami-hati', 'Tidak Tersedia', 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(107, 'Ketika Ibu telah Tiada', 'ketika-ibu-telah-tiada', 'Tidak Tersedia', '', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(108, 'Meneladani Semut dan Lebah', 'meneladani-semut-dan-lebah', 'Tidak Tersedia', 'Thoriq Aziz Jayana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(109, 'Karyawan Harus Nabung Biar Makmur', 'karyawan-harus-nabung-biar-makmur', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(110, 'Seri Perencanaan Keuangan Keluarga: Mencari Penghasilan Tambahan', 'seri-perencanaan-keuangan-keluarga-mencari-penghasilan-tambahan', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(111, 'Seri Perencanaan Keuangan Keluarga: Mengantisipasi Resiko', 'seri-perencanaan-keuangan-keluarga-mengantisipasi-resiko', 'Tidak Tersedia', 'Safir Senduk ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(112, 'Siapa Bilang Jadi Karyawan Nggak Bisa Kaya', 'siapa-bilang-jadi-karyawan-nggak-bisa-kaya', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(113, 'Seri Kiat Praktis Perencanaan Keuangan: "Buka Usaha Nggak Kaya? Percuma"', 'seri-kiat-praktis-perencanaan-keuangan-buka-usaha-nggak-kaya-percuma-', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(114, 'Seri Perencanaan Keuangan Keluarga: Mengatur Pengeluaran Secara Bijak', 'seri-perencanaan-keuangan-keluarga-mengatur-pengeluaran-secara-bijak', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(115, 'Seri Perencanaan Keuangan Keluarga: Mengelola Keuangan Keluarga', 'seri-perencanaan-keuangan-keluarga-mengelola-keuangan-keluarga', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(116, 'Seri Perencanaan Keuangan Keluarga: Mempersiapkan Dana Pendidikan Anak', 'seri-perencanaan-keuangan-keluarga-mempersiapkan-dana-pendidikan-anak', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(117, 'Seri Perencanaan Keuangan Keluarga: Merancang Program Pensiun', 'seri-perencanaan-keuangan-keluarga-merancang-program-pensiun', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(118, 'Buka Usaha Gak Kaya, Percuma!', 'buka-usaha-gak-kaya-percuma-', 'Tidak Tersedia', 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(119, 'Memasuki Era BUMN Multinational Coorporation', 'memasuki-era-bumn-multinational-coorporation', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(120, 'Tidak ada yang tidak bisa', 'tidak-ada-yang-tidak-bisa', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(121, 'Manufacturing Hope: Bisa !', 'manufacturing-hope-bisa-', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(122, 'Ganti Hati', 'ganti-hati', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(123, 'Karmaka Surjandaja: No Such Thing as Can''t', 'karmaka-surjandaja-no-such-thing-as-can-t', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(124, 'Manufacturing Hope Series: Oleh-oleh dari Kantor BUMN', 'manufacturing-hope-series-oleh-oleh-dari-kantor-bumn', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(125, 'Dua Tangis dan Ribuan Tawa', 'dua-tangis-dan-ribuan-tawa', 'Tidak Tersedia', 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(126, 'Smart Way to Get A Job', 'smart-way-to-get-a-job', 'Tidak Tersedia', 'Rahmat Kurniawan ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(127, 'Menjadi Tambah Kaya dan Terencana dengan Reksa Dana', 'menjadi-tambah-kaya-dan-terencana-dengan-reksa-dana', 'Tidak Tersedia', 'Ryan Filbert Wijaya', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(128, 'I''m Motivator: Kisah Inspiratif Motivator Indonesia', 'i-m-motivator-kisah-inspiratif-motivator-indonesia', 'Tidak Tersedia', 'Ongky Hojanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(129, 'The Art of Being Brilliant: Memaksimalkan Bagian Terbaik Diri Kita', 'the-art-of-being-brilliant-memaksimalkan-bagian-terbaik-diri-kita', 'Tidak Tersedia', 'Andy Cope, Andy Whittaker ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(130, 'Baper Bawa Perubahan', 'baper-bawa-perubahan', 'Tidak Tersedia', 'Rhenald Kasali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(131, 'Miracles on Demand', 'miracles-on-demand', 'Tidak Tersedia', 'Adi W. Gunawan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(132, 'Spirit Of Life, 25 Inspirasi dan Motivasi Penggugah Jiwa', 'spirit-of-life-25-inspirasi-dan-motivasi-penggugah-jiwa', 'Tidak Tersedia', 'Muhammad Syah Fibrika Ramadhan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(133, 'Direktur Berkata', 'direktur-berkata', 'Tidak Tersedia', 'Jung Min Woo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(134, '33 Cara Kaya Ala Bob Sadino Motivasi Bisnis Anti-gagal', '33-cara-kaya-ala-bob-sadino-motivasi-bisnis-anti-gagal', 'Tidak Tersedia', 'Asterlita SV', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(135, 'The Achievement Habit Berhenti Berharap, Mulai Lakukan, Dan Ambil Kendali Hidup Anda', 'the-achievement-habit-berhenti-berharap-mulai-lakukan-dan-ambil-kendali-hidup-anda', 'Tidak Tersedia', 'Bernard Roth', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(136, 'Merry Riana - Campus Ambassadors', 'merry-riana---campus-ambassadors', 'Tidak Tersedia', 'Shandy Tan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(137, 'Cinta Tanpa Cerita', 'cinta-tanpa-cerita', 'Tidak Tersedia', '@infiniteloved', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(138, '7 Tokoh Dunia Yang Pernah Kami Temui & Rahasia-Rahasia Mereka', '7-tokoh-dunia-yang-pernah-kami-temui-rahasia-rahasia-mereka', 'Tidak Tersedia', 'Ippho D. Santosa, Imam Shamsi Ali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(139, 'Burung Besi Monika', 'burung-besi-monika', 'Tidak Tersedia', 'Monika Anggreini', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(140, 'Jangan Grogi! Jurus Sukses Mengikuti', 'jangan-grogi-jurus-sukses-mengikuti', 'Tidak Tersedia', 'Wishnu Soehardjo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(141, 'Ini Buku Kamu', 'ini-buku-kamu', 'Tidak Tersedia', 'Dedy Dahlan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 4, '', 0),
-(142, 'Sukses di Usia Muda, Harga Mati!', 'sukses-di-usia-muda-harga-mati-', 'Tidak Tersedia', 'Ustadz Ahmad zahrudin M. Nafis', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(143, 'Maximus Dan Gladiator Papua, Freeport''s Untold Story', 'maximus-dan-gladiator-papua-freeport-s-untold-story', 'Tidak Tersedia', 'MAXIMUS TIPAGAU', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(144, '6 Rahasia Sederhana Menjadi Remaja Bahagia', '6-rahasia-sederhana-menjadi-remaja-bahagia', 'Tidak Tersedia', 'Guntur Alam', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(145, 'Mind Map Langkah Demi Langkah', 'mind-map-langkah-demi-langkah', 'Tidak Tersedia', 'Sutanto Windura', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(146, 'Be An Absolute', 'be-an-absolute', 'Tidak Tersedia', 'Sutanto Windura', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(147, 'Kekuatan Menerima Diri Apa Adanya', 'kekuatan-menerima-diri-apa-adanya', 'Tidak Tersedia', 'Brene Brown', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(148, 'WARRIOR The Art of Winning the Battle of Success', 'warrior-the-art-of-winning-the-battle-of-success', 'Tidak Tersedia', 'Darmadi Darmawangsa, Davit Setiawan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(149, 'Pengangguran Kaya Raya', 'pengangguran-kaya-raya', 'Tidak Tersedia', 'WILDAN FATONI', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(150, 'Teknik Menghilangkan Stres dari Otak', 'teknik-menghilangkan-stres-dari-otak', 'Tidak Tersedia', 'Hideho Arita', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0);
+(1, 'Quantum Ikhlas', 'quantum-ikhlas', NULL, 'Erbe Sentanu', 'Elex Media Komputindo', 290, '2007-10-01', 'Indonesia', NULL, '', '', '', 0, 0, 1, 1, 'kuantum, ikhlas, agama, islam, jujur', 0),
+(2, 'Kenali Ragam Kepribafian Yang disukai dan Dibenci', 'kenali-ragam-kepribafian-yang-disukai-dan-dibenci', NULL, 'Naylil Moena', 'DIVA', 0, '2011-11-01', 'Indonesia', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(3, 'Terapi Kejujuran', 'terapi-kejujuran', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 4),
+(4, 'Jurus Jitu Mengelola Amarah', 'jurus-jitu-mengelola-amarah', NULL, 'Harrista Adiati', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(5, 'Analisis Tulisan Tangan', 'analisis-tulisan-tangan', NULL, 'Bayu Ludvianto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(6, 'Sepatu Dahlan', 'sepatu-dahlan', NULL, 'Khrisna Pabichara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(7, 'Si Cacing dan Kotoran Kesayangannya', 'si-cacing-dan-kotoran-kesayangannya', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(8, 'Si Cacing dan Kotoran Kesayangannya 2', 'si-cacing-dan-kotoran-kesayangannya-2', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(9, 'Si Cacing dan Kotoran Kesayangannya 3', 'si-cacing-dan-kotoran-kesayangannya-3', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(10, 'Cara Mutakhir Jago Desain Logo', 'cara-mutakhir-jago-desain-logo', NULL, 'Ferri Caniago', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 2, '', 0),
+(11, '99 Ideas for Happy Teens', '99-ideas-for-happy-teens', NULL, 'Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(12, 'Benabook', 'benabook', NULL, 'Benazio Rizky', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(13, 'Ngenest', 'ngenest', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(14, 'Ngenest 2', 'ngenest-2', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(15, 'Ngenest 3', 'ngenest-3', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(16, 'First Time In Beijing', 'first-time-in-beijing', NULL, 'Riawani Elyta', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(17, 'Kwaidan', 'kwaidan', NULL, 'Koizumi Yakumo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(18, 'Heart Emergency', 'heart-emergency', NULL, 'Falla Adinda', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(19, 'Hore Guru Si Cacing Datang', 'hore-guru-si-cacing-datang', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(20, 'Daun yang Jatuh Tak Pernah Membenci Angin', 'daun-yang-jatuh-tak-pernah-membenci-angin', NULL, 'Tere Liye', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
+(21, 'Habibie & Ainun', 'habibie-ainun', NULL, 'B.J. Habibie', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
+(22, '101 Creative Notes', '101-creative-notes', NULL, 'Yoris Sebastians', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
+(23, 'Managing People', 'managing-people', NULL, 'A.M. Lilik Agung', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 5, '', 0),
+(24, 'It''s My Startup', 'it-s-my-startup', NULL, 'Lahandi Baskoro', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 6, '', 0),
+(25, '100 Kecerdasan Setan', '100-kecerdasan-setan', NULL, 'Wiwid Prasetyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 7, '', 0),
+(26, '60 Inovasi Pilihan Kompas', '60-inovasi-pilihan-kompas', NULL, 'Nawa Tunggal', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
+(27, 'Yakuza Moon', 'yakuza-moon', NULL, 'Shoko Tendo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, NULL, '', 0),
+(28, 'Fat Bulous', 'fat-bulous', NULL, 'Fidriwida', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 9, '', 0),
+(29, 'Kitab Anti Bangkrut', 'kitab-anti-bangkrut', NULL, 'Jaya Setiabudi', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 8, '', 0),
+(30, 'Young On Top Campus Ambassador', 'young-on-top-campus-ambassador', NULL, 'Youn On Top', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(31, 'The 5 Level of Leadership', 'the-5-level-of-leadership', NULL, 'John C Maxwell', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 10, '', 1),
+(32, 'Kun Fayakuun', 'kun-fayakuun', NULL, 'M. Arifin Ilham', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(33, '50 Ritual Pagi Miliarder Sedunia', '50-ritual-pagi-miliarder-sedunia', NULL, 'Budi Safa''at', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(34, 'Secangkir Kopi Tanpa Kafein', 'secangkir-kopi-tanpa-kafein', NULL, 'Rose Kusumaning R', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(35, 'Kamus Istilah Komentator Bola', 'kamus-istilah-komentator-bola', NULL, 'Mice Cartoon', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(36, 'Buka Langsung Laris', 'buka-langsung-laris', NULL, 'Jaya Setiabudi', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(37, 'Ken & Kaskus Cerita Sukses di Usia Muda', 'ken-kaskus-cerita-sukses-di-usia-muda', NULL, 'Alberthiene Endah', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(38, 'Total Habibie', 'total-habibie', NULL, 'A. Makmur Makka', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(39, 'Bertambah Bijak Setiap Hari 8 x 3 = 23', 'bertambah-bijak-setiap-hari-8-x-3-23', NULL, 'Budi S Tanuwibowo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(40, 'Alex Ferguson Autobiografi Saya', 'alex-ferguson-autobiografi-saya', NULL, 'Alex Ferguson', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(41, 'Surat Dahlan', 'surat-dahlan', NULL, 'Khrisna Pabichara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(42, 'Top Words 2', 'top-words-2', NULL, 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(43, 'Sholat Tahajjud Khusus Para Pebisnis', 'sholat-tahajjud-khusus-para-pebisnis', NULL, 'Sitiatava Rizema Putra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(44, 'Positive Thinking Itu Dipraktekin', 'positive-thinking-itu-dipraktekin', NULL, 'Tim Wesfix', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(45, 'Dosa-Dosa Besar Yang Telah Dianggap Biasa Dalam Keseharian Kita', 'dosa-dosa-besar-yang-telah-dianggap-biasa-dalam-keseharian-kita', NULL, 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(46, 'Seni Bertengkar Suami Istri Untuk Mengharmoniskan Rumah Tangga', 'seni-bertengkar-suami-istri-untuk-mengharmoniskan-rumah-tangga', NULL, 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(47, 'Buat Suami Bertekuk Lutut di Hadapan Istri', 'buat-suami-bertekuk-lutut-di-hadapan-istri', NULL, 'Naylil Moena', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(48, 'The Miracle Of Sabar', 'the-miracle-of-sabar', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(49, 'Mukjizat Gerakan Shalat', 'mukjizat-gerakan-shalat', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(50, 'Presiden Mursi (Kisah Ketakutan Dunia Pada Kekuatan Ikhwanul Muslimin)', 'presiden-mursi-kisah-ketakutan-dunia-pada-kekuatan-ikhwanul-muslimin-', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(51, 'Kekuatan Memaafkan', 'kekuatan-memaafkan', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(52, 'Ternyata Sayap Lalat Mengandung Obat', 'ternyata-sayap-lalat-mengandung-obat', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(53, 'Facebook Sebelah Surga Sebelah Neraka', 'facebook-sebelah-surga-sebelah-neraka', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(54, 'Kindfulness', 'kindfulness', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(55, 'I Love Mediation', 'i-love-mediation', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(56, 'Hello Happiness', 'hello-happiness', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(57, 'Dont Worry Be Hopey', 'dont-worry-be-hopey', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(58, 'Hidup Senang Mati Tenang', 'hidup-senang-mati-tenang', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(59, 'Membuka Pintu Hati', 'membuka-pintu-hati', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(60, 'Superpower Mindfulness', 'superpower-mindfulness', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(61, 'Antologi Cinta', 'antologi-cinta', NULL, 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(62, 'Kamus Nama Indah Islami', 'kamus-nama-indah-islami', NULL, 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(63, 'Gadis Pakarena', 'gadis-pakarena', NULL, 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(64, '10 Rahasia Pembelajar Kreatif', '10-rahasia-pembelajar-kreatif', NULL, 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(65, 'Mengawini Ibu Senarai Kisah Yang Menggetarkan', 'mengawini-ibu-senarai-kisah-yang-menggetarkan', NULL, 'Khrisna Pabhicara', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(66, 'Kisah Pengantar Tidur Dari Al Quran Untuk Buah Hati', 'kisah-pengantar-tidur-dari-al-quran-untuk-buah-hati', NULL, 'Adrian R. Nugraha, Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(67, 'Cerita-Cerita Al Qur''an Menakjubkan', 'cerita-cerita-al-qur-an-menakjubkan', NULL, 'Adrian R. Nugraha, Deny Riana ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(68, 'Menjadi Isteri yang Layak Dicintai', 'menjadi-isteri-yang-layak-dicintai', NULL, 'Uken Junaedi, Deny Riana ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(69, 'Refresh Your Life', 'refresh-your-life', NULL, 'Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(70, 'Chicken Soup Tumpah', 'chicken-soup-tumpah', NULL, 'Nur Novilina', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(71, 'Ayah', 'ayah', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(72, 'Edensor', 'edensor', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(73, 'Laskar Pelangi', 'laskar-pelangi', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(74, 'Sang Pemimpi', 'sang-pemimpi', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(75, 'Maryamah Karpov', 'maryamah-karpov', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(76, 'Sebelas Patriot', 'sebelas-patriot', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(77, 'Padang Bulan', 'padang-bulan', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(78, 'Cinta di Dalam Gelas', 'cinta-di-dalam-gelas', NULL, 'Andrea Hirata', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(79, 'Primbon Mantra Uang', 'primbon-mantra-uang', NULL, 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(80, 'Mobile Mantra Uang', 'mobile-mantra-uang', NULL, 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(81, 'Mantra Uang dari WordPress Blog', 'mantra-uang-dari-wordpress-blog', NULL, 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(82, 'Mantra Uang dari WordPress Blog 2.0', 'mantra-uang-dari-wordpress-blog-2-0', NULL, 'Aldian Prakoso ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(83, 'The Bridesmaids Tale', 'the-bridesmaids-tale', NULL, 'Fala Amalina @Kaleela', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(84, 'Top Words', 'top-words', NULL, 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(85, 'Young On Top', 'young-on-top', NULL, 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(86, 'Young On Top New Edition', 'young-on-top-new-edition', NULL, 'Billy Boen', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(87, 'Air Mata Nayla', 'air-mata-nayla', NULL, 'Muhammad Ardiansha El Zemani', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(89, 'Beruntungnya Si Bahlul', 'beruntungnya-si-bahlul', NULL, 'Yoyok Dwi Prastyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(90, 'Mengapa Si Penjudi Masuk Surga Sedangkan Si Sufi Masuk Neraka?', 'mengapa-si-penjudi-masuk-surga-sedangkan-si-sufi-masuk-neraka-', NULL, 'Yoyok Dwi Prastyo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 3, '', 0),
+(91, 'Relationshit', 'relationshit', NULL, 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(92, 'Kancut Keblenger: Digital Love', 'kancut-keblenger-digital-love', NULL, 'Alit Susanto, Irvina Lioni, Anggi Tristiyono', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(93, 'Gado-Gado Kualat', 'gado-gado-kualat', NULL, 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(94, 'Skripshit', 'skripshit', NULL, 'Alit Susanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(95, 'My Other Half', 'my-other-half', NULL, 'Cyndi Dianing Ratri', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(96, 'Pada Senja Yang Membawamu Pergi', 'pada-senja-yang-membawamu-pergi', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(97, 'Sebuah Usaha Melupakan', 'sebuah-usaha-melupakan', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(98, 'Seperti Hujan Yang Jatuh Ke Bumi', 'seperti-hujan-yang-jatuh-ke-bumi', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(99, 'Setelah Hujan Reda', 'setelah-hujan-reda', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(100, 'Kuajak Kau ke Hutan dan Tersesat Berdua', 'kuajak-kau-ke-hutan-dan-tersesat-berdua', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(101, 'Surat Kecil Untuk Ayah', 'surat-kecil-untuk-ayah', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(102, 'Satu Hari di 2018', 'satu-hari-di-2018', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(103, 'Sepasang Kekasih yang Belum Bertemu', 'sepasang-kekasih-yang-belum-bertemu', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(104, 'Senja, Hujan, Dan Cerita Yang Telah Usai', 'senja-hujan-dan-cerita-yang-telah-usai', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(105, 'Catatan Pendek untuk Cinta yang Panjang', 'catatan-pendek-untuk-cinta-yang-panjang', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(106, 'Origami Hati', 'origami-hati', NULL, 'Boy Candra', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(107, 'Ketika Ibu telah Tiada', 'ketika-ibu-telah-tiada', NULL, '', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(108, 'Meneladani Semut dan Lebah', 'meneladani-semut-dan-lebah', NULL, 'Thoriq Aziz Jayana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(109, 'Karyawan Harus Nabung Biar Makmur', 'karyawan-harus-nabung-biar-makmur', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(110, 'Seri Perencanaan Keuangan Keluarga: Mencari Penghasilan Tambahan', 'seri-perencanaan-keuangan-keluarga-mencari-penghasilan-tambahan', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(111, 'Seri Perencanaan Keuangan Keluarga: Mengantisipasi Resiko', 'seri-perencanaan-keuangan-keluarga-mengantisipasi-resiko', NULL, 'Safir Senduk ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(112, 'Siapa Bilang Jadi Karyawan Nggak Bisa Kaya', 'siapa-bilang-jadi-karyawan-nggak-bisa-kaya', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(113, 'Seri Kiat Praktis Perencanaan Keuangan: "Buka Usaha Nggak Kaya? Percuma"', 'seri-kiat-praktis-perencanaan-keuangan-buka-usaha-nggak-kaya-percuma-', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(114, 'Seri Perencanaan Keuangan Keluarga: Mengatur Pengeluaran Secara Bijak', 'seri-perencanaan-keuangan-keluarga-mengatur-pengeluaran-secara-bijak', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(115, 'Seri Perencanaan Keuangan Keluarga: Mengelola Keuangan Keluarga', 'seri-perencanaan-keuangan-keluarga-mengelola-keuangan-keluarga', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(116, 'Seri Perencanaan Keuangan Keluarga: Mempersiapkan Dana Pendidikan Anak', 'seri-perencanaan-keuangan-keluarga-mempersiapkan-dana-pendidikan-anak', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(117, 'Seri Perencanaan Keuangan Keluarga: Merancang Program Pensiun', 'seri-perencanaan-keuangan-keluarga-merancang-program-pensiun', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(118, 'Buka Usaha Gak Kaya, Percuma!', 'buka-usaha-gak-kaya-percuma-', NULL, 'Safir Senduk', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(119, 'Memasuki Era BUMN Multinational Coorporation', 'memasuki-era-bumn-multinational-coorporation', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(120, 'Tidak ada yang tidak bisa', 'tidak-ada-yang-tidak-bisa', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(121, 'Manufacturing Hope: Bisa !', 'manufacturing-hope-bisa-', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(122, 'Ganti Hati', 'ganti-hati', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(123, 'Karmaka Surjandaja: No Such Thing as Can''t', 'karmaka-surjandaja-no-such-thing-as-can-t', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(124, 'Manufacturing Hope Series: Oleh-oleh dari Kantor BUMN', 'manufacturing-hope-series-oleh-oleh-dari-kantor-bumn', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(125, 'Dua Tangis dan Ribuan Tawa', 'dua-tangis-dan-ribuan-tawa', NULL, 'Dahlan Iskan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(126, 'Smart Way to Get A Job', 'smart-way-to-get-a-job', NULL, 'Rahmat Kurniawan ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(127, 'Menjadi Tambah Kaya dan Terencana dengan Reksa Dana', 'menjadi-tambah-kaya-dan-terencana-dengan-reksa-dana', NULL, 'Ryan Filbert Wijaya', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(128, 'I''m Motivator: Kisah Inspiratif Motivator Indonesia', 'i-m-motivator-kisah-inspiratif-motivator-indonesia', NULL, 'Ongky Hojanto', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(129, 'The Art of Being Brilliant: Memaksimalkan Bagian Terbaik Diri Kita', 'the-art-of-being-brilliant-memaksimalkan-bagian-terbaik-diri-kita', NULL, 'Andy Cope, Andy Whittaker ', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(130, 'Baper Bawa Perubahan', 'baper-bawa-perubahan', NULL, 'Rhenald Kasali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(131, 'Miracles on Demand', 'miracles-on-demand', NULL, 'Adi W. Gunawan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(132, 'Spirit Of Life, 25 Inspirasi dan Motivasi Penggugah Jiwa', 'spirit-of-life-25-inspirasi-dan-motivasi-penggugah-jiwa', NULL, 'Muhammad Syah Fibrika Ramadhan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(133, 'Direktur Berkata', 'direktur-berkata', NULL, 'Jung Min Woo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(134, '33 Cara Kaya Ala Bob Sadino Motivasi Bisnis Anti-gagal', '33-cara-kaya-ala-bob-sadino-motivasi-bisnis-anti-gagal', NULL, 'Asterlita SV', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(135, 'The Achievement Habit Berhenti Berharap, Mulai Lakukan, Dan Ambil Kendali Hidup Anda', 'the-achievement-habit-berhenti-berharap-mulai-lakukan-dan-ambil-kendali-hidup-anda', NULL, 'Bernard Roth', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(136, 'Merry Riana - Campus Ambassadors', 'merry-riana---campus-ambassadors', NULL, 'Shandy Tan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(137, 'Cinta Tanpa Cerita', 'cinta-tanpa-cerita', NULL, '@infiniteloved', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(138, '7 Tokoh Dunia Yang Pernah Kami Temui & Rahasia-Rahasia Mereka', '7-tokoh-dunia-yang-pernah-kami-temui-rahasia-rahasia-mereka', NULL, 'Ippho D. Santosa, Imam Shamsi Ali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(139, 'Burung Besi Monika', 'burung-besi-monika', NULL, 'Monika Anggreini', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(140, 'Jangan Grogi! Jurus Sukses Mengikuti', 'jangan-grogi-jurus-sukses-mengikuti', NULL, 'Wishnu Soehardjo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(141, 'Ini Buku Kamu', 'ini-buku-kamu', NULL, 'Dedy Dahlan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 4, '', 0),
+(142, 'Sukses di Usia Muda, Harga Mati!', 'sukses-di-usia-muda-harga-mati-', NULL, 'Ustadz Ahmad zahrudin M. Nafis', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(143, 'Maximus Dan Gladiator Papua, Freeport''s Untold Story', 'maximus-dan-gladiator-papua-freeport-s-untold-story', NULL, 'MAXIMUS TIPAGAU', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(144, '6 Rahasia Sederhana Menjadi Remaja Bahagia', '6-rahasia-sederhana-menjadi-remaja-bahagia', NULL, 'Guntur Alam', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(145, 'Mind Map Langkah Demi Langkah', 'mind-map-langkah-demi-langkah', NULL, 'Sutanto Windura', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(146, 'Be An Absolute', 'be-an-absolute', NULL, 'Sutanto Windura', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(147, 'Kekuatan Menerima Diri Apa Adanya', 'kekuatan-menerima-diri-apa-adanya', NULL, 'Brene Brown', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(148, 'WARRIOR The Art of Winning the Battle of Success', 'warrior-the-art-of-winning-the-battle-of-success', NULL, 'Darmadi Darmawangsa, Davit Setiawan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(149, 'Pengangguran Kaya Raya', 'pengangguran-kaya-raya', NULL, 'WILDAN FATONI', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(150, 'Teknik Menghilangkan Stres dari Otak', 'teknik-menghilangkan-stres-dari-otak', NULL, 'Hideho Arita', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(165, 'Thanos Book', 'thanos-book', '1234566678', 'thanos', 'thanos', 12, '0000-00-00', 'indonesia', './assets/img/book/151/thumb_151.jpg', './assets/img/book/151/cover_151.jpg', 'soft', 'asd', 0, 0, 0, NULL, '', 4),
+(169, 'Thanosss', 'thanosss', '123133131322', 'thanosss', '123', 123, '0000-00-00', 'indonesia', './assets/img/book/170/cover_170_thumb.jpg', './assets/img/book/170/cover_170.jpg', 'soft', ' ', 0, 0, 0, NULL, '123', 3),
+(175, 'Spidermana darkseid', 'spiderman-peter', '12341', 'peter', 'peter', 123, '0000-00-00', 'indonesia', '.', '.', 'soft', '      aaa', 0, 0, 0, NULL, '12', 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +292,18 @@ INSERT INTO `book_category_connector` (`id_bcc`, `book_id`, `cat_id`) VALUES
 (17, 13, 1),
 (18, 13, 2),
 (19, 14, 1),
-(20, 14, 2);
+(20, 14, 2),
+(21, 151, 2),
+(22, 151, 3),
+(23, 152, 2),
+(24, 163, 3),
+(25, 165, 3),
+(26, 165, 4),
+(27, 166, 2),
+(28, 168, 2),
+(30, 169, 2),
+(31, 170, 2),
+(47, 175, 2);
 
 -- --------------------------------------------------------
 
@@ -766,7 +735,186 @@ INSERT INTO `log_visit` (`id_lv`, `user_id_lv`, `jenis_lv`, `id_halaman_lv`) VAL
 (234, 0, 'home', 0),
 (235, 0, 'home', 0),
 (236, 0, 'home', 0),
-(237, 56, 'profile', 56);
+(237, 56, 'profile', 56),
+(238, 56, 'home', 0),
+(239, 56, 'home', 0),
+(240, 0, 'home', 0),
+(241, 0, 'home', 0),
+(242, 53, 'profile', 53),
+(243, 53, 'home', 0),
+(244, 53, 'home', 0),
+(245, 53, 'home', 0),
+(246, 53, 'home', 0),
+(247, 53, 'home', 0),
+(248, 53, 'home', 0),
+(249, 53, 'home', 0),
+(250, 53, 'home', 0),
+(251, 53, 'product', 61),
+(252, 53, 'home', 0),
+(253, 53, 'product', 61),
+(254, 53, 'home', 0),
+(255, 53, 'product', 61),
+(256, 53, 'home', 0),
+(257, 53, 'product', 61),
+(258, 53, 'home', 0),
+(259, 53, 'product', 61),
+(260, 53, 'home', 0),
+(261, 53, 'product', 61),
+(262, 53, 'home', 0),
+(263, 53, 'product', 61),
+(264, 53, 'home', 0),
+(265, 53, 'product', 64),
+(266, 53, 'home', 0),
+(267, 53, 'product', 64),
+(268, 53, 'home', 0),
+(269, 53, 'product', 64),
+(270, 53, 'home', 0),
+(271, 53, 'product', 64),
+(272, 53, 'home', 0),
+(273, 53, 'product', 64),
+(274, 53, 'home', 0),
+(275, 53, 'product', 64),
+(276, 53, 'home', 0),
+(277, 53, 'product', 64),
+(278, 53, 'home', 0),
+(279, 53, 'product', 64),
+(280, 53, 'home', 0),
+(281, 53, 'product', 64),
+(282, 53, 'home', 0),
+(283, 53, 'product', 64),
+(284, 53, 'home', 0),
+(285, 53, 'product', 64),
+(286, 53, 'home', 0),
+(287, 53, 'product', 64),
+(288, 53, 'home', 0),
+(289, 53, 'product', 64),
+(290, 53, 'home', 0),
+(291, 53, 'product', 64),
+(292, 53, 'home', 0),
+(293, 53, 'product', 64),
+(294, 53, 'product', 64),
+(295, 53, 'home', 0),
+(296, 53, 'product', 64),
+(297, 53, 'product', 64),
+(298, 53, 'home', 0),
+(299, 53, 'product', 64),
+(300, 53, 'home', 0),
+(301, 53, 'product', 64),
+(302, 53, 'home', 0),
+(303, 53, 'product', 64),
+(304, 53, 'product', 64),
+(305, 53, 'home', 0),
+(306, 53, 'product', 64),
+(307, 53, 'home', 0),
+(308, 53, 'product', 64),
+(309, 53, 'product', 64),
+(310, 53, 'home', 0),
+(311, 53, 'product', 64),
+(312, 53, 'product', 64),
+(313, 53, 'product', 64),
+(314, 53, 'home', 0),
+(315, 53, 'product', 64),
+(316, 53, 'home', 0),
+(317, 53, 'product', 64),
+(318, 53, 'home', 0),
+(319, 53, 'product', 64),
+(320, 53, 'home', 0),
+(321, 53, 'product', 64),
+(322, 53, 'home', 0),
+(323, 53, 'product', 64),
+(324, 53, 'home', 0),
+(325, 53, 'product', 64),
+(326, 53, 'home', 0),
+(327, 53, 'product', 64),
+(328, 53, 'home', 0),
+(329, 53, 'product', 64),
+(330, 53, 'home', 0),
+(331, 53, 'product', 65),
+(332, 53, 'home', 0),
+(333, 53, 'product', 65),
+(334, 53, 'home', 0),
+(335, 53, 'product', 65),
+(336, 53, 'home', 0),
+(337, 53, 'home', 0),
+(338, 53, 'home', 0),
+(339, 53, 'home', 0),
+(340, 53, 'home', 0),
+(341, 53, 'home', 0),
+(342, 53, 'product', 65),
+(343, 53, 'home', 0),
+(344, 53, 'home', 0),
+(345, 53, 'home', 0),
+(346, 53, 'home', 0),
+(347, 53, 'home', 0),
+(348, 53, 'home', 0),
+(349, 53, 'home', 0),
+(350, 53, 'home', 0),
+(351, 53, 'home', 0),
+(352, 53, 'home', 0),
+(353, 53, 'book', 165),
+(354, 53, 'book', 165),
+(355, 53, 'book', 165),
+(356, 53, 'book', 165),
+(357, 53, 'book', 168),
+(358, 53, 'book', 169),
+(359, 53, 'book', 169),
+(360, 53, 'home', 0),
+(361, 53, 'home', 0),
+(362, 53, 'home', 0),
+(363, 53, 'home', 0),
+(364, 53, 'home', 0),
+(365, 53, 'home', 0),
+(366, 53, 'book', 169),
+(367, 53, 'home', 0),
+(368, 53, 'product', 65),
+(369, 53, 'home', 0),
+(370, 53, 'home', 0),
+(371, 53, 'home', 0),
+(372, 53, 'home', 0),
+(373, 53, 'product', 65),
+(374, 53, 'home', 0),
+(375, 53, 'home', 0),
+(376, 53, 'home', 0),
+(377, 53, 'home', 0),
+(378, 53, 'home', 0),
+(379, 53, 'home', 0),
+(380, 53, 'home', 0),
+(381, 0, 'home', 0),
+(382, 0, 'home', 0),
+(383, 0, 'book', 175),
+(384, 0, 'home', 0),
+(385, 0, 'home', 0),
+(386, 0, 'home', 0),
+(387, 0, 'home', 0),
+(388, 0, 'home', 0),
+(389, 0, 'home', 0),
+(390, 57, 'profile', 57),
+(391, 57, 'home', 0),
+(392, 57, 'home', 0),
+(393, 57, 'home', 0),
+(394, 57, 'profile', 57),
+(395, 57, 'home', 0),
+(396, 57, 'home', 0),
+(397, 57, 'product', 75),
+(398, 57, 'home', 0),
+(399, 57, 'home', 0),
+(400, 57, 'home', 0),
+(401, 57, 'product', 75),
+(402, 57, 'home', 0),
+(403, 57, 'product', 75),
+(404, 57, 'home', 0),
+(405, 57, 'home', 0),
+(406, 57, 'home', 0),
+(407, 57, 'product', 75),
+(408, 57, 'home', 0),
+(409, 57, 'home', 0),
+(410, 57, 'home', 0),
+(411, 57, 'product', 77),
+(412, 57, 'home', 0),
+(413, 57, 'home', 0),
+(414, 57, 'home', 0),
+(415, 57, 'home', 0),
+(416, 57, 'home', 0);
 
 -- --------------------------------------------------------
 
@@ -1409,10 +1557,11 @@ INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`
 (4, 'dummy', 'dummy@dummy.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'saya', 'lasta', '1996-06-11', '12345622222', NULL, 5171, 51, 0, 'bio data ku adalah seorang keren banget12''''qwe', './assets/img/user/4/profile-pict/42016-11-20-04-14-36.jpg', NULL, 0, NULL, 'koko', '12345', NULL, NULL, 0, NULL),
 (5, 'hanah', 'hanah@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', NULL, NULL, '1998-02-13', '09898989', NULL, 1173, NULL, 0, NULL, './assets/img/user/5/profile-pict/default.png', NULL, 0, NULL, '@hanahanda', '0292828383', NULL, NULL, 0, NULL),
 (52, '123', 'halahalahal@gmail.com', '$2a$08$ovqYY9Ym7tD3Cmdn.Dsh1Op/g2vs.HZRPinevBejSn9yMXTjyrjJe', NULL, NULL, '2000-01-01', NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', NULL, 0, NULL, '', '', '2017-01-09 10:24:55', '2017-01-09 14:00:45', 0, NULL),
-(53, 'kevin', 'kevin@kevin.com', '$2a$08$P3BQDTQ8uMgAQ3lJhxX4B.Yi3Loa01PUV7aBlRZ0uAhLDZBFGuoZK', 'Kevin ', 'Fachreza', '2017-01-01', '082233073237', 'aaaa', 3578, 35, 1, 'Aku Adalah Superman\r\n', './assets/img/user/53/profile-pict/532017-01-10-03-22-59.jpg', '0', 0, 0, '-', '-', '2017-01-09 14:03:02', '2017-01-10 03:21:50', 3, '2017-01-10 03:32:11'),
+(53, 'kevin', 'kevin@kevin.com', '$2a$08$P3BQDTQ8uMgAQ3lJhxX4B.Yi3Loa01PUV7aBlRZ0uAhLDZBFGuoZK', 'Kevin ', 'Fachreza', '2017-01-01', '082233073237', 'aaaa', 3578, 35, 1, 'Aku Adalah Superman\r\n', './assets/img/user/53/profile-pict/532017-01-10-03-22-59.jpg', '0', 0, 0, '-', '-', '2017-01-09 14:03:02', '2017-01-10 06:37:15', 4, '2017-01-10 03:32:11'),
 (54, 'bananabanana', 'kevin@banana.com', '$2a$08$JqgxPzjd3eO2Iung8CkbOuvACUYzbrjMAZ3rrFUE/i7vkaK9nI98i', 'Kevin', 'Banana', '2017-01-01', '123123', NULL, 1506, 15, 0, 'asdad', 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:31', '2017-01-10 04:07:08', 1, NULL),
 (55, '', '', '$2a$08$9N4fwpmi8.74rCVBRdl2j.uF5HhFQBZXYckTY4zEFDq9cXcYNzNUW', NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:57', NULL, 0, NULL),
-(56, 'dummya', 'dummy@dummy.coma', '$2a$08$BRSZ3XiftN87WTpq3J/n4Oqi5bwEYSlfvFWdyIc59FVcq0MdvVBXS', 'dummy', 'dummy', '1900-01-10', '123', '-', 1101, 11, 0, '123', './assets/img/user/56/profile-pict/562017-01-10-05-11-37.jpg', '0', 0, 0, '-', '-', '2017-01-10 04:09:57', '2017-01-10 04:10:03', 1, '2017-01-10 04:11:47');
+(56, 'dummya', 'dummy@dummy.coma', '$2a$08$BRSZ3XiftN87WTpq3J/n4Oqi5bwEYSlfvFWdyIc59FVcq0MdvVBXS', 'dummy', 'dummy', '1900-01-10', '123', '-', 1101, 11, 0, '123', './assets/img/user/56/profile-pict/562017-01-10-05-11-37.jpg', '0', 0, 0, '-', '-', '2017-01-10 04:09:57', '2017-01-10 04:10:03', 1, '2017-01-10 04:11:47'),
+(57, 'ikanterbang', 'ikan@terbang.com', '$2a$08$Ft3XlNbCjJRynlDanxjHVO3PBDBxoaofuQl9rWBVEbboN1zwlZIpy', '123', '123', '2017-01-01', '123', '-', 0, 11, 0, 'adad', 'assets/img/default/profile-pict.png', '0', 0, 0, '123', '123', '2017-01-10 12:37:56', '2017-01-10 12:38:14', 2, '2017-01-10 12:45:16');
 
 -- --------------------------------------------------------
 
@@ -1438,7 +1587,7 @@ CREATE TABLE `user_book` (
   `berat_u_b` int(11) NOT NULL,
   `slug_title_u_b` varchar(500) NOT NULL,
   `tahun_beli_u_b` year(4) NOT NULL,
-  `active` int(2) DEFAULT '2',
+  `active` int(2) DEFAULT '2' COMMENT '0 rejected 1 show 2 waiting',
   `activated_by` varchar(12) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1452,7 +1601,7 @@ CREATE TABLE `user_book` (
 --
 
 INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point`, `price_rent_u_b`, `type_u_b`, `sell_u_b`, `barter_u_b`, `rent_u_b`, `description_u_b`, `id_u_owner`, `stock_u_b`, `main_image_u_b`, `title_u_b`, `berat_u_b`, `slug_title_u_b`, `tahun_beli_u_b`, `active`, `activated_by`, `created_at`, `updated_at`, `rejected_reason`, `activated_at`, `views_ub`) VALUES
-(0, 13, 75000, 0, 15000, 1, 1, 1, 1, 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum', 5, 1, 'assets/img/user/5/1.jpg', '', 0, '', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:17', 0),
+(0, 13, 75000, 0, 15000, 1, 1, 1, 1, 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum', 5, 1, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', '', 0, '', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:17', 0),
 (2, 14, 90000, 0, 10000, 2, 1, 0, 1, 'LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum', 5, 3, 'assets/img/user/5/2.jpg', '', 0, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
 (4, 14, 90000, 0, 10000, 2, 1, 0, 1, 'Hanya bisa dibuat', 5, 3, 'assets/img/user/5/2.jpg', 'Tetap mencoba', 0, 'Tetap-mencoba', 2009, 1, NULL, NULL, NULL, NULL, '2017-01-08 06:26:29', 0),
 (5, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
@@ -1465,7 +1614,35 @@ INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point
 (43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
 (44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:25', 0),
 (45, 13, 123, 0, NULL, 1, NULL, 0, 123, 'asdasdad', 53, 12, 'assets/img/user/53/books/45/0.jpg', 'Banana Boat Ada 5', 123, 'BananaBoatAda5f89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(46, 13, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, NULL, 'Juancoookk', 123, 'Juancoookkf89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0);
+(46, 13, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, NULL, 'Juancoookk', 123, 'Juancoookkf89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(47, 0, 123, 0, NULL, 1, NULL, 0, 123, 'adasda', 53, 123, 'assets/img/user/53/books/Kaos-Spiderman--31489/0.jpg', 'Kaos Spiderman', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(48, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--98010/0.jpg', 'coba ini buku saya jual', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(49, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--0e17d/0.jpg', 'coba ini buku saya jual', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(50, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--1a656/0.jpg', 'coba ini buku saya jual', 123, 'coba-ini-buku-saya-jual--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(51, 0, 123213, 0, NULL, 1, NULL, 0, 127, '123', 53, 123, 'assets/img/user/53/books/aaaa--031b4/0.jpg', 'aaaa', 123, 'aaaa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(52, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(53, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'punisher--a2185', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(54, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(55, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--02d20/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(56, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--7688b/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(57, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--c8376/0.jpg', 'aa', 123, 'batman-ikanterbang-f74efabef1a88a7', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(58, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--6208e/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(59, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--3e1e9/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(60, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--39fa9/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(61, 12, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--d029f/0_thumb.jpg', 'ini baru', 123, 'ini-baru', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 07:47:45', 7),
+(64, 12, 123, 0, NULL, 1, NULL, 0, 123, 'asd', 53, 12, 'assets/img/user/53/books/daredevil--a68b4/0_thumb.jpg', 'daredevil', 12, 'daredevil--', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 07:56:14', 36),
+(65, 12, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, 'assets/img/user/53/books/spiderman-ada-2--108c9/0_thumb.jpg', 'spiderman ada ', 123, 'spiderman-ada-2--', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 08:28:01', 6),
+(66, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--3ada9/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(67, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--49d18/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(68, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--a2185/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(70, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, NULL, 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(71, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, NULL, 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(72, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(73, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(74, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-96061e92f5', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(75, 75, 123, 0, 0, 1, NULL, 0, 0, '', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-eb624dbe56', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:11:17', 4),
+(76, 75, 123, 0, 0, 1, NULL, 0, 0, '', 57, 123, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'winter soldier', 123, 'winter-soldier-ikanterbang-f369cb89fc', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:38:39', 0),
+(77, 12, 123, 0, 0, 1, NULL, 0, 123, '', 57, 123, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_thumb.jpg', 'batman', 123, 'batman-ikanterbang-f74efabef1', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:40:54', 1);
 
 -- --------------------------------------------------------
 
@@ -1488,32 +1665,93 @@ CREATE TABLE `user_book_favourite` (
 CREATE TABLE `user_book_image` (
   `id_u_b_img` int(11) NOT NULL,
   `id_b_source` int(11) NOT NULL,
-  `image_path` varchar(100) DEFAULT NULL
+  `image_path` varchar(256) DEFAULT NULL,
+  `image_thumb` varchar(256) DEFAULT NULL,
+  `image_original` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_book_image`
 --
 
-INSERT INTO `user_book_image` (`id_u_b_img`, `id_b_source`, `image_path`) VALUES
-(3, 41, 'assets/img/user/5/books/41/0.png'),
-(4, 41, 'assets/img/user/5/books/41/1.png'),
-(5, 41, 'assets/img/user/5/books/41/2.png'),
-(6, 41, 'assets/img/user/5/books/41/3.png'),
-(7, 42, 'assets/img/user/5/books/42/0.png'),
-(8, 42, 'assets/img/user/5/books/42/1.png'),
-(9, 4, 'assets/img/user/5/books/4/0.png'),
-(10, 4, 'assets/img/user/5/books/4/0.png'),
-(11, 4, 'assets/img/user/5/books/4/0.png'),
-(12, 4, 'assets/img/user/5/books/4/0.png'),
-(13, 42, 'assets/img/user/4/books/42/0.jpg'),
-(14, 42, 'assets/img/user/4/books/42/1.jpg'),
-(15, 42, 'assets/img/user/4/books/42/2.jpg'),
-(16, 42, 'assets/img/user/4/books/42/0.jpg'),
-(17, 42, 'assets/img/user/4/books/42/0.jpg'),
-(18, 42, 'assets/img/user/4/books/42/0.jpg'),
-(19, 42, 'assets/img/user/4/books/42/0.jpg'),
-(20, 45, 'assets/img/user/53/books/45/0.jpg');
+INSERT INTO `user_book_image` (`id_u_b_img`, `id_b_source`, `image_path`, `image_thumb`, `image_original`) VALUES
+(3, 41, 'assets/img/user/5/books/41/0.png', NULL, NULL),
+(4, 41, 'assets/img/user/5/books/41/1.png', NULL, NULL),
+(5, 41, 'assets/img/user/5/books/41/2.png', NULL, NULL),
+(6, 41, 'assets/img/user/5/books/41/3.png', NULL, NULL),
+(7, 42, 'assets/img/user/5/books/42/0.png', NULL, NULL),
+(8, 42, 'assets/img/user/5/books/42/1.png', NULL, NULL),
+(9, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
+(10, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
+(11, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
+(12, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
+(13, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
+(14, 42, 'assets/img/user/4/books/42/1.jpg', NULL, NULL),
+(15, 42, 'assets/img/user/4/books/42/2.jpg', NULL, NULL),
+(16, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
+(17, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
+(18, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
+(19, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
+(20, 45, 'assets/img/user/53/books/45/0.jpg', NULL, NULL),
+(21, 47, 'assets/img/user/53/books/Kaos-Spiderman--31489/0.jpg', NULL, NULL),
+(22, 48, 'assets/img/user/53/books/coba-ini-buku-saya-jual--98010/0.jpg', NULL, NULL),
+(23, 49, 'assets/img/user/53/books/coba-ini-buku-saya-jual--0e17d/0.jpg', NULL, NULL),
+(24, 50, 'assets/img/user/53/books/coba-ini-buku-saya-jual--1a656/0.jpg', NULL, NULL),
+(25, 51, 'assets/img/user/53/books/aaaa--031b4/0.jpg', NULL, NULL),
+(26, 55, 'assets/img/user/53/books/aa--02d20/0.jpg', NULL, NULL),
+(27, 56, 'assets/img/user/53/books/aa--7688b/0.jpg', NULL, NULL),
+(28, 57, 'assets/img/user/53/books/aa--c8376/0.jpg', NULL, NULL),
+(29, 58, 'assets/img/user/53/books/aa--6208e/0.jpg', NULL, NULL),
+(30, 59, 'assets/img/user/53/books/aa--3e1e9/0.jpg', NULL, NULL),
+(31, 59, 'assets/img/user/53/books/aa--3e1e9/1.jpg', NULL, NULL),
+(32, 59, 'assets/img/user/53/books/aa--3e1e9/2.jpg', NULL, NULL),
+(33, 60, 'assets/img/user/53/books/aa--39fa9/0.jpg', NULL, NULL),
+(34, 60, 'assets/img/user/53/books/aa--39fa9/1.jpg', NULL, NULL),
+(35, 60, 'assets/img/user/53/books/aa--39fa9/2.jpg', NULL, NULL),
+(36, 61, 'assets/img/user/53/books/aa--d029f/0.jpg', 'assets/img/user/53/books/aa--d029f/0_thumb.jpg', NULL),
+(37, 61, 'assets/img/user/53/books/aa--d029f/1.jpg', 'assets/img/user/53/books/aa--d029f/1_thumb.jpg', NULL),
+(38, 61, 'assets/img/user/53/books/aa--d029f/2.jpg', 'assets/img/user/53/books/aa--d029f/2_thumb.jpg', NULL),
+(45, 64, 'assets/img/user/53/books/daredevil--a68b4/0_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/0_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/0.jpg'),
+(46, 64, 'assets/img/user/53/books/daredevil--a68b4/1_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/1_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/1.jpg'),
+(47, 64, 'assets/img/user/53/books/daredevil--a68b4/2_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/2_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/2.jpg'),
+(48, 65, 'assets/img/user/53/books/spiderman-ada-2--108c9/0_resize.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/0_thumb.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/0.jpg'),
+(49, 65, 'assets/img/user/53/books/spiderman-ada-2--108c9/1_resize.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/1_thumb.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/1.jpg'),
+(50, 66, 'assets/img/user/53/books/punisher--3ada9/0_resize.jpg', 'assets/img/user/53/books/punisher--3ada9/0_thumb.jpg', 'assets/img/user/53/books/punisher--3ada9/0.jpg'),
+(51, 66, 'assets/img/user/53/books/punisher--3ada9/1_resize.jpg', 'assets/img/user/53/books/punisher--3ada9/1_thumb.jpg', 'assets/img/user/53/books/punisher--3ada9/1.jpg'),
+(52, 67, 'assets/img/user/53/books/punisher--49d18/0_resize.jpg', 'assets/img/user/53/books/punisher--49d18/0_thumb.jpg', 'assets/img/user/53/books/punisher--49d18/0.jpg'),
+(53, 67, 'assets/img/user/53/books/punisher--49d18/1_resize.jpg', 'assets/img/user/53/books/punisher--49d18/1_thumb.jpg', 'assets/img/user/53/books/punisher--49d18/1.jpg'),
+(54, 68, 'assets/img/user/53/books/punisher--a2185/0_resize.jpg', 'assets/img/user/53/books/punisher--a2185/0_thumb.jpg', 'assets/img/user/53/books/punisher--a2185/0.jpg'),
+(55, 68, 'assets/img/user/53/books/punisher--a2185/1_resize.jpg', 'assets/img/user/53/books/punisher--a2185/1_thumb.jpg', 'assets/img/user/53/books/punisher--a2185/1.jpg'),
+(56, 0, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0.jpg'),
+(57, 72, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0.jpg'),
+(58, 73, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0.jpg'),
+(59, 74, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0.jpg'),
+(61, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(62, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(63, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(64, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(65, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(66, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(67, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(68, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(99, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(101, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(102, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(103, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(104, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(105, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(106, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(107, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(108, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(109, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(110, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(111, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
+(112, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1.jpg'),
+(113, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1.jpg'),
+(117, 76, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_resize.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0.jpg'),
+(118, 76, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_resize.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0.jpg'),
+(119, 77, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_resize.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_thumb.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0.jpg'),
+(120, 77, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1_resize.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1_thumb.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1.jpg');
 
 -- --------------------------------------------------------
 
@@ -1572,6 +1810,7 @@ ALTER TABLE `banner`
 --
 ALTER TABLE `book`
   ADD PRIMARY KEY (`id_b`),
+  ADD UNIQUE KEY `isbn_unique` (`no_isbn_b`),
   ADD KEY `Book_writer_FK` (`writer`),
   ADD KEY `Book_publisher_FK` (`publisher`);
 ALTER TABLE `book` ADD FULLTEXT KEY `Book_title` (`title_b`);
@@ -1726,7 +1965,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 --
 -- AUTO_INCREMENT for table `book_category`
 --
@@ -1736,7 +1975,7 @@ ALTER TABLE `book_category`
 -- AUTO_INCREMENT for table `book_category_connector`
 --
 ALTER TABLE `book_category_connector`
-  MODIFY `id_bcc` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_bcc` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `book_rating`
 --
@@ -1781,7 +2020,7 @@ ALTER TABLE `chat_room`
 -- AUTO_INCREMENT for table `log_visit`
 --
 ALTER TABLE `log_visit`
-  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
+  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=417;
 --
 -- AUTO_INCREMENT for table `publishers`
 --
@@ -1791,12 +2030,12 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `user_book`
 --
 ALTER TABLE `user_book`
-  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT for table `user_book_favourite`
 --
@@ -1806,7 +2045,7 @@ ALTER TABLE `user_book_favourite`
 -- AUTO_INCREMENT for table `user_book_image`
 --
 ALTER TABLE `user_book_image`
-  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT for table `user_book_rejectcode`
 --

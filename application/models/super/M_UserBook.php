@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		("
 			SELECT * FROM user_book, user
 			WHERE  user_book.active = 2 AND user_book.id_u_owner  = user.id_u
-			ORDER BY id_u_b
+			ORDER BY id_u_b desc
 			LIMIT ".$limit."
 			OFFSET ".$offset."
 		");
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$change = $this->db->query
 		("
 			SELECT count(1) as count from user_book, user
-			WHERE  user_book.active != 1 AND user_book.id_u_owner  = user.id_u
+			WHERE  user_book.active = 2 AND user_book.id_u_owner  = user.id_u
 		");
 		$result = $change->result();
 		return $result[0]->count;

@@ -33,50 +33,54 @@ tr:nth-child(even) {
 		<?php echo $sidebar?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="col-md-12">
+						<!-- Slider -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-4">
+				<div class="col-sm-12 col-xs-12 padding-5px">
+				   <div class="col-xs-12 padding-5px" id="slider">
 						<div class="row">
-							<div class="col-md-12">
-								<div class="col-md-4">
-									<div class="col-sm-12 col-xs-12 padding-5px">
-									   <div class="col-xs-12 padding-5px" id="slider">
-											<div class="row">
-												<div class="col-sm-12 " id="carousel-bounding-box">
-													<div class="carousel slide" id="ProductCarousel">
-														<div class="carousel-inner" style="height:300px;">
-															<?php $i = 0;
-																foreach($book_image as $key){
-																?>
-															<div class="<?php if($i == 0)	echo "active"; ?>item" data-slide-number="0">
-																<img src="<?php echo base_url().$key['image_path']; ?>">
-															</div>
-															<?php
-																$i++;
-															} ?>
-
-														</div>
-														<a class="left carousel-control" href="#ProductCarousel" role="button" data-slide="prev">
-															<span class="glyphicon glyphicon-chevron-left"></span>
-														</a>
-														<a class="right carousel-control" href="#ProductCarousel" role="button" data-slide="next">
-															<span class="glyphicon glyphicon-chevron-right"></span>
-														</a>
-													</div>
-												</div>
-											</div>
+							<div class="col-sm-12 " id="carousel-bounding-box">
+								<div class="carousel slide" id="ProductCarousel">
+									<div class="carousel-inner" style="height:300px;">
+										<?php $i = 0;
+											foreach($book_image as $key){
+											?>
+										<div class="<?php if($i == 0)	echo "active"; ?> item" data-slide-number="<?php echo $i?>">
+											<img src="<?php echo base_url().$key['image_path']; ?>" class="img-responsive-2">
 										</div>
+										<?php
+											$i++;
+										} ?>
 									</div>
-									<div class="col-xs-12 col-sm-12  " id="slider-thumbs">
-									<!-- Bottom switcher of slider -->
-										<ul class="hide-bullets">
-											<li class="col-xs-3 col-sm-3 padding-5px">
-												<?php foreach($book_image as $key){	?>
-												<a class="thumbnail" id="carousel-selector-0">
-													<img src="<?php echo base_url().$key['image_path']; ?>">
-												</a>
-											</li>
-											<?php } ?>
-										</ul>
-									</div>
-							<!--/Slider-->
+									<a class="left carousel-control" href="#ProductCarousel" role="button" data-slide="prev">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+									</a>
+									<a class="right carousel-control" href="#ProductCarousel" role="button" data-slide="next">
+										<span class="glyphicon glyphicon-chevron-right"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12  " id="slider-thumbs">
+				<!-- Bottom switcher of slider -->
+					<ul class="hide-bullets">
+						<?php $i=0; ?>
+						<?php foreach($book_image as $key){	?>
+						<?php $carousel = 'carousel-selector-';
+						$carousel .= $i; ?>
+						<li class="col-xs-3 col-sm-3 padding-5px">
+							<a class="thumbnail" id="<?php echo $carousel ?>">
+								<img src="<?php echo base_url().$key['image_thumb']; ?>">
+							</a>
+						</li>
+						<?php $i++; ?>
+						<?php } ?>
+					</ul>
+				</div>
+		<!--/Slider-->
 								</div>
 								<div class="col-md-8">
 									<div class="book-header">

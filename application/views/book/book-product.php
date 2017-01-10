@@ -19,6 +19,9 @@
 
 
 <div class="container custom-container" id="book-container">
+	
+<div class="row">
+
 	<!-- Slider -->
 	<div class="row">
 		<div class="col-md-12">
@@ -32,13 +35,12 @@
 										<?php $i = 0;
 											foreach($book_image as $key){
 											?>
-										<div class="<?php if($i == 0)	echo "active"; ?>item" data-slide-number="0">
-											<img src="<?php echo base_url().$key['image_path']; ?>">
+										<div class="<?php if($i == 0)	echo "active"; ?> item" data-slide-number="<?php echo $i?>">
+											<img src="<?php echo base_url().$key['image_path']; ?>" class="img-responsive-2">
 										</div>
 										<?php
 											$i++;
 										} ?>
-
 									</div>
 									<a class="left carousel-control" href="#ProductCarousel" role="button" data-slide="prev">
 										<span class="glyphicon glyphicon-chevron-left"></span>
@@ -54,12 +56,16 @@
 				<div class="col-xs-12 col-sm-12  " id="slider-thumbs">
 				<!-- Bottom switcher of slider -->
 					<ul class="hide-bullets">
+						<?php $i=0; ?>
+						<?php foreach($book_image as $key){	?>
+						<?php $carousel = 'carousel-selector-';
+						$carousel .= $i; ?>
 						<li class="col-xs-3 col-sm-3 padding-5px">
-							<?php foreach($book_image as $key){	?>
-							<a class="thumbnail" id="carousel-selector-0">
-								<img src="<?php echo base_url().$key['image_path']; ?>">
+							<a class="thumbnail" id="<?php echo $carousel ?>">
+								<img src="<?php echo base_url().$key['image_thumb']; ?>">
 							</a>
 						</li>
+						<?php $i++; ?>
 						<?php } ?>
 					</ul>
 				</div>
@@ -150,12 +156,12 @@
 				<div class="col-md-6 padding-default">
 					<div class="row">
 						<div class="col-md-4">
-							<img class="img-responsive" src="<?php echo base_url().$user_result[0]['photo_profile_u']; ?>">
+							<img class="img-responsive" style="height:200px" src="<?php echo base_url().$user_result[0]['photo_profile_u']; ?>">
 						</div>
 						<div class="col-md-8 seller-container">
 							<div class="seller-container-text"><span class="seller-username"><?php echo $user_result[0]['username_u']; ?></span></div>
 							<div class="seller-container-text"><span class="seller-location"><?php echo $user_result[0]['name']; ?> </span></div>
-							<div class="seller-container-text"><span class="text-muted">member sejak </span><span class="seller-member-date"><?php echo $user_result[0]['join_date_u']; ?></span></div>
+							<div class="seller-container-text"><span class="text-muted">member sejak </span><span class="seller-member-date"><?php echo $user_result[0]['created_at']; ?></span></div>
 							<div class="seller-send-message">
 							
 							</div>
@@ -203,12 +209,12 @@
 
 
 	<script type="text/javascript">
-  jQuery(document).ready(function($) {
-
+   jQuery(document).ready(function($) {
+ 
         $('#ProductCarousel').carousel({
                 interval: 5000
         });
-
+ 
         //Handles the carousel thumbnails
         $('[id^=carousel-selector-]').click(function () {
         var id_selector = $(this).attr("id");

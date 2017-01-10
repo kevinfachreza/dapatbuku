@@ -92,9 +92,9 @@ class Auth extends CI_Controller {
     else {
         $result = $this->M_auth->register($em, $name, $date, $pass);
         if($result){
-          mkdir("assets/img/user/".$result);
-          mkdir("assets/img/user/".$result."/books");
-          mkdir("assets/img/user/".$result."/profile-pict");
+          mkdir("assets/img/user/".$name);
+          mkdir("assets/img/user/".$name."/books");
+          mkdir("assets/img/user/".$name."/profile-pict");
           $this->session->set_flashdata('register', 'done');
           redirect('Welcome');
         }

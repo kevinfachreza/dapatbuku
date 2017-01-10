@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AdminBook extends CI_Controller {
+class Adminbook extends CI_Controller {
 
 	public function __construct()
 	{
@@ -12,6 +12,7 @@ class AdminBook extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('super/M_AdminBook');
+		$this->load->library('image_lib');
 	}
 	
 	
@@ -82,15 +83,23 @@ class AdminBook extends CI_Controller {
 		$bahasa = $this->input->post('bahasa');
 		$category = $this->input->post('category');
 		$cover = $this->input->post('cover');
-		$file = $this->do_upload_cover_book();
-		$sinopsis = $this->db->escape_str($this->input->post('sinopsis'));
-		
-		/*SLUG TITLE*/
+
 		$judulbuku = ucwords($judulbuku);
 		
 		$string = strtolower($judulbuku);
+		$string.='-'.$pengarang;
 		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+
+		$file = $this->do_upload_cover_book($slug);
+		$sinopsis = $this->db->escape_str($this->input->post('sinopsis'));
+		print_r($file);
+		$thumb = $file['thumb'];
+		$file = $file['file'];
 		
+		/*SLUG TITLE*/
+		
+
+		echo $thumb.'<br>';
 		echo $file.'<br>';
 		echo $slug.'<br>';
 		echo $judulbuku.'<br>';
@@ -115,7 +124,8 @@ class AdminBook extends CI_Controller {
 		'bahasa' => $bahasa,
 		'cover' => $cover,
 		'sinopsis' => $sinopsis,
-		'tags' => $tags
+		'tags' => $tags,
+		'thumb' => $thumb
 		);
 		
 		$report = $this->M_AdminBook-> addBook($data);
@@ -137,7 +147,7 @@ class AdminBook extends CI_Controller {
 			}
 		}
 		
-		redirect('super/adminbook/');
+		#redirect('super/adminbook/');
 	}
 	
 	public function do_delete_book($id)
@@ -217,24 +227,27 @@ class AdminBook extends CI_Controller {
 		$sinopsis = $this->db->escape_str($this->input->post('sinopsis'));
 		$id=$this->input->get('id');
 		
+		$slug = $this->M_AdminBook->getBook($id);
+		print_r($slug);
+		$slug = $slug[0]->slug_title_b;
+
+
 		#jika gak upload foto->foto tetap
 		if($_FILES["picture"]["error"] != 0) {
 			$data['book'] = $this->M_AdminBook->getBook($id);
 			$file = $data['book'][0]->photo_cover_b;
+			$thumb = $data['book'][0]->thumb_cover_b;
 		}
 		else 
 		{
-			$file = $this->do_upload_cover_book();
+			$file = $this->do_upload_cover_book($slug);
+			$thumb = $file['thumb'];
+			$file = $file['file'];
 		}
 		
 		
 		
 		/*SLUG TITLE*/
-		$judulbuku = ucwords($judulbuku);
-		
-		$string = strtolower($judulbuku);
-		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
-		
 		echo $slug.'<br>';
 		echo $judulbuku.'<br>';
 		echo $pengarang.'<br>';
@@ -258,7 +271,8 @@ class AdminBook extends CI_Controller {
 		'bahasa' => $bahasa,
 		'cover' => $cover,
 		'sinopsis' => $sinopsis,
-		'tags' => $tags
+		'tags' => $tags,
+		'thumb' => $thumb
 		);
 		
 		$report = $this->M_AdminBook-> editBook($id,$data);
@@ -307,17 +321,14 @@ class AdminBook extends CI_Controller {
 			$report = $this->M_AdminBook-> editBookAll($i,$array);
 		}
 	}
-	public function do_upload_cover_book()
+	public function do_upload_cover_book($slug)
 	{
 		$flag=1;
-		$id = $this->M_AdminBook->getLastBook();
-		$id = $id[0]->id;
-		$id = $id+1;
-		$config['upload_path']   = './assets/img/book/'.$id.'/';
+		$config['upload_path']   = './assets/img/book/'.$slug.'/';
 		if(!is_dir($config['upload_path'])) mkdir($config['upload_path'], 0777, TRUE);
 		$path = $config['upload_path'];
 		$path = $path;
-		$new_name = $id;
+		$new_name = $slug;
 		$config['allowed_types'] = 'gif|jpg|png'; 
         $config['max_size']      = 2000; 
         $config['max_width']     = 5000; 
@@ -336,7 +347,17 @@ class AdminBook extends CI_Controller {
         else { 
             $data = array('upload_data' => $this->upload->data());
 			$img_data=$this->upload->data();
+
+			$thumb = $path;
+			$thumb.= 'cover_';
+			$thumb.= $new_name;
+			$thumb.='_thumb';
+			$thumb.= $img_data['file_ext'];
+
 			$new_name.= $img_data['file_ext'];
+			#echo $filedatabase;
+            
+
         } 
 		
 		if($flag==0)
@@ -345,7 +366,26 @@ class AdminBook extends CI_Controller {
 		}
 		
 		$file = $path.'cover_'.$new_name;
-		return $file;
+
+
+		$result=array(
+			'file' => $file,
+			'thumb' => $thumb
+			);
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = $file;
+		$config['create_thumb'] = TRUE;
+	    $config['maintain_ratio'] = TRUE;
+	    $config['height']   = 200;
+	    $config["thumb_marker"] = "_thumb";
+
+	    $this->image_lib->clear();
+	    $this->image_lib->initialize($config);
+	    $this->image_lib->resize();
+
+		$this->load->library('image_lib', $config);
+
+		return $result;
 	}
 
 	public function search()

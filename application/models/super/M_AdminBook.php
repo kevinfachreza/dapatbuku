@@ -9,13 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	public function getBook($id)
 	{
-		$change = $this->db->query
-		("
-			SELECT * FROM book b
-			WHERE b.id_b = ".$id."
-		");
-		$result = $change->result();
-		return $result;
+			echo $id;
+			$change = $this->db->query
+			("
+				SELECT * FROM book b
+				WHERE b.id_b = ".$id."
+			");
+			$result = $change->result();
+			return $result;
 	}
 	
 	public function getSelectedCategories($id)
@@ -66,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		 $change = $this->db->query
 		("
-			SELECT MAX(id_b) AS id FROM book
+			SELECT MAX(id_b) AS id FROM book;
 		");
 		$result = $change->result();
 		return $result;
@@ -77,9 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		$query =
 		"
-			INSERT INTO book (title_b, slug_title_b, no_isbn_b, writer, publisher, pages, date_published, language_b, photo_cover_b, description_b, cover_type_b,tags)
+			INSERT INTO book (title_b, slug_title_b, no_isbn_b, writer, publisher, pages, date_published, language_b, photo_cover_b, description_b, cover_type_b,tags, thumb_cover_b)
 			VALUES ('".$data['judulbuku']."','".$data['slug']."','".$data['isbn']."','".$data['pengarang']."','".$data['publisher']."','".$data['halaman']."','".$data['cetakan_pertama']."',
-			'".$data['bahasa']."','".$data['file']."','".$data['sinopsis']."','".$data['cover']."','".$data['tags']."');
+			'".$data['bahasa']."','".$data['file']."','".$data['sinopsis']."','".$data['cover']."','".$data['tags']."','".$data['thumb']."');
 		";
 		 $change = $this->db->query($query);
 		
@@ -127,7 +128,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				photo_cover_b = '".$data['file']."',
 				cover_type_b = '".$data['cover']."',
 				description_b = '".$data['sinopsis']."',
-				tags = '".$data['tags']."'
+				tags = '".$data['tags']."',
+				thumb_cover_b = '".$data['thumb']."'
 			WHERE id_b = ".$id.";
 		";
 		$change = $this->db->query($query);

@@ -193,9 +193,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   	public function get_my_book($id_in, $limit=null, $offset=null)
     {
-      $query = "select * from user_book where id_u_owner = '".$id_in."' ";
+      $query = "select * from user_book where id_u_owner = '".$id_in."' order by id_u_b desc ";
       if($limit != null)
-        $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
+        $query .= "LIMIT ".$limit." OFFSET ".$offset."  ";
       $result = $this->db->query($query);
       return $result->result_array();
     }
@@ -203,8 +203,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)
     {
       $query = $this->db->query("insert into user_book(id_u_owner, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
-                                 berat_u_b, stock_u_b, description_u_b) VALUES('".$id_user."', '".$title."', '".$price_sell."',
-                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', '".$deskripsi."');");
+                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b) 
+                                 VALUES('".$id_user."', '".$title."', '".$price_sell."',
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', 
+                                 '".$deskripsi."', '".$slug."');");
       if($query)
       {
         $result = $this->db->insert_id();
@@ -230,9 +232,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
-    public function insert_user_book_img($id_in, $image)
+    public function insert_user_book_img($id_in,$resize, $thumb, $image)
     {
-      $query = $this->db->query("insert into user_book_image(id_b_source, image_path) VALUES('".$id_in."', '".$image."');");
+      $query = $this->db->query("insert into user_book_image(id_b_source, image_path, image_thumb, image_original) VALUES('".$id_in."', '".$resize."', '".$thumb."',
+        '".$image."');");
 
       if($this->db->affected_rows() == 1)
       {
@@ -245,14 +248,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function set_main_img($id_in, $image)
     {
-      $query = $this->db->query("UPDATE user_book SET main_image_u_b = '".$image."' WHERE id_u_b = '".$id_in."';");
-
-      if($this->db->affected_rows() == 1)
+      $comm="UPDATE user_book SET main_image_u_b = '".$image."' WHERE id_u_b = ".$id_in.";";
+      $query = $this->db->query($comm);
+      echo $comm;
+      if($this->db->affected_rows() > 0)
       {
-        return TRUE;
+        return 1;
       }
       else {
-        return FALSE;
+        return 0;
       }
     }
 
@@ -313,9 +317,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
     }
 
-    public function update_user_book_img($file, $fileold)
+    public function update_user_book_img($file, $thumb, $resize, $fileold)
     {
-      $query = $this->db->query("UPDATE user_book_image SET image_path = '".$file."' WHERE image_path='".$fileold."'; ");
+      $query = $this->db->query("UPDATE user_book_image SET image_path = '".$resize."'
+        image_original = '".$file."', image_thumb = '".$thumb."'
+       WHERE image_path='".$fileold."'; ");
 
       if($this->db->affected_rows() == 1)
       {
@@ -387,6 +393,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $query = $this->db->query($query);
       $array = $query->result_array();
       return $array[0];
+    }
+
+    public function getLastID()
+    {
+      $query = "SELECT max(id_u_b) as id from user_book";
+      $query = $this->db->query($query);
+      $array = $query->result_array();
+      return $array[0]['id']; 
+    }
+
+    public function delete_user_book_img($id)
+    {
+      $query = $this->db->query("DELETE from user_book_image where id_u_b_img = ".$id."");
+
+      if($this->db->affected_rows() == 1){
+        return TRUE;
+      }
+      else
+        return FALSE;
     }
 
   }

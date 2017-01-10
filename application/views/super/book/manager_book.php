@@ -6,6 +6,26 @@
 		<link href="<?php echo base_url()?>assets/css/admin/dashboard.css" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/dapatbuku.css">
 		<link href="<?php echo base_url()?>assets/css/admin/book.css" rel="stylesheet">
+
+		<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+
 	</head>
 
 	<body>
@@ -18,23 +38,36 @@
 				<div class="col-md-12">
 					<?php echo $this->session->flashdata('report');?>
 					<div class="row">
+
+								<table>
+								  <tr>
+								    <th>ID</th>
+								    <th>Gambar</th>
+								    <th>Judul</th>
+								    <th>Pengarang</th>
+								    <th>Edit</th>
+								    <th>Delete</th>
+								  </tr>
+								 
 					<?php for ($i=0;$i<count($book);$i++){ ?>
-						<div class="col-md-2 col-sm-4 col-xs-12 book-item">
-							<div class="margin-bot-1 home-book-img">
-								<a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b?>" class="img-responsive-2"></a>
-							</div>
-							<div class="text-center">
-								<div class="font-semibold title-container"><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->title_b?></a></div>
-								<div class="author-container"><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->writer?></a></div>
-							</div>
+								  <tr>
+								    <td><?php echo $book[$i]->id_b?></td>
+								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->thumb_cover_b?>" class="img-responsive-2" style="max-height: 100px;"></a></td>
+								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->title_b?></a></td>
+								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->writer?></a></td>
+								    <td>
 							<a href="<?php echo base_url()?>super/adminbook/edit_book/<?php echo $book[$i]->id_b?>">
-								<button type="button" class="btn btn-primary">Edit</button>
-							</a>
+								<button type="button" class="btn btn-primary">Edit</button></td>
+								    <td>
 							<a href="<?php echo base_url()?>super/adminbook/do_delete_book/<?php echo $book[$i]->id_b?>">
-								<button type="button" class="btn btn-danger" onclick="return confirm('Are you sure？')">Delete</button>
-							</a>
-						</div>
+								<button type="button" class="btn btn-danger" onclick="return confirm('Are you sure？')">Delete</button></td>
+								  </tr>
+
+
+						
 					<?php } ?>
+
+					</table>
 						<div class="col-md-12">
 							<nav aria-label="Page navigation">
 							<div class="text-center">

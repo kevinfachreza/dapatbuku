@@ -27,7 +27,7 @@
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
 					<?php
-					foreach($all_book as $key) { if($key['active'] != 2){?>
+					foreach($all_book as $key) { if($key['active'] != 0){?>
 						<div class="col-md-6 manage-books-item">
 							<div class="row books-wrapper">
 								<div class="col-md-12 info-books-container">
@@ -37,13 +37,13 @@
 										</div>
 									</div>
 									<div class="col-md-10">
-										<div class="book-title"> <a href="#"><?php echo $key['title_u_b']; ?></a></div>
+										<div class="book-title"> <a href="<?php echo base_url()?>book/product/<?php echo $key['slug_title_u_b']?>"><?php echo $key['title_u_b']; ?></a></div>
 										<div class="book-price"> <?php echo $key['price_sell_u_b']; ?> </div>
 										<div class="book-date"> Last Edit : 2 Oktober 2016 </div>
 										<?php if($key['active'] == 1){ ?>
 											<div class="active-book">Tervalidasi</div>
 											<?php }
-											else if($key['active'] == 0){ ?>
+											else if($key['active'] == 2){ ?>
 												<div class="inactive-book">Belum Divalidasi</div>
 												<?php } ?>
 									</div>

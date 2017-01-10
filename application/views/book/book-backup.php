@@ -27,7 +27,7 @@
 		<div class="col-md-12">
 			<div class="col-md-2">
 				<div class="col-sm-12 col-xs-12 padding-5px">
-					<img src="<?php echo base_url().$book_data[0]['photo_cover_b']; ?>" class="img-responsive-2">
+					<img src="<?php echo base_url().$book_data[0]['thumb_cover_b']; ?>" class="img-responsive-2">
 					<div class="col-md-12 info-small" style="padding:0;">
 								<div class="col-md-12 book-star text-center">
 								<a href="#review-form"><button type="button" class="btn btn-primary">Nilai Buku Ini</button></a>
