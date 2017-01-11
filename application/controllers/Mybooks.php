@@ -58,10 +58,12 @@ class Mybooks extends CI_Controller {
 		$this->load->view('book-manager/manage-books',$data);
 	}
 
-	public function edit()
+	public function edit($slug = null)
 	{
-		$id_in = $this->input->get('title');
-		$data['book_data'] = $this->M_book->get_edit_book($id_in);
+    if($slug == null){
+		    $slug = $this->input->get('title');
+    }
+		$data['book_data'] = $this->M_book->get_edit_book($slug);
 		$data['current_photo'] = $this->M_book->get_current_photo($data['book_data'][0]['id_u_b']);
 
 		$data['header']=$this->load->view('parts/header','',true);
@@ -128,10 +130,10 @@ class Mybooks extends CI_Controller {
 	                $this->load->library('upload', $config);
 	                $this->upload->initialize($config);
 	  				$filedatabase = $path."/".$i.$file_ext;
-	  				$filethumb = $path."/".$i.'_thumb'.$file_ext;	
-	  				$fileresize = $path."/".$i.'_resize'.$file_ext;	
+	  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
+	  				$fileresize = $path."/".$i.'_resize'.$file_ext;
 	  				echo $filedatabase;		//PATH TO SAVE IN THE DATABASE
-                  	
+
 	  					echo 'sini';
 	  					echo $i;
                   	if($this->upload->do_upload('userfile'))
@@ -190,9 +192,9 @@ class Mybooks extends CI_Controller {
 							if(!$result)
 							{
 								echo 'delete error';
-							} 
+							}
 						}
-					
+
 	  					echo 'sini';
 	  					echo $i;
 						if($i == 0)
@@ -325,9 +327,9 @@ class Mybooks extends CI_Controller {
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
   				$filedatabase = $path."/".$i.$file_ext;
-  				$filethumb = $path."/".$i.'_thumb'.$file_ext;	
+  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
   				$fileresize = $path."/".$i.'_resize'.$file_ext;			//PATH TO SAVE IN THE DATABASE
-                  
+
                   	if($this->upload->do_upload('userfile'))
 	                {
 	                    $fileData = $this->upload->data();
@@ -380,7 +382,7 @@ class Mybooks extends CI_Controller {
   				}
   					}
   				}
-  				#redirect('mybooks/manager');
+  			redirect('mybooks/manager');
       }
 		}
 
@@ -410,6 +412,96 @@ class Mybooks extends CI_Controller {
 			redirect('Mybooks');
 		}
 	}
+
+  public function delete_ub_img($slug, $id_img){
+    $result = $this->M_book->delete_user_book_img($id_img);
+
+    if($result){
+      redirect('Mybooks/edit/'.$slug);
+    }
+    else{
+      echo "gagal";
+    }
+  }
+
+  public function add_more_img($slug){
+    if(!empty($_FILES['photofile']['name'])){
+            //DECLARE PATH
+      $tmp = $this->M_book->get_id_by_slug($slug);
+
+      $id_book = $tmp[0]->id_u_b;
+      $tmp1 =	$this->session->userdata['userdata'];
+
+      $user = $tmp1[0];
+      $username = $user->username_u;
+
+      $id = $user->id_u;
+      $path = "assets/img/user/".$username."/books/".$slug;
+
+      $i = $this->M_book->get_all_img($id_book);
+
+      //RENAME NAMA FILE
+      $filename = $_FILES['photofile']['name'];
+      $file_ext = substr($filename, strrpos($filename, '.', -1));
+
+      //SET NAMA FILE DAN UPLOAD PATH
+      $config['upload_path'] = $path;
+      $config['allowed_types'] = 'gif|jpg|png';
+      $config['file_name'] = $i.$file_ext;
+
+      //SET CONFIG
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
+      $filedatabase = $path."/".$i.$file_ext;
+      $filethumb = $path."/".$i.'_thumb'.$file_ext;
+      $fileresize = $path."/".$i.'_resize'.$file_ext;			//PATH TO SAVE IN THE DATABASE
+
+      if($this->upload->do_upload('photofile'))
+      {
+        $fileData = $this->upload->data();
+        $uploadData[$i]['file_name'] = $fileData['file_name'];
+        $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+        $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
+
+        #echo $filedatabase;
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $filedatabase;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['height']   = 100;
+        $config["thumb_marker"] = "_thumb";
+
+        $this->image_lib->clear();
+        $this->image_lib->initialize($config);
+        $this->image_lib->resize();
+
+        $this->load->library('image_lib', $config);
+
+
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $filedatabase;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['height']   = 500;
+        $config["thumb_marker"] = "_resize";
+
+        $this->image_lib->clear();
+        $this->image_lib->initialize($config);
+        $this->image_lib->resize();
+
+        $this->load->library('image_lib', $config);
+        $result = $this->M_book->insert_user_book_img($id_book, $fileresize, $filethumb, $filedatabase);
+        if(!$result)
+        {
+          echo $result;
+        }
+      }
+    }
+    else{
+      $this->session->set_flashdata('warning', 'Penambahakn foto gagal');
+    }
+    redirect('mybooks/edit/'.$slug);
+  }
 }
 
 ?>

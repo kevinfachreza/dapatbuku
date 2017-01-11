@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function view_best_seller($offset,$limit){
-      $query = $this->db->query("SELECT * FROM book WHERE best_seller_flag = 1 
+      $query = $this->db->query("SELECT * FROM book WHERE best_seller_flag = 1
       LIMIT ".$limit."
       OFFSET ".$offset.";");
 
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function view_new_release($offset,$limit)
     {
-      $query = $this->db->query("SELECT * FROM book ORDER BY date_published DESC 
+      $query = $this->db->query("SELECT * FROM book ORDER BY date_published DESC
       LIMIT ".$limit."
       OFFSET ".$offset.";");
 
@@ -203,9 +203,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)
     {
       $query = $this->db->query("insert into user_book(id_u_owner, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
-                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b) 
+                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b)
                                  VALUES('".$id_user."', '".$title."', '".$price_sell."',
-                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."', 
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."',
                                  '".$deskripsi."', '".$slug."');");
       if($query)
       {
@@ -232,7 +232,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result_array();
     }
 
-    public function insert_user_book_img($id_in,$resize, $thumb, $image)
+    public function insert_user_book_img($id_in, $resize, $thumb, $image)
     {
       $query = $this->db->query("insert into user_book_image(id_b_source, image_path, image_thumb, image_original) VALUES('".$id_in."', '".$resize."', '".$thumb."',
         '".$image."');");
@@ -244,6 +244,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else {
         return FALSE;
       }
+    }
+
+    public function get_all_img($id)
+    {
+      $query = $this->db->query("SELECT * FROM user_book_image WHERE id_b_source = '".$id."';");
+
+      return count($query->result_array());
     }
 
     public function set_main_img($id_in, $image)
@@ -400,7 +407,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $query = "SELECT max(id_u_b) as id from user_book";
       $query = $this->db->query($query);
       $array = $query->result_array();
-      return $array[0]['id']; 
+      return $array[0]['id'];
     }
 
     public function delete_user_book_img($id)
@@ -413,6 +420,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else
         return FALSE;
     }
+
 
   }
 ?>

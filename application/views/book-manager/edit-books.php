@@ -22,6 +22,7 @@
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Ubah Iklan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_edit?title='.$book_data[0]['slug_title_u_b']); ?>	<div class="row form-book-wrapper">
+				<p><?php echo $this->session->flashdata('warning'); ?></p>
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="judul_in" type="text" class="form-control" value="<?php echo $book_data[0]['title_u_b']; ?>" required  autofocus>
@@ -78,17 +79,11 @@
 					<textarea name="deskripsi_in" class="form-control" rows="3" id="comment" placeholder="<?php echo $book_data[0]['description_u_b']; ?>" value="<?php echo $book_data[0]['description_u_b']; ?>"></textarea>
 				</div>
 			</div>
-			<!--
-			<div class="row form-book-wrapper">
-				<div class="col-md-4 col-sm-2 col-xs-2">Nomor Gambar yang ingin Diganti</div>
-				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="gambar_num_in" type="number" class="form-control" placeholder="0-3" required autofocus>
-				</div>
-			</div>		-->
+
 
 
 			<div class="row form-book-wrapper   text-center">
-			<?php $i=1;	
+			<?php $i=1;
 			foreach($current_photo as $key){ ?>
 				<div class="col-md-4" style="padding:20px;">
  					<div class="row">
@@ -102,14 +97,17 @@
 						<label class="input-group-btn">
 							<span class="btn btn-primary">
 								Ganti<input type="file" name="userfiles[]" style="display: none;">
+								<input name="pict-1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 							</span>
 						</label>
-						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
+						<span>
+						<a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+						</span>
 						</div>
 					</div>
 					</div>
 					</div>
-					
+
 				<?php $i++; } ?>
 				</div>
 			<div class="col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-1">
@@ -117,9 +115,45 @@
 			</div>
 		</form>
 	</div>
-
+	<form action="<?php echo base_url()."mybooks/add_more_img/".$book_data[0]['slug_title_u_b']; ?>" method="post" enctype="multipart/form-data">
+	<label class="input-group-btn">
+	<span class="btn btn-primary">
+		Tambah<input type="file" name="photofile" style="display: none;">
+		<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
+	</span>
+	</label>
+	<button type="submit" style="width:100%" class="btn btn-md btn-primary" name="filesubmit" value="1">Submit</button>
+	</form>
 </div>
 
+<!-- Modal -->
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="form">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Choose Photo</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<?php form_open_multipart('mybooks/add_more_img/'.$book_data[0]['slug_title_u_b']); ?>
+		<div class="modal-body">
+			<label class="input-group-btn">
+			<span class="btn btn-primary">
+				Tambah<input type="file" name="photofile" style="display: none;">
+				<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
+			</span>
+		</label>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+			<button type="submit" class="btn btn-primary" value="1">Tambahkan</button>
+		</form>
+		</div>
+	</div>
+</div>
+</div> -->
+<!-- ------------->
 
 
 	<?php echo $footer; ?>
