@@ -138,63 +138,66 @@ class Accounts extends CI_Controller {
 	}
 
 	public function change_photo (){
+		if(!empty($_FILES['picture-file']['name'])){
+			$user_profile   = $this->session->userdata('userdata');
+			$data['user'] = $user_profile[0];
+			$id = $data['user']->id_u;
+			$user = $data['user']->username_u;
+			$flag=1;
 
-		$user_profile   = $this->session->userdata('userdata');
-		$data['user'] = $user_profile[0];
-		$id = $data['user']->id_u;
+			$config['upload_path']   = './assets/img/user/'.$user.'/profile-pict/';
+			$path = $config['upload_path'];
+			$path = $path;
+			$new_name = $id;
+			$new_name.= date("Y-m-d-H-i-s");
+			$config['allowed_types'] = 'gif|jpg|png';
+	        $config['max_size']      = 2000;
+	        $config['max_width']     = 5000;
+	        $config['max_height']    = 5000;
+			$config['file_name'] = $new_name;
+			$config['overwrite'] = TRUE;
+	        $this->load->library('upload', $config);
 
-		$flag=1;
+	        if ( ! $this->upload->do_upload('picture-file')) {
+	            $error = array('error' => $this->upload->display_errors());
+	            echo $error['error'];
+				$textreport = $error['error'];
+				$flag = 0;
+	        }
 
-		$config['upload_path']   = './assets/img/user/'.$id.'/profile-pict/';
-		$path = $config['upload_path'];
-		$path = $path;
-		$new_name = $id;
-		$new_name.= date("Y-m-d-H-i-s");
-		$config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']      = 2000;
-        $config['max_width']     = 5000;
-        $config['max_height']    = 5000;
-		$config['file_name'] = $new_name;
-		$config['overwrite'] = TRUE;
-        $this->load->library('upload', $config);
+	        else {
+	            $data = array('upload_data' => $this->upload->data());
+				$img_data=$this->upload->data();
+				$new_name.= $img_data['file_ext'];
+	        }
 
-        if ( ! $this->upload->do_upload('picture')) {
-            $error = array('error' => $this->upload->display_errors());
-            echo $error['error'];
-			$textreport = $error['error'];
-			$flag = 0;
-        }
+			if($flag==0)
+			{
+				$new_name='default.png';
+			}
 
-        else {
-            $data = array('upload_data' => $this->upload->data());
-			$img_data=$this->upload->data();
-			$new_name.= $img_data['file_ext'];
-        }
+			$file = $path.$new_name;
 
-		if($flag==0)
-		{
-			$new_name='default.png';
+			$data = array(
+			'id' => $id,
+			'img' => $file
+			);
+
+			$report = $this->M_accounts-> edit_profile_picture($data);
+
+
+			if($report == 1)
+			{
+				$this->session->set_flashdata('profile_report', 'Pergantian Avatar Sukses');
+			}
+			else if($report == 0)
+			{
+				$this->session->set_flashdata('profile_report', 'Pergantian Avatar Gagal');
+			}
 		}
-
-		$file = $path.$new_name;
-
-		$data = array(
-		'id' => $id,
-		'img' => $file
-		);
-
-		$report = $this->M_accounts-> edit_profile_picture($data);
-
-
-		if($report == 1)
-		{
-			$this->session->set_flashdata('profile_report', 'Pergantian Avatar Sukses');
+		else{
+			$this->session->set_flashdata('profile_report', 'Masukkan Foto Terlebih Dahulu');
 		}
-		else if($report == 0)
-		{
-			$this->session->set_flashdata('profile_report', 'Pergantian Avatar Gagal');
-		}
-
 		redirect('accounts/settings');
 
 	}

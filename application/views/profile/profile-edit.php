@@ -40,13 +40,13 @@
 							<div class="input-group" style="margin-bottom:0.5em">
 								<label class="input-group-btn">
 									<span class="btn btn-primary">
-										Browse&hellip; <input type="file" name="picture" style="display: none;">
+										Browse&hellip; <input type="file" name="picture-file" style="display: none;" >
 									</span>
 								</label>
 								<input type="text" class="form-control" style=" margin-bottom:0" readonly>
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-md btn-primary">Submit</button>
+								<button type="submit" class="btn btn-md btn-primary" name="picture-submit">Submit</button>
 							</div>
 						</form>
 					</div>
