@@ -91,44 +91,115 @@ class Mybooks extends CI_Controller {
 		$tmp = $this->M_book->get_id_by_slug($slug);
 		$id_book = $tmp[0]->id_u_b;
   		$path = "assets/img/user/".$username."/books/".$slug;
-		echo $path.'<br>';
-		print_r($_FILES['userfiles']['name']);
-		$result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
+
+    $result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
 		#print_r($result);
 
-		if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
-			$photo = $this->M_book->get_current_photo($id_book);
+    if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
+      array_push($_FILES['userfiles'], $_FILES['newfile']);
+      $newphoto = true;
+    }
+
+    if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
+      $photo = $this->M_book->get_current_photo($id_book);
 			#print_r($photo);
 			$book_source = $photo[0]['id_b_source'];
-			#echo $book_source;
-			for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
+
+      for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
 			{
-				echo $i;
-				if(!empty($_FILES['userfiles']['name'][$i]))
+
+        if($newphoto == true && $i == (count($_FILES['userfiles']['name'])-1) ){
+
+          $new_id_img = $this->M_book->get_all_img($id_book);
+
+          //RENAME NAMA FILE
+          $filename = $_FILES['newfile']['name'];
+          $file_ext = substr($filename, strrpos($filename, '.', -1));
+
+          echo $file_ext;
+
+          //SET NAMA FILE DAN UPLOAD PATH
+          $config['upload_path'] = $path;
+          $config['allowed_types'] = 'gif|jpg|png';
+          $config['file_name'] = $new_id_img.$file_ext;
+          $config['overwrite'] = TRUE;
+
+          #print_r($config);
+
+
+          //SET CONFIG
+          $this->load->library('upload', $config);
+          $this->upload->initialize($config);
+          $filedatabase = $path."/".$new_id_img.$file_ext;
+          $filethumb = $path."/".$new_id_img.'_thumb'.$file_ext;
+          $fileresize = $path."/".$new_id_img.'_resize'.$file_ext;
+          echo $filedatabase;		//PATH TO SAVE IN THE DATABASE
+
+          if($this->upload->do_upload('newfile'))
+          {
+            echo 'sini';
+            $fileData = $this->upload->data();
+            $uploadData[$new_id_img]['file_name'] = $fileData['file_name'];
+            $uploadData[$new_id_img]['created'] = date("Y-m-d H:i:s");
+            $uploadData[$new_id_img]['modified'] = date("Y-m-d H:i:s");
+
+            #echo $filedatabase;
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $filedatabase;
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['height']   = 100;
+            $config["thumb_marker"] = "_thumb";
+
+            $this->image_lib->clear();
+            $this->image_lib->initialize($config);
+            $this->image_lib->resize();
+
+            $this->load->library('image_lib', $config);
+
+
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $filedatabase;
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['height']   = 500;
+            $config["thumb_marker"] = "_resize";
+
+            $this->image_lib->clear();
+            $this->image_lib->initialize($config);
+            $this->image_lib->resize();
+
+            $this->load->library('image_lib', $config);
+            echo 'sini';
+            $result = $this->M_book->insert_user_book_img($id_book, $fileresize, $filethumb, $filedatabase);
+        }
+      }
+        else if(!empty($_FILES['userfiles']['name']))
 				{
+          echo "masuk";
 					echo 'in';
 					$_FILES['userfile']['name'] = $_FILES['userfiles']['name'][$i];
-	                $_FILES['userfile']['type'] = $_FILES['userfiles']['type'][$i];
-	                $_FILES['userfile']['tmp_name'] = $_FILES['userfiles']['tmp_name'][$i];
-	                $_FILES['userfile']['error'] = $_FILES['userfiles']['error'][$i];
-	                $_FILES['userfile']['size'] = $_FILES['userfiles']['size'][$i];
+          $_FILES['userfile']['type'] = $_FILES['userfiles']['type'][$i];
+          $_FILES['userfile']['tmp_name'] = $_FILES['userfiles']['tmp_name'][$i];
+          $_FILES['userfile']['error'] = $_FILES['userfiles']['error'][$i];
+          $_FILES['userfile']['size'] = $_FILES['userfiles']['size'][$i];
 
 					//RENAME NAMA FILE
 					$filename = $_FILES['userfile']['name'];
 					$file_ext = substr($filename, strrpos($filename, '.', -1));
 
-	                //SET NAMA FILE DAN UPLOAD PATH
-		            $config['upload_path'] = $path;
-		            $config['allowed_types'] = 'gif|jpg|png';
-	  				$config['file_name'] = $i.$file_ext;
+            //SET NAMA FILE DAN UPLOAD PATH
+          $config['upload_path'] = $path;
+          $config['allowed_types'] = 'gif|jpg|png';
+  				$config['file_name'] = $i.$file_ext;
 					$config['overwrite'] = TRUE;
 
 					#print_r($config);
 
 
 	  				//SET CONFIG
-	                $this->load->library('upload', $config);
-	                $this->upload->initialize($config);
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 	  				$filedatabase = $path."/".$i.$file_ext;
 	  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
 	  				$fileresize = $path."/".$i.'_resize'.$file_ext;
@@ -136,21 +207,20 @@ class Mybooks extends CI_Controller {
 
 	  					echo 'sini';
 	  					echo $i;
-                  	if($this->upload->do_upload('userfile'))
-	                {
 
+          	if($this->upload->do_upload('userfile'))
+            {
 	  					echo 'sini';
 	  					echo $i;
+              $fileData = $this->upload->data();
+              $uploadData[$i]['file_name'] = $fileData['file_name'];
+              $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+              $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
 
-	                    $fileData = $this->upload->data();
-	                    $uploadData[$i]['file_name'] = $fileData['file_name'];
-	                    $uploadData[$i]['created'] = date("Y-m-d H:i:s");
-	                    $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
-
-	                    #echo $filedatabase;
-	                    $config['image_library'] = 'gd2';
-						$config['source_image'] = $filedatabase;
-						$config['create_thumb'] = TRUE;
+              #echo $filedatabase;
+              $config['image_library'] = 'gd2';
+  						$config['source_image'] = $filedatabase;
+  						$config['create_thumb'] = TRUE;
 					    $config['maintain_ratio'] = TRUE;
 					    $config['height']   = 100;
 					    $config["thumb_marker"] = "_thumb";
@@ -209,19 +279,19 @@ class Mybooks extends CI_Controller {
 							}
 
 	  					}*/
-  	        		}
-  	        		else
-  	        		{
-  	        			echo 'fail upload';
-  	        		}
+  	        }
+        		else
+        		{
+        			echo 'fail upload';
+        		}
 				}
+      }
 			}
-		}
 		else
 		{
 			echo 'no pict';
 		}
-		#redirect('mybooks');
+    redirect('mybooks');
 	}
 
 	private function emptyElementExists($arr) {

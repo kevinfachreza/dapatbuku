@@ -110,50 +110,20 @@
 
 				<?php $i++; } ?>
 				</div>
+
+				<label class="input-group-btn">
+				<span class="btn btn-primary">
+					Tambah<input type="file" name="newfile" style="display: none;">
+					<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
+				</span>
+				</label>
+
 			<div class="col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-1">
 			<button type="submit" style="width:100%" class="btn btn-md btn-primary" name="filesubmit" value="1">Edit</button>
 			</div>
 		</form>
 	</div>
-	<form action="<?php echo base_url()."mybooks/add_more_img/".$book_data[0]['slug_title_u_b']; ?>" method="post" enctype="multipart/form-data">
-	<label class="input-group-btn">
-	<span class="btn btn-primary">
-		Tambah<input type="file" name="photofile" style="display: none;">
-		<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
-	</span>
-	</label>
-	<button type="submit" style="width:100%" class="btn btn-md btn-primary" name="filesubmit" value="1">Submit</button>
-	</form>
 </div>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="form">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Choose Photo</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<?php form_open_multipart('mybooks/add_more_img/'.$book_data[0]['slug_title_u_b']); ?>
-		<div class="modal-body">
-			<label class="input-group-btn">
-			<span class="btn btn-primary">
-				Tambah<input type="file" name="photofile" style="display: none;">
-				<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
-			</span>
-		</label>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-			<button type="submit" class="btn btn-primary" value="1">Tambahkan</button>
-		</form>
-		</div>
-	</div>
-</div>
-</div> -->
-<!-- ------------->
 
 
 	<?php echo $footer; ?>

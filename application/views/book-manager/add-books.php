@@ -86,7 +86,7 @@
 					<div class="input-group image-upload" style="margin-bottom:0.5em">
 						<label class="input-group-btn">
 							<span class="btn btn-primary">
-								Browse&hellip; <input name="userfiles[]" type="file" style="display: none;" multiple>
+								Browse&hellip; <input name="userfiles[]" type="file" style="display: none;" multiple required>
 							</span>
 						</label>
 						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" required readonly>
