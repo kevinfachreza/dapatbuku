@@ -22,7 +22,7 @@
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Ubah Iklan Buku </div>
 		<?php echo form_open_multipart('mybooks/do_edit?title='.$book_data[0]['slug_title_u_b']); ?>	<div class="row form-book-wrapper">
-				<p><?php echo $this->session->flashdata('warning'); ?></p>
+				<p style="color:rgb(230, 0, 0)" class="text-center"><?php echo $this->session->flashdata('warning'); ?></p>
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="judul_in" type="text" class="form-control" value="<?php echo $book_data[0]['title_u_b']; ?>" required  autofocus>
@@ -100,9 +100,9 @@
 								<input name="pict-1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 							</span>
 						</label>
-						<span>
-						<a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
-						</span>
+						<label class="input-group-btn">
+								<a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+						</label>
 						</div>
 					</div>
 					</div>
@@ -111,12 +111,16 @@
 				<?php $i++; } ?>
 				</div>
 
+			<div class="row form-book-wrapper text-center" style="margin-bottom:50px;">
+				<div class="input-group image-upload" style="margin-bottom:0.5em">
 				<label class="input-group-btn">
 				<span class="btn btn-primary">
-					Tambah<input type="file" name="newfile" style="display: none;">
+					Tambah Foto<input type="file" name="newfile" style="display: none;">
 					<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 				</span>
 				</label>
+			</div>
+			</div>
 
 			<div class="col-md-8 col-md-offset-2 col-sm-9 col-sm-offset-1">
 			<button type="submit" style="width:100%" class="btn btn-md btn-primary" name="filesubmit" value="1">Edit</button>

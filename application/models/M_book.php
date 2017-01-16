@@ -410,17 +410,87 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $array[0]['id'];
     }
 
-    public function delete_user_book_img($id)
+    public function delete_user_book_img($slug, $id)
     {
-      $query = $this->db->query("DELETE from user_book_image where id_u_b_img = ".$id."");
+      $check_main = $this->check_main_img($slug, $id);
 
+      if($check_main){
+        $query = $this->db->query("DELETE from user_book_image where id_u_b_img = ".$id."");
+
+        if($this->db->affected_rows() == 1){
+          return TRUE;
+        }
+        else{
+          // echo "IF THE IMAGE NOT DELETED";
+          return FALSE;
+        }
+      }
+      else{
+        // echo "IF THE CHECKING PROCESS FAILED";
+        return FALSE;
+      }
+
+    }
+
+    private function check_main_img($slug, $id)     //TO CHECK IF THE IMAGE THAT'S GOING TO BE DELETED IS THE MAIN IMAGE
+    {
+      $tmp = $this->db->query("SELECT * FROM user_book WHERE slug_title_u_b = '".$slug."';");     //GET MAIN IMAGE PATH
+      $check1 = $tmp->result();
+      $id_book = $check1[0]->id_u_b;
+      $check1 = $check1[0]->main_image_u_b;
+
+      $tmp = $this->db->query("SELECT * FROM user_book_image WHERE id_u_b_img ='".$id."';");      //GET IMAGE PATH THAT GOING TO BE DELETED
+      $check2 = $tmp->result();
+      $check2 = $check2[0]->image_thumb;
+
+      if($check1 == $check2){
+        $tmp = $this->db->query("SELECT * FROM user_book_image WHERE id_b_source = '".$id_book."';");   //SELECT SECOND IMAGE THAT OWNED BY THE BOOK
+        $tmp = $tmp->result_array();
+        $new_img = $tmp[1]['id_u_b_img'];
+
+        $tmp = $this->db->query("SELECT image_thumb FROM user_book_image WHERE id_u_b_img = '".$new_img."';");
+        $tmp_path = $tmp->result();
+        $tmp_path = $tmp_path[0]->image_thumb;
+                                                                                                        //CHANGE IMAGE
+        $change = $this->db->query("UPDATE user_book SET main_image_u_b = '".$tmp_path."' WHERE slug_title_u_b = '".$slug."';");
+
+        if($this->db->affected_rows() == 1){
+            // echo "IF THE MAIN IMAGE HAS BEEN CHANGED";
+            return TRUE;
+        }
+        else{
+          // echo "IF THE IMAGE NOT CHANGED";
+          return FALSE;
+        }
+      }
+      else{
+        // echo "IF THE DELETED IMAGE IS NOT THE MAIN IMAGE";
+        return TRUE;
+      }
+    }
+
+    public function update_ub_img($index, $id_book, $fileresize, $filethumb, $filedatabase){
+      $target = $this->get_id_img_ub($id_book);
+      $target = $target[$index]['id_u_b_img'];
+
+      $query = $this->db->query("UPDATE user_book_image SET
+                image_path = '".$fileresize."',
+                image_thumb = '".$filethumb."',
+                image_original = '".$filedatabase."' WHERE id_u_b_img = '".$target."'");
       if($this->db->affected_rows() == 1){
         return TRUE;
       }
-      else
+      else{
         return FALSE;
+      }
+        
     }
 
+    private function get_id_img_ub($id_in){
+      $query = $this->db->query("SELECT id_u_b_img FROM user_book_image WHERE id_b_source = '".$id_in."'");
+
+      return $query->result_array();
+    }
 
   }
 ?>
