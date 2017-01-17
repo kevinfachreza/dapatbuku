@@ -90,25 +90,25 @@ class Mybooks extends CI_Controller {
 
 		$tmp = $this->M_book->get_id_by_slug($slug);
 		$id_book = $tmp[0]->id_u_b;
-  	$path = "assets/img/user/".$username."/books/".$slug;
+  		$path = "assets/img/user/".$username."/books/".$slug;
 
-    $result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
+    		$result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
 		#print_r($result);
 
-    if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
-      array_push($_FILES['userfiles'], $_FILES['newfile']);
-      $newphoto = true;
-    }
-    else{
-      $newphoto = false;
-    }
-    if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
-      $photo = $this->M_book->get_current_photo($id_book);
-			#print_r($photo);
-			$book_source = $photo[0]['id_b_source'];
+	    if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
+	     	array_push($_FILES['userfiles'], $_FILES['newfile']);
+	     	$newphoto = true;
+	    }
+	    else{
+	     	$newphoto = false;
+	    }
+    		if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
+      	$photo = $this->M_book->get_current_photo($id_book);
+		#print_r($photo);
+		$book_source = $photo[0]['id_b_source'];
 
-      for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
-			{
+      	for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
+		{
 
         if($newphoto && $i == (count($_FILES['userfiles']['name'])-1) ){
 
