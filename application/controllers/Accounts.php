@@ -14,7 +14,7 @@ class Accounts extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_accounts');
-    	$this->load->library('bcrypt');
+    		$this->load->library('bcrypt');
 	}
 
 	public function index()

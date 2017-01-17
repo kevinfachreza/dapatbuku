@@ -89,7 +89,7 @@
  					<div class="row">
 
 					<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:0.5em">
-						<img src="<?php echo base_url().$key['image_path']; ?>" class="img-responsive-2">
+						<img src="<?php echo base_url().$key['image_path']; ?>" class="img-responsive-2" height="200">
 					</div>
 
 					<div class="col-md-12 col-sm-12 col-xs-12">
@@ -97,13 +97,18 @@
 						<label class="input-group-btn">
 							<span class="btn btn-primary">
 								Ganti<input type="file" name="userfiles[]" style="display: none;">
-								<input name="pict-1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 							</span>
 						</label>
+
+								<input name="pict-1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 						<label class="input-group-btn">
-								<a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+								
 						</label>
 						</div>
+						
+					</div>
+
+					<div class="col-md-12 col-sm-12 col-xs-12"><a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" style="width:100%" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
 					</div>
 					</div>
 					</div>
@@ -116,9 +121,9 @@
 				<label class="input-group-btn">
 				<span class="btn btn-primary">
 					Tambah Foto<input type="file" name="newfile" style="display: none;">
-					<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 				</span>
 				</label>
+				<input name="pict-add" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 			</div>
 			</div>
 
