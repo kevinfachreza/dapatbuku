@@ -90,44 +90,36 @@ class Mybooks extends CI_Controller {
 
 		$tmp = $this->M_book->get_id_by_slug($slug);
 		$id_book = $tmp[0]->id_u_b;
-  		$path = "assets/img/user/".$username."/books/".$slug;
+  	$path = "assets/img/user/".$username."/books/".$slug;
 
-    		$result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
+    $result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
 		#print_r($result);
 
-	    if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
-	     	array_push($_FILES['userfiles'], $_FILES['newfile']);
-	     	$newphoto = true;
-	    }
-	    else{
-	     	$newphoto = false;
-	    }
-    		if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
-      	$photo = $this->M_book->get_current_photo($id_book);
-		#print_r($photo);
-		$book_source = $photo[0]['id_b_source'];
+	  if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
+     	array_push($_FILES['userfiles'], $_FILES['newfile']);
+     	$newphoto = true;
+	  }
+	  else{
+     	$newphoto = false;
+	  }
 
-      	for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
-		{
+		if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
+    	$photo = $this->M_book->get_current_photo($id_book);
+  		$book_source = $photo[0]['id_b_source'];
+    	for($i=0;$i<count($_FILES['userfiles']['name']);$i++)
+		  {
 
         if($newphoto && $i == (count($_FILES['userfiles']['name'])-1) ){
 
           $new_id_img = $this->M_book->get_all_img($id_book);
-
           //RENAME NAMA FILE
           $filename = $_FILES['newfile']['name'];
           $file_ext = substr($filename, strrpos($filename, '.', -1));
-
-          echo $file_ext;
-
           //SET NAMA FILE DAN UPLOAD PATH
           $config['upload_path'] = $path;
           $config['allowed_types'] = 'gif|jpg|png';
           $config['file_name'] = $new_id_img.$file_ext;
           $config['overwrite'] = TRUE;
-
-          #print_r($config);
-
 
           //SET CONFIG
           $this->load->library('upload', $config);
@@ -135,7 +127,6 @@ class Mybooks extends CI_Controller {
           $filedatabase = $path."/".$new_id_img.$file_ext;
           $filethumb = $path."/".$new_id_img.'_thumb'.$file_ext;
           $fileresize = $path."/".$new_id_img.'_resize'.$file_ext;
-          echo $filedatabase;		//PATH TO SAVE IN THE DATABASE
 
           if($this->upload->do_upload('newfile'))
           {
@@ -201,73 +192,70 @@ class Mybooks extends CI_Controller {
           if($filename != null){
             $mask = $path."/".$i."*.*";
             array_map('unlink', glob($mask));
-            // foreach (glob() as $filename) {
-            //   unlink($filename);
-            // }
           }
-
-	  				//SET CONFIG
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-	  				$filedatabase = $path."/".$i.$file_ext;
-	  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
-	  				$fileresize = $path."/".$i.'_resize'.$file_ext;
+  				//SET CONFIG
+          $this->load->library('upload', $config);
+          $this->upload->initialize($config);
+  				$filedatabase = $path."/".$i.$file_ext;
+  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
+  				$fileresize = $path."/".$i.'_resize'.$file_ext;
 	  				//echo $filedatabase;		//PATH TO SAVE IN THE DATABASE
 
 
 
-          	if($this->upload->do_upload('userfile'))
-            {
-	  					// echo 'sini';
-	  					// echo $i;
-              $fileData = $this->upload->data();
-              $uploadData[$i]['file_name'] = $fileData['file_name'];
-              $uploadData[$i]['created'] = date("Y-m-d H:i:s");
-              $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
+        	if($this->upload->do_upload('userfile'))
+          {
+  					// echo 'sini';
+  					// echo $i;
+            $fileData = $this->upload->data();
+            $uploadData[$i]['file_name'] = $fileData['file_name'];
+            $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+            $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
 
-              #echo $filedatabase;
-              $config['image_library'] = 'gd2';
-  						$config['source_image'] = $filedatabase;
-  						$config['create_thumb'] = TRUE;
-					    $config['maintain_ratio'] = TRUE;
-					    $config['height']   = 100;
-					    $config["thumb_marker"] = "_thumb";
-
-					    $this->image_lib->clear();
-					    $this->image_lib->initialize($config);
-					    $this->image_lib->resize();
-
-						$this->load->library('image_lib', $config);
-
-
-	                    $config['image_library'] = 'gd2';
+            #echo $filedatabase;
+            $config['image_library'] = 'gd2';
 						$config['source_image'] = $filedatabase;
 						$config['create_thumb'] = TRUE;
-					    $config['maintain_ratio'] = TRUE;
-					    $config['height']   = 500;
-					    $config["thumb_marker"] = "_resize";
+				    $config['maintain_ratio'] = TRUE;
+				    $config['height']   = 100;
+				    $config["thumb_marker"] = "_thumb";
 
-					    $this->image_lib->clear();
-					    $this->image_lib->initialize($config);
-					    $this->image_lib->resize();
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
 
 						$this->load->library('image_lib', $config);
 
-	  					if($filename != null){
-                $result = $this->M_book->update_ub_img($i, $id_book, $fileresize, $filethumb, $filedatabase);
 
-                if(!$result){
-                  echo "ganti gagal";
-                }
+            $config['image_library'] = 'gd2';
+						$config['source_image'] = $filedatabase;
+						$config['create_thumb'] = TRUE;
+				    $config['maintain_ratio'] = TRUE;
+				    $config['height']   = 500;
+				    $config["thumb_marker"] = "_resize";
+
+				    $this->image_lib->clear();
+				    $this->image_lib->initialize($config);
+				    $this->image_lib->resize();
+
+						$this->load->library('image_lib', $config);
+
+  					if($filename != null){
+              $result = $this->M_book->update_ub_img($i, $id_book, $fileresize, $filethumb, $filedatabase);
+
+              if(!$result){
+                echo "ganti gagal";
               }
-  	        }
+            }
+	        }
         		else
         		{
         			echo 'fail upload';
         		}
 				}
       }
-			}
+      $change_main = $this->M_book->set_main_product_img($id_book);
+		}
 		else
 		{
 			echo 'no pict';
@@ -314,29 +302,27 @@ class Mybooks extends CI_Controller {
 		$stock			= $this->input->post('stok_in');
 		$deskripsi	= $this->input->post('deskripsi_in');
 		$slug1 = str_replace(' ', '-', $title);
-  		$slug1 = preg_replace('/[^A-Za-z0-9-]+/','-',$slug1);
+  	$slug1 = preg_replace('/[^A-Za-z0-9-]+/','-',$slug1);
 
-      if($price_sell == null && $rent_sell == null && $barter == null){
-        $this->session->set_flashdata('warning', 'Maaf, Anda harus menjual, menyewakan, atau barter');
-        redirect('mybooks/add');
-      }
+    if($price_sell == null && $rent_sell == null && $barter == null){
+      $this->session->set_flashdata('warning', 'Maaf, Anda harus menjual, menyewakan, atau barter');
+      redirect('mybooks/add');
+    }
 
-      else{
+    else{
   			$tmp =	$this->session->userdata['userdata'];
-  			#print_r($tmp);
   			$user = $tmp[0];
   			$username = $user->username_u;
   			$id = $user->id_u;
-  			#echo $username;
-       		$slug2 = '-';
+     		$slug2 = '-';
   			$slug2.=$username;
 
   			$slug_final = $slug1.$slug2;
   			$lastId = $this->M_book->getLastID();
 
   			$slug3 = hash('sha256', $lastId);
-         	$slug3 = substr($slug3, 0, 10);
-          	$slug_final .= '-'.$slug3;
+       	$slug3 = substr($slug3, 0, 10);
+      	$slug_final .= '-'.$slug3;
   			echo $slug_final;
 
   			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
@@ -346,13 +332,9 @@ class Mybooks extends CI_Controller {
         if($result != null)
   			{
   				$id_last = $result[0];
-          		#echo $slug_final;
-          		#$slug_final = $result[1];
-          		echo $slug_final;
   			 	//BUAT FOLDER DAN SET FOLDER PATH
   				mkdir("assets/img/user/".$username."/books/".$slug_final);
   				$path = "assets/img/user/".$username."/books/".$slug_final;
-  				#echo $path;
 
   				if($this->input->post('filesubmit') && !empty($_FILES['userfiles']['name'])){
               $filesCount = count($_FILES['userfiles']['name']);			//HITUNG BANYAK FILE
@@ -365,82 +347,75 @@ class Mybooks extends CI_Controller {
                 $_FILES['userfile']['error'] = $_FILES['userfiles']['error'][$i];
                 $_FILES['userfile']['size'] = $_FILES['userfiles']['size'][$i];
 
-				//RENAME NAMA FILE
-				$filename = $_FILES['userfile']['name'];
-				$file_ext = substr($filename, strrpos($filename, '.', -1));
-
+				        //RENAME NAMA FILE
+        				$filename = $_FILES['userfile']['name'];
+        				$file_ext = substr($filename, strrpos($filename, '.', -1));
                   //SET NAMA FILE DAN UPLOAD PATH
-	            $config['upload_path'] = $path;
-	            $config['allowed_types'] = 'gif|jpg|png';
-  				$config['file_name'] = $i.$file_ext;
-
+  	            $config['upload_path'] = $path;
+  	            $config['allowed_types'] = 'gif|jpg|png';
+    				    $config['file_name'] = $i.$file_ext;
   								//SET CONFIG
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
-  				$filedatabase = $path."/".$i.$file_ext;
-  				$filethumb = $path."/".$i.'_thumb'.$file_ext;
-  				$fileresize = $path."/".$i.'_resize'.$file_ext;			//PATH TO SAVE IN THE DATABASE
+        				$filedatabase = $path."/".$i.$file_ext;
+        				$filethumb = $path."/".$i.'_thumb'.$file_ext;
+        				$fileresize = $path."/".$i.'_resize'.$file_ext;			//PATH TO SAVE IN THE DATABASE
 
-                  	if($this->upload->do_upload('userfile'))
-	                {
-	                    $fileData = $this->upload->data();
-	                    $uploadData[$i]['file_name'] = $fileData['file_name'];
-	                    $uploadData[$i]['created'] = date("Y-m-d H:i:s");
-	                    $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
+              	if($this->upload->do_upload('userfile'))
+	              {
+                  $fileData = $this->upload->data();
+                  $uploadData[$i]['file_name'] = $fileData['file_name'];
+                  $uploadData[$i]['created'] = date("Y-m-d H:i:s");
+                  $uploadData[$i]['modified'] = date("Y-m-d H:i:s");
 
-	                    #echo $filedatabase;
-	                    $config['image_library'] = 'gd2';
-						$config['source_image'] = $filedatabase;
-						$config['create_thumb'] = TRUE;
-					    $config['maintain_ratio'] = TRUE;
-					    $config['height']   = 100;
-					    $config["thumb_marker"] = "_thumb";
+                  #echo $filedatabase;
+                  $config['image_library'] = 'gd2';
+      						$config['source_image'] = $filedatabase;
+      						$config['create_thumb'] = TRUE;
+    					    $config['maintain_ratio'] = TRUE;
+    					    $config['height']   = 100;
+    					    $config["thumb_marker"] = "_thumb";
 
-					    $this->image_lib->clear();
-					    $this->image_lib->initialize($config);
-					    $this->image_lib->resize();
+    					    $this->image_lib->clear();
+    					    $this->image_lib->initialize($config);
+    					    $this->image_lib->resize();
 
-						$this->load->library('image_lib', $config);
+						      $this->load->library('image_lib', $config);
 
 
-	                    $config['image_library'] = 'gd2';
-						$config['source_image'] = $filedatabase;
-						$config['create_thumb'] = TRUE;
-					    $config['maintain_ratio'] = TRUE;
-					    $config['height']   = 500;
-					    $config["thumb_marker"] = "_resize";
+	                $config['image_library'] = 'gd2';
+      						$config['source_image'] = $filedatabase;
+      						$config['create_thumb'] = TRUE;
+    					    $config['maintain_ratio'] = TRUE;
+    					    $config['height']   = 500;
+    					    $config["thumb_marker"] = "_resize";
 
-					    $this->image_lib->clear();
-					    $this->image_lib->initialize($config);
-					    $this->image_lib->resize();
+    					    $this->image_lib->clear();
+    					    $this->image_lib->initialize($config);
+    					    $this->image_lib->resize();
 
-						$this->load->library('image_lib', $config);
-						$result = $this->M_book->insert_user_book_img($id_last, $fileresize, $filethumb, $filedatabase);
-						if(!$result)
-						{
-							echo $result;
-							break;
-						}
-						if($i == 0)
-						{
-							$result = $this->M_book->set_main_img($id_last, $filethumb);
-							if(!$result)
-							{
-								return FALSE;
-							}
-	  					}
+      						$this->load->library('image_lib', $config);
+      						$result = $this->M_book->insert_user_book_img($id_last, $fileresize, $filethumb, $filedatabase);
+      						if(!$result)
+      						{
+      							$this->session->set_flashdata('warning', 'Maaf Penambahan buku gagal');
+                    redirect('mybooks/add');
+                    break;
+      						}
+
   	        		}
-  				}
+  				    }
+              $set_main = $this->M_book->set_main_product_img($id_last);
   					}
   				}
   			redirect('mybooks/manager');
       }
-		}
+	}
 
 	public function delete()
 	{
 		$id_in = $this->input->get('id-book');
-		$result = $this->M_book->delete_book($id_in);
+		//$result = $this->M_book->delete_book($id_in);
 
 		if(!$result)
 		{
@@ -460,7 +435,7 @@ class Mybooks extends CI_Controller {
 			$data['header']=$this->load->view('parts/header','',true);
 			$data['navbar']=$this->load->view('parts/navbar','',true);
 			$data['footer']=$this->load->view('parts/footer','',true);
-			redirect('Mybooks');
+			//redirect('Mybooks');
 		}
 	}
 
@@ -475,15 +450,17 @@ class Mybooks extends CI_Controller {
       $this->session->set_flashdata('warning', 'Maaf, Anda harus memiliki minimal satu foto');
     }
     else{
-      $result = $this->M_book->delete_user_book_img($slug, $id_img);
+      $result = $this->M_book->delete_user_book_img($id_img);
 
       if(!$result){
         $this->session->set_flashdata('warning', 'Maaf, Penghapusan foto gagal');
+      }
+      else{
+        $change_main = $this->M_book->set_main_product_img($id_book);
       }
     }
     redirect('Mybooks/edit/'.$slug);
   }
 
 }
-
 ?>

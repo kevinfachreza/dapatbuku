@@ -8,6 +8,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
     }
 
+    public function get_main_product_img($id_img)
+    {
+      $query = $this->db->query("select * from user_book_image where id_u_b_img = '".$id_img."'");
+
+      return $query->result();
+    }
+
+    public function set_main_product_img($id_book)
+    {
+      $query1 = $this->db->query("SELECT id_u_b_img from user_book_image WHERE id_b_source = '".$id_book."' LIMIT 1");
+      $main_img = $query1->result();
+      $main_img = $main_img[0]->id_u_b_img;
+
+      $query2 = $this->db->query("UPDATE user_book SET main_image_u_b = '".$main_img."' WHERE id_u_b = '".$id_book."'");
+      if($this->db->affected_rows() == 1){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+
+    }
+
     public function get_book_slug_by_product($product_slug)
     {
       $query = $this->db->query("select * from book b, user_book ub where b.id_b = ub.id_b_source and ub.slug_title_u_b = '".$product_slug."';");
@@ -193,9 +216,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   	public function get_my_book($id_in, $limit=null, $offset=null)
     {
-      $query = "select * from user_book where id_u_owner = '".$id_in."' order by id_u_b desc ";
-      if($limit != null)
+      //$query = "select * from user_book where id_u_owner = '".$id_in."' order by id_u_b desc ";
+      $query = "select ub.*, ui.* from user_book ub, user_book_image ui where ub.id_u_owner = '".$id_in."' AND ui.id_b_source = ub.id_u_b AND ub.active != 3 GROUP BY ub.id_u_b order by ub.id_u_b ASC ";
+      if($limit != null){
         $query .= "LIMIT ".$limit." OFFSET ".$offset."  ";
+      }
       $result = $this->db->query($query);
       return $result->result_array();
     }
@@ -253,23 +278,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return count($query->result_array());
     }
 
-    public function set_main_img($id_in, $image)
-    {
-      $comm="UPDATE user_book SET main_image_u_b = '".$image."' WHERE id_u_b = ".$id_in.";";
-      $query = $this->db->query($comm);
-      echo $comm;
-      if($this->db->affected_rows() > 0)
-      {
-        return 1;
-      }
-      else {
-        return 0;
-      }
-    }
+    // public function set_main_img($id_in, $image)
+    // {
+    //   $comm="UPDATE user_book SET main_image_u_b = '".$image."' WHERE id_u_b = ".$id_in.";";
+    //   $query = $this->db->query($comm);
+    //   echo $comm;
+    //   if($this->db->affected_rows() > 0)
+    //   {
+    //     return 1;
+    //   }
+    //   else {
+    //     return 0;
+    //   }
+    // }
 
     public function delete_book($id_in)
     {
-      $query = $this->db->query("UPDATE user_book SET active = 2 where id_u_b = '".$id_in."'; ");
+      $query = $this->db->query("UPDATE user_book SET active = 3 where id_u_b = '".$id_in."'; ");
 
       //echo $query;
       if($query)
@@ -410,26 +435,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $array[0]['id'];
     }
 
-    public function delete_user_book_img($slug, $id)
+    public function delete_user_book_img($id)
     {
-      $check_main = $this->check_main_img($slug, $id);
+      $query = $this->db->query("DELETE from user_book_image where id_u_b_img = ".$id."");
 
-      if($check_main){
-        $query = $this->db->query("DELETE from user_book_image where id_u_b_img = ".$id."");
-
-        if($this->db->affected_rows() == 1){
-          return TRUE;
-        }
-        else{
-          // echo "IF THE IMAGE NOT DELETED";
-          return FALSE;
-        }
+      if($this->db->affected_rows() == 1){
+        return TRUE;
       }
+
       else{
-        // echo "IF THE CHECKING PROCESS FAILED";
+          // echo "IF THE IMAGE NOT DELETED";
         return FALSE;
       }
-
     }
 
     private function check_main_img($slug, $id)     //TO CHECK IF THE IMAGE THAT'S GOING TO BE DELETED IS THE MAIN IMAGE
@@ -483,7 +500,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else{
         return FALSE;
       }
-        
+
     }
 
     private function get_id_img_ub($id_in){
