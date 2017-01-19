@@ -16,6 +16,11 @@
 				<h1 class="page-header">Add Book</h1>
 				<?php echo form_open_multipart('super/a_banner/do_add');?>
 				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Judul</span>
+					<input type="text" name="judul" class="form-control" placeholder="Judul" aria-describedby="sizing-addon2">
+				</div>
+				
+				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Link</span>
 					<input type="text" name="link" class="form-control" placeholder="Link" aria-describedby="sizing-addon2">
 				</div>

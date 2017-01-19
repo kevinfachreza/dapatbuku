@@ -45,8 +45,9 @@ class A_banner extends CI_Controller {
 	public function do_add()
 	{
 		$id = $this->MA_banner->getLastID();
+		$judul = $this->db->escape_str($this->input->post('judul'));
 		$link = $this->db->escape_str($this->input->post('link'));
-		$file = $this->do_upload_cover_book($id);
+		$file = $this->do_upload_cover_book($id,$judul);
 		if($file)
 		{
 			$data = array(
@@ -55,23 +56,40 @@ class A_banner extends CI_Controller {
 			);
 			
 			$report = $this->MA_banner-> insert($data);
-			
+			print_r($data);
 			redirect('super/a_banner/');
 		}
 
 
 	}
 
-	public function do_upload_cover_book($id)
+	public function do_upload_cover_book($id,$judul)
 	{
+
+
+		$judul = preg_replace('~[^\pL\d]+~u', '-', $judul);
+    		$judul = iconv('utf-8', 'us-ascii//TRANSLIT', $judul);// transliterate
+    		$judul = preg_replace('~[^-\w]+~', '', $judul); // remove unwanted characters
+    		$judul = trim($judul, '-'); // trim
+    		$judul = preg_replace('~-+~', '-', $judul); // remove duplicate -
+    		$judul = strtolower($judul); // lowercase
+
+    		date_default_timezone_set("Asia/Jakarta"); 
+		$date = date_create();
+		$date = date_format($date, 'd-M-Y');
+
+		$new_name = $judul;
+		$new_name.= '-'.$date;
+		$new_name = strtolower($new_name);
+
 		$config['upload_path']   = './assets/img/banner/';
 		$config['allowed_types'] = 'gif|jpg|png'; 
-        $config['max_size']      = 2000; 
-        $config['max_width']     = 5000; 
-        $config['max_height']    = 5000;  
-		$config['file_name'] = 'banner_'.$id+1;
+        	$config['max_size']      = 2000; 
+        	$config['max_width']     = 5000; 
+        	$config['max_height']    = 5000;  
+		$config['file_name'] = $new_name;
 		$config['overwrite'] = TRUE;
-        $this->load->library('upload', $config);
+        	$this->load->library('upload', $config);
 			
         if ( ! $this->upload->do_upload('picture')) {
             $error = array('error' => $this->upload->display_errors()); 
@@ -82,9 +100,10 @@ class A_banner extends CI_Controller {
         }
 			
         else { 
-            $data = array('upload_data' => $this->upload->data());
+            	$data = array('upload_data' => $this->upload->data());
 			$img_data=$this->upload->data();
-			$new_name = $config['file_name'];
+
+			
 			$new_name.= $img_data['file_ext'];
 			$file = $new_name;
 			return $file;
