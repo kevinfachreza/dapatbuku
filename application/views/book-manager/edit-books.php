@@ -32,14 +32,15 @@
 				<div class="col-md-4 col-sm-2 col-xs-2">Harga Jual</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="harga_jual_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_sell_u_b']; ?>" value="<?php echo $book_data[0]['price_sell_u_b']; ?>" autofocus>
-					<div class="input-info">Kosongkan jika tidak ingin dijual</div>
+					<div class="input-info">*Kosongkan jika tidak ingin dijual</div>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Harga Sewa</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<input name="harga_sewa_in" type="text" class="form-control" placeholder="<?php echo $book_data[0]['price_rent_u_b']; ?>"  value="<?php echo $book_data[0]['price_rent_u_b']; ?>"autofocus>
-					<div class="input-info">Kosongkan jika tidak ingin dijual</div>
+					<div class="input-info">*Kosongkan jika tidak ingin disewakan</div>
+					<div class="input-info">**Harga diatas adalah harga sewa perminggu</div>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
@@ -102,10 +103,10 @@
 
 								<input name="pict-1" type="text" class="form-control" style=" margin-bottom:0;" readonly>
 						<label class="input-group-btn">
-								
+
 						</label>
 						</div>
-						
+
 					</div>
 
 					<div class="col-md-12 col-sm-12 col-xs-12"><a href="<?php echo base_url()."mybooks/delete_ub_img/".$book_data[0]['slug_title_u_b']."/".$key['id_u_b_img']?>" style="width:100%" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>

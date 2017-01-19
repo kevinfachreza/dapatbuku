@@ -269,7 +269,7 @@ class Mybooks extends CI_Controller {
 
 	public function add()
 	{
-    	if($this->session->flashdata('warning') != null){
+    if($this->session->flashdata('warning') != null){
       $this->session->set_flashdata('kosong', 'Maaf, Anda harus menjual, menyewakan, atau barter');
     }
 		$user_data = $this->session->userdata('userdata');

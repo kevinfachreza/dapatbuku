@@ -71,7 +71,7 @@
     public function search_book($key)
     {
       $query = "SELECT * FROM (book b join book_category_connector bcc ON b.id_b = bcc.book_id) WHERE b.title_b LIKE '".$key[0]."' OR writer LIKE '".$key[0]."'";
-      
+
       $got_value = 0;
 
       //CATEGORY CHECK
@@ -107,7 +107,7 @@
     {
 
       $query = "SELECT rr.name, res.id_u_b, res.slug_title_u_b, res.main_image_u_b, res.title_u_b, res.price_sell_u_b, res.city_u, res.rent_u_b, res.barter_u_b FROM (SELECT * FROM (SELECT ub.id_u_b, ub.slug_title_u_b, ub.main_image_u_b, ub.title_u_b, ub.id_b_source, ub.type_u_b, ub.sell_u_b,
-                ub.rent_u_b, ub.barter_u_b, ub.price_sell_u_b, ub.price_rent_u_b, u.city_u FROM user_book ub
+                ub.rent_u_b, ub.barter_u_b, ub.price_sell_u_b, ub.price_rent_u_b, ub.active, u.city_u FROM user_book ub
                 join user u on ub.id_u_owner = u.id_u) u_detail join (SELECT b.id_b, b.best_seller_flag, b.pages,
                 b.writer, bcc.cat_id FROM book b join book_category_connector bcc on b.id_b = bcc.book_id) b_detail
                 on u_detail.id_b_source = b_detail.id_b) res, region_regencies rr WHERE res.city_u = rr.id AND ";
@@ -121,13 +121,11 @@
         //TITLE CHECK
         if($i == 0 && $key[$i] != NULL && $key[$i+1] != NULL)
         {
-          $key[$i]="%".$key[$i]."%";
           $query .= "res.title_u_b LIKE '".$key[$i]."' AND ";
           $got_value = 1;
         }
         else if($i == 0 && $key[$i] != NULL && $key[$i+1] == NULL)
         {
-          $key[$i]="%".$key[$i]."%";
           $query .= "res.title_u_b LIKE '".$key[$i]."' ";
           $got_value = 1;
         }
@@ -261,7 +259,6 @@
       {
         $query .= "LIMIT ".$limit." OFFSET ".$offset." ";
       }
-
       $result = $this->db->query($query);
       return $result->result_array();
     }

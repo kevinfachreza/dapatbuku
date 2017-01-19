@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function add_log_view($id, $jenis, $halaman){
       $query = $this->db->query("INSERT INTO log_visit(user_id_lv, jenis_lv, id_halaman_lv) VALUES('".$id."', '".$jenis."', '".$halaman."');");
-      
+
       if ($this->db->affected_rows() >= 0) {
         $query = true;
         } else {
@@ -104,7 +104,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         else{
           return FALSE;
         }
-     
+    }
+
+    public function get_user_auth($id_in){
+      $query = $this->db->query("SELECT * FROM user WHERE id_u = '".$id_in."'");
+
+      return $query->result();
     }
 
 
