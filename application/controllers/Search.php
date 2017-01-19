@@ -55,7 +55,7 @@ class Search extends CI_Controller {
 			}
 		}
 
-		
+
 		else if($keyword == NULL and $category == NULL and $best_sell == NULL and $bekas == NULL
 			 or $baru == NULL and $ $provincies == NULL and $ $regencies == NULL and $tebal_min == NULL
 			 or $harga_min == NULL and $jual == NULL and $sewa == NULL and $barter == NULL)
@@ -76,6 +76,7 @@ class Search extends CI_Controller {
 		$data['header']=$this->load->view('parts/header','',true);
 		$data['navbar']=$this->load->view('parts/navbar','',true);
 		$data['footer']=$this->load->view('parts/footer','',true);
+
 		$this->load->view('search/search',$data);
 	}
 

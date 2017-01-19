@@ -104,16 +104,35 @@ class Auth extends CI_Controller {
     }
   }
 
+  private function emptyElementExists($arr) {
+	  return array_search("", $arr) !== false;
+	}
+
   public function contact_us(){
-    $data['header']=$this->load->view('parts/header','',true);
-    $data['navbar']=$this->load->view('parts/navbar','',true);
-    $data['footer']=$this->load->view('parts/footer','',true);
-    $this->load->view('auth/contact_us', $data);
+    if($this->session->logged_in == 1){
+      $check = $this->M_book->checknullprofile($this->session->userdata('id_u'));
+
+      if($this->emptyElementExists($check)){
+        $this->session->set_flashdata('profile_report', 'Maaf kamu harus mengisi biodata terlebih dahulu');
+        redirect('Accounts/settings');
+      }
+    }
+      $data['header']=$this->load->view('parts/header','',true);
+      $data['navbar']=$this->load->view('parts/navbar','',true);
+      $data['footer']=$this->load->view('parts/footer','',true);
+      $this->load->view('auth/contact_us', $data);
   }
 
   public function do_contact_us(){
-    $name = $this->input->post('name');
-    $email = $this->input->post('email');
+    if($this->session->logged_in == 1){
+      $contact_data = $this->M_auth->get_user_auth($this->session->userdata('id_u'));
+      $name = $contact_data[0]->firstname_u." ".$contact_data[0]->lastname_u;
+      $email = $contact_data[0]->email_u;
+    }
+    else{
+      $name = $this->input->post('name');
+      $email = $this->input->post('email');
+    }
     $message = $this->input->post('message');
     // The mail sending protocol.
     $config['protocol'] = 'smtp';
@@ -142,14 +161,24 @@ class Auth extends CI_Controller {
     // It returns boolean TRUE or FALSE based on success or failure
     if($this->email->send())
     {
-      redirect('contactus');
+      $this->session->set_flashdata('contactus', true);
     }
     else {
-      show_error($this->email->print_debugger());
+      $this->session->set_flashdata('contactus', false);
+      //show_error($this->email->print_debugger());
     }
+    redirect('contactus');
   }
 
   public function book_request(){
+    if($this->session->logged_in == 1){
+      $check = $this->M_book->checknullprofile($this->session->userdata('id_u'));
+
+      if($this->emptyElementExists($check)){
+        $this->session->set_flashdata('profile_report', 'Maaf kamu harus mengisi biodata terlebih dahulu');
+        redirect('Accounts/settings');
+      }
+    }
     $data['header']=$this->load->view('parts/header','',true);
     $data['navbar']=$this->load->view('parts/navbar','',true);
     $data['footer']=$this->load->view('parts/footer','',true);
@@ -157,18 +186,33 @@ class Auth extends CI_Controller {
   }
 
   public function do_book_request(){
+    if($this->session->logged_in == 1){
+      $contact_data = $this->M_auth->get_user_auth($this->session->userdata('id_u'));
+      $name = $contact_data[0]->firstname_u." ".$contact_data[0]->lastname_u;
+      $email = $contact_data[0]->email_u;
+      $hp = $contact_data[0]->phone_number_u;
+    }
+    else{
+      $name = $this->input->post('name');
+      $email = $this->input->post('email');
+      $hp = $this->input->post('hp');
+    }
     $title = $this->input->post('title');
     $category = $this->input->post('category');
     $author = $this->input->post('author');
+    $interest = $this->input->post('interest');
 
-    $data_request = array($title, $category, $author);
+    $data_request = array($title, $category, $author, $interest, $name, $email, $hp);
 
     $result = $this->M_book->insert_request($data_request);
 
-    if($result) redirect('auth/book_request');
-    else {
-      echo "GAGAL";
+    if($result){
+      $this->session->set_flashdata('request', true);
     }
+    else {
+      $this->session->set_flashdata('request', "0");
+    }
+    redirect('auth/book_request');
   }
 
 }

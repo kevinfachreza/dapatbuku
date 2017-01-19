@@ -60,7 +60,7 @@ class Book extends CI_Controller {
 			$temp = $this->session->userdata('userdata');
 			$id_user = $temp[0]->id_u;
 			$add_log = $this->M_auth->add_log_view($id_user, 'book', $id_in);
-			
+
 		}
 		else{
 			$ip = $this->input->ip_address();
@@ -86,6 +86,7 @@ class Book extends CI_Controller {
 		$data['n_release']=$this->M_book->get_n_release();
 		$data['user_result']=$this->M_book->get_owner_book($slug);
 		$data['book_result']=$this->M_book->get_product_book($slug);
+
 		$data['book_origin'] = $this->M_book->get_book_slug_by_product($slug);
 		$data['book_image']=$this->M_book->get_product_img($data['book_result'][0]['id_u_b']);
 		$data['header']=$this->load->view('parts/header','',true);
@@ -177,12 +178,12 @@ class Book extends CI_Controller {
 	public function best_seller(){
 		$data['slug_page'] = 'best_seller';
 		$data['title_page'] = 'Best Seller';
-		
+
 		if($this->input->get('page')!=null)
 		{
 			$page = $this->input->get('page');
 		}
-		else $page=1;	
+		else $page=1;
 
 		$limit=24;
 		$offset = ($page-1)*$limit;
@@ -209,7 +210,7 @@ class Book extends CI_Controller {
 		{
 			$page = $this->input->get('page');
 		}
-		else $page=1;	
+		else $page=1;
 		$limit=24;
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
@@ -234,7 +235,7 @@ class Book extends CI_Controller {
 		{
 			$page = $this->input->get('page');
 		}
-		else $page=1;	
+		else $page=1;
 		$limit=24;
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;

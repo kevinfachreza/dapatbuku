@@ -51,7 +51,7 @@
 				<?php for ($i=0;$i<count($books);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()?><?php echo $books[$i]->slug_title_u_b?>"><img src="<?php echo base_url()?><?php echo $books[$i]->main_image_u_b?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/product/".$books[$i]->slug_title_u_b; ?>"><img src="<?php echo base_url()?><?php echo $books[$i]->image_thumb?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()?><?php echo $books[$i]->slug_title_u_b?>" class="text-primary"><?php echo $books[$i]->title_u_b?></a></div>

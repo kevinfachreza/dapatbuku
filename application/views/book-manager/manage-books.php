@@ -33,7 +33,7 @@
 								<div class="col-md-12 info-books-container">
 									<div class="col-md-2 padding-0">
 										<div class="book-image">
-											<img src="<?php echo base_url().$key['main_image_u_b']; ?>" class="img-responsive-2">
+											<img src="<?php echo base_url().$key['image_thumb']; ?>" class="img-responsive-2">
 										</div>
 									</div>
 									<div class="col-md-10">

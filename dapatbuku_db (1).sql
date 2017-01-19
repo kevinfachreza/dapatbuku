@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2017 at 02:50 PM
--- Server version: 10.1.19-MariaDB
+-- Generation Time: 19 Jan 2017 pada 17.03
+-- Versi Server: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -21,11 +20,10 @@ SET time_zone = "+00:00";
 -- Database: `dapatbuku_db`
 --
 
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `banner`
+-- Struktur dari tabel `banner`
 --
 
 CREATE TABLE `banner` (
@@ -37,7 +35,7 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `banner`
+-- Dumping data untuk tabel `banner`
 --
 
 INSERT INTO `banner` (`id`, `pict`, `link`, `created_at`, `active`) VALUES
@@ -50,7 +48,7 @@ INSERT INTO `banner` (`id`, `pict`, `link`, `created_at`, `active`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Struktur dari tabel `book`
 --
 
 CREATE TABLE `book` (
@@ -76,11 +74,11 @@ CREATE TABLE `book` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book`
+-- Dumping data untuk tabel `book`
 --
 
 INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `publisher`, `pages`, `date_published`, `language_b`, `thumb_cover_b`, `photo_cover_b`, `cover_type_b`, `description_b`, `total_reviews_b`, `total_ratings`, `best_seller_flag`, `best_seller_rank`, `tags`, `views_b`) VALUES
-(1, 'Quantum Ikhlas', 'quantum-ikhlas', NULL, 'Erbe Sentanu', 'Elex Media Komputindo', 290, '2007-10-01', 'Indonesia', NULL, '', '', '', 0, 0, 1, 1, 'kuantum, ikhlas, agama, islam, jujur', 0),
+(1, 'Quantum Ikhlas', 'quantum-ikhlas', NULL, 'Erbe Sentanu', 'Elex Media Komputindo', 290, '2007-10-01', 'Indonesia', NULL, '', '', '', 0, 0, 1, 1, 'kuantum, ikhlas, agama, islam, jujur', 1),
 (2, 'Kenali Ragam Kepribafian Yang disukai dan Dibenci', 'kenali-ragam-kepribafian-yang-disukai-dan-dibenci', NULL, 'Naylil Moena', 'DIVA', 0, '2011-11-01', 'Indonesia', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (3, 'Terapi Kejujuran', 'terapi-kejujuran', NULL, 'Yanuardi Syukur', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 4),
 (4, 'Jurus Jitu Mengelola Amarah', 'jurus-jitu-mengelola-amarah', NULL, 'Harrista Adiati', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
@@ -91,7 +89,7 @@ INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `p
 (9, 'Si Cacing dan Kotoran Kesayangannya 3', 'si-cacing-dan-kotoran-kesayangannya-3', NULL, 'Ajahn Brahm', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (10, 'Cara Mutakhir Jago Desain Logo', 'cara-mutakhir-jago-desain-logo', NULL, 'Ferri Caniago', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 2, '', 0),
 (11, '99 Ideas for Happy Teens', '99-ideas-for-happy-teens', NULL, 'Deny Riana', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(12, 'Benabook', 'benabook', NULL, 'Benazio Rizky', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(12, 'Benabook', 'benabook', NULL, 'Benazio Rizky', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 1),
 (13, 'Ngenest', 'ngenest', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (14, 'Ngenest 2', 'ngenest-2', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (15, 'Ngenest 3', 'ngenest-3', NULL, 'Ernest Prakasa', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
@@ -216,7 +214,7 @@ INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `p
 (135, 'The Achievement Habit Berhenti Berharap, Mulai Lakukan, Dan Ambil Kendali Hidup Anda', 'the-achievement-habit-berhenti-berharap-mulai-lakukan-dan-ambil-kendali-hidup-anda', NULL, 'Bernard Roth', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (136, 'Merry Riana - Campus Ambassadors', 'merry-riana---campus-ambassadors', NULL, 'Shandy Tan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (137, 'Cinta Tanpa Cerita', 'cinta-tanpa-cerita', NULL, '@infiniteloved', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
-(138, '7 Tokoh Dunia Yang Pernah Kami Temui & Rahasia-Rahasia Mereka', '7-tokoh-dunia-yang-pernah-kami-temui-rahasia-rahasia-mereka', NULL, 'Ippho D. Santosa, Imam Shamsi Ali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
+(138, '7 Tokoh Dunia Yang Pernah Kami Temui & Rahasia-Rahasia Mereka', '7-tokoh-dunia-yang-pernah-kami-temui-rahasia-rahasia-mereka', NULL, 'Ippho D. Santosa, Imam Shamsi Ali', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 1),
 (139, 'Burung Besi Monika', 'burung-besi-monika', NULL, 'Monika Anggreini', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (140, 'Jangan Grogi! Jurus Sukses Mengikuti', 'jangan-grogi-jurus-sukses-mengikuti', NULL, 'Wishnu Soehardjo', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 0, NULL, '', 0),
 (141, 'Ini Buku Kamu', 'ini-buku-kamu', NULL, 'Dedy Dahlan', '', 0, '0000-00-00', '', NULL, '', '', '', 0, 0, 1, 4, '', 0),
@@ -236,7 +234,7 @@ INSERT INTO `book` (`id_b`, `title_b`, `slug_title_b`, `no_isbn_b`, `writer`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_category`
+-- Struktur dari tabel `book_category`
 --
 
 CREATE TABLE `book_category` (
@@ -247,7 +245,7 @@ CREATE TABLE `book_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book_category`
+-- Dumping data untuk tabel `book_category`
 --
 
 INSERT INTO `book_category` (`id_b_category`, `name_b_category`, `desc_b_category`, `slug_category`) VALUES
@@ -259,7 +257,7 @@ INSERT INTO `book_category` (`id_b_category`, `name_b_category`, `desc_b_categor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_category_connector`
+-- Struktur dari tabel `book_category_connector`
 --
 
 CREATE TABLE `book_category_connector` (
@@ -269,7 +267,7 @@ CREATE TABLE `book_category_connector` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book_category_connector`
+-- Dumping data untuk tabel `book_category_connector`
 --
 
 INSERT INTO `book_category_connector` (`id_bcc`, `book_id`, `cat_id`) VALUES
@@ -308,7 +306,7 @@ INSERT INTO `book_category_connector` (`id_bcc`, `book_id`, `cat_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_rating`
+-- Struktur dari tabel `book_rating`
 --
 
 CREATE TABLE `book_rating` (
@@ -322,28 +320,40 @@ CREATE TABLE `book_rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_request`
+-- Struktur dari tabel `book_request`
 --
 
 CREATE TABLE `book_request` (
   `id_br` int(11) NOT NULL,
   `title_br` varchar(256) NOT NULL,
   `category_br` varchar(100) NOT NULL,
-  `author_br` varchar(256) NOT NULL
+  `author_br` varchar(256) NOT NULL,
+  `interest_br` varchar(50) NOT NULL,
+  `name_br` varchar(200) NOT NULL,
+  `email_br` varchar(100) NOT NULL,
+  `hp_br` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book_request`
+-- Dumping data untuk tabel `book_request`
 --
 
-INSERT INTO `book_request` (`id_br`, `title_br`, `category_br`, `author_br`) VALUES
-(1, 'Jalani aja', 'aca', 'caaa'),
-(2, 'Jajajaja', '', '');
+INSERT INTO `book_request` (`id_br`, `title_br`, `category_br`, `author_br`, `interest_br`, `name_br`, `email_br`, `hp_br`) VALUES
+(1, 'Jalani aja', 'aca', 'caaa', '', '', '', ''),
+(2, 'Jajajaja', '', '', '', '', '', ''),
+(3, 'Jalan Menjual', '', '', '', '', '', ''),
+(4, 'Buku baru', 'horor', 'jadi', 'sewa', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(5, 'asa', 'dsd', 'ssss', 'jual', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(6, '1', '12', '33', 'informasi', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(7, 'Jalan', 'baru', 'sa', 'jual', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(8, '121', '22', '2', 'jual', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(9, '212', '333', '33', 'jual', 'Hari Setiawan', 'halah@gmail.com', '08959549'),
+(10, 'Buku', 'baru', 'sada', 'jual', 'Hari S', 'Jalan Jeruk', '09430490');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_review`
+-- Struktur dari tabel `book_review`
 --
 
 CREATE TABLE `book_review` (
@@ -357,7 +367,7 @@ CREATE TABLE `book_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book_review`
+-- Dumping data untuk tabel `book_review`
 --
 
 INSERT INTO `book_review` (`id_b_review`, `title_b_review`, `content_b_review`, `id_u`, `id_b`, `date_b_review`, `total_like`) VALUES
@@ -369,7 +379,7 @@ INSERT INTO `book_review` (`id_b_review`, `title_b_review`, `content_b_review`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_review_like`
+-- Struktur dari tabel `book_review_like`
 --
 
 CREATE TABLE `book_review_like` (
@@ -382,7 +392,7 @@ CREATE TABLE `book_review_like` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_status`
+-- Struktur dari tabel `book_status`
 --
 
 CREATE TABLE `book_status` (
@@ -393,7 +403,7 @@ CREATE TABLE `book_status` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_type`
+-- Struktur dari tabel `book_type`
 --
 
 CREATE TABLE `book_type` (
@@ -402,7 +412,7 @@ CREATE TABLE `book_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book_type`
+-- Dumping data untuk tabel `book_type`
 --
 
 INSERT INTO `book_type` (`id_b_type`, `name_b_type`) VALUES
@@ -412,7 +422,7 @@ INSERT INTO `book_type` (`id_b_type`, `name_b_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat_messages`
+-- Struktur dari tabel `chat_messages`
 --
 
 CREATE TABLE `chat_messages` (
@@ -425,7 +435,7 @@ CREATE TABLE `chat_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `chat_messages`
+-- Dumping data untuk tabel `chat_messages`
 --
 
 INSERT INTO `chat_messages` (`id_messages`, `chat_room_id`, `user_id`, `message`, `created_at`, `read_status`) VALUES
@@ -457,7 +467,7 @@ INSERT INTO `chat_messages` (`id_messages`, `chat_room_id`, `user_id`, `message`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat_room`
+-- Struktur dari tabel `chat_room`
 --
 
 CREATE TABLE `chat_room` (
@@ -469,7 +479,7 @@ CREATE TABLE `chat_room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `chat_room`
+-- Dumping data untuk tabel `chat_room`
 --
 
 INSERT INTO `chat_room` (`id_cr`, `created_at`, `last_active`, `user_1`, `user_2`) VALUES
@@ -484,7 +494,7 @@ INSERT INTO `chat_room` (`id_cr`, `created_at`, `last_active`, `user_1`, `user_2
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log_visit`
+-- Struktur dari tabel `log_visit`
 --
 
 CREATE TABLE `log_visit` (
@@ -495,7 +505,7 @@ CREATE TABLE `log_visit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `log_visit`
+-- Dumping data untuk tabel `log_visit`
 --
 
 INSERT INTO `log_visit` (`id_lv`, `user_id_lv`, `jenis_lv`, `id_halaman_lv`) VALUES
@@ -914,12 +924,99 @@ INSERT INTO `log_visit` (`id_lv`, `user_id_lv`, `jenis_lv`, `id_halaman_lv`) VAL
 (413, 57, 'home', 0),
 (414, 57, 'home', 0),
 (415, 57, 'home', 0),
-(416, 57, 'home', 0);
+(416, 57, 'home', 0),
+(417, 56, 'home', 0),
+(418, 56, 'home', 0),
+(419, 56, 'profile', 0),
+(420, 56, 'home', 0),
+(421, 56, 'home', 0),
+(422, 0, 'home', 0),
+(423, 0, 'home', 0),
+(424, 0, 'home', 0),
+(425, 0, 'home', 0),
+(426, 58, 'profile', 58),
+(427, 0, 'home', 0),
+(428, 0, 'home', 0),
+(429, 0, 'home', 0),
+(430, 0, 'home', 0),
+(431, 0, 'home', 0),
+(432, 59, 'profile', 59),
+(433, 59, 'home', 0),
+(434, 59, 'home', 0),
+(435, 59, 'profile', 59),
+(436, 59, 'profile', 59),
+(437, 59, 'profile', 59),
+(438, 59, 'profile', 59),
+(439, 59, 'product', 81),
+(440, 59, 'home', 0),
+(441, 59, 'home', 0),
+(442, 59, 'home', 0),
+(443, 59, 'home', 0),
+(444, 59, 'profile', 59),
+(445, 0, 'home', 0),
+(446, 0, 'home', 0),
+(447, 59, 'profile', 59),
+(448, 59, 'home', 0),
+(449, 59, 'home', 0),
+(450, 59, 'home', 0),
+(451, 59, 'home', 0),
+(452, 59, 'home', 0),
+(453, 59, 'home', 0),
+(454, 59, 'home', 0),
+(455, 59, 'home', 0),
+(456, 59, 'home', 0),
+(457, 59, 'home', 0),
+(458, 59, 'home', 0),
+(459, 59, 'home', 0),
+(460, 59, 'home', 0),
+(461, 59, 'home', 0),
+(462, 59, 'home', 0),
+(463, 59, 'home', 0),
+(464, 59, 'home', 0),
+(465, 59, 'home', 0),
+(466, 59, 'home', 0),
+(467, 59, 'home', 0),
+(468, 59, 'home', 0),
+(469, 59, 'book', 12),
+(470, 59, 'home', 0),
+(471, 59, 'home', 0),
+(472, 59, 'book', 138),
+(473, 59, 'home', 0),
+(474, 59, 'home', 0),
+(475, 59, 'home', 0),
+(476, 59, 'home', 0),
+(477, 59, 'home', 0),
+(478, 0, 'home', 0),
+(479, 0, 'home', 0),
+(480, 0, 'home', 0),
+(481, 0, 'home', 0),
+(482, 0, 'home', 0),
+(483, 0, 'home', 0),
+(484, 0, 'home', 0),
+(485, 59, 'profile', 59),
+(486, 59, 'product', 84),
+(487, 59, 'home', 0),
+(488, 59, 'book', 1),
+(489, 59, 'home', 0),
+(490, 59, 'product', 84),
+(491, 59, 'home', 0),
+(492, 0, 'home', 0),
+(493, 0, 'home', 0),
+(494, 0, 'home', 0),
+(495, 0, 'home', 0),
+(496, 60, 'profile', 60),
+(497, 60, 'profile', 60),
+(498, 60, 'home', 0),
+(499, 60, 'home', 0),
+(500, 0, 'home', 0),
+(501, 0, 'home', 0),
+(502, 0, 'home', 0),
+(503, 0, 'home', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publishers`
+-- Struktur dari tabel `publishers`
 --
 
 CREATE TABLE `publishers` (
@@ -934,7 +1031,7 @@ CREATE TABLE `publishers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region_provinces`
+-- Struktur dari tabel `region_provinces`
 --
 
 CREATE TABLE `region_provinces` (
@@ -943,7 +1040,7 @@ CREATE TABLE `region_provinces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `region_provinces`
+-- Dumping data untuk tabel `region_provinces`
 --
 
 INSERT INTO `region_provinces` (`id`, `name`) VALUES
@@ -985,7 +1082,7 @@ INSERT INTO `region_provinces` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region_regencies`
+-- Struktur dari tabel `region_regencies`
 --
 
 CREATE TABLE `region_regencies` (
@@ -995,7 +1092,7 @@ CREATE TABLE `region_regencies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `region_regencies`
+-- Dumping data untuk tabel `region_regencies`
 --
 
 INSERT INTO `region_regencies` (`id`, `province_id`, `name`) VALUES
@@ -1517,7 +1614,7 @@ INSERT INTO `region_regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -1547,7 +1644,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`, `lastname_u`, `date_of_birth_u`, `phone_number_u`, `address_u`, `city_u`, `province_u`, `total_review_u`, `bio_u`, `photo_profile_u`, `photo_cover_u`, `point`, `money`, `line_u`, `whatsapp_u`, `created_at`, `last_login`, `views_u`, `last_update`) VALUES
@@ -1561,12 +1658,15 @@ INSERT INTO `user` (`id_u`, `username_u`, `email_u`, `password_u`, `firstname_u`
 (54, 'bananabanana', 'kevin@banana.com', '$2a$08$JqgxPzjd3eO2Iung8CkbOuvACUYzbrjMAZ3rrFUE/i7vkaK9nI98i', 'Kevin', 'Banana', '2017-01-01', '123123', NULL, 1506, 15, 0, 'asdad', 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:31', '2017-01-10 04:07:08', 1, NULL),
 (55, '', '', '$2a$08$9N4fwpmi8.74rCVBRdl2j.uF5HhFQBZXYckTY4zEFDq9cXcYNzNUW', NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL, 0, NULL, 'assets/img/default/profile-pict.png', '0', 0, 0, '-', '-', '2017-01-10 04:06:57', NULL, 0, NULL),
 (56, 'dummya', 'dummy@dummy.coma', '$2a$08$BRSZ3XiftN87WTpq3J/n4Oqi5bwEYSlfvFWdyIc59FVcq0MdvVBXS', 'dummy', 'dummy', '1900-01-10', '123', '-', 1101, 11, 0, '123', './assets/img/user/56/profile-pict/562017-01-10-05-11-37.jpg', '0', 0, 0, '-', '-', '2017-01-10 04:09:57', '2017-01-10 04:10:03', 1, '2017-01-10 04:11:47'),
-(57, 'ikanterbang', 'ikan@terbang.com', '$2a$08$Ft3XlNbCjJRynlDanxjHVO3PBDBxoaofuQl9rWBVEbboN1zwlZIpy', '123', '123', '2017-01-01', '123', '-', 0, 11, 0, 'adad', 'assets/img/default/profile-pict.png', '0', 0, 0, '123', '123', '2017-01-10 12:37:56', '2017-01-10 12:38:14', 2, '2017-01-10 12:45:16');
+(57, 'ikanterbang', 'ikan@terbang.com', '$2a$08$Ft3XlNbCjJRynlDanxjHVO3PBDBxoaofuQl9rWBVEbboN1zwlZIpy', '123', '123', '2017-01-01', '123', '-', 0, 11, 0, 'adad', 'assets/img/default/profile-pict.png', '0', 0, 0, '123', '123', '2017-01-10 12:37:56', '2017-01-10 12:38:14', 2, '2017-01-10 12:45:16'),
+(58, 'hari', 'hari@gmail.com', '$2a$08$zBX5K4FJKnidhhALOWi22e6G88qKlaX.dCbTLInO90RVbbGnLnmPm', 'hari', 'ha', '1998-04-12', '088857474', '-', 1402, 14, 0, 'Hariha', './assets/img/user/hari/profile-pict/582017-01-13-15-37-01.jpg', '0', 0, 0, '@hari', '03838848', '2017-01-13 14:36:08', '2017-01-13 14:36:14', 1, '2017-01-13 14:37:40'),
+(59, 'dummyku', 'dummyku@gmail.com', '$2a$08$.l5Tm66zxmqZwzV85VWbZeWD/0Jo6nfB8Z4JReMsrnNIiq4h8zpt6', 'dummy', 'ku', '1998-04-12', '08957393', '-', 5101, 51, 0, 'Dummy doang', './assets/img/user/dummyku/profile-pict/592017-01-18-14-47-27.jpg', '0', 0, 0, '@dummyku', '0895959', '2017-01-18 13:47:06', '2017-01-19 11:37:45', 8, '2017-01-18 13:47:56'),
+(60, 'halaha', 'halah@gmail.com', '$2a$08$dregnNCwr6jc2I46aZBCCuqyJnquhsvvosdSS8TftgbWGX24tT7y2', 'Hari', 'Setiawan', '1997-06-12', '08959549', '-', 1203, 12, 0, 'Hari', './assets/img/user/halaha/profile-pict/602017-01-19-13-38-40.jpg', '0', 0, 0, '@hari', '08595859', '2017-01-19 12:17:39', '2017-01-19 12:17:49', 2, '2017-01-19 12:38:40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_book`
+-- Struktur dari tabel `user_book`
 --
 
 CREATE TABLE `user_book` (
@@ -1582,7 +1682,7 @@ CREATE TABLE `user_book` (
   `description_u_b` varchar(300) DEFAULT NULL,
   `id_u_owner` int(11) DEFAULT NULL,
   `stock_u_b` int(11) DEFAULT NULL,
-  `main_image_u_b` varchar(100) DEFAULT NULL,
+  `main_image_u_b` int(11) DEFAULT NULL,
   `title_u_b` varchar(100) NOT NULL,
   `berat_u_b` int(11) NOT NULL,
   `slug_title_u_b` varchar(500) NOT NULL,
@@ -1597,57 +1697,20 @@ CREATE TABLE `user_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_book`
+-- Dumping data untuk tabel `user_book`
 --
 
 INSERT INTO `user_book` (`id_u_b`, `id_b_source`, `price_sell_u_b`, `price_point`, `price_rent_u_b`, `type_u_b`, `sell_u_b`, `barter_u_b`, `rent_u_b`, `description_u_b`, `id_u_owner`, `stock_u_b`, `main_image_u_b`, `title_u_b`, `berat_u_b`, `slug_title_u_b`, `tahun_beli_u_b`, `active`, `activated_by`, `created_at`, `updated_at`, `rejected_reason`, `activated_at`, `views_ub`) VALUES
-(0, 13, 75000, 0, 15000, 1, 1, 1, 1, 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum', 5, 1, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', '', 0, '', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:17', 0),
-(2, 14, 90000, 0, 10000, 2, 1, 0, 1, 'LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum', 5, 3, 'assets/img/user/5/2.jpg', '', 0, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(4, 14, 90000, 0, 10000, 2, 1, 0, 1, 'Hanya bisa dibuat', 5, 3, 'assets/img/user/5/2.jpg', 'Tetap mencoba', 0, 'Tetap-mencoba', 2009, 1, NULL, NULL, NULL, NULL, '2017-01-08 06:26:29', 0),
-(5, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(6, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(7, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(8, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(9, 13, 20202, 0, NULL, 1, NULL, 0, 100, 'LOOOOOOOOOOOOOOOOOO', NULL, 2, NULL, '', 10, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(41, 13, 10, 0, 11, 1, NULL, 0, 127, 'Kenapa', 5, 22, 'assets/img/user/5/books/41/0.png', 'Apa', 2, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(42, 13, 20, 0, 33, 1, NULL, 0, 33, 'Trying', 5, 10, 'assets/img/user/4/books/42/0.jpg', 'Why', 111, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(43, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(44, 13, 3000, 0, NULL, 1, NULL, 0, 127, 'Doraemon (????? Doraemon?) adalah judul sebuah manga dan anime yang sangat populer yang dikarang Fujiko F. Fujio (???F????) sejak tahun 1969 dan berkisah tentang kehidupan seorang anak pemalas kelas 5 sekolah dasar yang bernama Nobi Nobita (?????) yang didatangi oleh sebuah robot kucing bernama Dora', 4, 1, NULL, 'Doraemon', 100, 'doraemon', 0000, 0, NULL, NULL, NULL, 2, '2017-01-08 06:36:25', 0),
-(45, 13, 123, 0, NULL, 1, NULL, 0, 123, 'asdasdad', 53, 12, 'assets/img/user/53/books/45/0.jpg', 'Banana Boat Ada 5', 123, 'BananaBoatAda5f89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(46, 13, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, NULL, 'Juancoookk', 123, 'Juancoookkf89d6', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(47, 0, 123, 0, NULL, 1, NULL, 0, 123, 'adasda', 53, 123, 'assets/img/user/53/books/Kaos-Spiderman--31489/0.jpg', 'Kaos Spiderman', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(48, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--98010/0.jpg', 'coba ini buku saya jual', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(49, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--0e17d/0.jpg', 'coba ini buku saya jual', 123, '', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(50, 0, 13, 0, NULL, 1, NULL, 0, 0, '123', 53, 123, 'assets/img/user/53/books/coba-ini-buku-saya-jual--1a656/0.jpg', 'coba ini buku saya jual', 123, 'coba-ini-buku-saya-jual--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(51, 0, 123213, 0, NULL, 1, NULL, 0, 127, '123', 53, 123, 'assets/img/user/53/books/aaaa--031b4/0.jpg', 'aaaa', 123, 'aaaa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(52, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(53, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'punisher--a2185', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(54, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, NULL, 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(55, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--02d20/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(56, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--7688b/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(57, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--c8376/0.jpg', 'aa', 123, 'batman-ikanterbang-f74efabef1a88a7', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(58, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--6208e/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(59, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--3e1e9/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(60, 0, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--39fa9/0.jpg', 'aa', 123, 'aa--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(61, 12, 123, 0, NULL, 1, NULL, 0, 1, 'ad', 53, 123, 'assets/img/user/53/books/aa--d029f/0_thumb.jpg', 'ini baru', 123, 'ini-baru', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 07:47:45', 7),
-(64, 12, 123, 0, NULL, 1, NULL, 0, 123, 'asd', 53, 12, 'assets/img/user/53/books/daredevil--a68b4/0_thumb.jpg', 'daredevil', 12, 'daredevil--', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 07:56:14', 36),
-(65, 12, 123, 0, 0, 1, NULL, 0, 123, '', 53, 123, 'assets/img/user/53/books/spiderman-ada-2--108c9/0_thumb.jpg', 'spiderman ada ', 123, 'spiderman-ada-2--', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 08:28:01', 6),
-(66, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--3ada9/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(67, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--49d18/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(68, 0, 123, 0, NULL, 1, NULL, 0, 123, '123', 53, 123, 'assets/img/user/53/books/punisher--a2185/0_thumb.jpg', 'punisher', 123, 'punisher--', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(70, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, NULL, 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(71, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, NULL, 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(72, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'aa', 123, 'aa-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(73, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-dac53c17c2', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(74, 0, 123, 0, NULL, 1, NULL, 0, 0, 'aa', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-96061e92f5', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0),
-(75, 75, 123, 0, 0, 1, NULL, 0, 0, '', 57, 123, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'aabcd', 123, 'aabcd-ikanterbang-eb624dbe56', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:11:17', 4),
-(76, 75, 123, 0, 0, 1, NULL, 0, 0, '', 57, 123, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'winter soldier', 123, 'winter-soldier-ikanterbang-f369cb89fc', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:38:39', 0),
-(77, 12, 123, 0, 0, 1, NULL, 0, 123, '', 57, 123, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_thumb.jpg', 'batman', 123, 'batman-ikanterbang-f74efabef1', 0000, 1, NULL, NULL, NULL, NULL, '2017-01-10 13:40:54', 1);
+(81, 0, 12000, 0, NULL, 2, NULL, 0, 0, 'Buku dummy', 59, 50, 130, 'Buku dummy', 12, 'Buku-dummy-dummyku-e3b0c44298', 0000, 3, NULL, NULL, NULL, NULL, NULL, 1),
+(82, 0, 50000, 0, 0, 2, NULL, 0, 0, '', 59, 500, 135, 'Buku lagi', 10, 'Buku-lagi-dummyku-5316ca1c5d', 0000, 3, NULL, NULL, NULL, NULL, NULL, 0),
+(83, 0, 12000, 0, NULL, 1, NULL, 0, 0, 'Buku lagi', 59, 50, 139, 'Hanya buku', 10, 'Hanya-buku-dummyku-a46e37632f', 0000, 3, NULL, NULL, NULL, NULL, NULL, 0),
+(84, 0, 100, 0, NULL, 2, NULL, 0, 0, 'Buku', 59, 30, 143, 'Hanya', 10, 'Hanya-dummyku-bbb965ab0c', 0000, 1, NULL, NULL, NULL, NULL, NULL, 2),
+(85, 0, 9000, 0, NULL, 2, NULL, 0, 0, 'Buku', 59, 80, 145, 'Judul', 100, 'Judul-dummyku-44c8031cb0', 0000, 2, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_book_favourite`
+-- Struktur dari tabel `user_book_favourite`
 --
 
 CREATE TABLE `user_book_favourite` (
@@ -1659,7 +1722,7 @@ CREATE TABLE `user_book_favourite` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_book_image`
+-- Struktur dari tabel `user_book_image`
 --
 
 CREATE TABLE `user_book_image` (
@@ -1671,92 +1734,28 @@ CREATE TABLE `user_book_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_book_image`
+-- Dumping data untuk tabel `user_book_image`
 --
 
 INSERT INTO `user_book_image` (`id_u_b_img`, `id_b_source`, `image_path`, `image_thumb`, `image_original`) VALUES
-(3, 41, 'assets/img/user/5/books/41/0.png', NULL, NULL),
-(4, 41, 'assets/img/user/5/books/41/1.png', NULL, NULL),
-(5, 41, 'assets/img/user/5/books/41/2.png', NULL, NULL),
-(6, 41, 'assets/img/user/5/books/41/3.png', NULL, NULL),
-(7, 42, 'assets/img/user/5/books/42/0.png', NULL, NULL),
-(8, 42, 'assets/img/user/5/books/42/1.png', NULL, NULL),
-(9, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
-(10, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
-(11, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
-(12, 4, 'assets/img/user/5/books/4/0.png', NULL, NULL),
-(13, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
-(14, 42, 'assets/img/user/4/books/42/1.jpg', NULL, NULL),
-(15, 42, 'assets/img/user/4/books/42/2.jpg', NULL, NULL),
-(16, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
-(17, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
-(18, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
-(19, 42, 'assets/img/user/4/books/42/0.jpg', NULL, NULL),
-(20, 45, 'assets/img/user/53/books/45/0.jpg', NULL, NULL),
-(21, 47, 'assets/img/user/53/books/Kaos-Spiderman--31489/0.jpg', NULL, NULL),
-(22, 48, 'assets/img/user/53/books/coba-ini-buku-saya-jual--98010/0.jpg', NULL, NULL),
-(23, 49, 'assets/img/user/53/books/coba-ini-buku-saya-jual--0e17d/0.jpg', NULL, NULL),
-(24, 50, 'assets/img/user/53/books/coba-ini-buku-saya-jual--1a656/0.jpg', NULL, NULL),
-(25, 51, 'assets/img/user/53/books/aaaa--031b4/0.jpg', NULL, NULL),
-(26, 55, 'assets/img/user/53/books/aa--02d20/0.jpg', NULL, NULL),
-(27, 56, 'assets/img/user/53/books/aa--7688b/0.jpg', NULL, NULL),
-(28, 57, 'assets/img/user/53/books/aa--c8376/0.jpg', NULL, NULL),
-(29, 58, 'assets/img/user/53/books/aa--6208e/0.jpg', NULL, NULL),
-(30, 59, 'assets/img/user/53/books/aa--3e1e9/0.jpg', NULL, NULL),
-(31, 59, 'assets/img/user/53/books/aa--3e1e9/1.jpg', NULL, NULL),
-(32, 59, 'assets/img/user/53/books/aa--3e1e9/2.jpg', NULL, NULL),
-(33, 60, 'assets/img/user/53/books/aa--39fa9/0.jpg', NULL, NULL),
-(34, 60, 'assets/img/user/53/books/aa--39fa9/1.jpg', NULL, NULL),
-(35, 60, 'assets/img/user/53/books/aa--39fa9/2.jpg', NULL, NULL),
-(36, 61, 'assets/img/user/53/books/aa--d029f/0.jpg', 'assets/img/user/53/books/aa--d029f/0_thumb.jpg', NULL),
-(37, 61, 'assets/img/user/53/books/aa--d029f/1.jpg', 'assets/img/user/53/books/aa--d029f/1_thumb.jpg', NULL),
-(38, 61, 'assets/img/user/53/books/aa--d029f/2.jpg', 'assets/img/user/53/books/aa--d029f/2_thumb.jpg', NULL),
-(45, 64, 'assets/img/user/53/books/daredevil--a68b4/0_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/0_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/0.jpg'),
-(46, 64, 'assets/img/user/53/books/daredevil--a68b4/1_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/1_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/1.jpg'),
-(47, 64, 'assets/img/user/53/books/daredevil--a68b4/2_resize.jpg', 'assets/img/user/53/books/daredevil--a68b4/2_thumb.jpg', 'assets/img/user/53/books/daredevil--a68b4/2.jpg'),
-(48, 65, 'assets/img/user/53/books/spiderman-ada-2--108c9/0_resize.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/0_thumb.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/0.jpg'),
-(49, 65, 'assets/img/user/53/books/spiderman-ada-2--108c9/1_resize.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/1_thumb.jpg', 'assets/img/user/53/books/spiderman-ada-2--108c9/1.jpg'),
-(50, 66, 'assets/img/user/53/books/punisher--3ada9/0_resize.jpg', 'assets/img/user/53/books/punisher--3ada9/0_thumb.jpg', 'assets/img/user/53/books/punisher--3ada9/0.jpg'),
-(51, 66, 'assets/img/user/53/books/punisher--3ada9/1_resize.jpg', 'assets/img/user/53/books/punisher--3ada9/1_thumb.jpg', 'assets/img/user/53/books/punisher--3ada9/1.jpg'),
-(52, 67, 'assets/img/user/53/books/punisher--49d18/0_resize.jpg', 'assets/img/user/53/books/punisher--49d18/0_thumb.jpg', 'assets/img/user/53/books/punisher--49d18/0.jpg'),
-(53, 67, 'assets/img/user/53/books/punisher--49d18/1_resize.jpg', 'assets/img/user/53/books/punisher--49d18/1_thumb.jpg', 'assets/img/user/53/books/punisher--49d18/1.jpg'),
-(54, 68, 'assets/img/user/53/books/punisher--a2185/0_resize.jpg', 'assets/img/user/53/books/punisher--a2185/0_thumb.jpg', 'assets/img/user/53/books/punisher--a2185/0.jpg'),
-(55, 68, 'assets/img/user/53/books/punisher--a2185/1_resize.jpg', 'assets/img/user/53/books/punisher--a2185/1_thumb.jpg', 'assets/img/user/53/books/punisher--a2185/1.jpg'),
-(56, 0, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0.jpg'),
-(57, 72, 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aa-ikanterbang-dac53c17c2/0.jpg'),
-(58, 73, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-dac53c17c2/0.jpg'),
-(59, 74, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-96061e92f5/0.jpg'),
-(61, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(62, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(63, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(64, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(65, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(66, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(67, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(68, 0, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(99, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(101, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(102, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(103, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(104, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(105, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(106, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(107, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(108, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(109, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(110, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(111, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/0.jpg'),
-(112, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1.jpg'),
-(113, 75, 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_resize.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1_thumb.jpg', 'assets/img/user/ikanterbang/books/aabcd-ikanterbang-eb624dbe56/1.jpg'),
-(117, 76, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_resize.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0.jpg'),
-(118, 76, 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_resize.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0_thumb.jpg', 'assets/img/user/ikanterbang/books/winter-soldier-ikanterbang-f369cb89fc/0.jpg'),
-(119, 77, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_resize.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0_thumb.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/0.jpg'),
-(120, 77, 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1_resize.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1_thumb.jpg', 'assets/img/user/ikanterbang/books/batman-ikanterbang-f74efabef1/1.jpg');
+(130, 81, 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/0_resize.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/0_thumb.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/0.jpg'),
+(131, 81, 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/1_resize.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/1_thumb.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/1.jpg'),
+(132, 81, 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/2_resize.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/2_thumb.jpg', 'assets/img/user/dummyku/books/Buku-dummy-dummyku-e3b0c44298/2.jpg'),
+(135, 82, 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/0_resize.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/0_thumb.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/0.jpg'),
+(137, 82, 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/1_resize.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/1_thumb.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/1.jpg'),
+(138, 82, 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/2_resize.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/2_thumb.jpg', 'assets/img/user/dummyku/books/Buku-lagi-dummyku-5316ca1c5d/2.jpg'),
+(139, 83, 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/0_resize.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/0_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/0.jpg'),
+(140, 83, 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/1_resize.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/1_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/1.jpg'),
+(141, 83, 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/2_resize.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/2_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/2.jpg'),
+(142, 83, 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/3_resize.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/3_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-buku-dummyku-a46e37632f/3.jpg'),
+(143, 84, 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/0_resize.jpg', 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/0_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/0.jpg'),
+(144, 84, 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/1_resize.jpg', 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/1_thumb.jpg', 'assets/img/user/dummyku/books/Hanya-dummyku-bbb965ab0c/1.jpg'),
+(145, 85, 'assets/img/user/dummyku/books/Judul-dummyku-44c8031cb0/0_resize.jpg', 'assets/img/user/dummyku/books/Judul-dummyku-44c8031cb0/0_thumb.jpg', 'assets/img/user/dummyku/books/Judul-dummyku-44c8031cb0/0.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_book_rejectcode`
+-- Struktur dari tabel `user_book_rejectcode`
 --
 
 CREATE TABLE `user_book_rejectcode` (
@@ -1765,7 +1764,7 @@ CREATE TABLE `user_book_rejectcode` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_book_rejectcode`
+-- Dumping data untuk tabel `user_book_rejectcode`
 --
 
 INSERT INTO `user_book_rejectcode` (`code`, `content`) VALUES
@@ -1775,7 +1774,7 @@ INSERT INTO `user_book_rejectcode` (`code`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `writer`
+-- Struktur dari tabel `writer`
 --
 
 CREATE TABLE `writer` (
@@ -1788,7 +1787,7 @@ CREATE TABLE `writer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `writer`
+-- Dumping data untuk tabel `writer`
 --
 
 INSERT INTO `writer` (`id_writer`, `name_writer`, `origin_writer`, `date_of_birth_writer`, `description_writer`, `photo_writer`) VALUES
@@ -1980,12 +1979,12 @@ ALTER TABLE `book_category_connector`
 -- AUTO_INCREMENT for table `book_rating`
 --
 ALTER TABLE `book_rating`
-  MODIFY `id_b_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_b_rating` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `book_request`
 --
 ALTER TABLE `book_request`
-  MODIFY `id_br` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_br` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `book_review`
 --
@@ -2020,7 +2019,7 @@ ALTER TABLE `chat_room`
 -- AUTO_INCREMENT for table `log_visit`
 --
 ALTER TABLE `log_visit`
-  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=417;
+  MODIFY `id_lv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=504;
 --
 -- AUTO_INCREMENT for table `publishers`
 --
@@ -2030,12 +2029,12 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `user_book`
 --
 ALTER TABLE `user_book`
-  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_u_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `user_book_favourite`
 --
@@ -2045,7 +2044,7 @@ ALTER TABLE `user_book_favourite`
 -- AUTO_INCREMENT for table `user_book_image`
 --
 ALTER TABLE `user_book_image`
-  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id_u_b_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 --
 -- AUTO_INCREMENT for table `user_book_rejectcode`
 --
@@ -2057,56 +2056,55 @@ ALTER TABLE `user_book_rejectcode`
 ALTER TABLE `writer`
   MODIFY `id_writer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `book_rating`
+-- Ketidakleluasaan untuk tabel `book_rating`
 --
 ALTER TABLE `book_rating`
   ADD CONSTRAINT `rating_book_FK` FOREIGN KEY (`id_b`) REFERENCES `book` (`id_b`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rating_user_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `book_review`
+-- Ketidakleluasaan untuk tabel `book_review`
 --
 ALTER TABLE `book_review`
   ADD CONSTRAINT `review_book_FK` FOREIGN KEY (`id_b`) REFERENCES `book` (`id_b`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `review_user_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `book_review_like`
+-- Ketidakleluasaan untuk tabel `book_review_like`
 --
 ALTER TABLE `book_review_like`
   ADD CONSTRAINT `book_like_FK` FOREIGN KEY (`id_b_review`) REFERENCES `book_review` (`id_b_review`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_like_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `region_regencies`
+-- Ketidakleluasaan untuk tabel `region_regencies`
 --
 ALTER TABLE `region_regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `region_provinces` (`id`);
 
 --
--- Constraints for table `user_book`
+-- Ketidakleluasaan untuk tabel `user_book`
 --
 ALTER TABLE `user_book`
   ADD CONSTRAINT `Book_owner_FK` FOREIGN KEY (`id_u_owner`) REFERENCES `user` (`id_u`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `Book_type_FK` FOREIGN KEY (`type_u_b`) REFERENCES `book_type` (`id_b_type`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `user_book_favourite`
+-- Ketidakleluasaan untuk tabel `user_book_favourite`
 --
 ALTER TABLE `user_book_favourite`
   ADD CONSTRAINT `category_fav_FK` FOREIGN KEY (`id_category`) REFERENCES `book_category` (`id_b_category`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `user_fav_FK` FOREIGN KEY (`id_u`) REFERENCES `user` (`id_u`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user_book_image`
+-- Ketidakleluasaan untuk tabel `user_book_image`
 --
 ALTER TABLE `user_book_image`
   ADD CONSTRAINT `Book_source_img_FK` FOREIGN KEY (`id_b_source`) REFERENCES `user_book` (`id_u_b`) ON DELETE CASCADE ON UPDATE CASCADE;
-SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

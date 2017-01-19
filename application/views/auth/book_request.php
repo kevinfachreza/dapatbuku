@@ -12,8 +12,29 @@
 </head>
 
 <body>
-	<?php echo $navbar; ?>
 
+	<?php echo $navbar; ?>
+	<script type="text/javascript">
+	    $(document).ready(function(){
+	        $("#requestModal").modal('show');
+	    });
+	</script>
+		<!-- ////////////////////////////////MODAL//////////////// -->
+	<?php if($this->session->flashdata('request') == true) { ?>
+	<div id="requestModal" class="modal fade">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title">Permintaan Terkirim!!!</h4>
+	            </div>
+	            <div class="modal-body">
+	                <p>Terima Kasih</p>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<?php } ?>
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
 	<div class="row" style="margin:30px 0px;">
@@ -25,9 +46,20 @@
 					<div class="col-md-12 text-center"><hr></div>
 					<div class="row">
 			          <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
+									<?php if($this->session->logged_in != 1){ ?>
+										<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
+										<input name="email" type="text" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>
+										<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
+									<?php } ?>
 			            <input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
 									<input name="category" type="text" class="form-control" placeholder="Genre Buku" style="margin-bottom:0.5em" autofocus>
 			            <input name="author" type="text" class="form-control" placeholder="Pengarang" style="margin-bottom:0.5em" autofocus>
+									<select name="interest" class="form-control" id="interest">
+										<option value="informasi">Informasi </option>
+										<option value="jual">Jual</option>
+										<option value="sewa">Sewa</option>
+										<option value="barter">Barter</option>
+									</select>
 			            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
 			          </form>
 					</div>
