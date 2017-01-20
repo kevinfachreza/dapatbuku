@@ -217,7 +217,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	public function get_my_book($id_in, $limit=null, $offset=null)
     {
       //$query = "select * from user_book where id_u_owner = '".$id_in."' order by id_u_b desc ";
-      $query = "select ub.*, ui.* from user_book ub, user_book_image ui where ub.id_u_owner = '".$id_in."' AND ui.id_b_source = ub.id_u_b AND ub.active != 3 GROUP BY ub.id_u_b order by ub.id_u_b ASC ";
+      $query = "select ub.*, ui.* from user_book ub, user_book_image ui where ub.id_u_owner = '".$id_in."' AND ui.id_b_source = ub.id_u_b AND ub.active != 3 GROUP BY ub.id_u_b order by ub.id_u_b desc ";
       if($limit != null){
         $query .= "LIMIT ".$limit." OFFSET ".$offset."  ";
       }
@@ -337,7 +337,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																			 $barter, $kondisi, $berat, $stok, $deskripsi)
     {
       $query = $this->db->query("update user_book set title_u_b='".$judul."', price_sell_u_b='".$harga_jual."', price_rent_u_b='".$harga_sewa."',
-                                 barter_u_b='".$barter."', type_u_b='".$kondisi."', berat_u_b='".$berat."', stock_u_b='".$stok."', description_u_b='".$deskripsi."'
+                                 barter_u_b='".$barter."', type_u_b='".$kondisi."', berat_u_b='".$berat."', stock_u_b='".$stok."', description_u_b='".$deskripsi."',
+                                 updated_at = CURRENT_TIMESTAMP
                                  WHERE slug_title_u_b = '".$slug."';");
       if($query)
       {

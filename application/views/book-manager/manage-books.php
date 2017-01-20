@@ -39,7 +39,12 @@
 									<div class="col-md-10">
 										<div class="book-title"> <a href="<?php echo base_url()?>book/product/<?php echo $key['slug_title_u_b']?>"><?php echo $key['title_u_b']; ?></a></div>
 										<div class="book-price"> <?php echo $key['price_sell_u_b']; ?> </div>
-										<div class="book-date"> Last Edit : 2 Oktober 2016 </div>
+										<div class="book-date"> Last Edit :
+										<?php 
+											$date = date_create($key['updated_at']);
+											echo date_format($date, 'd-M-Y'); 
+										?> 
+										</div>
 										<?php if($key['active'] == 1){ ?>
 											<div class="active-book">Tervalidasi</div>
 											<?php }
