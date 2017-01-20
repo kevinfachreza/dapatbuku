@@ -143,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		FROM book_rating AS r JOIN book_review AS br WHERE r.id_u = br.id_u AND r.id_b = br.id_b AND br.id_b =".$id_in."
 		GROUP BY br.id_b_review
 		) AS r,
-		USER u WHERE r.id_u = u.id_u ORDER BY date_b_review DESC;");
+		user u WHERE r.id_u = u.id_u ORDER BY date_b_review DESC;");
       return $query->result_array();
     }
 
