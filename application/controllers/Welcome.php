@@ -16,17 +16,15 @@ class Welcome extends CI_Controller {
 		$this->load->model('M_book');
 		$this->load->model('M_Banner');
 		$this->load->model('M_Profile');
+		$this->load->model('M_category');
 	}
 
 	public function index()
 	{
 		$data['new_release']	 = $this->M_book->get_n_release();
 		$data['best_sell'] 		 = $this->M_book->get_b_seller();
-		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar','',true);
-		$data['footer']			 = $this->load->view('parts/footer','',true);
+	//	$data['category'] 		= $this->M_category->get_all_category();
 		$data['banner']			 = $this->M_Banner->getBanner();
-
 		if($this->session->logged_in == 1){
 			$temp = $this->session->userdata('userdata');
 			$id_user = $temp[0]->id_u;
@@ -46,7 +44,10 @@ class Welcome extends CI_Controller {
 			else{
 				$data['register'] = 0;
 			}
-				$this->load->view('home/index',$data);
+			$data['header']			 = $this->load->view('parts/header','',true);
+			$data['navbar']			 = $this->load->view('parts/navbar','',true);
+			$data['footer']			 = $this->load->view('parts/footer','',true);
+			$this->load->view('home/index',$data);
 		}
 		else{
 			echo "GAGAL";

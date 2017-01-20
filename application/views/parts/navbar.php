@@ -13,25 +13,54 @@
 			<li class="dropdown">
 			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
 			  	<ul class="dropdown-menu">
-					<li class="dropdown-submenu">
-                	<a tabindex="-1" href="#">Agama</a>
-	                <ul class="dropdown-menu">
-	                  	<li><a href="<?php echo base_url()."category/c/1" ?>">Islam</a></li>
-	                  	<li><a href="<?php echo base_url()."category/c/2" ?>">Kristen</a></li>
-	                  	<li><a href="<?php echo base_url()."category/c/3" ?>">Katolik</a></li>
-						<li><a href="<?php echo base_url()."category/c/4" ?>">Buddha</a></li>
-						<li><a href="<?php echo base_url()."category/c/4" ?>">Hindu</a></li>
-						<li><a href="<?php echo base_url()."category/c/4" ?>">Lain lain</a></li>
-	                </ul>
-             		</li>
-             		<li class="dropdown-submenu">
-                	<a tabindex="-1" href="#">Bisnis</a>
-	                <ul class="dropdown-menu">
-	                  	<li><a href="<?php echo base_url()."category/c/1" ?>">Pemasaran</a></li>
-	                  	<li><a href="<?php echo base_url()."category/c/2" ?>">Startup</a></li>
-	                  	<li><a href="<?php echo base_url()."category/c/3" ?>">Ide Bisnis</a></li>
-	                </ul>
-             		</li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/bisnis">Bisnis</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/agama">Agama</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/hukum">Hukum</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/novel">Novel</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/non-fiksi">Non-Fiksi</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/self-help">Self Help</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/psikologi">Psikologi</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/biografi">Biografi</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/fiksi">Inspirasi</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/keluarga">Keluarga</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/desain">Desain</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/komputer">Komputer</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/seni-rupa">Seni Rupa</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/humor">Humor</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/romantis">Romantis</a>
+          </li>
+					<li class="dropdown">
+						<a href="<?php echo base_url();?>category/horor">Horor</a>
+          </li>
 			  	</ul>
 			</li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>

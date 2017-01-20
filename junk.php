@@ -31,3 +31,20 @@ mybooks/do_edit{
 
   }*/
 }
+
+
+
+dropdown_submenu{
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="#">Agama</a>
+    <ul class="dropdown-menu">
+              <li><a href="<?php echo base_url()."category/c/1" ?>">Islam</a></li>
+              <li><a href="<?php echo base_url()."category/c/2" ?>">Kristen</a></li>
+              <li><a href="<?php echo base_url()."category/c/3" ?>">Katolik</a></li>
+              <li><a href="<?php echo base_url()."category/c/4" ?>">Buddha</a></li>
+              <li><a href="<?php echo base_url()."category/c/4" ?>">Hindu</a></li>
+              <li><a href="<?php echo base_url()."category/c/4" ?>">Lain lain</a></li>
+          </ul>
+        </li>
+  
+}

@@ -45,6 +45,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     }
 
+    public function get_all_category(){
+      $query = $this->db->query("SELECT * FROM book_category");
+
+      return $query->result_array();
+
+    }
+
 
   }
 

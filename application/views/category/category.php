@@ -29,7 +29,13 @@
 				<div class="col-md-12 text-center"><hr></div>
 
 				<div class="row">
-				<?php for ($i=0;$i<count($book);$i++){ ?>
+					<?php if(empty($book)){ ?>
+						<div class="text-center">
+							Maaf Buku Kategori ini masih belum ada
+						</div>
+
+				<?php }	else if($book != null){
+						for ($i=0;$i<count($book);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
 							<a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b ?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b ?>" class="img-responsive-2"></a>
@@ -39,7 +45,8 @@
 							<div class="author-container"><a href="" class="text-primary"><?php echo $book[$i]->writer ?></a></div>
 						</div>
 					</div>
-				<?php } ?>
+					<?php	}
+						?>
 					<div class="col-md-12">
 						<nav aria-label="Page navigation">
 							<div class="text-center">
@@ -61,6 +68,7 @@
 							</div>
 						</nav>
 					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
