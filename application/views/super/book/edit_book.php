@@ -87,7 +87,7 @@
 				<div class="input-group">
 					<div class="form-group">
 					  <label for="comment">Sinopsis:</label>
-					  <textarea name="sinopsis" class="form-control" rows="5" id="comment" placeholder="Sinopsis"> <?php echo $book[0]->description_b?></textarea>
+					  <textarea name="sinopsis" class="form-control" rows="8" cols="80" id="comment" placeholder="Sinopsis"> <?php echo $book[0]->description_b?></textarea>
 					</div>
 				</div>
 				<div class="input-group">

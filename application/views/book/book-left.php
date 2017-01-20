@@ -30,7 +30,7 @@
 				<div id="book-description" class="col-md-12 product-item">
 					<div class="book-header">Deskripsi</div>
 					<div class="book-description more">
-						<p><?php echo $book_data[0]['description_b']; ?></p>
+						<?php echo $book_data[0]['description_b']; ?>
 					</div>
 				</div>
 

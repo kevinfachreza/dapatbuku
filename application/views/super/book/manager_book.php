@@ -52,9 +52,9 @@ tr:nth-child(even) {
 					<?php for ($i=0;$i<count($book);$i++){ ?>
 								  <tr>
 								    <td><?php echo $book[$i]->id_b?></td>
-								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->thumb_cover_b?>" class="img-responsive-2" style="max-height: 100px;"></a></td>
-								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->title_b?></a></td>
-								    <td><a href="<?php echo base_url()?>book?title=<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->writer?></a></td>
+								    <td><a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b?>"><img src="<?php echo base_url()?><?php echo $book[$i]->thumb_cover_b?>" class="img-responsive-2" style="max-height: 100px;"></a></td>
+								    <td><a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->title_b?></a></td>
+								    <td><a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b?>" class="text-primary"><?php echo $book[$i]->writer?></a></td>
 								    <td>
 							<a href="<?php echo base_url()?>super/adminbook/edit_book/<?php echo $book[$i]->id_b?>">
 								<button type="button" class="btn btn-primary">Edit</button></td>
