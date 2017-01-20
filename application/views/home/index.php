@@ -28,11 +28,11 @@
             </div>
             <div class="modal-body">
                 <p>Silahkan login untuk mulai menggunakan dapatbuku</p>
-								<form action="<?php echo base_url();?>Auth/do_login" method="POST">
-									<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
-									<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
-									<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color btn-primary">LOGIN</button>
-								</form>
+				<form action="<?php echo base_url();?>Auth/do_login" method="POST">
+					<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
+					<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+					<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color btn-primary">LOGIN</button>
+				</form>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
 	       ?>
 
 		    <div class="item height-item <?php echo $active?>">
-	      		<a href="<?php echo $data->link?>">
+	      		<a href="<?php echo $data->link?>" target="_blank">
 		          	<img class="<?php echo $numbering?> img-responsive img-responsive-2" src="<?php echo base_url()?>assets/img/banner/<?php echo $data->pict?>" alt="<?php echo $alt?> slide">
 	       		</a>
 		    </div>
@@ -97,7 +97,9 @@
 							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo $key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>">
+							<img src="<?php echo $key['thumb_cover_b']; ?>" class="img-responsive-2" height="200">
+							</a>
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
@@ -115,7 +117,7 @@
 							<div class="text-size-22 text-header margin-bot-1"><?php echo $i+1; ?></div>
 						</div>
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo $key['thumb_cover_b']; ?>" class="img-responsive-2" height="200"></a>
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
@@ -148,7 +150,8 @@
 				<div class="item active ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>">
+							<img src="<?php echo $key['thumb_cover_b']; ?>" class="img-responsive-2" height="200">
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
@@ -163,7 +166,7 @@
 				<div class="item ">
 					<div class="col-md-2 col-sm-6 col-xs-12">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo base_url().$key['photo_cover_b']; ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><img src="<?php echo $key['thumb_cover_b']; ?>" class="img-responsive-2" height="200">
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>

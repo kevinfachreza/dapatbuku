@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_b_seller()
     {
       $query = $this->db->query("
-			SELECT b.writer, b.slug_title_b, b.best_seller_rank, b.id_b, b.photo_cover_b, b.title_b
+			SELECT b.writer, b.slug_title_b, b.best_seller_rank, b.id_b, b.photo_cover_b, b.title_b, b.thumb_cover_b
 			FROM book b
 			WHERE b.best_seller_flag = 1 ORDER BY best_seller_rank;");
       return  $query->result_array();
@@ -393,8 +393,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     public function get_owner_book($slug)
     {
-      $query = $this->db->query("SELECT u.*, rr.name FROM region_regencies rr, user u, user_book ub WHERE ub.slug_title_u_b = '".$slug."' AND u.id_u = ub.id_u_owner AND rr.id = u.city_u; ");
-
+      $syntax = "SELECT u.*, rr.name FROM region_regencies rr, user u, user_book ub WHERE ub.slug_title_u_b = '".$slug."' AND u.id_u = ub.id_u_owner AND rr.id = u.city_u; ";
+      $query = $this->db->query($syntax);
       return $query->result_array();
     }
 

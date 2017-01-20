@@ -165,6 +165,59 @@
 							<?php } ?>
 				</div>
 			</div>
+			<div class="col-md-12 container custom-container">
+				<div class="col-md-12 header-text-2">Kategori <span class="search-cat">Best Seller</span>
+				</div>
+				<div class="col-md-12 text-center"><hr></div>
+
+				<?php
+				if($has_result == 1){
+					if(count($product_result) > 0){
+						foreach ($product_result as $key) { ?>
+							<div class="col-md-3 search-item">
+								<div class="book-image"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b'];?>"><img src="<?php echo $key['main_image_u_b']?>"></a>
+								</div>
+								<div class="book-info-section">
+									<div class="book-title"><a href="<?php echo base_url()."book/product/".$key['slug_title_u_b'];?>"><?php echo $key['title_u_b']; ?></a>
+									</div>
+									<div class="book-down-section">
+										<div class="book-tag">
+											<?php if($key['rent_u_b'] == 1){ ?>
+											<div class="tag-sewa">Sewa</div>
+											<?php } if($key['barter_u_b'] == 1){ ?>
+											<div class="tag-barter">Barter</div>
+											<?php } ?>
+										</div>
+										<div class="book-price"><?php echo $key['price_sell_u_b']; ?>
+										</div>
+										<div class="book-location"><?php echo $key['name']; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+									<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
+							</div>
+					<?php
+							}
+					}
+					?>
+				<?php
+					if(count($product_result) == 0) {	?>
+						<div class="text-center">
+							Maaf, hasil pencarian tidak ditemukan...
+						</div>
+					 <?php }
+					}
+							else{
+				 ?>
+				 	<div class="text-center">
+						Silahkan masukkan Kategori pencarian
+					</div>
+					<?php
+							}
+					?>
+			</div>
 		</div>
 	</div>
 

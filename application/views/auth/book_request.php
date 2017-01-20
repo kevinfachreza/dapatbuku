@@ -47,19 +47,53 @@
 					<div class="row">
 			          <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
 									<?php if($this->session->logged_in != 1){ ?>
-										<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
-										<input name="email" type="text" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>
-										<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
+										<div class="row form-profile-wrapper">
+											<div class="col-md-3 col-sm-2 col-xs-2">Nama</div>
+											<div class="col-md-9 col-sm-8 col-xs-10">
+											<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
+											</div>
+										</div>
+										<div class="row form-profile-wrapper">
+											<div class="col-md-3 col-sm-2 col-xs-2">Email</div>
+											<div class="col-md-9 col-sm-8 col-xs-10">
+											<input name="email" type="email" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>
+											</div>
+										</div>
+										<div class="row form-profile-wrapper">
+											<div class="col-md-3 col-sm-2 col-xs-2">Nomor HP</div>
+											<div class="col-md-9 col-sm-8 col-xs-10">
+											<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
+											</div>
+										</div>
 									<?php } ?>
-			            <input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
-									<input name="category" type="text" class="form-control" placeholder="Genre Buku" style="margin-bottom:0.5em" autofocus>
-			            <input name="author" type="text" class="form-control" placeholder="Pengarang" style="margin-bottom:0.5em" autofocus>
-									<select name="interest" class="form-control" id="interest">
-										<option value="informasi">Informasi </option>
-										<option value="jual">Jual</option>
-										<option value="sewa">Sewa</option>
-										<option value="barter">Barter</option>
-									</select>
+
+										<div class="row form-profile-wrapper">
+											<div class="col-md-3 col-sm-2 col-xs-2">Judul</div>
+											<div class="col-md-9 col-sm-8 col-xs-10"><input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
+											</div>
+										</div>
+
+										<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
+											<div class="col-md-3 col-sm-2 col-xs-2">Pengarang
+											<small id="emailHelp" class="form-text text-muted">(Optional)</small></div>
+											<div class="col-md-9 col-sm-8 col-xs-10">
+			            						<input name="author" type="text" class="form-control" placeholder="Pengarang"  autofocus>
+											</div>
+										</div>
+
+			            	
+										<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
+											<div class="col-md-3 col-sm-2 col-xs-2">Butuh Buku Untuk</div>
+											<div class="col-md-9 col-sm-8 col-xs-10">
+											<select name="interest" class="form-control" id="interest">
+												<option value="informasi">Informasi </option>
+												<option value="jual">Jual</option>
+												<option value="sewa">Sewa</option>
+												<option value="barter">Barter</option>
+											</select>
+											</div>
+										</div>
+									
 			            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
 			          </form>
 					</div>

@@ -76,7 +76,7 @@
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
 			  <ul class="dropdown-menu">
 				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
-				<li><a href="<?php echo base_url()."Profile"; ?>">Dashboard</a></li>
+				<li><a href="<?php echo base_url()."Profile"; ?>">My Profile</a></li>
 				<li><a href="<?php echo base_url()."Accounts/settings"; ?>">Settings</a></li>
 				<li><a href="<?php echo base_url().'Mybooks'; ?>">MyBooks</a></li>
 				<li role="separator" class="divider"></li>

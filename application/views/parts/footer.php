@@ -16,12 +16,12 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-2 col-md-offset-0 col-sm-1 col-sm-offset-4 col-xs-2 col-xs-offset-2 footer-socmed-icon">
+						<a href="http://facebook.com/dapatbuku" target="_blank">
+						<img height="40" src="<?php echo base_url()?>assets/img/socialmedia/facebook-2.gif" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/facebook-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/facebook-2.gif';" ></a></div>
 
-							<a href="#">
-								<img height="40" src="<?php echo base_url()?>assets/img/socialmedia/facebook-2.gif" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/facebook-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/facebook-2.gif';" ></a></div>
-						<div class="col-md-2 col-sm-1 col-xs-2 footer-socmed-icon"><a href="#"><img height="40"  src="<?php echo base_url()?>assets/img/socialmedia/twitter-2.png" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/twitter-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/twitter-2.png';" ></a></div>
-						<div class="col-md-2 col-sm-1 col-xs-2 footer-socmed-icon"><a href="#"><img  height="40" src="<?php echo base_url()?>assets/img/socialmedia/instagram-2.png" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/instagram-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/instagram-2.png';" ></a></div>
-						<div class="col-md-2 col-sm-1 col-xs-2 footer-socmed-icon"><a href="#"><img  height="40" src="<?php echo base_url()?>assets/img/socialmedia/lineat-2.png" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/lineat-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/lineat-2.png';" ></a></div>
+						<div class="col-md-2 col-sm-1 col-xs-2 footer-socmed-icon"><a href="https://www.instagram.com/dapatbuku/" target="_blank"><img  height="40" src="<?php echo base_url()?>assets/img/socialmedia/instagram-2.png" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/instagram-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/instagram-2.png';" ></a></div>
+
+						<div class="col-md-2 col-sm-1 col-xs-2 footer-socmed-icon"><a href="http://line.me/ti/p/~@sdm6197x" target="_blank"><img  height="40" src="<?php echo base_url()?>assets/img/socialmedia/lineat-2.png" onmouseover="this.src='<?php echo base_url()?>assets/img/socialmedia/lineat-1.png';" onmouseout="this.src='<?php echo base_url()?>assets/img/socialmedia/lineat-2.png';" ></a></div>
 					</div>
 				</div>
 			</div>

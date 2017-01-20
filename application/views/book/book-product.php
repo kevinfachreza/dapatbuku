@@ -130,7 +130,10 @@
 							</div>
 						</div>
 					</div>
+					<?php if(!empty($book_origin)){ ?>
 					<a href="<?php echo base_url()."book/b/".$book_origin[0]->slug_title_b; ?>"><button type="button" class="btn btn-primary book-review-button">Cek Review Buku Ini</button></a>
+					<?php } ?>
+					</div>
 					</div>
 				</div>
 

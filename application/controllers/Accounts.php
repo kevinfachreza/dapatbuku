@@ -151,9 +151,9 @@ class Accounts extends CI_Controller {
 			$new_name = $id;
 			$new_name.= date("Y-m-d-H-i-s");
 			$config['allowed_types'] = 'gif|jpg|png';
-	        $config['max_size']      = 2000;
-	        $config['max_width']     = 5000;
-	        $config['max_height']    = 5000;
+	        	$config['max_size']      = 2000;
+	        	$config['max_width']     = 5000;
+	        	$config['max_height']    = 5000;
 			$config['file_name'] = $new_name;
 			$config['overwrite'] = TRUE;
 	        $this->load->library('upload', $config);
@@ -173,7 +173,9 @@ class Accounts extends CI_Controller {
 
 			if($flag==0)
 			{
-				$new_name='default.png';
+				$path = 'assets/img/default/';
+				$new_name='profile-pict.png';
+				$error =0;
 			}
 
 			$file = $path.$new_name;
@@ -186,13 +188,13 @@ class Accounts extends CI_Controller {
 			$report = $this->M_accounts-> edit_profile_picture($data);
 
 
-			if($report == 1)
-			{
-				$this->session->set_flashdata('profile_report', 'Pergantian Avatar Sukses');
-			}
-			else if($report == 0)
+			if($report == 0 || $flag==0)
 			{
 				$this->session->set_flashdata('profile_report', 'Pergantian Avatar Gagal');
+			}
+			else if($report == 1)
+			{
+				$this->session->set_flashdata('profile_report', 'Pergantian Avatar Sukses');
 			}
 		}
 		else{
