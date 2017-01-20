@@ -415,12 +415,11 @@ class Mybooks extends CI_Controller {
 	public function delete()
 	{
 		$id_in = $this->input->get('id-book');
-		//$result = $this->M_book->delete_book($id_in);
+		$result = $this->M_book->delete_book($id_in);
 
 		if(!$result)
 		{
 			echo "GAGAL";
-
 		}
 		else {
 			// //DELETE FOLDER
@@ -435,7 +434,7 @@ class Mybooks extends CI_Controller {
 			$data['header']=$this->load->view('parts/header','',true);
 			$data['navbar']=$this->load->view('parts/navbar','',true);
 			$data['footer']=$this->load->view('parts/footer','',true);
-			//redirect('Mybooks');
+			redirect('Mybooks');
 		}
 	}
 
