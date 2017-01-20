@@ -21,7 +21,7 @@ class Category extends CI_Controller {
 		{
 			$page = $this->input->get('page');
 		}
-		else $page=1;	
+		else $page=1;
 		if($category=='blank')
 		{
 			redirect('/');
@@ -39,6 +39,10 @@ class Category extends CI_Controller {
 		$count_books = $this->M_category->count_all_book_cat($category);
 		$data['page_total'] = ceil($count_books/$limit);
 
+		if($count_books > 0)	$data['ada'] = true;
+		else {
+				$data['ada'] = false;
+		}
 		$data['category_now']=$this->M_category->get_category($category);;
 
 		$this->load->view('category/category',$data);
