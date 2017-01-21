@@ -38,7 +38,7 @@
 						for ($i=0;$i<count($book);$i++){ ?>
 					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
 						<div class="margin-bot-1 home-book-img">
-							<a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b ?>"><img src="<?php echo base_url()?><?php echo $book[$i]->photo_cover_b ?>" class="img-responsive-2"></a>
+							<a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b ?>"><img src="<?php echo base_url()?><?php echo $book[$i]->thumb_cover_b ?>" class="img-responsive-2" height="200"></a>
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b ?>" class="text-primary"><?php echo $book[$i]->title_b ?></a></div>

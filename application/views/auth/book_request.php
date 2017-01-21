@@ -75,7 +75,7 @@
 
 										<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
 											<div class="col-md-3 col-sm-2 col-xs-2">Pengarang
-											<small id="emailHelp" class="form-text text-muted">(Optional)</small></div>
+											<small id="emailHelp" class="form-text text-muted">(	Optional)</small></div>
 											<div class="col-md-9 col-sm-8 col-xs-10">
 			            						<input name="author" type="text" class="form-control" placeholder="Pengarang"  autofocus>
 											</div>

@@ -25,7 +25,7 @@
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Publisher</span>
-					<input type="text" name="publisher" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2" value="<?php echo $book[0]->publisher ?>">
+					<input type="text" name="publisher" class="form-control" placeholder="Publisher" aria-describedby="sizing-addon2" value="<?php echo $book[0]->publisher ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">ISBN</span>
@@ -44,15 +44,16 @@
 					<span class="input-group-addon" id="sizing-addon2">Cover</span>
 					<input type="file" name="picture" class="form-control" aria-describedby="sizing-addon2">
 				</div>
+
+				<?php 
+					$date = date_create($book[0]->date_published);
+					
+				?> 
 				
 				<div class="input-group">
 					<div class="form-group">
 					  <label for="cetakan_pertama">Cetakan Pertama</label>
-					  <select name="cetakan_pertama" class="form-control" id="cetakan_pertama">
-						<?php for($i=1980;$i<2017;$i++){?>
-						<option value="<?php echo $i ?>" <?php if($book[0]->date_published == $i) echo 'selected' ?>><?php echo $i ?></option>
-						<?php } ?>
-					  </select>
+					  <input type="date" name="cetakan_pertama" class="form-control" aria-describedby="sizing-addon2" value="<?php echo date_format($date, 'Y-m-d');  ?>">
 					</div>
 				</div>
 				<div class="input-group">
