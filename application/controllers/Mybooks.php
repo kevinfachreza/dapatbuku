@@ -414,7 +414,9 @@ class Mybooks extends CI_Controller {
 
 	public function delete()
 	{
-		$id_in = $this->input->get('id-book');
+    $slug = $this->input->get('slug');
+    $tmp = $this->M_book->get_id_by_slug($slug);
+		$id_in = $tmp[0]->id_u_b;
 		$result = $this->M_book->delete_book($id_in);
 
 		if(!$result)

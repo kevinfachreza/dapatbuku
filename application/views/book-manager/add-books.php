@@ -21,7 +21,7 @@
 <div class="form-container custom-container container" id="profile-header">
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Tambahkan Buku </div>
-		<?php echo form_open_multipart('mybooks/do_add'); ?>
+		<?php echo form_open_multipart('mybooks/do_add', 'onsubmit="return checkform()"'); ?>
 			<div class="row form-book-wrapper">
 				<p style="color:rgb(230, 0, 0)" class="text-center"><?php echo $this->session->flashdata('kosong'); ?></p>
 				<div class="col-md-4 col-sm-2 col-xs-2">Judul</div>
@@ -79,6 +79,7 @@
 				<div class="col-md-4 col-sm-2 col-xs-2">Deskripsi</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<textarea name="deskripsi_in" class="form-control" rows="3" id="comment" placeholder="Deskripsi"></textarea>
+					<p id="photowarn" style="color:rgb(230, 0, 0)"></p>
 				</div>
 			</div>
 			<div class="row form-book-wrapper">
@@ -87,7 +88,7 @@
 					<div class="input-group image-upload" style="margin-bottom:0.5em">
 						<label class="input-group-btn">
 							<span class="btn btn-primary">
-								Browse&hellip; <input name="userfiles[]" type="file" style="display: none;" multiple required>
+								Browse&hellip; <input name="userfiles[]" type="file" style="display: none;" id="photo" multiple>
 							</span>
 						</label>
 						<input name="pict_1" type="text" class="form-control" style=" margin-bottom:0" required readonly>
@@ -139,7 +140,19 @@
 
 });
 </script>
-
+<script>
+	function checkform(){
+		var x = document.getElementById('photo').files.length;
+		var warn = document.getElementById('photowarn');
+		if(x <= 0){
+			warn.innerText = "Maaf, anda harus memasukkan foto buku anda";
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+</script>
 
 
 </body>

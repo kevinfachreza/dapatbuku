@@ -40,10 +40,10 @@
 										<div class="book-title"> <a href="<?php echo base_url()?>book/product/<?php echo $key['slug_title_u_b']?>"><?php echo $key['title_u_b']; ?></a></div>
 										<div class="book-price"> <?php echo $key['price_sell_u_b']; ?> </div>
 										<div class="book-date"> Last Edit :
-										<?php 
+										<?php
 											$date = date_create($key['updated_at']);
-											echo date_format($date, 'd-M-Y'); 
-										?> 
+											echo date_format($date, 'd-M-Y');
+										?>
 										</div>
 										<?php if($key['active'] == 1){ ?>
 											<div class="active-book">Tervalidasi</div>
@@ -55,11 +55,27 @@
 								</div>
 								<div class="col-md-12" style="">
 									<a href="<?php echo base_url()."Mybooks/edit?title=".$key['slug_title_u_b']; ?>"><button type="button" class="btn btn-primary">Edit</button></a>
-									<a href="<?php echo base_url()."Mybooks/delete?id-book=".$key['id_u_b']; ?>" ><button type="button" class="btn btn-primary">Delete</button></a>
+									<a data-toggle="modal" data-target="#<?php echo $key['id_u_b'];?>Modal" ><button type="button" class="btn btn-primary">Delete</button></a>
 
 								</div>
 							</div>
 						</div>
+
+						<div id="<?php echo $key['id_u_b'];?>Modal" class="modal fade">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						                <h4 class="modal-title">Apakah anda yakin ingin menghapus buku ini?</h4>
+						            </div>
+						            <div class="modal-body">
+													<a href="<?php echo base_url()."Mybooks/delete?slug=".$key['slug_title_u_b']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
+													<button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+
 					<?php } } ?>
 					</div>
 
