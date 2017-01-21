@@ -54,12 +54,6 @@
 											</div>
 										</div>
 										<div class="row form-profile-wrapper">
-											<div class="col-md-3 col-sm-2 col-xs-2">Email</div>
-											<div class="col-md-9 col-sm-8 col-xs-10">
-											<input name="email" type="email" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>
-											</div>
-										</div>
-										<div class="row form-profile-wrapper">
 											<div class="col-md-3 col-sm-2 col-xs-2">Nomor HP</div>
 											<div class="col-md-9 col-sm-8 col-xs-10">
 											<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
@@ -81,7 +75,7 @@
 											</div>
 										</div>
 
-			            	
+
 										<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
 											<div class="col-md-3 col-sm-2 col-xs-2">Butuh Buku Untuk</div>
 											<div class="col-md-9 col-sm-8 col-xs-10">
@@ -93,7 +87,7 @@
 											</select>
 											</div>
 										</div>
-									
+
 			            <button type="submit" class="btn btn-primary" value="Submit" style="margin-top:10px;float:right">Kirim</button>
 			          </form>
 					</div>

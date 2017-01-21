@@ -189,12 +189,10 @@ class Auth extends CI_Controller {
     if($this->session->logged_in == 1){
       $contact_data = $this->M_auth->get_user_auth($this->session->userdata('id_u'));
       $name = $contact_data[0]->firstname_u." ".$contact_data[0]->lastname_u;
-      $email = $contact_data[0]->email_u;
       $hp = $contact_data[0]->phone_number_u;
     }
     else{
       $name = $this->input->post('name');
-      $email = $this->input->post('email');
       $hp = $this->input->post('hp');
     }
     $title = $this->input->post('title');
@@ -202,7 +200,7 @@ class Auth extends CI_Controller {
     $author = $this->input->post('author');
     $interest = $this->input->post('interest');
 
-    $data_request = array($title, $category, $author, $interest, $name, $email, $hp);
+    $data_request = array($title, $category, $author, $interest, $name, $hp);
 
     $result = $this->M_book->insert_request($data_request);
 
