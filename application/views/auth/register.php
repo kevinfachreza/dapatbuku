@@ -17,13 +17,14 @@
 		<div class="col-md-6 col-md-offset-3 custom-container container panel-form text-center">
 			<h2> REGISTER </h2>
 			<hr>
-			<form action="<?php echo base_url();?>auth/do_register" method="POST">
+			<form action="<?php echo base_url();?>auth/do_register" onsubmit="return checkPass()" method="POST">
 				<p style="color:rgb(230, 0, 0)"><?php echo $this->session->flashdata('warning'); ?></p>
-				<input name="reg-email" type="Email" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
+				<input name="reg-email" type="text" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
 				<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
 				<input name="reg-date" id="datefield" min="1900-01-01" max="2017-01-01" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
-				<input name="reg-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
-				<input name="pass-conf" type="password" class="form-control" placeholder="Konfirmasi Password" style="margin-bottom:1em" required  autofocus>
+				<p style="color:rgb(230, 0, 0)" id="pass-warn"></p>
+				<input name="reg-pass" id="first-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+				<input name="pass-conf" id="conf-pass" onfocusout="checkPass()" type="password" class="form-control" placeholder="Konfirmasi Password" style="margin-bottom:1em" required  autofocus>
 
 				<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color btn-primary">REGISTER</button>
 			</form>
@@ -49,7 +50,21 @@
 		today = yyyy+'-'+mm+'-'+dd;
 		document.getElementById("datefield").setAttribute("max", today);
 	</script>
+	<script>
+		function checkPass(){
+			var pass1 = document.getElementById('first-pass');
+			var pass2 = document.getElementById('conf-pass');
 
+			if(pass1.value != pass2.value){
+				document.getElementById('pass-warn').innerHTML = 'Dua password di bawah harus sama';
+				return false;
+			}
+			else{
+				document.getElementById('pass-warn').innerHTML = '';
+				return true;
+			}
+		}
+	</script>
 
 
 </body>

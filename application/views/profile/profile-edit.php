@@ -53,7 +53,7 @@
 
 					<div class="form-profile">
 						<div class="header-text-2 text-center"> Ganti Data Kamu </div>
-						<form action="<?php echo base_url();?>accounts/do_update_profile" method="POST">
+						<form action="<?php echo base_url();?>accounts/do_update_profile" onsubmit="return checkNum()" method="POST">
 						<div class="row form-profile-wrapper">
 							<div class="col-md-3 col-sm-2 col-xs-2">Email</div>
 							<div class="col-md-9 col-sm-8 col-xs-10">
@@ -82,12 +82,12 @@
 								<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required >
 							</div>
 						</div>
-
+						<p style="color:rgb(230, 0, 0)" id="num-warn"></p>
 
 						<div class="row form-profile-wrapper">
 							<div class="col-md-3 col-sm-2 col-xs-2">No HP</div>
 							<div class="col-md-9 col-sm-8 col-xs-10">
-							<input name="phone" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  >
+							<input name="phone" id="numhp" onfocusout="checkNum()" type="text" class="form-control" placeholder="Nomor HP/Telepon" value="<?php echo $user[0]->phone_number_u ?>" required  >
 							</div>
 							</div>
 
@@ -166,7 +166,6 @@
 
 	<script>
 	$(function() {
-
   // We can attach the `fileselect` event to all file inputs on the page
   $(document).on('change', ':file', function() {
     var input = $(this),
@@ -255,5 +254,19 @@ $('#provinsi').change(function() {
 	});
 </script>
 
+<script>
+	function checkNum(){
+		var num = document.getElementById('numhp').value;
+		var check = /^\d+$/.test(num);
+		if(check){
+			document.getElementById('num-warn').innerHTML = "";
+			return true;
+		}
+		else{
+			document.getElementById('num-warn').innerHTML = "Nomor HP anda hanya boleh berisi nomor";
+			return false;
+		}
+	}
+</script>
 </body>
 </html>
