@@ -29,8 +29,8 @@
             <div class="modal-body">
                 <p>Silahkan login untuk mulai menggunakan dapatbuku</p>
 				<form action="<?php echo base_url();?>Auth/do_login" method="POST">
-					<input name="log-user_in" type="text"  class="form-control" placeholder="Username/Email" style="margin-bottom:0.5em" required autofocus>
-					<input name="log-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
+					<input name="log-user_in" type="text"  class="form-control" placeholder="Masukkan Email anda" style="margin-bottom:0.5em" required autofocus>
+					<input name="log-pass" type="password" class="form-control" placeholder="Masukkan Password anda" style="margin-bottom:1em" required  autofocus>
 					<button type="submit" style="width:100%; border:none" class="btn btn-lg btn-sch-color btn-primary">LOGIN</button>
 				</form>
             </div>

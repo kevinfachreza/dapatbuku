@@ -36,11 +36,12 @@
 			              	</div>
 			            </div>
 			          <?php }} else {?>
+									<div class="text-center">
 			          	<div class="col-md-12">Belum ada yang menyediakan buku ini.</div>
-			          	<div class="col-md-12"><a href="<?php echo base_url()?>mybooks/add">Jual Sekarang</a></div>
+			          	<a href="<?php echo base_url()?>mybooks/add"><button type="button" class="btn btn-success">Jual Sekarang</button></a></div>
 
 			          <?php } ?>
-			            
+
 			        </div>
 		        </div>
 	        </div>

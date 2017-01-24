@@ -14,6 +14,23 @@
 <body>
 	<?php echo $navbar; ?>
 
+	<!-- //////////DATEPICKER//////////// -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+<script>
+webshims.setOptions('forms-ext', {types: 'date'});
+webshims.polyfill('forms forms-ext');
+$.webshims.formcfg = {
+en: {
+    dFormat: '-',
+    dateSigns: '-',
+    patterns: {
+        d: "yy-mm-dd"
+    }
+}
+};
+</script>
+	<!-- ////////////////////////////////////// -->
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
 
@@ -79,7 +96,7 @@
 						<div class="row form-profile-wrapper">
 							<div class="col-md-3 col-sm-2 col-xs-2">Tanggal Lahir</div>
 							<div class="col-md-9 col-sm-8 col-xs-10">
-								<input name="date" type="Date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required >
+								<input name="date" type="date"  class="form-control" placeholder="Tanggal Lahir" value="<?php echo $user[0]->date_of_birth_u ?>" required >
 							</div>
 						</div>
 						<p style="color:rgb(230, 0, 0)" id="num-warn"></p>

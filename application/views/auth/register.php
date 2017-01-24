@@ -13,6 +13,22 @@
 <body>
 	<?php echo $navbar; ?>
 
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+<script>
+webshims.setOptions('forms-ext', {types: 'date'});
+webshims.polyfill('forms forms-ext');
+$.webshims.formcfg = {
+en: {
+    dFormat: '-',
+    dateSigns: '-',
+    patterns: {
+        d: "yy-mm-dd"
+    }
+}
+};
+</script>
+
 	<div class="col-md-12 main-body-wrapper">
 		<div class="col-md-6 col-md-offset-3 custom-container container panel-form text-center">
 			<h2> REGISTER </h2>
@@ -21,7 +37,7 @@
 				<p style="color:rgb(230, 0, 0)"><?php echo $this->session->flashdata('warning'); ?></p>
 				<input name="reg-email" type="text" class="form-control" placeholder="Email" style="margin-bottom:0.5em" required  autofocus>
 				<input name="reg-name" type="text" class="form-control" placeholder="Username" style="margin-bottom:0.5em" required  autofocus>
-				<input name="reg-date" id="datefield" min="1900-01-01" max="2017-01-01" type="Date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
+				<input name="reg-date" id="datefield" min="1900-01-01" max="2017-01-01" type="date"  class="form-control" placeholder="Tanggal Lahir" style="margin-bottom:0.5em" required autofocus>
 				<p style="color:rgb(230, 0, 0)" id="pass-warn"></p>
 				<input name="reg-pass" id="first-pass" type="password" class="form-control" placeholder="Password" style="margin-bottom:1em" required  autofocus>
 				<input name="pass-conf" id="conf-pass" onfocusout="checkPass()" type="password" class="form-control" placeholder="Konfirmasi Password" style="margin-bottom:1em" required  autofocus>
