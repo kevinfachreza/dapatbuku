@@ -25,7 +25,7 @@
 			<?php echo $user->username_u ?>
 		</div>
 		<div class="profile-data-container">
-			<span class="profile-reviews-count">110 Reviews</span> <span class="profile-books-count"> 220 Books </span>
+			<span class="profile-reviews-count"><?php echo $review_total; ?> Reviews</span> <span class="profile-books-count"> <?php echo $book_total; ?> Books </span>
 		</div>
 		<div class="profile-bio">
 			<?php echo $user->bio_u ?>

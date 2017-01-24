@@ -13,6 +13,7 @@ class Profile extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Profile');
 		$this->load->model('M_auth');
+		$this->load->model('M_book');
 	}
 
 	public function index($username='blank')
@@ -52,6 +53,7 @@ class Profile extends CI_Controller {
 			$add_log = $this->M_auth->add_log_view($ip, 'profile', $id);
 		}
 
+		$data['review_total'] = count($this->M_book->get_my_review($id));
 
 		#get book profile
 		if($this->input->get('page')!=null)
@@ -66,6 +68,7 @@ class Profile extends CI_Controller {
 
 		$data['books'] = $this->M_Profile->get_books_user($id,$limit,$offset);
 		$count_books = $this->M_Profile->count_all_books_user($id);
+		$data['book_total'] = $this->M_book->get_book_total($id);
 		$data['page_total'] = ceil($count_books/$limit);
 
 		$this->load->view('profile/index',$data);
