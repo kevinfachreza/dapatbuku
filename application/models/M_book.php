@@ -138,7 +138,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function get_review($id_in)
     {
 		$query = $this->db->query("
-		SELECT u.username_u, r.title_b_review, r.rating, r.date_b_review, r.content_b_review, r.id_b_review FROM (SELECT br.id_u,
+		SELECT u.username_u, u.id_u, r.title_b_review, r.rating, r.date_b_review, r.content_b_review, r.id_b_review FROM (SELECT br.id_u,
 		br.title_b_review, r.rating, br.date_b_review, br.content_b_review, br.id_b_review
 		FROM book_rating AS r JOIN book_review AS br WHERE r.id_u = br.id_u AND r.id_b = br.id_b AND br.id_b =".$id_in."
 		GROUP BY br.id_b_review

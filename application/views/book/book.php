@@ -16,11 +16,6 @@
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
 	<hr>
-	<?php
-
-	// print_r($book_data);
-	// exit();
-	 ?>
 
 <div class="col-md-10 col-md-offset-1">
 	<div class="row">
@@ -153,6 +148,23 @@ $(document).ready(function(){
 
   </script>
 
+	<script>
+		function checkRate(){
+			var r1 = document.getElementById('str1').checked;
+			var r2 = document.getElementById('str2').checked;
+			var r3 = document.getElementById('str3').checked;
+			var r4 = document.getElementById('str4').checked;
+			var r5 = document.getElementById('str5').checked;
+
+			if(r1 || r2 || r3 || r4 || r5){
+				return true;
+			}
+			else{
+				document.getElementById('rate-warn').innerHTML = "Silahkan memberi rating sebelum mereview";
+				return false;
+			}
+		}
+	</script>
 <?php } ?>
 
 </body>

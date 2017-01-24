@@ -106,7 +106,8 @@
 			<div class="col-md-12 header-text-2">Ulasan Pembaca</div>
 			<div class="col-md-12 text-center"><hr></div>
 			<div class="col-md-8">
-				<?php foreach($review_data as $key){?>
+				<?php foreach($review_data as $key){
+					if($key['id_u'] != $this->session->userdata('id_u')){?>
 					<div class="review-wrapper">
 						<div class="review-date">
 						<?php echo date('j-F-Y', strtotime($key['date_b_review']) );?></div>
@@ -124,7 +125,7 @@
 							<?php echo $key['content_b_review']; ?>
 						</div>
 					</div>
-				<?php } ?>
+				<?php } }?>
 			</div>
 		</div>
 	</div>
@@ -150,7 +151,7 @@
 						<span><input type="radio" name="rating" id="str1" value="1"><label for="str1"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></label></span>
 						</div>
 					</label>
-
+					<p style="color:rgb(230, 0, 0)" id="rate-warn"></p>
 					<?php } else {?>
 						<div class="review-rating review-item" id="user_rating_star">
 							<?php for($i=0;$i<$my_rating[0]->rating;$i++){?>
@@ -166,7 +167,7 @@
 					<?php } ?>
 
 
-					<form action="<?php echo base_url();?>book/add_review_book?book=<?php echo $book_data[0]['slug_title_b']?>" method="POST">
+					<form action="<?php echo base_url();?>book/add_review_book?book=<?php echo $book_data[0]['slug_title_b']?>" onsubmit="return checkRate()" method="POST">
 						<span class="label-for-textarea">Tulis ulasan kamu untuk buku ini</span>
 						<input name="title" type="text" class="form-control" placeholder="Judul Ulasan"  style="margin-bottom:10px;" required >
 
