@@ -14,14 +14,17 @@ class Accounts extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_accounts');
-    		$this->load->library('bcrypt');
+    $this->load->library('bcrypt');
+		$this->load->model('M_category');
 	}
 
 	public function index()
 	{
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
 		redirect('accounts/settings');
 	}
 
@@ -31,9 +34,12 @@ class Accounts extends CI_Controller {
 		{
 			redirect('/');
 		}
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
 		$data['navbar2']=$this->load->view('profile/navbar-side','',true);
 
 		/*get user data*/

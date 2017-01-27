@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -17,13 +16,20 @@ class Welcome extends CI_Controller {
 		$this->load->model('M_Banner');
 		$this->load->model('M_Profile');
 		$this->load->model('M_category');
+
 	}
 
 	public function index()
 	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
+
 		$data['new_release']	 = $this->M_book->get_n_release();
 		$data['best_sell'] 		 = $this->M_book->get_b_seller();
-	//	$data['category'] 		= $this->M_category->get_all_category();
 		$data['banner']			 = $this->M_Banner->getBanner();
 		if($this->session->logged_in == 1){
 			$temp = $this->session->userdata('userdata');
@@ -44,9 +50,7 @@ class Welcome extends CI_Controller {
 			else{
 				$data['register'] = 0;
 			}
-			$data['header']			 = $this->load->view('parts/header','',true);
-			$data['navbar']			 = $this->load->view('parts/navbar','',true);
-			$data['footer']			 = $this->load->view('parts/footer','',true);
+
 			$this->load->view('home/index',$data);
 		}
 		else{
@@ -56,9 +60,12 @@ class Welcome extends CI_Controller {
 
 	public function aboutus()
 	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
 		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
+
 		$this->load->view('home/about_us',$data);
 	}
 

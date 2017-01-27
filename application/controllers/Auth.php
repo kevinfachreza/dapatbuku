@@ -15,13 +15,16 @@ class Auth extends CI_Controller {
     $this->load->model('M_auth');
     $this->load->model('M_book');
     $this->load->library('bcrypt');
+    $this->load->model('M_category');
   }
 
   public function login()
   {
-    $data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
 		$this->load->view('auth/login', $data);
   }
 
@@ -51,9 +54,12 @@ class Auth extends CI_Controller {
   }
 
   public function register(){
-    $data['header']=$this->load->view('parts/header','',true);
-    $data['navbar']=$this->load->view('parts/navbar','',true);
-    $data['footer']=$this->load->view('parts/footer','',true);
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
     $this->load->view('auth/register', $data);
   }
 
@@ -117,10 +123,14 @@ class Auth extends CI_Controller {
         redirect('Accounts/settings');
       }
     }
-      $data['header']=$this->load->view('parts/header','',true);
-      $data['navbar']=$this->load->view('parts/navbar','',true);
-      $data['footer']=$this->load->view('parts/footer','',true);
-      $this->load->view('auth/contact_us', $data);
+
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+    $data['header']			 = $this->load->view('parts/header','',true);
+    $data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+    $data['footer']			 = $this->load->view('parts/footer','',true);
+
+    $this->load->view('auth/contact_us', $data);
   }
 
   public function do_contact_us(){
@@ -179,9 +189,12 @@ class Auth extends CI_Controller {
         redirect('Accounts/settings');
       }
     }
-    $data['header']=$this->load->view('parts/header','',true);
-    $data['navbar']=$this->load->view('parts/navbar','',true);
-    $data['footer']=$this->load->view('parts/footer','',true);
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
     $this->load->view('auth/book_request', $data);
   }
 

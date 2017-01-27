@@ -13,55 +13,12 @@
 			<li class="dropdown">
 			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
 			  	<ul class="dropdown-menu">
+					<?php foreach($nav_category as $key){?>
 					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/bisnis">Bisnis</a>
+						<a href="<?php echo base_url().'category/'.$key['slug_category'];?>"><?php echo $key['name_b_category']; ?></a>
           </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/agama">Agama</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/hukum">Hukum</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/novel">Novel</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/non-fiksi">Non-Fiksi</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/self-help">Self Help</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/psikologi">Psikologi</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/biografi">Biografi</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/fiksi">Inspirasi</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/keluarga">Keluarga</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/desain">Desain</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/komputer">Komputer</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/seni-rupa">Seni Rupa</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/humor">Humor</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/romantis">Romantis</a>
-          </li>
-					<li class="dropdown">
-						<a href="<?php echo base_url();?>category/horor">Horor</a>
-          </li>
-			  	</ul>
+					<?php } ?>
+				</ul>
 			</li>
 			<li class="navbar-hide"><a href="#">Profile</a></li>
 		  </ul>

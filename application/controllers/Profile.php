@@ -14,13 +14,16 @@ class Profile extends CI_Controller {
 		$this->load->model('M_Profile');
 		$this->load->model('M_auth');
 		$this->load->model('M_book');
+		$this->load->model('M_category');
 	}
 
 	public function index($username='blank')
 	{
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
 
 		#get User_login information untuk di compare di view
 		$user_profile   = $this->session->userdata('userdata');

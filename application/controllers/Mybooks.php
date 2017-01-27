@@ -13,6 +13,7 @@ class Mybooks extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_book');
 		$this->load->library('image_lib');
+    $this->load->model('M_category');
 	}
 
 	public function index()
@@ -23,15 +24,18 @@ class Mybooks extends CI_Controller {
 		}
 		else
 		{
-			$data['header']		= $this->load->view('parts/header','',true);
-			$data['navbar']		= $this->load->view('parts/navbar','',true);
-			$data['footer']		= $this->load->view('parts/footer','',true);
 			redirect('mybooks/manager');
 		}
 	}
 
 	public function manager()
 	{
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
 		$user_data = $this->session->userdata('userdata');
 		$data['user'] = $user_data[0];
 
@@ -50,25 +54,24 @@ class Mybooks extends CI_Controller {
 		$data['page_total'] = ceil($count_books/$limit);
 		$data['all_book'] = $this->M_book->get_my_book($data['user']->id_u, $limit, $offset);
 
-
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
 		$data['navbar2']=$this->load->view('profile/navbar-side','',true);
 		$this->load->view('book-manager/manage-books',$data);
 	}
 
 	public function edit($slug = null)
 	{
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
     if($slug == null){
 		    $slug = $this->input->get('title');
     }
 		$data['book_data'] = $this->M_book->get_edit_book($slug);
 		$data['current_photo'] = $this->M_book->get_current_photo($data['book_data'][0]['id_u_b']);
 
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
 		$this->load->view('book-manager/edit-books',$data);
 	}
 
@@ -269,6 +272,12 @@ class Mybooks extends CI_Controller {
 
 	public function add()
 	{
+    $data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
     if($this->session->flashdata('warning') != null){
       $this->session->set_flashdata('kosong', 'Maaf, Anda harus menjual, menyewakan, atau barter');
     }
@@ -278,9 +287,6 @@ class Mybooks extends CI_Controller {
 		$check_null = $this->M_book->checknullprofile($id);
 		if(!$this->emptyElementExists($check_null))
 		{
-			$data['header']=$this->load->view('parts/header','',true);
-			$data['navbar']=$this->load->view('parts/navbar','',true);
-			$data['footer']=$this->load->view('parts/footer','',true);
 			$this->load->view('book-manager/add-books',$data);
 		}
 		else
@@ -433,9 +439,6 @@ class Mybooks extends CI_Controller {
 			// array_map('unlink', glob("$path/*.*"));
 			// rmdir($path);
 
-			$data['header']=$this->load->view('parts/header','',true);
-			$data['navbar']=$this->load->view('parts/navbar','',true);
-			$data['footer']=$this->load->view('parts/footer','',true);
 			redirect('Mybooks');
 		}
 	}

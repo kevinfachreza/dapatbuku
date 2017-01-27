@@ -14,6 +14,7 @@ class Book extends CI_Controller {
     $this->load->helper(array('form', 'url'));
 		$this->load->model('M_auth');
 		$this->load->model('M_book');
+		$this->load->model('M_category');
 	}
 
 	public function index()
@@ -22,6 +23,13 @@ class Book extends CI_Controller {
 	}
 	public function b($slug)
 	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
+
 		$id_user = 0;
 		$user_profile   = $this->session->userdata('userdata');
 		if($user_profile != NULL){
@@ -69,9 +77,6 @@ class Book extends CI_Controller {
 		}
 
 		if($add_log){
-			$data['header']=$this->load->view('parts/header','',true);
-			$data['navbar']=$this->load->view('parts/navbar','',true);
-			$data['footer']=$this->load->view('parts/footer','',true);
 			$data['bookright']=$this->load->view('book/book-right',$data,true);
 			$data['bookleft']=$this->load->view('book/book-left',$data,true);
 			$this->load->view('book/book',$data);
@@ -83,15 +88,18 @@ class Book extends CI_Controller {
 
 	public function product($slug)
 	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
 		$data['n_release']=$this->M_book->get_n_release();
 		$data['user_result']=$this->M_book->get_owner_book($slug);
 		$data['book_result']=$this->M_book->get_product_book($slug);
 
 		$data['book_origin'] = $this->M_book->get_book_slug_by_product($slug);
 		$data['book_image']=$this->M_book->get_product_img($data['book_result'][0]['id_u_b']);
-		$data['header']=$this->load->view('parts/header','',true);
-		$data['navbar']=$this->load->view('parts/navbar','',true);
-		$data['footer']=$this->load->view('parts/footer','',true);
 
 
 
@@ -176,6 +184,13 @@ class Book extends CI_Controller {
 	}
 
 	public function best_seller(){
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
+
 		$data['slug_page'] = 'best_seller';
 		$data['title_page'] = 'Best Seller';
 
@@ -189,12 +204,6 @@ class Book extends CI_Controller {
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
 
-		$data['header'] = $this->load->view('parts/header', '', true);
-		$data['navbar'] = $this->load->view('parts/navbar', '', true);
-		$data['footer'] = $this->load->view('parts/footer', '', true);
-
-
-
 		$data['book_result'] = $this->M_book->view_best_seller($offset,$limit);
 		$count_books = $this->M_book->count_all_book_best_seller();
 		$data['page_total'] = ceil($count_books/$limit);
@@ -202,6 +211,12 @@ class Book extends CI_Controller {
 	}
 
 	public function new_release(){
+
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
 
 		$data['slug_page'] = 'new_release';
 		$data['title_page'] = 'New Release';
@@ -215,11 +230,6 @@ class Book extends CI_Controller {
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
 
-		$data['header'] = $this->load->view('parts/header', '', true);
-		$data['navbar'] = $this->load->view('parts/navbar', '', true);
-		$data['footer'] = $this->load->view('parts/footer', '', true);
-
-
 		$data['book_result'] = $this->M_book->view_new_release($offset,$limit);
 		$count_books = $this->M_book->count_all_book_new_release();
 		$data['page_total'] = ceil($count_books/$limit);
@@ -228,6 +238,13 @@ class Book extends CI_Controller {
 	}
 
 	public function most_viewed(){
+
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+
+		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+
 		$data['slug_page'] = 'most_viewed';
 		$data['title_page'] = 'Most Viewed';
 
@@ -239,11 +256,6 @@ class Book extends CI_Controller {
 		$limit=24;
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
-
-
-		$data['header'] = $this->load->view('parts/header', '', true);
-		$data['navbar'] = $this->load->view('parts/navbar', '', true);
-		$data['footer'] = $this->load->view('parts/footer', '', true);
 
 		$data['book_result'] = $this->M_book->view_most_viewed($offset,$limit);
 		$count_books = $this->M_book->count_all_book_most_viewed();
