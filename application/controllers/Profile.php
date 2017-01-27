@@ -97,7 +97,6 @@ class Profile extends CI_Controller {
 			echo $user->username_u
 		*/
 
-		redirect('/profile');
 	}
 	public function logging_out()
 	{

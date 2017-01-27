@@ -16,6 +16,7 @@ class Auth extends CI_Controller {
     $this->load->model('M_book');
     $this->load->library('bcrypt');
     $this->load->model('M_category');
+    $this->load->model('M_Profile');
   }
 
   public function login()
@@ -30,6 +31,7 @@ class Auth extends CI_Controller {
 
 
   public function do_login(){
+    $sale = $this->input->get('sale');
     $this->form_validation->set_rules('log-user_in', 'user_in', 'trim|required');
     $this->form_validation->set_rules('log-pass', 'Password', 'trim|required');
 
@@ -44,8 +46,19 @@ class Auth extends CI_Controller {
       $newdata = array(
         'id_u' => $id
       );
+
       $this->session->set_userdata($newdata);
-      redirect(base_url().'profile/set_in');
+
+      $this->session->logged_in = 1;
+  		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
+  		$this->session->set_userdata('userdata', $mydata);
+
+      if($sale){
+        redirect('mybooks/add');
+      }
+      else{
+        redirect('/profile');
+      }
     }
     else{
 		  $this->session->set_flashdata('warning', 'Email atau password salah');

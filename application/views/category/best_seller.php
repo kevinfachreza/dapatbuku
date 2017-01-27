@@ -35,7 +35,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()?>book/b/<?php echo $book['slug_title_b'] ?>" class="text-primary"><?php echo $book['title_b'] ?></a></div>
-							<div class="author-container"><a href="" class="text-primary"><?php echo $book['writer'] ?></a></div>
+							<div class="author-container"><?php echo $book['writer'] ?></div>
 						</div>
 					</div>
 				<?php } ?>

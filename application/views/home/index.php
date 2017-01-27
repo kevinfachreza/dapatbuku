@@ -103,7 +103,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
-							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer'] ?></a></div>
+							<div class="author-container"><?php echo $key['writer'] ?></div>
 							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>
@@ -121,7 +121,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>" class="text-primary"><?php echo $key['title_b']; ?></a></div>
-							<div class="author-container"><a href="#" class="text-primary"><?php echo $key['writer']; ?></a></div>
+							<div class="author-container"><?php echo $key['writer']; ?></div>
 							<a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><button type="button" class="font-light btn btn-primary">Beli</button></a>
 						</div>
 					</div>

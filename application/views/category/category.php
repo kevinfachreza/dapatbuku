@@ -28,7 +28,7 @@
 				<div class="col-md-12 header-text-2">Buku Kategori <span class="search-cat"><?php echo $category_now[0]->name_b_category?></span></div>
 				<div class="col-md-12 text-center"><hr></div>
 
-				<div class="row">
+				<div class="row-eq-height">
 					<?php if(empty($book)){ ?>
 						<div class="text-center">
 							Maaf Buku Kategori ini masih belum ada
@@ -42,7 +42,7 @@
 						</div>
 						<div class="text-center">
 							<div class="font-semibold title-container"><a href="<?php echo base_url()?>book/b/<?php echo $book[$i]->slug_title_b ?>" class="text-primary"><?php echo $book[$i]->title_b ?></a></div>
-							<div class="author-container"><a href="" class="text-primary"><?php echo $book[$i]->writer ?></a></div>
+							<div class="author-container"><?php echo $book[$i]->writer ?></div>
 						</div>
 					</div>
 					<?php	}

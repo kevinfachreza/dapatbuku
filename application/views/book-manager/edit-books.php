@@ -63,14 +63,15 @@
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Berat</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="berat_in" type="number" class="form-control" placeholder="Berat buku" value="<?php echo $book_data[0]['berat_u_b']; ?>" required autofocus>
+					<input name="berat_in" type="number" min="1" class="form-control" placeholder="Berat buku" value="<?php echo $book_data[0]['berat_u_b']; ?>" required autofocus>
+					<div class="input-info">*Perkiraan berat dalam kilogram</div>
 				</div>
 			</div>
 
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Jumlah Stok</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="stok_in" type="number" class="form-control" placeholder="Jumlah stok" value="<?php echo $book_data[0]['stock_u_b']; ?>" required autofocus>
+					<input name="stok_in" type="number" min="0" class="form-control" placeholder="Jumlah stok" value="<?php echo $book_data[0]['stock_u_b']; ?>" required autofocus>
 				</div>
 			</div>
 
