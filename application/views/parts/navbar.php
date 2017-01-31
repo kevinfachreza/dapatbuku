@@ -16,7 +16,7 @@
 					<?php foreach($nav_category as $key){?>
 					<li class="dropdown">
 						<a href="<?php echo base_url().'category/'.$key['slug_category'];?>"><?php echo $key['name_b_category']; ?></a>
-          </li>
+          			</li>
 					<?php } ?>
 				</ul>
 			</li>
@@ -36,6 +36,8 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
+		  <a class="navbar-brand" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+
 		  <a class="navbar-brand" href="<?php echo base_url().""; ?>"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
 
 		</div>
