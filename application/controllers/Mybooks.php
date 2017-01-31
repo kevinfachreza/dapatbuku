@@ -82,7 +82,6 @@ class Mybooks extends CI_Controller {
 		$harga_sewa = $this->input->post('harga_sewa_in');
 		$barter = $this->input->post('barter_in');
 		$kondisi = $this->input->post('kondisi_in');
-		$berat = $this->input->post('berat_in');
 		$stok = $this->input->post('stok_in');
 		$deskripsi = $this->input->post('deskripsi_in');
 		$gambar_num = array();
@@ -95,7 +94,7 @@ class Mybooks extends CI_Controller {
 		$id_book = $tmp[0]->id_u_b;
   	$path = "assets/img/user/".$username."/books/".$slug;
 
-    $result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $berat, $stok, $deskripsi);
+    $result = $this->M_book->edit_book($slug, $judul, $harga_jual, $harga_sewa, $barter, $kondisi, $stok, $deskripsi);
 		#print_r($result);
 
 	  if(!empty($_FILES['newfile']['name'])){     //IF THERE'S NEW PHOTO
@@ -304,12 +303,10 @@ class Mybooks extends CI_Controller {
 		$rent_sell	= $this->input->post('harga_sewa_in');
 		$barter			= $this->input->post('barter_in');
 		$kondisi		= $this->input->post('kondisi_in');
-		$berat			= $this->input->post('berat_in');
 		$stock			= $this->input->post('stok_in');
 		$deskripsi	= $this->input->post('deskripsi_in');
 		$slug1 = str_replace(' ', '-', $title);
   	$slug1 = preg_replace('/[^A-Za-z0-9-]+/','-',$slug1);
-
     if($price_sell == null && $rent_sell == null && $barter == null){
       $this->session->set_flashdata('warning', 'Maaf, Anda harus menjual, menyewakan, atau barter');
       redirect('mybooks/add');
@@ -330,9 +327,9 @@ class Mybooks extends CI_Controller {
        	$slug3 = substr($slug3, 0, 10);
       	$slug_final .= '-'.$slug3;
   			echo $slug_final;
-
   			$result = $this->M_book->add_my_book($title, $price_sell, $rent_sell,
-  			$barter, $kondisi, $berat, $stock, $deskripsi, $id, $slug_final);
+  			$barter, $kondisi, $stock, $deskripsi, $id, $slug_final);
+
   			print_r($result);
 
         if($result != null)

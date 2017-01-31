@@ -236,12 +236,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $result->result_array();
     }
 
-    public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $berat, $stok, $deskripsi, $id_user, $slug)
+    public function add_my_book($title, $price_sell, $price_rent, $barter, $type, $stok, $deskripsi, $id_user, $slug)
     {
-      $query = $this->db->query("insert into user_book(id_u_owner, title_u_b, price_sell_u_b, rent_u_b, barter_u_b, type_u_b,
-                                 berat_u_b, stock_u_b, description_u_b, slug_title_u_b)
+      $query = $this->db->query("insert into user_book(id_u_owner, title_u_b, price_sell_u_b, price_rent_u_b, barter_u_b, type_u_b,
+                                 stock_u_b, description_u_b, slug_title_u_b)
                                  VALUES('".$id_user."', '".$title."', '".$price_sell."',
-                                 '".$price_rent."', '".$barter."', '".$type."', '".$berat."', '".$stok."',
+                                 '".$price_rent."', '".$barter."', '".$type."', '".$stok."',
                                  '".$deskripsi."', '".$slug."');");
       if($query)
       {
@@ -345,10 +345,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $query->result();
     }
     public function edit_book($slug, $judul, $harga_jual, $harga_sewa,
-																			 $barter, $kondisi, $berat, $stok, $deskripsi)
+																			 $barter, $kondisi, $stok, $deskripsi)
     {
       $query = $this->db->query("update user_book set title_u_b='".$judul."', price_sell_u_b='".$harga_jual."', price_rent_u_b='".$harga_sewa."',
-                                 barter_u_b='".$barter."', type_u_b='".$kondisi."', berat_u_b='".$berat."', stock_u_b='".$stok."', description_u_b='".$deskripsi."',
+                                 barter_u_b='".$barter."', type_u_b='".$kondisi."', stock_u_b='".$stok."', description_u_b='".$deskripsi."',
                                  updated_at = CURRENT_TIMESTAMP
                                  WHERE slug_title_u_b = '".$slug."';");
       if($query)

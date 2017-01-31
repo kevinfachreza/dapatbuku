@@ -48,7 +48,7 @@
 				<div class="col-md-4 col-sm-2 col-xs-2">Barter</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">
 					<div class="checkbox">
-						<label><input name="barter_in" type="checkbox" value="">Barter</label>
+						<label><input name="barter_in" type="checkbox" value="1">Barter</label>
 					</div>
 				</div>
 			</div>
@@ -61,14 +61,6 @@
 					</select>
 				</div>
 			</div>
-			<div class="row form-book-wrapper">
-				<div class="col-md-4 col-sm-2 col-xs-2">Berat</div>
-				<div class="col-md-6 col-sm-8 col-xs-10">
-					<input name="berat_in" min="1" type="number" class="form-control" placeholder="Perkiraan Berat" required autofocus>
-					<div class="input-info">*Perkiraan berat dalam kilogram</div>
-				</div>
-			</div>
-
 			<div class="row form-book-wrapper">
 				<div class="col-md-4 col-sm-2 col-xs-2">Jumlah Stok</div>
 				<div class="col-md-6 col-sm-8 col-xs-10">

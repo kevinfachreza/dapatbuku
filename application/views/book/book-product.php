@@ -19,7 +19,7 @@
 
 
 <div class="container custom-container" id="book-container">
-	
+
 <div class="row">
 
 	<!-- Slider -->
@@ -76,7 +76,8 @@
 					<?php echo $book_result[0]['title_u_b']; ?>
 				</div>
 				<div class="book-price">
-					<?php if($book_result[0]['sell_u_b'] != 1)
+
+					<?php if($book_result[0]['price_sell_u_b'] == "Rp 0")
 					{
 						echo "Buku ini tidak dijual";
 					}
@@ -87,8 +88,8 @@
 					 ?>
 				</div>
 				<div class="book-rent">
-					<?php if($book_result[0]['rent_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span> Sewa : <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php } ?>
-					<?php if($book_result[0]['rent_u_b'] == 0){ ?><span class="book-ok-icon glyphicon glyphicon-remove" aria-hidden="true"></span>Sewa :<?php } ?>
+					<?php if($book_result[0]['price_rent_u_b'] == "Rp 0"){ ?><span class="book-ok-icon glyphicon glyphicon-remove" aria-hidden="true"></span> Sewa<?php } ?>
+					<?php if($book_result[0]['price_rent_u_b'] != "Rp 0"){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span> Sewa : <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php } ?>
 				</div>
 				<div class="book-barter">
 					<?php if($book_result[0]['barter_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span><?php } ?>
@@ -108,13 +109,13 @@
 											else if($book_result[0]['type_u_b'] == 2){ echo "Bekas"; } ?>
 							</div>
 						</div>
-						<div class="col-md-12 table-container">
+						<!-- <div class="col-md-12 table-container">
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Berat
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">
 								<?php echo $book_result[0]['berat_u_b']; ?>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-12 table-container">
 							<div class="col-md-6 col-sm-6 col-xs-6 table-content">Stok
 							</div>
@@ -166,7 +167,7 @@
 							<div class="seller-container-text"><span class="seller-location"><?php echo $user_result[0]['name']; ?> </span></div>
 							<div class="seller-container-text"><span class="text-muted">member sejak </span><span class="seller-member-date"><?php echo $user_result[0]['created_at']; ?></span></div>
 							<div class="seller-send-message">
-							
+
 							</div>
 						</div>
 					</div>
@@ -213,11 +214,11 @@
 
 	<script type="text/javascript">
    jQuery(document).ready(function($) {
- 
+
         $('#ProductCarousel').carousel({
                 interval: 5000
         });
- 
+
         //Handles the carousel thumbnails
         $('[id^=carousel-selector-]').click(function () {
         var id_selector = $(this).attr("id");
