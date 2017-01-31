@@ -14,8 +14,8 @@ class Adminbook extends CI_Controller {
 		$this->load->model('super/M_AdminBook');
 		$this->load->library('image_lib');
 	}
-	
-	
+
+
 	public function index()
 	{
 		if($this->session->super_login==1)
@@ -24,8 +24,8 @@ class Adminbook extends CI_Controller {
 		}
 		else redirect('super/auth/login');
 	}
-	
-	
+
+
 	public function bookmanager()
 	{
 		if($this->input->get('page')!=null)
@@ -33,44 +33,44 @@ class Adminbook extends CI_Controller {
 			$page = $this->input->get('page');
 		}
 		else $page=1;
-		
+
 		$limit=24;
 		$offset = ($page-1)*$limit;
 		$data['page_now']=$page;
-		
+
 		$data['header']=$this->load->view('super/parts/header','',true);
 		$data['navbar']=$this->load->view('super/parts/navbar','',true);
 		$data['sidebar']=$this->load->view('super/parts/sidebar','',true);
 		$data['footer']=$this->load->view('super/parts/footer','',true);
-		
+
 		$data['book'] = $this->M_AdminBook->getAllBook($limit, $offset);
 		$count_books = $this->M_AdminBook->countAllBook();
 		$data['page_total'] = ceil($count_books/$limit);
-		
-		
+
+
 		$this->load->view('super/book/manager_book',$data);
 	}
-	
-	
+
+
 	private function getCategories()
 	{
 		$data = $this->M_AdminBook->getCategories();
 		return $data;
 	}
-	
+
 	public function add_book()
 	{
 		$data['header']=$this->load->view('super/parts/header','',true);
 		$data['navbar']=$this->load->view('super/parts/navbar','',true);
 		$data['sidebar']=$this->load->view('super/parts/sidebar','',true);
 		$data['footer']=$this->load->view('super/parts/footer','',true);
-		
+
 		$data['categories'] = $this->getCategories();
 		#print_r($data['categories']);
-		
+
 		$this->load->view('super/book/add_book',$data);
 	}
-	
+
 	public function do_add_book()
 	{
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
@@ -79,13 +79,14 @@ class Adminbook extends CI_Controller {
 		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
 		$halaman = $this->input->post('halaman');
+		$berat = $this->input->post('berat');
 		$cetakan_pertama = $this->input->post('cetakan_pertama');
 		$bahasa = $this->input->post('bahasa');
 		$category = $this->input->post('category');
 		$cover = $this->input->post('cover');
 
 		$judulbuku = ucwords($judulbuku);
-		
+
 		$string = strtolower($judulbuku);
 		$string.='-'.$pengarang;
 		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
@@ -95,9 +96,9 @@ class Adminbook extends CI_Controller {
 		print_r($file);
 		$thumb = $file['thumb'];
 		$file = $file['file'];
-		
+
 		/*SLUG TITLE*/
-		
+
 
 		echo $thumb.'<br>';
 		echo $file.'<br>';
@@ -111,7 +112,7 @@ class Adminbook extends CI_Controller {
 		echo $bahasa.'<br>';
 		echo $cover.'<br>';
 		echo $sinopsis.'<br>';
-	
+
 		$data = array(
 		'file' => $file,
 		'slug' => $slug,
@@ -120,6 +121,7 @@ class Adminbook extends CI_Controller {
 		'publisher' => $publisher,
 		'isbn' => $isbn,
 		'halaman' => $halaman,
+		'berat' => $berat,
 		'cetakan_pertama' => $cetakan_pertama,
 		'bahasa' => $bahasa,
 		'cover' => $cover,
@@ -127,13 +129,13 @@ class Adminbook extends CI_Controller {
 		'tags' => $tags,
 		'thumb' => $thumb
 		);
-		
+
 		$report = $this->M_AdminBook-> addBook($data);
-		
+
 		/*GET Book ID from last upload*/
 		$id = $this->M_AdminBook->getLastBook();
 		$id = $id[0]->id;
-		
+
 		/*UPLOAD KATEGORI*/
 		for($i=0;$i<10;$i++)
 		{
@@ -146,10 +148,10 @@ class Adminbook extends CI_Controller {
 				$report = $this->M_AdminBook -> addBookCategory($data_cat);
 			}
 		}
-		
+
 		#redirect('super/adminbook/');
 	}
-	
+
 	public function do_delete_book($id)
 	{
 		$id = $this->M_AdminBook->deleteThisBook($id);
@@ -159,33 +161,33 @@ class Adminbook extends CI_Controller {
 			$this->session->set_flashdata('report', 'Buku Terhapus');
 		}
 		else $this->session->set_flashdata('report', 'Gagal Terhapus');
-		
+
 		redirect('super/adminbook/');
-		
+
 	}
-	
+
 	public function edit_book($id)
 	{
 		$data['header']=$this->load->view('super/parts/header','',true);
 		$data['navbar']=$this->load->view('super/parts/navbar','',true);
 		$data['sidebar']=$this->load->view('super/parts/sidebar','',true);
 		$data['footer']=$this->load->view('super/parts/footer','',true);
-		
+
 		#get data info
 		$data['categories'] = $this->getCategories();
 		$data['book'] = $this->M_AdminBook->getBook($id);
 		$data['selected_categories'] = $this->M_AdminBook->getSelectedCategories($id);
 
-		
+
 		#Set Checboxes Check
 		$total_cat = count($data['categories']);
 		$total_cat2 = count($data['selected_categories']);
 		$j=0;
-		
+
 		if(!empty($data['selected_categories']))
 		{
 			for($i=0;$i<$total_cat;$i++){
-					
+
 				#echo $data['selected_categories'][$j]->cat_id;
 				#echo $data['categories'][$i]->id_b_category;
 				#echo $j.'<br>';
@@ -208,10 +210,10 @@ class Adminbook extends CI_Controller {
 			}
 		}
 		#print_r($data['categories']);
-		#load view		
+		#load view
 		$this->load->view('super/book/edit_book',$data);
 	}
-	
+
 	public function do_edit_book()
 	{
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
@@ -220,13 +222,14 @@ class Adminbook extends CI_Controller {
 		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
 		$halaman = $this->input->post('halaman');
+		$berat = $this->input->post('berat');
 		$cetakan_pertama = $this->input->post('cetakan_pertama');
 		$bahasa = $this->input->post('bahasa');
 		$category = $this->input->post('category');
 		$cover = $this->input->post('cover');
 		$sinopsis = $this->db->escape_str($this->input->post('sinopsis'));
 		$id=$this->input->get('id');
-		
+
 		$slug = $this->M_AdminBook->getBook($id);
 		print_r($slug);
 		$slug = $slug[0]->slug_title_b;
@@ -238,15 +241,15 @@ class Adminbook extends CI_Controller {
 			$file = $data['book'][0]->photo_cover_b;
 			$thumb = $data['book'][0]->thumb_cover_b;
 		}
-		else 
+		else
 		{
 			$file = $this->do_upload_cover_book($slug);
 			$thumb = $file['thumb'];
 			$file = $file['file'];
 		}
-		
-		
-		
+
+
+
 		/*SLUG TITLE*/
 		echo $slug.'<br>';
 		echo $judulbuku.'<br>';
@@ -258,7 +261,7 @@ class Adminbook extends CI_Controller {
 		echo $bahasa.'<br>';
 		echo $cover.'<br>';
 		echo $sinopsis.'<br>';
-	
+
 		$data = array(
 		'file' => $file,
 		'slug' => $slug,
@@ -267,6 +270,7 @@ class Adminbook extends CI_Controller {
 		'publisher' => $publisher,
 		'isbn' => $isbn,
 		'halaman' => $halaman,
+		'berat' => $berat,
 		'cetakan_pertama' => $cetakan_pertama,
 		'bahasa' => $bahasa,
 		'cover' => $cover,
@@ -274,13 +278,13 @@ class Adminbook extends CI_Controller {
 		'tags' => $tags,
 		'thumb' => $thumb
 		);
-		
+
 		$report = $this->M_AdminBook-> editBook($id,$data);
-		
+
 		#DELETE KATEGORI
-		
+
 		$delete_cat = $this->M_AdminBook->deleteBookCategory($id);
-		
+
 		/*UPLOAD KATEGORI*/
 		for($i=0;$i<10;$i++)
 		{
@@ -293,10 +297,10 @@ class Adminbook extends CI_Controller {
 				$report = $this->M_AdminBook -> addBookCategory($data_cat);
 			}
 		}
-		
+
 		redirect('super/adminbook/');
 	}
-	
+
 
 	public function edit_all_slug()
 	{
@@ -308,7 +312,7 @@ class Adminbook extends CI_Controller {
 			$title = $this->db->escape_str($data['book'][0]->title_b);
 			$writer = $this->db->escape_str($data['book'][0]->writer);
 			$judulbuku = ucwords($title);
-			
+
 			$string = strtolower($judulbuku);
 			$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
 			$data['book'][0]->slug_title_b = $slug;
@@ -329,22 +333,22 @@ class Adminbook extends CI_Controller {
 		$path = $config['upload_path'];
 		$path = $path;
 		$new_name = $slug;
-		$config['allowed_types'] = 'gif|jpg|png'; 
-        $config['max_size']      = 2000; 
-        $config['max_width']     = 5000; 
-        $config['max_height']    = 5000;  
+		$config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']      = 2000;
+        $config['max_width']     = 5000;
+        $config['max_height']    = 5000;
 		$config['file_name'] = 'cover_'.$new_name;
 		$config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
-			
+
         if ( ! $this->upload->do_upload('picture')) {
-            $error = array('error' => $this->upload->display_errors()); 
+            $error = array('error' => $this->upload->display_errors());
             echo $error['error'];
 			$textreport = $error['error'];
 			$flag = 0;
         }
-			
-        else { 
+
+        else {
             $data = array('upload_data' => $this->upload->data());
 			$img_data=$this->upload->data();
 
@@ -356,15 +360,15 @@ class Adminbook extends CI_Controller {
 
 			$new_name.= $img_data['file_ext'];
 			#echo $filedatabase;
-            
 
-        } 
-		
+
+        }
+
 		if($flag==0)
 		{
 			$new_name='default.png';
 		}
-		
+
 		$file = $path.'cover_'.$new_name;
 
 
@@ -391,17 +395,17 @@ class Adminbook extends CI_Controller {
 	public function search()
 	{
 		$keyword = $this->db->escape_str($this->input->post('keyword'));
-		
+
 		$data['header']=$this->load->view('super/parts/header','',true);
 		$data['navbar']=$this->load->view('super/parts/navbar','',true);
 		$data['sidebar']=$this->load->view('super/parts/sidebar','',true);
 		$data['footer']=$this->load->view('super/parts/footer','',true);
-		
+
 		$data['book'] = $this->M_AdminBook->searchBook($keyword);
-		
+
 		$this->load->view('super/book/search_book',$data);
 	}
-	
+
 }
 
 ?>

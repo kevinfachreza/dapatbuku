@@ -36,6 +36,10 @@
 					<input type="number" name="halaman" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2" value="<?php echo $book[0]->pages ?>">
 				</div>
 				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Berat Buku</span>
+					<input type="text" name="berat" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2" value="<?php echo $book[0]->berat_b ?>">
+				</div>
+				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Tags</span>
 					<input type="text" name="tags" class="form-control" placeholder="Tags" aria-describedby="sizing-addon2" value="<?php echo $book[0]->tags ?>">
 				</div>
@@ -45,11 +49,11 @@
 					<input type="file" name="picture" class="form-control" aria-describedby="sizing-addon2">
 				</div>
 
-				<?php 
+				<?php
 					$date = date_create($book[0]->date_published);
-					
-				?> 
-				
+
+				?>
+
 				<div class="input-group">
 					<div class="form-group">
 					  <label for="cetakan_pertama">Cetakan Pertama</label>
@@ -67,7 +71,7 @@
 				</div>
 				<div class="input-group">
 					<label for="kategori">Kategori</label>
-					<?php 
+					<?php
 					$flag=0;
 					for($i=0;$i<count($categories);$i++){?>
 					<div class="checkbox" id="kategori">
@@ -94,7 +98,7 @@
 				<div class="input-group">
 					<button type="submit" class="btn btn-default btn-primary">Submit</button>
 				</div>
-				
+
 				</form>
 			</div>
 		</div>
