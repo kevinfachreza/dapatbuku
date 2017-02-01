@@ -71,7 +71,7 @@ class Profile extends CI_Controller {
 
 		$data['books'] = $this->M_Profile->get_books_user($id,$limit,$offset);
 		$count_books = $this->M_Profile->count_all_books_user($id);
-		$data['book_total'] = $this->M_book->get_book_total($id);
+		$data['book_total'] = $count_books;
 		$data['page_total'] = ceil($count_books/$limit);
 
 		$this->load->view('profile/index',$data);

@@ -16,14 +16,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		return $result;
     }
 
-	 public function get_data_username($username){
+	public function get_data_username($username){
       $change = $this->db->query
 		("
 			SELECT * from user where username_u = '".$username."'
 		");
 		$result = $change->result();
 		return $result;
-    }
+  }
 
 	public function get_books_user($id,$limit,$offset)
 	{
@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	 public function count_all_books_user($id){
 		$query = $this->db->query("
-			SELECT count(*) as count from user_book where id_u_owner = ".$id."
+			SELECT count(*) as count from user_book where id_u_owner = ".$id." AND active = 1
 		"
 		);
 		$temp = $query->result();
