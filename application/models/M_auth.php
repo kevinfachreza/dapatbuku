@@ -60,9 +60,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       else {
         return false;
       }
-
     }
 
+    public function add_login_counter($user){
+      $query = $this->db->query("UPDATE user SET login_counter = login_counter + 1 WHERE id_u = '".$user."' ");
+
+      return true;
+    }
     public function pass_check($id_in, $pass_in){
       $this -> db -> from('user');
       $this -> db -> where('id_u', $id_in);

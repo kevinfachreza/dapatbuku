@@ -87,12 +87,14 @@ $(document).ready(function(){
     $('.rating input').click(function () {
         $(".rating span").removeClass('checked');
         $(this).parent().addClass('checked');
-    });
+				console.log("masuk");
+			});
 
     $('input:radio').change(
     function(){
         var userRating = this.value;
-        console.log(userRating);
+					console.log(userRating);
+
          $.ajax({
             type:'POST',
             url:'<?php echo base_url();?>book/add_rate_book?star='+userRating+'&book=<?php echo $book_data[0]['id_b']?>&user=<?php echo $user->id_u ?>',
@@ -101,6 +103,8 @@ $(document).ready(function(){
             //traditional: true,
             success:function(response){
                        alert(response);
+											 window.location = '<?php echo base_url()."book/b/".$book_data[0]['slug_title_b']; ?>';
+
 
                     },
             error: function(response){
@@ -109,9 +113,10 @@ $(document).ready(function(){
                 }
             });
     });
+
 });
 
-</script>	
+</script>
 
 <script>
 

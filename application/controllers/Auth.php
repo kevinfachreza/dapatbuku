@@ -53,6 +53,7 @@ class Auth extends CI_Controller {
   		$mydata = $this->M_Profile->get_data($this->session->userdata('id_u'));
   		$this->session->set_userdata('userdata', $mydata);
 
+      $add_counter = $this->M_auth->add_login_counter($id);
       if($sale){
         redirect('mybooks/add');
       }
