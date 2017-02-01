@@ -21,11 +21,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$data['nav_category'] 		= $this->M_category->get_all_category();
-
-		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
-		$data['footer']			 = $this->load->view('parts/footer','',true);
+		$data['nav_category'] = $this->M_category->get_all_category();
 
 
 		$data['new_release']	 = $this->M_book->get_n_release();
@@ -51,7 +47,13 @@ class Welcome extends CI_Controller {
 				$data['register'] = 0;
 			}
 
-			$this->load->view('home/index',$data);
+			$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+			$data['header'] = $this->load->view('home/header', $data,true);;
+			$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+			$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+			$data['footer'] = $this->load->view('parts/footer','',true);
+			$data['content'] = $this->load->view('home/home',$data,true);
+			$this->load->view('template',$data);
 		}
 		else{
 			echo "GAGAL";
@@ -62,11 +64,13 @@ class Welcome extends CI_Controller {
 	{
 		$data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
-		$data['footer']			 = $this->load->view('parts/footer','',true);
-
-		$this->load->view('home/about_us',$data);
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/about_us',$data,true);
+		$this->load->view('template',$data);
 	}
 
 }

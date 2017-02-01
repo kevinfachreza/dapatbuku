@@ -143,7 +143,12 @@ class Auth extends CI_Controller {
     $data['navbar']			 = $this->load->view('parts/navbar', $data,true);
     $data['footer']			 = $this->load->view('parts/footer','',true);
 
-    $this->load->view('auth/contact_us', $data);
+
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['header'] = $this->load->view('profile/header','',true);
+    $data['page_title'] = 'Hubungi Kami';
+    $data['content'] = $this->load->view('auth/contact_us',$data,true);
+    $this->load->view('template',$data);
   }
 
   public function do_contact_us(){
@@ -204,11 +209,15 @@ class Auth extends CI_Controller {
     }
     $data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
 
-    $this->load->view('auth/book_request', $data);
+
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['header'] = $this->load->view('profile/header','',true);
+    $data['page_title'] = 'Request Buku';
+    $data['content'] = $this->load->view('auth/book_request',$data,true);
+    $this->load->view('template',$data);
   }
 
   public function do_book_request(){

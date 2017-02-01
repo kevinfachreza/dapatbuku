@@ -14,7 +14,7 @@ class Accounts extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_accounts');
-    $this->load->library('bcrypt');
+    		$this->load->library('bcrypt');
 		$this->load->model('M_category');
 	}
 
@@ -36,7 +36,6 @@ class Accounts extends CI_Controller {
 		}
 		$data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
 
@@ -56,7 +55,7 @@ class Accounts extends CI_Controller {
 
 		if($name == 'change-password')
 		{
-			$this->load->view('profile/profile-password',$data);
+			$data['content'] = $this->load->view('profile/profile-password',$data,true);
 		}
 		else if($name == 'book')
 		{
@@ -64,8 +63,18 @@ class Accounts extends CI_Controller {
 		}
 		else if($name =='index')
 		{
-			$this->load->view('profile/profile-edit',$data);
+
+			$data['content'] = $this->load->view('profile/profile-edit',$data,true);
+			
 		}
+
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['header'] = $this->load->view('profile/header','',true);
+		$data['page_title'] = 'Edit Profile';
+			
+		$this->load->view('template',$data);
+
+
 	}
 
 	public function get_cities($prov=0){

@@ -1,23 +1,4 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-thumbnail.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/profile.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/manage-books.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-
-	<!--/////////////////////BOOK///////////////////////////////// -->
-
-<div class="container" id="profile-header">
+<div class="" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2">
@@ -102,37 +83,3 @@
 	</div>
 
 </div>
-
-	<?php echo $footer; ?>
-
-	<script>
-	$(function() {
-
-  // We can attach the `fileselect` event to all file inputs on the page
-  $(document).on('change', ':file', function() {
-    var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
-  });
-
-  // We can watch for our custom `fileselect` event like this
-  $(document).ready( function() {
-      $(':file').on('fileselect', function(event, numFiles, label) {
-
-          var input = $(this).parents('.input-group').find(':text'),
-              log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-          if( input.length ) {
-              input.val(log);
-          } else {
-              if( log ) alert(log);
-          }
-
-      });
-  });
-
-});
-</script>
-</body>
-</html>

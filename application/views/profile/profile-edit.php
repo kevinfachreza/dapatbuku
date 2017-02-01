@@ -1,41 +1,4 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-thumbnail.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/profile.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-
-	<!-- //////////DATEPICKER//////////// -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-<script>
-webshims.setOptions('forms-ext', {types: 'date'});
-webshims.polyfill('forms forms-ext');
-$.webshims.formcfg = {
-en: {
-    dFormat: '-',
-    dateSigns: '-',
-    patterns: {
-        d: "yy-mm-dd"
-    }
-}
-};
-</script>
-	<!-- ////////////////////////////////////// -->
-
-	<!--/////////////////////BOOK///////////////////////////////// -->
-
-
-<div class="container" id="profile-header">
+<div class="" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2">
@@ -179,7 +142,7 @@ en: {
 
 </div>
 
-	<?php echo $footer; ?>
+	
 
 	<script>
 	$(function() {

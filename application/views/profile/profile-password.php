@@ -1,24 +1,4 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-	
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-thumbnail.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/profile.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-	
-	
-	<!--/////////////////////BOOK///////////////////////////////// -->
-	
-	
-<div class="container" id="profile-header"> 
+<div class="" id="profile-header"> 
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2">
@@ -47,8 +27,6 @@
 	</div>
 	
 </div>
-	
-	<?php echo $footer; ?>
 	
 	<script>
 	$(function() {
@@ -79,5 +57,3 @@
   
 });
 </script>
-</body>
-</html>

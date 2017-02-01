@@ -4,7 +4,16 @@
 <head>
 
 	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
+	<meta charset="utf-8">
+	<meta name="description" content="Marketplace Buku Terbesar di Surabaya">
+	<meta name="author" content="SitePoint">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/simple-sidebar.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/dapatbuku.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/img/favicon.png">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/carousel-gallery.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/index.css">
 
@@ -39,37 +48,59 @@
 </div>
 <?php } ?>
 
-<div id="wrapper">
+<div id="wrapper" class="">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+            	<?php
+			if ($this->session->logged_in == 1){?>
+            	<div class="row profile-container hidden-md hidden-lg" style="margin-bottom: 15px;">
+            		<div class="col-md-12">
+					<?php $data = $this->session->userdata();
+						$data = $data['userdata'][0];
+					?>
+					<img src="<?php echo base_url()?><?php echo $data->photo_profile_u?>" class="img-circle" height="50">
+            		</div>
+            		<div class="col-md-12" style="margin-top: 10px">
+            			<?php echo $data->username_u ?><br>
+            			<?php echo $data->email_u ?>
+            		</div>
+            	</div>
+            	<?php } ?>
+			<li><a href="<?php echo base_url()?>"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a> </li>
+            	<li class="hidden-md hidden-lg"><a href="<?php echo base_url()?>search"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Search</a></li>
+            	<?php
+			if ($this->session->logged_in == 1){?>
+			<li><a href="<?php echo base_url()?>profile"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>My Profile</a></li>
+			<li><a href="<?php echo base_url()?>mybooks/manager/"><i class="fa fa-book fa-fw" aria-hidden="true"></i>My Books</a></li>
+			<?php } ?>
+			<li><a href="<?php echo base_url(); ?>book/best_seller"><i class="fa fa-certificate fa-fw" aria-hidden="true"></i>Best Seller</a></li>
+			<li><a href="<?php echo base_url(); ?>book/new_release"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i>New Release</a></li>
+			<li><a href="<?php echo base_url(); ?>book/most_viewed"><i class="fa fa-fire fa-fw" aria-hidden="true"></i>Most Viewed</a></li>
+
+            	<?php
+			if ($this->session->logged_in == 1){?>
+    			<li role="separator" class="hidden-md hidden-lg divider"></li>
+			<li class="hidden-md hidden-lg" ><a href="<?php echo base_url().'accounts/settings'; ?>"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>Settings</a></li>
+			<li class="hidden-md hidden-lg" ><a href="<?php echo base_url().'Profile/logging_out'; ?>"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>Log-out</a></li>
+
+            	<?php } else { ?>
+    			<li role="separator" class="hidden-md hidden-lg divider"></li>
+			<li><a href="<?php echo base_url()?>login"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>Login</a></li>
+			<li><a href="<?php echo base_url()?>register"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>Register</a></li>
+
+            	<?php } ?>
+
+
+    			<li role="separator" class="divider"></li>
+               <li class="sidebar-header"><a href="#">CATEGORIES </a></li>
+               <?php foreach($nav_category as $key){?>
+				<li>
+					<a href="<?php echo base_url().'category/'.$key['slug_category'];?>"><?php echo $key['name_b_category']; ?></a>
+     			</li>
+			<?php } ?>
+              
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -103,7 +134,7 @@
 
 						    <div class="item height-item <?php echo $active?>">
 					      		<a href="<?php echo $data->link?>" target="_blank">
-						          	<img class="<?php echo $numbering?> img-responsive img-responsive-3" src="<?php echo base_url()?>assets/img/banner/<?php echo $data->pict?>" alt="<?php echo $alt?> slide">
+						          	<img class="<?php echo $numbering?> img-responsive img-responsive-2" src="<?php echo base_url()?>assets/img/banner/<?php echo $data->pict?>" alt="<?php echo $alt?> slide">
 					       		</a>
 						    </div>
 

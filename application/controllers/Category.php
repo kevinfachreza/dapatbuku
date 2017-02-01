@@ -47,7 +47,14 @@ class Category extends CI_Controller {
 		}
 		$data['category_now']=$this->M_category->get_category($category);;
 
-		$this->load->view('category/category',$data);
+
+
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['header'] = $this->load->view('category/header','',true);
+		$data['page_title'] = 'New Release';
+			
+		$data['content'] = $this->load->view('category/category',$data,true);
+		$this->load->view('template',$data);
 
 	}
 }

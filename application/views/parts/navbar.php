@@ -1,43 +1,9 @@
-	<nav class="navbar navbar-mini navbar-default navbar-padding navbar-fixed-top" style="padding-top:50px;background-color:#E68037">
-	  <div class="container-fluid" style="">
-		<div class="collapse navbar-collapse" id="secondary-navbar">
-		  <ul class="nav navbar-nav navbar-nav-mini">
-			<li class="dropdown">
-			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hot List<span class="caret"></span></a>
-			  	<ul class="dropdown-menu">
-					<li><a href="<?php echo base_url(); ?>book/best_seller">Best Seller</a></li>
-					<li><a href="<?php echo base_url(); ?>book/new_release">New Release</a></li>
-				<li><a href="<?php echo base_url(); ?>book/most_viewed">Most Viewed</a></li>
-			  	</ul>
-			</li>
-			<li class="dropdown">
-			  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
-			  	<ul class="dropdown-menu">
-					<?php foreach($nav_category as $key){?>
-					<li class="dropdown">
-						<a href="<?php echo base_url().'category/'.$key['slug_category'];?>"><?php echo $key['name_b_category']; ?></a>
-          			</li>
-					<?php } ?>
-				</ul>
-			</li>
-			<li class="navbar-hide"><a href="#">Profile</a></li>
-		  </ul>
-
-		</div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+	
 
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#secondary-navbar" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
 		  <a class="navbar-brand" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
-
 		  <a class="navbar-brand" href="<?php echo base_url().""; ?>"><img src="<?php echo base_url()?>assets/img/logo-nav-white.png"></a>
 
 		</div>
@@ -54,16 +20,14 @@
 			<?php
 			if ($this->session->logged_in == 1){?>
 			<li><a href="<?php echo base_url()?>mybooks/add" data-toggle="tooltip" title="Tambah Buku" data-placement="bottom"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-				<div class="icon-wrapper">
-					<i class="fa fa-envelope fa-5x fa-border icon-grey"></i>
-				</div>
 			</a></li>
+
+			<?php $data = $this->session->userdata();?>
 
 			<li class="dropdown">
 
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
 			  <ul class="dropdown-menu">
-				<li><a href="#"><?php echo $this->session->userdata('my_name'); ?></a></li>
 				<li><a href="<?php echo base_url()."Profile"; ?>">My Profile</a></li>
 				<li><a href="<?php echo base_url()."Accounts/settings"; ?>">Settings</a></li>
 				<li><a href="<?php echo base_url().'Mybooks'; ?>">MyBooks</a></li>

@@ -55,7 +55,12 @@ class Mybooks extends CI_Controller {
 		$data['all_book'] = $this->M_book->get_my_book($data['user']->id_u, $limit, $offset);
 
 		$data['navbar2']=$this->load->view('profile/navbar-side','',true);
-		$this->load->view('book-manager/manage-books',$data);
+
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['header'] = $this->load->view('book-manager/header','',true);
+    $data['content'] = $this->load->view('book-manager/manage-books',$data,true);
+    $data['page_title'] = 'My Books';
+    $this->load->view('template',$data);
 	}
 
 	public function edit($slug = null)
@@ -72,7 +77,12 @@ class Mybooks extends CI_Controller {
 		$data['book_data'] = $this->M_book->get_edit_book($slug);
 		$data['current_photo'] = $this->M_book->get_current_photo($data['book_data'][0]['id_u_b']);
 
-		$this->load->view('book-manager/edit-books',$data);
+		
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['header'] = $this->load->view('book-manager/header','',true);
+    $data['content'] = $this->load->view('book-manager/edit-books',$data,true);
+    $data['page_title'] = $data['book_data'][0]['title_u_b'];
+    $this->load->view('template',$data);
 	}
 
 	public function do_edit(){
@@ -286,7 +296,11 @@ class Mybooks extends CI_Controller {
 		$check_null = $this->M_book->checknullprofile($id);
 		if(!$this->emptyElementExists($check_null))
 		{
-			$this->load->view('book-manager/add-books',$data);
+      $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+      $data['header'] = $this->load->view('book-manager/header','',true);
+      $data['content'] = $this->load->view('book-manager/add-books',$data,true);
+      $data['page_title'] = 'Tambah Buku';
+      $this->load->view('template',$data);
 		}
 		else
 		{

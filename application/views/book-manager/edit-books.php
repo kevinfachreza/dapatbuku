@@ -1,23 +1,3 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/profile.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/profile/manage-books.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-
-
-	<!--/////////////////////BOOK///////////////////////////////// -->
-
-
 <div class="form-container custom-container container" id="profile-header">
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Ubah Iklan Buku </div>
@@ -129,9 +109,6 @@
 </div>
 
 
-	<?php echo $footer; ?>
-	<script src="<?php echo base_url()?>assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
-
 
 	<script>
 	$(function() {
@@ -162,8 +139,3 @@
 
 });
 </script>
-
-
-
-</body>
-</html>
