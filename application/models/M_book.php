@@ -220,11 +220,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		return $result;
   	}
 
-    public function get_book_total($id_in){
-      $query = $this->db->query("SELECT id_u_b FROM user_book WHERE id_u_owner = '".$id_in."' AND active != 0 AND active != 3");
-
-      return count($query->result());
-    }
   	public function get_my_book($id_in, $limit=null, $offset=null)
     {
       //$query = "select * from user_book where id_u_owner = '".$id_in."' order by id_u_b desc ";
