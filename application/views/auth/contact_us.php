@@ -1,26 +1,45 @@
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	    $(document).ready(function(){
 	        $("#contactModal").modal('show');
 	    });
 	</script>
 		<!-- ////////////////////////////////MODAL//////////////// -->
-	<?php if($this->session->flashdata('contactus') == true) { ?>
-	<div id="contactModal" class="modal fade">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Pesan Terkirim!!!</h4>
-	            </div>
-	            <div class="modal-body">
-	                <p>Terima Kasih</p>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-	<?php } ?>
-
+	<?php if($this->session->flashdata('contactus') == 1) { ?>
+		<div id="contactModal" class="modal fade">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header alert alert-success">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h3 class="modal-title">Pesan telah terkirim</h4>
+		            </div>
+		            <div class="modal-body">
+									<div class="text-center">
+		                <h4>Terima Kasih</h4>
+										<button type="button" class="btn btn-success" data-dismiss="modal">Lanjutkan</button>
+									</div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	<?php }
+			if($this->session->flashdata('contactus') == 2){?>
+				<div id="contactModal" class="modal fade">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header alert alert-danger">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                <h3 class="modal-title">Pesan gagal terkirim</h4>
+				            </div>
+				            <div class="modal-body">
+											<div class="text-center">
+				                <h4>Mohon maaf</h4>
+												<button type="button" class="btn btn-success" data-dismiss="modal">Coba lagi</button>
+											</div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+		<?php } ?>
 	<div class="row">
 	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
 		<div class="custom-container"  id="category-container">

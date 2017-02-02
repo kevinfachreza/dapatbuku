@@ -3,22 +3,43 @@
 	        $("#requestModal").modal('show');
 	    });
 	</script>
+
 		<!-- ////////////////////////////////MODAL//////////////// -->
-	<?php if($this->session->flashdata('request') == true) { ?>
+	<?php if($this->session->flashdata('request') == 1) { ?>
 	<div id="requestModal" class="modal fade">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
-	            <div class="modal-header">
+	            <div class="modal-header alert alert-success">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Permintaan Terkirim!!!</h4>
+	                <h3 class="modal-title">Permintaan telah terkirim</h4>
 	            </div>
 	            <div class="modal-body">
-	                <p>Terima Kasih</p>
+								<div class="text-center">
+	                <h4>Terima Kasih</h4>
+									<button type="button" class="btn btn-success" data-dismiss="modal">Lanjutkan</button>
+								</div>
 	            </div>
 	        </div>
 	    </div>
 	</div>
-	<?php } ?>
+	<?php } if($this->session->flashdata('request') == 2){?>
+		<div id="contactModal" class="modal fade">
+				<div class="modal-dialog">
+						<div class="modal-content">
+								<div class="modal-header alert alert-danger">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h3 class="modal-title">Pesan gagal terkirim</h4>
+								</div>
+								<div class="modal-body">
+									<div class="text-center">
+										<h4>Mohon maaf</h4>
+										<button type="button" class="btn btn-success" data-dismiss="modal">Coba lagi</button>
+									</div>
+								</div>
+						</div>
+				</div>
+		</div>
+<?php } ?>
 
 	<!--/////////////////////BOOK///////////////////////////////// -->
 	<div class="row" style="margin:30px 0px;">
@@ -80,4 +101,3 @@
 			</div>
 		</div>
 	</div>
-

@@ -1,3 +1,58 @@
+<script type="text/javascript">
+	    $(document).ready(function(){
+	        $("#operationModal").modal('show');
+	    });
+	</script>
+		<!-- ////////////////////////////////MODAL//////////////// -->
+	<?php if(($this->session->flashdata('add') == 1) || ($this->session->flashdata('edit') == 1) || ($this->session->flashdata('delete') == 1)) { ?>
+		<div id="operationModal" class="modal fade">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header alert alert-success">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<?php if($this->session->flashdata('add') == 1){ ?>
+		                				<h3 class="modal-title">Buku berhasil ditambahkan</h3>
+										<?php }
+											 		if($this->session->flashdata('edit') == 1){?>
+														<h3 class="modal-title"> Buku berhasil diedit </h3>
+										<?php}
+											 		if($this->session->flashdata('delete') == 1){?>
+														<h3 class="modal-title">Buku berhasil dihapus</h3>
+										<?php } ?>
+		            </div>
+		            <div class="modal-body">
+									<div class="text-center">
+		                <button type="button" class="btn btn-success" data-dismiss="modal">Lanjutkan</button>
+									</div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	<?php }
+			else if($this->session->flashdata('edit') == 2 || $this->session->flashdata('delete') == 2){?>
+				<div id="operationModal" class="modal fade">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header alert alert-danger">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<?php	if($this->session->flashdata('edit') == 2){?>
+																<h3 class="modal-title">Buku gagal diedit</h3>
+												<?php }
+													 		if($this->session->flashdata('delete') == 2){?>
+																<h3 class="modal-title">Buku gagal dihapus</h3>
+												<?php } ?>
+				            </div>
+				            <div class="modal-body">
+											<div class="text-center">
+												<button type="button" class="btn btn-success" data-dismiss="modal">Lanjutkan</button>
+											</div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+		<?php } ?>
+
+
 <div class="" id="profile-header">
 	<div class="col-md-12">
 		<div class="row">

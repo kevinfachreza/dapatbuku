@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
 <link rel="stylesheet" href="<?php echo base_url()?>assets/css/dapatbuku.css">
 <link rel="stylesheet" href="<?php echo base_url()?>assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo base_url()?>assets/css/sweetalert.css">
 <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/img/favicon.png">

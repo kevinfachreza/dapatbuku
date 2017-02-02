@@ -190,13 +190,13 @@ class Auth extends CI_Controller {
     // It returns boolean TRUE or FALSE based on success or failure
     if($this->email->send())
     {
-      $this->session->set_flashdata('contactus', true);
+      $this->session->set_flashdata('contactus', 1);
     }
     else {
-      $this->session->set_flashdata('contactus', false);
+      $this->session->set_flashdata('contactus', 2);
       //show_error($this->email->print_debugger());
     }
-    redirect('contactus');
+    redirect('Auth/contact_us');
   }
 
   public function book_request(){
@@ -241,10 +241,10 @@ class Auth extends CI_Controller {
     $result = $this->M_book->insert_request($data_request);
 
     if($result){
-      $this->session->set_flashdata('request', true);
+      $this->session->set_flashdata('request', 1);
     }
     else {
-      $this->session->set_flashdata('request', "0");
+      $this->session->set_flashdata('request', 2);
     }
     redirect('auth/book_request');
   }

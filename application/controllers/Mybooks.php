@@ -77,7 +77,7 @@ class Mybooks extends CI_Controller {
 		$data['book_data'] = $this->M_book->get_edit_book($slug);
 		$data['current_photo'] = $this->M_book->get_current_photo($data['book_data'][0]['id_u_b']);
 
-		
+
     $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
     $data['header'] = $this->load->view('book-manager/header','',true);
     $data['content'] = $this->load->view('book-manager/edit-books',$data,true);
@@ -256,13 +256,16 @@ class Mybooks extends CI_Controller {
               $result = $this->M_book->update_ub_img($i, $id_book, $fileresize, $filethumb, $filedatabase);
 
               if(!$result){
-                echo "ganti gagal";
+                $this->session->set_flashdata('edit', 2);
+              }
+              else{
+                $this->session->set_flashdata('edit', 1);
               }
             }
 	        }
         		else
         		{
-        			echo 'fail upload';
+        			$this->session->set_flashdata('edit', 1);
         		}
 				}
       }
@@ -270,9 +273,9 @@ class Mybooks extends CI_Controller {
 		}
 		else
 		{
-			echo 'no pict';
+      $this->session->set_flashdata('edit', 1);
 		}
-    redirect('mybooks');
+    redirect('mybooks/manager');
 	}
 
 	private function emptyElementExists($arr) {
@@ -415,7 +418,7 @@ class Mybooks extends CI_Controller {
       						$result = $this->M_book->insert_user_book_img($id_last, $fileresize, $filethumb, $filedatabase);
       						if(!$result)
       						{
-      							$this->session->set_flashdata('warning', 'Maaf Penambahan buku gagal');
+                    $this->session->set_flashdata('add', 2);
                     redirect('mybooks/add');
                     break;
       						}
@@ -425,6 +428,7 @@ class Mybooks extends CI_Controller {
               $set_main = $this->M_book->set_main_product_img($id_last);
   					}
   				}
+        $this->session->set_flashdata('add', 1);
   			redirect('mybooks/manager');
       }
 	}
@@ -438,20 +442,12 @@ class Mybooks extends CI_Controller {
 
 		if(!$result)
 		{
-			echo "GAGAL";
+			$this->session->set_flashdata('delete', 2);
 		}
 		else {
-			// //DELETE FOLDER
-			// $tmp				=	$this->session->userdata['userdata'];
-			// $user_id		= $tmp[0];
-      //
-			// $path = "assets/img/user/".$user_id->id_u."/books/".$id_in;
-      //
-			// array_map('unlink', glob("$path/*.*"));
-			// rmdir($path);
-
-			redirect('Mybooks');
+			$this->session->set_flashdata('delete', 1);
 		}
+    redirect('Mybooks/manager');
 	}
 
   public function delete_ub_img($slug, $id_img){

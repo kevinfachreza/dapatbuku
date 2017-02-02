@@ -1,3 +1,27 @@
+<script type="text/javascript">
+	    $(document).ready(function(){
+	        $("#addModal").modal('show');
+	    });
+	</script>
+		<!-- ////////////////////////////////MODAL//////////////// -->
+	<?php if($this->session->flashdata('add') == 2) { ?>
+		<div id="addModal" class="modal fade">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header alert alert-success">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+														<h3 class="modal-title">Buku gagal ditambahkan</h3>
+		            </div>
+		            <div class="modal-body">
+									<div class="text-center">
+		                <button type="button" class="btn btn-success" data-dismiss="modal">Lanjutkan</button>
+									</div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	<?php } ?>
+
 <div class="form-container custom-container container" id="profile-header">
 	<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 		<div class="header-text-2 text-center"> Tambahkan Buku </div>
@@ -125,4 +149,3 @@
 		}
 	}
 </script>
-
