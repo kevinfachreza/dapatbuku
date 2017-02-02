@@ -32,37 +32,37 @@
 			          <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
 					<?php if($this->session->logged_in != 1){ ?>
 						<div class="row form-profile-wrapper">
-							<div class="col-md-3 col-sm-2 col-xs-2">Nama</div>
-							<div class="col-md-9 col-sm-8 col-xs-10">
+							<div class="col-md-4 col-sm-12 col-xs-12">Nama</div>
+							<div class="col-md-8 col-sm-12 col-xs-12">
 							<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
 							</div>
 						</div>
 						<div class="row form-profile-wrapper">
-							<div class="col-md-3 col-sm-2 col-xs-2">Nomor HP</div>
-							<div class="col-md-9 col-sm-8 col-xs-10">
+							<div class="col-md-4 col-sm-12 col-xs-12">Nomor HP</div>
+							<div class="col-md-8 col-sm-12 col-xs-12">
 							<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
 							</div>
 						</div>
 					<?php } ?>
 
 						<div class="row form-profile-wrapper">
-							<div class="col-md-3 col-sm-2 col-xs-2">Judul</div>
-							<div class="col-md-9 col-sm-8 col-xs-10"><input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
+							<div class="col-md-4 col-sm-12 col-xs-12">Judul</div>
+							<div class="col-md-8 col-sm-12 col-xs-12"><input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>
 							</div>
 						</div>
 
 						<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
-							<div class="col-md-3 col-sm-2 col-xs-2">Pengarang
+							<div class="col-md-4 col-sm-12 col-xs-12">Pengarang
 							<small id="emailHelp" class="form-text text-muted">(	Optional)</small></div>
-							<div class="col-md-9 col-sm-8 col-xs-10">
+							<div class="col-md-8 col-sm-12 col-xs-12">
        						<input name="author" type="text" class="form-control" placeholder="Pengarang"  autofocus>
 							</div>
 						</div>
 
 
 						<div class="row form-profile-wrapper"  style="margin-bottom:0.5em">
-							<div class="col-md-3 col-sm-2 col-xs-2">Butuh Buku Untuk</div>
-							<div class="col-md-9 col-sm-8 col-xs-10">
+							<div class="col-md-4 col-sm-12 col-xs-12">Butuh Buku Untuk</div>
+							<div class="col-md-8 col-sm-12 col-xs-12">
 							<select name="interest" class="form-control" id="interest">
 								<option value="informasi">Informasi </option>
 								<option value="jual">Jual</option>

@@ -21,7 +21,7 @@ class Profile extends CI_Controller {
 	{
 		$data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['header']			 = $this->load->view('profile/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
 
@@ -74,7 +74,11 @@ class Profile extends CI_Controller {
 		$data['book_total'] = $this->M_book->get_book_total($id);
 		$data['page_total'] = ceil($count_books/$limit);
 
-		$this->load->view('profile/index',$data);
+
+		$data['page_title'] = $username;
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['content'] = $this->load->view('profile/index',$data,true);
+		$this->load->view('template',$data);
 
 	}
 

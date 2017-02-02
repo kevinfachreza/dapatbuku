@@ -87,9 +87,19 @@
 	margin-bottom:25px;
 }
 
-.form-profile-wrapper .col-md-3
+.form-profile-wrapper .col-md-3,.form-profile-wrapper .col-md-4
 {
     text-align: right;
     padding: 5px;
-    font-size: 2.5vh;
+    font-size: 1em;
+}
+
+@media(max-width: 992px){
+    .form-profile-wrapper .col-md-3,.form-profile-wrapper .col-md-4
+    {
+        text-align: left;
+        padding: 5px 10px;
+        font-size: 1em;
+    }
+
 }

@@ -20,7 +20,7 @@ class Search extends CI_Controller {
 	{
 		$data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
+		$data['header']			 = $this->load->view('search/header','',true);
 		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
 		$data['footer']			 = $this->load->view('parts/footer','',true);
 
@@ -80,7 +80,10 @@ class Search extends CI_Controller {
 		$data['category']=$this->M_search->get_category();
 		$data['provincies']=$this->M_search->get_provincies();
 
-		$this->load->view('search/search',$data);
+		$data['page_title'] = 'Cari Buku ';
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['content'] = $this->load->view('search/search',$data,true);
+		$this->load->view('template',$data);
 	}
 
 	public function book()
@@ -137,7 +140,10 @@ class Search extends CI_Controller {
 
 		$this->session->search_data = $key_search;
 		$data['category']=$this->M_search->get_category();
-		$this->load->view('search/search-book',$data);
+		$data['page_title'] = 'Cari Buku ';
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['content'] = $this->load->view('search/search-book',$data,true);
+		$this->load->view('template',$data);
 	}
 
 	public function product($tmp_in = NULL)

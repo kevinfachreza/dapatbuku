@@ -3,6 +3,14 @@
 	padding:100px 0px;
 }
 
+@media(max-height: 767px)
+{
+	#content-container
+	{
+		padding:25px 25px;
+	}
+}
+
 .about-hr{
 	width: 50%;
 }

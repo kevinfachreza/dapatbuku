@@ -590,7 +590,7 @@ a:focus, a.text-primary:hover, a.text-primary:focus {
 .footer-1{
 	background-color:#E69515; 
 	text-align:center;
-	font-size:5vh;
+	font-size:2em;
 	font-weight:bold;
 }
 

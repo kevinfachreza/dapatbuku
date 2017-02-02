@@ -1,7 +1,7 @@
 .book-title
 {
 	font-family:SourceSansProSemiBold;
-	font-size:5vh;
+	font-size:1.8em;
 }
 
 .container
@@ -17,12 +17,12 @@
 
 .book-writer
 {
-	font-size:3vh;
+	font-size:1.2em;
 	color:orange;
 }
 
 .book-writer span{
-	font-size:2vh;
+	font-size:1.2em;
 }
 
 .book-rating
@@ -33,12 +33,12 @@
 
 .book-header{
 	font-weight: bold;
-    font-size: 3vh;
+    font-size: 1.2em;
     margin-bottom: 7px;
 }
 
 .book-rating-count , .book-review-count{
-	font-size:2vh;
+	font-size:0.5em;
 	color:orange;
 }
 
@@ -143,7 +143,7 @@ a.morelink {
 .info-small>a
 {
 	color:orange;
-	font-size:2vh;
+	font-size:1em;
 }
 
 .info-small>a:hover{
@@ -156,7 +156,7 @@ a.morelink {
 
 table.book-info{
 	font-weight:normal;
-	font-size:2vh;
+	font-size:1em;
 }
 
 td, th {
@@ -182,7 +182,7 @@ td, th {
 
 .side-bar-title
 {
-	font-size:2vh;
+	font-size:1em;
 	color:#333;
 	text-transform: uppercase;
 	font-weight:bold;
@@ -194,7 +194,7 @@ td, th {
 {
 	background-color:#E69515;
 	color:white;
-	font-size:2vh;
+	font-size:1em;
 	padding:5px;
 	margin-bottom:3px;
 }
