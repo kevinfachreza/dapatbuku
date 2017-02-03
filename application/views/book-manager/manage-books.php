@@ -10,13 +10,13 @@
 		        <div class="modal-content">
 		            <div class="modal-header alert alert-success">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<?php if($this->session->flashdata('add') == 1){ ?>
+										<?php if($this->session->flashdata('add') == 1) { ?>
 		                				<h3 class="modal-title">Buku berhasil ditambahkan</h3>
 										<?php }
-											 		if($this->session->flashdata('edit') == 1){?>
+											 		else if($this->session->flashdata('edit') == 1) { ?>
 														<h3 class="modal-title"> Buku berhasil diedit </h3>
-										<?php}
-											 		if($this->session->flashdata('delete') == 1){?>
+										<?php }
+											 		else if($this->session->flashdata('delete') == 1) {?>
 														<h3 class="modal-title">Buku berhasil dihapus</h3>
 										<?php } ?>
 		            </div>
@@ -38,7 +38,7 @@
 												<?php	if($this->session->flashdata('edit') == 2){?>
 																<h3 class="modal-title">Buku gagal diedit</h3>
 												<?php }
-													 		if($this->session->flashdata('delete') == 2){?>
+													 		else if($this->session->flashdata('delete') == 2){?>
 																<h3 class="modal-title">Buku gagal dihapus</h3>
 												<?php } ?>
 				            </div>
