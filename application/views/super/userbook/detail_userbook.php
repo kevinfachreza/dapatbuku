@@ -87,7 +87,7 @@ tr:nth-child(even) {
 										<?php echo $book_result[0]['title_u_b']; ?>
 									</div>
 									<div class="book-price">
-										<?php if($book_result[0]['sell_u_b'] != 1)
+										<?php if($book_result[0]['price_sell_u_b'] == "Rp 0")
 										{
 											echo "Buku ini tidak dijual";
 										}
@@ -98,7 +98,8 @@ tr:nth-child(even) {
 										 ?>
 									</div>
 									<div class="book-rent">
-										<?php if($book_result[0]['rent_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span> Sewa : <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php }  else { ?><span class="book-ok-icon glyphicon glyphicon-remove" aria-hidden="true"></span>Sewa :<?php } ?>
+										<?php if($book_result[0]['price_rent_u_b'] != "Rp 0"){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span> Sewa : <?php echo $book_result[0]['price_rent_u_b']; ?>/minggu<?php }
+										  else { ?><span class="book-ok-icon glyphicon glyphicon-remove" aria-hidden="true"></span>Sewa :<?php } ?>
 									</div>
 									<div class="book-barter">
 										<?php if($book_result[0]['barter_u_b'] == 1){ ?><span class="book-ok-icon glyphicon glyphicon-ok" aria-hidden="true"></span><?php } ?>
@@ -116,13 +117,6 @@ tr:nth-child(even) {
 												<div class="col-md-6 col-sm-6 col-xs-6 table-content">
 													<?php if($book_result[0]['type_u_b'] == 1){	echo "Baru"; }
 																else if($book_result[0]['type_u_b'] == 2){ echo "Bekas"; } ?>
-												</div>
-											</div>
-											<div class="col-md-12 table-container">
-												<div class="col-md-6 col-sm-6 col-xs-6 table-content">Berat
-												</div>
-												<div class="col-md-6 col-sm-6 col-xs-6 table-content">
-													<?php echo $book_result[0]['berat_u_b']; ?>
 												</div>
 											</div>
 											<div class="col-md-12 table-container">
@@ -156,7 +150,7 @@ tr:nth-child(even) {
 
   						<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#accept">Accept</button>
  						<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#reject">Reject</button>
-					    
+
 						</div>
 
 				</div>
@@ -168,7 +162,7 @@ tr:nth-child(even) {
 <!-- Modal -->
   <div class="modal fade" id="accept" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -193,7 +187,7 @@ tr:nth-child(even) {
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 <!-- Close Modal -->
@@ -202,7 +196,7 @@ tr:nth-child(even) {
 <!-- Modal -->
   <div class="modal fade" id="reject" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -242,14 +236,14 @@ tr:nth-child(even) {
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
+
     </div>
   </div>
 <!--Close Modal -->
 
 
 </script>
-    
+
 
 	<?php echo $footer?>
 	</body>
