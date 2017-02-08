@@ -5,6 +5,12 @@
             <li class=""><a href="#">Reports</a></li>
             <li class=""><a href="#">Analytics</a></li>
           </ul>
+
+          <ul class="nav nav-sidebar">
+            <li class="disabled"><a href="">User</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/user/RequestUser">Request User</a></li>
+          </ul>
+
           <ul class="nav nav-sidebar">
             <li class="disabled"><a href="">Categories</a></li>
             <li class=""><a href="<?php echo base_url()?>super/adminbook/bookmanager">Categories Manager</a></li>

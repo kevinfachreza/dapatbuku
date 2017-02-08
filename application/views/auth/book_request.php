@@ -50,9 +50,9 @@
 					<div class="col-md-12 header-text-2">Tidak Menemukan Buku yang Kamu Cari?</div>
 					<div class="col-md-12 text-center"><hr></div>
 					<div class="col-md-12">
-			    <form action="<?php echo base_url(); ?>/auth/do_book_request" method="post">
 					<?php if($this->session->logged_in == 1){ ?>
-						<div class="row form-profile-wrapper">
+						<form action="<?php echo base_url(); ?>auth/do_book_request" method="post">
+						<!-- <div class="row form-profile-wrapper">
 							<div class="col-md-4 col-sm-12 col-xs-12">Nama</div>
 							<div class="col-md-8 col-sm-12 col-xs-12">
 							<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
@@ -63,7 +63,7 @@
 							<div class="col-md-8 col-sm-12 col-xs-12">
 							<input name="hp" type="text"  class="form-control" placeholder="Nomor HP" style="margin-bottom:0.5em" required autofocus>
 							</div>
-						</div>
+						</div> -->
 						<div class="row form-profile-wrapper">
 							<div class="col-md-4 col-sm-12 col-xs-12">Judul</div>
 							<div class="col-md-8 col-sm-12 col-xs-12"><input name="title" type="text"  class="form-control" placeholder="Judul Buku" style="margin-bottom:0.5em" required autofocus>

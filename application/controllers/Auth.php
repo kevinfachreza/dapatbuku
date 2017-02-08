@@ -222,21 +222,14 @@ class Auth extends CI_Controller {
   }
 
   public function do_book_request(){
-    if($this->session->logged_in == 1){
-      $contact_data = $this->M_auth->get_user_auth($this->session->userdata('id_u'));
-      $name = $contact_data[0]->firstname_u." ".$contact_data[0]->lastname_u;
-      $hp = $contact_data[0]->phone_number_u;
-    }
-    else{
-      $name = $this->input->post('name');
-      $hp = $this->input->post('hp');
-    }
+
+    $id = $this->session->userdata('id_u');
     $title = $this->input->post('title');
     $category = $this->input->post('category');
     $author = $this->input->post('author');
     $interest = $this->input->post('interest');
 
-    $data_request = array($title, $category, $author, $interest, $name, $hp);
+    $data_request = array($id, $title, $category, $author, $interest);
 
     $result = $this->M_book->insert_request($data_request);
 

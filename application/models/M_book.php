@@ -417,7 +417,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
       // var_dump($data);
       // exit();
-      $query = $this->db->query("INSERT INTO book_request(title_br, category_br, author_br, interest_br, name_br, hp_br) values('".$data[0]."', '".$data[1]."', '".$data[2]."', '".$data[3]."', '".$data[4]."', '".$data[5]."');");
+      $query = $this->db->query("INSERT INTO book_request(user_br, title_br, category_br, author_br, interest_br) values('".$data[0]."', '".$data[1]."', '".$data[2]."', '".$data[3]."', '".$data[4]."')");
 
       if($this->db->affected_rows() == 1){
         return TRUE;
