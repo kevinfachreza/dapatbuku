@@ -18,6 +18,39 @@ class Search extends CI_Controller {
 
 	public function index()
 	{
+		$keyword = $this->db->escape_str($this->input->get('keyword'));
+		$category = $this->input->get('kategori-in');
+		$data['book'] = $this->M_search->SearchOnly($keyword);
+
+
+
+		//LOCATING PAGE NOW
+		if($this->input->get('page') != null)
+		{
+			$page = $this->input->get('page');
+		}
+		else $page = 1;
+
+		$limit = 24;
+		$offset = ($page-1)*$limit;
+		$data['page_now'] = $page;
+		$count_books = count($data['book']);
+		$data['page_total'] = ceil($count_books/$limit);
+
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['keyword'] = $keyword;
+		$data['category'] = $category;
+		$data['header']			 = $this->load->view('search/header','',true);
+		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
+		$data['footer']			 = $this->load->view('parts/footer','',true);
+		$data['page_title'] = 'Cari Buku ';
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['content'] = $this->load->view('search/search',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function search()
+	{
 		$data['nav_category'] 		= $this->M_category->get_all_category();
 
 		$data['header']			 = $this->load->view('search/header','',true);

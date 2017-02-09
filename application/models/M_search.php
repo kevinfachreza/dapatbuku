@@ -8,6 +8,12 @@
       parent::__construct();
     }
 
+    public function SearchOnly($keyword){
+      $query = $this->db->query("
+  			SELECT slug_title_b, title_b, writer, publisher, photo_cover_b, MATCH (title_b, writer, publisher)  AGAINST ('".$keyword."' IN NATURAL LANGUAGE MODE)
+  			AS score FROM book where MATCH (title_b, writer, publisher)  AGAINST ('".$keyword."' IN NATURAL LANGUAGE MODE) > 0 ORDER BY score DESC");
+      return $query->result_array();
+    }
     public function get_book_by_slug($slug_in, $limit = null, $offset = null)
     {
       $query = $this->db->query("select b.id_b from book b where b.slug_title_b='".$slug_in."';");

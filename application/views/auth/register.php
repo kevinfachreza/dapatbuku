@@ -1,18 +1,3 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/auth/style.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 <script>
@@ -49,8 +34,6 @@ en: {
 		</div>
 	</div>
 
-	<?php echo $footer; ?>
-	<script src="<?php echo base_url()?>assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript">
 		var today = new Date();
 		var dd = today.getDate();
@@ -81,7 +64,3 @@ en: {
 			}
 		}
 	</script>
-
-
-</body>
-</html>

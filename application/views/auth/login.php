@@ -1,18 +1,3 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-
-	<title>DapatBuku - Cari Buku Jadi Lebih Mudah</title>
-	<?php echo $header; ?>
-
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/auth/style.css">
-
-</head>
-
-<body>
-	<?php echo $navbar; ?>
-
 	<div class="col-md-12 main-body-wrapper">
 		<div class="col-md-6 col-md-offset-3 custom-container container panel-form text-center">
 			<h2> LOGIN </h2>
@@ -27,11 +12,3 @@
 			<a href="<?php echo base_url()?>auth/register" >REGISTER</a>
 		</div>
 	</div>
-
-	<?php echo $footer; ?>
-	<script src="<?php echo base_url()?>assets/js/slick.js" type="text/javascript" charset="utf-8"></script>
-
-
-
-</body>
-</html>

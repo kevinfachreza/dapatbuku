@@ -23,7 +23,6 @@ class Welcome extends CI_Controller {
 	{
 		$data['nav_category'] = $this->M_category->get_all_category();
 
-
 		$data['new_release']	 = $this->M_book->get_n_release();
 		$data['best_sell'] 		 = $this->M_book->get_b_seller();
 		$data['banner']			 = $this->M_Banner->getBanner();

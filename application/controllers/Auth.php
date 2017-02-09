@@ -23,10 +23,13 @@ class Auth extends CI_Controller {
   {
     $data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
-		$data['footer']			 = $this->load->view('parts/footer','',true);
-		$this->load->view('auth/login', $data);
+    $data['page_title'] = 'Login';
+    $data['header'] = $this->load->view('auth/header', $data,true);;
+    $data['navbar'] = $this->load->view('parts/navbar', $data,true);
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['footer'] = $this->load->view('parts/footer','',true);
+    $data['content'] = $this->load->view('auth/login',$data,true);
+    $this->load->view('template',$data);
   }
 
 
@@ -70,11 +73,14 @@ class Auth extends CI_Controller {
   public function register(){
     $data['nav_category'] 		= $this->M_category->get_all_category();
 
-		$data['header']			 = $this->load->view('parts/header','',true);
-		$data['navbar']			 = $this->load->view('parts/navbar', $data,true);
-		$data['footer']			 = $this->load->view('parts/footer','',true);
+    $data['page_title'] = 'Register';
+    $data['header'] = $this->load->view('auth/header', $data,true);;
+    $data['navbar'] = $this->load->view('parts/navbar', $data,true);
+    $data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+    $data['footer'] = $this->load->view('parts/footer','',true);
+    $data['content'] = $this->load->view('auth/register',$data,true);
 
-    $this->load->view('auth/register', $data);
+    $this->load->view('template', $data);
   }
 
 

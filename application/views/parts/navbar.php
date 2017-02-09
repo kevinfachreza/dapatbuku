@@ -1,4 +1,4 @@
-	
+
 
 	<nav class="navbar navbar-default navbar-padding navbar-fixed-top">
 	  <div class="container-fluid">
@@ -11,7 +11,7 @@
 		<div class="collapse navbar-collapse" >
 		  	<form action="<?php echo base_url()."Search"?>" action="get" class="navbar-form navbar-left form-group-navbar" role="search" id="NavbarSearch">
 				<div class="form-group">
-				  	<input type="text" class="form-control" placeholder="Search" name="key-in" required>
+				  	<input type="text" class="form-control" placeholder="Search" name="keyword" required>
 				</div>
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		  	</form>

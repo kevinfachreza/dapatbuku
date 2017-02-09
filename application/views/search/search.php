@@ -1,10 +1,10 @@
 <div class="container container-blank"  id="book-container">
 	<div class="col-md-3 col-sm-3 col-xs-12 custom-container container">
 		<div class="search-side-item" style="margin-top:0">
-			<form action="<?php echo base_url()."Search"; ?>">
+			<form action="<?php echo base_url()."Search"; ?>" method="get">
 			<div class="header-text-2">Cari</div>
 			<div class="activity-wrapper">
-				<input name="key-in" type="text" class="form-control" placeholder="Search" style="margin-bottom:0.5em" required  autofocus>
+				<input name="keyword" type="text" class="form-control" placeholder="Search" value="<?php echo $keyword ?>"style="margin-bottom:0.5em" required  autofocus>
 			</div>
 		</div>
 
@@ -13,7 +13,7 @@
 			<div class="activity-wrapper">
 				<select class="form-control" id="kategori" name="kategori-in">
 					<option>-Pilih Kategori-</option>
-					<?php foreach($category as $key){ ?>
+					<?php foreach($nav_category as $key){ ?>
 					<option value="<?php echo $key['id_b_category']; ?>"><?php echo $key['name_b_category']; ?></option>
 					<?php } ?>
 				</select>
@@ -24,50 +24,12 @@
 			<div class="header-text-2">Kategori Lain</div>
 			<div class="activity-wrapper">
 				<div class="checkbox">
-				  <label><input name="best-sell-flag" type="checkbox" value="">Best Seller</label>
+				  <label><input name="best-sell-flag" type="checkbox" value="1">Best Seller</label>
 				</div>
 				<div class="checkbox">
-				  <label><input name="rekomendasi-flag" type="checkbox" value="">Rekomendasi</label>
+				  <label><input name="rekomendasi-flag" type="checkbox" value="1">Rekomendasi</label>
 				</div>
 			</div>
-		</div>
-
-		<div class="search-side-item">
-			<div class="header-text-2">Kondisi</div>
-			<div class="activity-wrapper">
-				<div class="checkbox">
-				  <label><input type="checkbox" name="bekas-flag" value="">Bekas</label>
-				</div>
-				<div class="checkbox">
-				  <label><input type="checkbox" name="baru-flag" value="">Baru</label>
-				</div>
-			</div>
-		</div>
-
-		<div class="search-side-item">
-			<div class="header-text-2">Lokasi</div>
-			<div class="activity-wrapper">
-				<label for="sel1">Provinsi</label>
-				<select class="form-control" id="provinsi" name="provincies_in">
-					<option>-Pilih Provinsi-</option>
-					<?php foreach($provincies as $key){ ?>
-					<option value="<?php echo $key['id']; ?>"><?php echo $key['name']; ?></option>
-					<?php } ?>
-				</select>
-			</div>
-
-			<?php if($this->session->province_search != NULL)
-			{ ?>
-			<div class="activity-wrapper">
-				<label for="sel1">Kota</label>
-				<select class="form-control" id="kota" name="regencies_in">
-					<option value="">-Pilih Kota-</option>
-					<?php foreach($location as $key){ ?>
-					<option value="<?php echo $key['id']; ?>"><?php echo $key['name'];?></option>
-					<?php } ?>
-				</select>
-			</div>
-			<?php } ?>
 		</div>
 
 		<div class="search-side-item">
@@ -77,31 +39,6 @@
 			</div>
 			<div class="activity-wrapper">
 				<input type="number"  class="form-control" name="page-max-in" min="0" max="100" step="10"  placeholder="Max">
-			</div>
-		</div>
-
-		<div class="search-side-item">
-			<div class="header-text-2">Harga</div>
-			<div class="activity-wrapper">
-				<input type="number"  class="form-control" name="harga-min-in" min="0" max="100" step="10"  placeholder="Min">
-			</div>
-			<div class="activity-wrapper">
-				<input type="number"  class="form-control" name="harga-max-in" min="0" max="100" step="10"  placeholder="Max">
-			</div>
-		</div>
-
-		<div class="search-side-item border-none">
-			<div class="header-text-2">Lainnya</div>
-			<div class="activity-wrapper">
-				<div class="checkbox">
-				  <label><input type="checkbox" value="1" name="jual-in">Jual</label>
-				</div>
-				<div class="checkbox">
-				  <label><input type="checkbox" value="1" name="sewa-in">Sewa</label>
-				</div>
-				<div class="checkbox">
-				  <label><input type="checkbox" value="1" name="barter_in">Barter</label>
-				</div>
 			</div>
 		</div>
 
@@ -121,9 +58,9 @@
 			<div class="col-md-12 text-center"><hr></div>
 
 			<div class="row">
-			<?php if(count($book_result > 0)){
+			<?php if(count($book > 0)){
 				$i = 0;
-			foreach($book_result as $key){
+			foreach($book as $key){
 				if($i >= 4){
 					break;
 				}?>
@@ -132,14 +69,12 @@
 					</div>
 					<div class="book-class-title"><a href="<?php echo base_url()."book/b/".$key['slug_title_b']; ?>"><?php echo $key['title_b']; ?></a>
 					</div>
+					<div class="author-container text-center"><?php echo $key['writer']; ?></div>
 				</div>
 			<?php
-					$i++; } if(count($book_result > 0)){ ?>
-       <div class="col-md-12">
-						<a href="<?php echo base_url()."search/book"; ?>" ><button type="submit" class="btn btn-primary" value="submit" style="width:100%;">Cari Yang Lain</button></a>
-					</div>
-       <?php   } }
-					 if(count($book_result) == 0){  ?>
+					$i++; }
+         	}
+					 if(count($book) == 0){  ?>
 						 <div class="text-center">
  							Maaf, hasil pencarian tidak ditemukan...
  						</div>
@@ -148,4 +83,3 @@
 		</div>
 	</div>
 </div>
-
