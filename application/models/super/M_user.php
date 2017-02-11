@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function getRequestUser($limit, $offset){
       $query = $this->db->query("SELECT * FROM book_request WHERE active_br = 0 OR active_br = 1
-                                ORDER BY id_br desc
+                                ORDER BY id_br asc
                                 LIMIT ".$limit."
                                 OFFSET ".$offset."");
       return $query->result_array();

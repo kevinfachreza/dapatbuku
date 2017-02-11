@@ -33,7 +33,11 @@ tr:nth-child(even) {
 		<?php echo $sidebar?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="col-md-12">
-					<?php echo $this->session->flashdata('report');?>
+				<div class="alert alert-info">
+				  <?php echo $this->session->flashdata('status');?>
+				</div>
+
+					
 
 					<div class="row">
 

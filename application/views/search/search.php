@@ -76,7 +76,9 @@
          	}
 					 if(count($book) == 0){  ?>
 						 <div class="text-center">
- 							Maaf, hasil pencarian tidak ditemukan...
+ 							Maaf, hasil pencarian tidak ditemukan...<br>
+ 							Request Buku Yang Kamu Inginkan Disini <br><br>
+ 							<a href="<?php echo base_url()?>requestbook"><button class="btn btn-primary">Request Book</button>
  						</div>
 						<?php } ?>
 			</div>

@@ -63,7 +63,7 @@
 					<div class="header-text-2 text-center"> Atur Bukumu </div>
 					<div class="manage-books-container">
 					<?php
-					foreach($all_book as $key) { if($key['active'] != 0){?>
+					foreach($all_book as $key) { ?>
 						<div class="col-md-6 manage-books-item">
 							<div class="row books-wrapper">
 								<div class="col-md-12 info-books-container">
@@ -86,6 +86,9 @@
 											<?php }
 											else if($key['active'] == 2){ ?>
 												<div class="inactive-book">Belum Divalidasi</div>
+												<?php } 
+											else if($key['active'] == 0){ ?>
+												<div class="inactive-book">Buku di Tolak</div>
 												<?php } ?>
 									</div>
 								</div>
@@ -112,7 +115,7 @@
 						    </div>
 						</div>
 
-					<?php } } ?>
+					<?php } ?>
 					</div>
 
 					<div class="col-md-12">

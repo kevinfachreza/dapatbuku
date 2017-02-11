@@ -76,15 +76,16 @@ class UserBook extends CI_Controller {
 
 		echo $id_book;
 		echo $id_userbook;
-
+		
 		$data = array(
 		'id_userbook' => $id_userbook,
 		'id_book' => $id_book,
 		);
 
 		$report = $this->M_UserBook -> addBookSource($data);
-		if($report) echo 'sukses';
-		else 'fail';
+		if($report) $this->session->set_flashdata('status', 'Berhasil Di Accept');
+		else $this->session->set_flashdata('status', 'Gagal Accept');
+
 		redirect('super/userbook/userbookrequest');
 	}
 
@@ -104,8 +105,9 @@ class UserBook extends CI_Controller {
 		);
 
 		$report = $this->M_UserBook -> rejectUserBook($data);
-		if($report) redirect('super/userbook/userbookrequest');
-		else 'fail';
+		if($report) $this->session->set_flashdata('status', 'Berhasil Di Reject');
+		else $this->session->set_flashdata('status', 'Gagal Reject');
+	 	redirect('super/userbook/userbookrequest');
 	}
 
 }

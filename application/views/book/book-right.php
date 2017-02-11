@@ -1,6 +1,4 @@
 
-<div class="row">
-	<div class="col-md-12">
 		<div class="custom-container">
 			<div class="header-text-2">Dapatkan Buku Di</div>
 			<div class="text-center"><hr></div>
@@ -32,14 +30,13 @@
 				                    	</div>
 				                  	</a>
 				                </div>
-				                </div>
-			              	</div>
+			                </div>
 			            </div>
 			          <?php }} else {?>
 									<div class="text-center">
-			          	<div class="col-md-12">Belum ada yang menyediakan buku ini.</div>
+		          					<div class="col-md-12">Belum ada yang menyediakan buku ini.</div>
 									<?php if($this->session->logged_in == 1){ ?>
-			          	<a href="<?php echo base_url()?>mybooks/add">
+			          				<a href="<?php echo base_url()?>mybooks/add">
 									<?php }	else{ ?>
 									<a data-toggle="modal" data-target="#loginModal">
 										<?php } ?>
@@ -72,5 +69,3 @@
 		        </div>
 	        </div>
 		</div>
-	</div>
-</div>

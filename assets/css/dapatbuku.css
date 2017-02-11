@@ -132,10 +132,19 @@ body{
 @media (max-width: 767px)
 {
 
-.container-padding
-{
-  padding:0px 25px;
+  .container-padding
+  {
+    padding:0px 10px;
+  }
 }
+
+@media (min-width: 767px) and (max-width: 1024px)
+{
+
+  .container-padding
+  {
+    padding:0px 30px;
+  }
 }
 
 .container-blank
