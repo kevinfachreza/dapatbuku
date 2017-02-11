@@ -16,8 +16,11 @@
             	<?php } ?>
 			<li><a href="<?php echo base_url()?>"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a> </li>
             	<li class="hidden-md hidden-lg"><a href="<?php echo base_url()?>search"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Search</a></li>
-                <li class="hidden-md hidden-lg"><a href="<?php echo base_url()?>search"><i class="glyphicon glyphicon-book fa-fw" aria-hidden="true"></i>Tambah Buku</a></li>
-            	<?php
+
+           <?php if ($this->session->logged_in == 1){?>
+                <li class="hidden-md hidden-lg"><a href="<?php echo base_url()?>mybooks/add"><i class="glyphicon glyphicon-book fa-fw" aria-hidden="true"></i>Tambah Buku</a></li>
+            	<?php } ?>
+            <?php
 			if ($this->session->logged_in == 1){?>
 			<li><a href="<?php echo base_url()?>profile"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>My Profile</a></li>
 			<li><a href="<?php echo base_url()?>mybooks/manager/"><i class="fa fa-book fa-fw" aria-hidden="true"></i>My Books</a></li>
