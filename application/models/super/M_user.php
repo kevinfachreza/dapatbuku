@@ -8,10 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function getRequestUser($limit, $offset){
-      $query = $this->db->query("SELECT * FROM book_request WHERE active_br = 0 OR active_br = 1
-                                ORDER BY id_br asc
-                                LIMIT ".$limit."
-                                OFFSET ".$offset."");
+      $query = $this->db->query("SELECT br.*, u.firstname_u, u.email_u, u.phone_number_u FROM book_request br, user u WHERE (br.active_br = 0 OR br.active_br = 1) AND
+                                 br.user_br = u.id_u ORDER BY id_br asc LIMIT ".$limit." OFFSET ".$offset."");
       return $query->result_array();
     }
     public function countRequestUser(){

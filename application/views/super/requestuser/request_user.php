@@ -57,14 +57,14 @@ tr:nth-child(even) {
 					  	<td><?php echo $book[$i]['category_br']?></td>
 					  	<td><?php echo $book[$i]['author_br']?></td>
 						<td><?php echo $book[$i]['interest_br']?></td>
-						<td><?php echo $book[$i]['name_br']?></td>
-						<td><?php echo $book[$i]['email_br']?></td>
-						<td><?php echo $book[$i]['hp_br']?></td>
+						<td><?php echo $book[$i]['firstname_u']?></td>
+						<td><?php echo $book[$i]['email_u']?></td>
+						<td><?php echo $book[$i]['phone_number_u']?></td>
 
 					  	<td>
 							<?php if($book[$i]['active_br'] == 1){ ?>
 							<a href="<?php echo base_url()?>super/user/ConfirmRequest?buku=<?php echo $book[$i]['id_br']?>&status=0"><button type="button" class="btn btn-primary" disabled="">Accepted</button></a>
-									
+
 							<a href="<?php echo base_url()?>super/user/ConfirmRequest?buku=<?php echo $book[$i]['id_br']?>&status=0"><button type="button" class="btn btn-danger">Revert</button></a>
 
 							<?php }

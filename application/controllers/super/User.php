@@ -49,7 +49,6 @@ class User extends CI_Controller {
   		$count_books = $this->M_user->countRequestUser();
   		$data['page_total'] = ceil($count_books/$limit);
 
-
   		$this->load->view('super/requestuser/request_user',$data);
     }
 	}
