@@ -37,7 +37,7 @@
 							<a href="<?php echo base_url()."book/product/".$books[$i]->slug_title_u_b; ?>"><img src="<?php echo base_url()?><?php echo $books[$i]->image_thumb?>" class="img-responsive-2"></a>
 						</div>
 						<div class="text-center">
-							<div class="font-semibold title-container"><a href="<?php echo base_url()?><?php echo $books[$i]->slug_title_u_b?>" class="text-primary"><?php echo $books[$i]->title_u_b?></a></div>
+							<div class="font-semibold title-container"><a href="<?php echo base_url()."book/product/"?><?php echo $books[$i]->slug_title_u_b?>" class="text-primary"><?php echo $books[$i]->title_u_b?></a></div>
 						</div>
 					</div>
 
