@@ -32,7 +32,16 @@
 				                </div>
 			                </div>
 			            </div>
-			          <?php }} else {?>
+									<div class="text-center">
+									<?php if($this->session->logged_in == 1){ ?>
+			          				<a href="<?php echo base_url()?>mybooks/add">
+									<?php }	else{ ?>
+									<a data-toggle="modal" data-target="#loginModal">
+										<?php } ?>
+										<button type="button" class="btn btn-success">Jual/Sewakan Bukumu</button></a></div>
+			          <?php }}
+
+								else {?>
 									<div class="text-center">
 		          					<div class="col-md-12">Belum ada yang menyediakan buku ini.</div>
 									<?php if($this->session->logged_in == 1){ ?>
