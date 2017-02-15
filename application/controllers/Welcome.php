@@ -62,13 +62,84 @@ class Welcome extends CI_Controller {
 	public function aboutus()
 	{
 		$data['nav_category'] 		= $this->M_category->get_all_category();
-
 		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
 		$data['header'] = $this->load->view('home/header', $data,true);;
 		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
 		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
 		$data['footer'] = $this->load->view('parts/footer','',true);
 		$data['content'] = $this->load->view('home/about_us',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function terms()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/terms',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function faq()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/faq',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function privacy()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/privacy',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function jualbeli()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/jualbeli',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function rental()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/rental',$data,true);
+		$this->load->view('template',$data);
+	}
+
+	public function barter()
+	{
+		$data['nav_category'] 		= $this->M_category->get_all_category();
+		$data['page_title'] = 'DapatBuku - Cari Buku Jadi Lebih Mudah';
+		$data['header'] = $this->load->view('home/header', $data,true);;
+		$data['navbar'] = $this->load->view('parts/navbar', $data,true);
+		$data['sidebar'] = $this->load->view('parts/sidebar', $data,true);
+		$data['footer'] = $this->load->view('parts/footer','',true);
+		$data['content'] = $this->load->view('home/barter',$data,true);
 		$this->load->view('template',$data);
 	}
 

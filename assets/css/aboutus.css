@@ -28,3 +28,39 @@
 	font-size: 1.2em;
 	text-align: justify;
 }
+
+#terms h4, #transaksi h4
+{
+	font-weight: bold;
+}
+
+#faq h3
+{
+	font-weight: light;
+}
+
+#terms li, #privacy li, #transaksi li
+{
+	font-size: 0.9em;
+}
+
+#transaksi li
+{
+	margin-bottom: 5px;
+}
+
+#faq strong, #faq p
+{
+	font-size: 0.9em;
+}
+
+#terms ol, #transaksi ol
+{
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 1em;
+}
