@@ -74,7 +74,7 @@ class Adminbook extends CI_Controller {
 	public function do_add_book()
 	{
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
-		$pengarang = $this->db->escape_str($this->input->post('pengarang'));
+		$pengarang = $this->input->post('pengarang');
 		$publisher = $this->db->escape_str($this->input->post('publisher'));
 		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
@@ -149,7 +149,7 @@ class Adminbook extends CI_Controller {
 			}
 		}
 
-		#redirect('super/adminbook/');
+		redirect('super/adminbook/');
 	}
 
 	public function do_delete_book($id)
@@ -217,7 +217,7 @@ class Adminbook extends CI_Controller {
 	public function do_edit_book()
 	{
 		$judulbuku = $this->db->escape_str($this->input->post('judulbuku'));
-		$pengarang = $this->db->escape_str($this->input->post('pengarang'));
+		$pengarang = $this->input->post('pengarang');
 		$publisher = $this->db->escape_str($this->input->post('publisher'));
 		$tags = $this->db->escape_str($this->input->post('tags'));
 		$isbn = $this->input->post('isbn');
@@ -328,7 +328,7 @@ class Adminbook extends CI_Controller {
 	public function do_upload_cover_book($slug)
 	{
 		$flag=1;
-		$config['upload_path']   = './assets/img/book/'.$slug.'/';
+		$config['upload_path']   = './assets/img/writer/'.$slug.'/';
 		if(!is_dir($config['upload_path'])) mkdir($config['upload_path'], 0777, TRUE);
 		$path = $config['upload_path'];
 		$path = $path;

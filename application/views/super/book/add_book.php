@@ -20,12 +20,12 @@
 					<input type="text" name="judulbuku" class="form-control" placeholder="Judul Buku" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2">Pengarang</span>
-					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
+					<span class="input-group-addon" id="sizing-addon2">ID Penulis</span>
+					<input type="text" name="pengarang" class="form-control" placeholder="Masukkan ID Penulis yang ada di writermanager" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Publisher</span>
-					<input type="text" name="publisher" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2">
+					<input type="text" name="publisher" class="form-control" placeholder="Penerbit" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">ISBN</span>

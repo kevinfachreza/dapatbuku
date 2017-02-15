@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$change = $this->db->query
 		("
-			SELECT * from book
+			SELECT b.* from book b
 			ORDER BY id_b DESC
 			LIMIT ".$limit."
 			OFFSET ".$offset."
@@ -78,8 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		$query =
 		"
-			INSERT INTO book (title_b, slug_title_b, no_isbn_b, writer, publisher, pages, berat_b, date_published, language_b, photo_cover_b, description_b, cover_type_b,tags, thumb_cover_b)
-			VALUES ('".$data['judulbuku']."','".$data['slug']."','".$data['isbn']."','".$data['pengarang']."','".$data['publisher']."','".$data['halaman']."', '".$data['berat']."', '".$data['cetakan_pertama']."',
+			INSERT INTO book (title_b, slug_title_b, no_isbn_b, writer_b, publisher, pages, berat_b, date_published, language_b, photo_cover_b, description_b, cover_type_b,tags, thumb_cover_b)
+			VALUES ('".$data['judulbuku']."','".$data['slug']."','".$data['isbn']."',".$data['pengarang'].",'".$data['publisher']."','".$data['halaman']."', '".$data['berat']."', '".$data['cetakan_pertama']."',
 			'".$data['bahasa']."','".$data['file']."','".$data['sinopsis']."','".$data['cover']."','".$data['tags']."','".$data['thumb']."');
 		";
 		 $change = $this->db->query($query);
@@ -120,7 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				title_b = '".$data['judulbuku']."',
 				slug_title_b = '".$data['slug']."',
 				no_isbn_b = '".$data['isbn']."',
-				writer = '".$data['pengarang']."',
+				writer_b = ".$data['pengarang'].",
 				publisher = '".$data['publisher']."',
 				pages = '".$data['halaman']."',
         berat_b = '".$data['berat']."',

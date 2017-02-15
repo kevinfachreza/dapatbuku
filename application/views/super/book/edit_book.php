@@ -21,7 +21,7 @@
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Pengarang</span>
-					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2" value="<?php echo $book[0]->writer ?>">
+					<input type="text" name="pengarang" class="form-control" placeholder="Pengarang" aria-describedby="sizing-addon2" value="<?php echo $book[0]->writer_b ?>">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Publisher</span>

@@ -48,7 +48,7 @@ tr:nth-child(even) {
 								    <th>Edit</th>
 								    <th>Delete</th>
 								  </tr>
-								 
+
 					<?php for ($i=0;$i<count($book);$i++){ ?>
 								  <tr>
 								    <td><?php echo $book[$i]->id_b?></td>
@@ -64,7 +64,7 @@ tr:nth-child(even) {
 								  </tr>
 
 
-						
+
 					<?php } ?>
 
 					</table>
@@ -73,7 +73,7 @@ tr:nth-child(even) {
 							<div class="text-center">
 							  <ul class="pagination">
 								<li><a href="#">First</a></li>
-									<?php for($i=1;$i<=$page_total;$i++){ 
+									<?php for($i=1;$i<=$page_total;$i++){
 										if($i<=$page_now+2 && $i >= $page_now - 2 && $i >= 1 && $i<=$page_total){
 									?>
 										<li <?php if($i == $page_now) echo 'class="active"' ?>  >

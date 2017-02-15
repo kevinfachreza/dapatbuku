@@ -8,9 +8,13 @@
 
           <ul class="nav nav-sidebar">
             <li class="disabled"><a href="">User</a></li>
-            <li class=""><a href="<?php echo base_url()?>super/user/RequestUser">Request User</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/user/RequestUser">Request Manager</a></li>
           </ul>
-
+          <ul class="nav nav-sidebar">
+            <li class="disabled"><a href="">Writer</a></li>
+            <li class=""><a href="<?php echo base_url()?>super/writer">Writer Manager</a></li>
+            <li class=""><a href="<?php echo base_url() ?>super/writer/add_writer">Add Writer</a></li>
+          </ul>
           <ul class="nav nav-sidebar">
             <li class="disabled"><a href="">Categories</a></li>
             <li class=""><a href="<?php echo base_url()?>super/adminbook/bookmanager">Categories Manager</a></li>
