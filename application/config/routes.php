@@ -60,6 +60,14 @@ $route['super'] = 'super/auth';
 $route['login'] = 'auth/login';
 $route['register'] = 'auth/register';
 $route['aboutus'] = 'welcome/aboutus';
+$route['terms'] = 'welcome/terms';
+$route['faq'] = 'welcome/faq';
+$route['privacy'] = 'welcome/privacy';
+$route['cara-jualbeli'] = 'welcome/jualbeli';
+$route['cara-rental'] = 'welcome/rental';
+$route['cara-barter'] = 'welcome/barter';
+
+
 $route['profile/set_in'] = 'profile/set_in';
 $route['profile/logging_out'] = 'profile/logging_out';
 $route['profile/(:any)'] = 'profile/index/$1';

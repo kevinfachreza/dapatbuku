@@ -6,11 +6,19 @@
 				<h4> Dapatbuku </h4>
 				<div class="col-md-6">
 					<p><a href="<?php echo base_url()?>aboutus">Tentang Dapatbuku</a></p>
+					<p><a href="<?php echo base_url()?>terms">Syarat dan Ketentuan</a></p>
+					<p><a href="<?php echo base_url()?>faq">FAQ</a></p>
+					<p><a href="<?php echo base_url()?>privacy">Privasi</a></p>
 					<p><a href="<?php echo base_url()?>contactus">Contact Us</a></p>
+				</div>
+				<div class="col-md-6">
 					<p><a href="<?php echo base_url()?>requestbook">Tidak Menemukan Buku Yang Kamu Cari?</a></p>
+					<p><a href="<?php echo base_url()?>cara-jualbeli">Cara Jual Beli </a></p>
+					<p><a href="<?php echo base_url()?>cara-barter">Cara Barter</a></p>
+					<p><a href="<?php echo base_url()?>cara-rental">Cara Rental</a></p>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 			<h4>Temukan Kami Di</h4>
 			<div class="col-md-12 margin-bot-2 ">
 				<div class="col-md-12">
@@ -30,7 +38,7 @@
 
 	</div>
 
-		<div class="col-md-12 footer-3">
+		<div class="col-md-12 footer-3" style="display: none">
 		</div>
 
 
