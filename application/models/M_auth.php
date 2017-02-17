@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function login($user_check, $pass_check){
 
-		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."'");
+		$query = $this->db->query("SELECT * FROM user where email_u = '".$user_check."' OR username_u = '".$user_check."'");
 
       if($query -> num_rows() == 1){
 

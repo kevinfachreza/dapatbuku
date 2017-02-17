@@ -1,5 +1,3 @@
-
-
 <?php foreach ($userdata as $user ) { ?>
 <div class="custom-container container" id="profile-header">
 	<div class="col-md-12 text-center">
@@ -32,7 +30,7 @@
 
 				<div class="row">
 				<?php for ($i=0;$i<count($books);$i++){ ?>
-					<div class="col-md-2 col-sm-4 col-xs-12 book-item">
+					<div class="col-xs-12 col-sm-12 col-md-8 book-item">
 						<div class="margin-bot-1 home-book-img">
 							<a href="<?php echo base_url()."book/product/".$books[$i]->slug_title_u_b; ?>"><img src="<?php echo base_url()?><?php echo $books[$i]->image_thumb?>" class="img-responsive-2"></a>
 						</div>
