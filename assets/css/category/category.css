@@ -4,6 +4,10 @@
 	padding-top:20px;
 }
 
+.col-xs-12{
+	z-index: 1;
+}
+
 .row{
 	margin:0;
 }
