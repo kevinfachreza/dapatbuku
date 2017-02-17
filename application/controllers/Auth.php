@@ -64,8 +64,12 @@ class Auth extends CI_Controller {
         redirect('/profile');
       }
     }
-    else{
-		  $this->session->set_flashdata('warning', 'Email atau password salah');
+    else if($result == 2){
+		  $this->session->set_flashdata('warning', ' Password Anda Salah');
+      redirect('auth/login');
+    }
+    else if($result == 3){
+      $this->session->set_flashdata('warning', 'Username/Email Anda Salah');
       redirect('auth/login');
     }
   }

@@ -49,16 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $query = $this->db->query("UPDATE  user SET last_login = CURRENT_TIMESTAMP where id_u = ".$id."");
           if ($this->db->affected_rows() >= 0) {
             return $result;
-            } else {
-                return false; // your code
-            }
+          }
+          else {
+              return false; // your code
+          }
         }
         else {
-        return false;
+          return 2;   //Wrong Password
         }
       }
       else {
-        return false;
+        return 3;   //Wrong Username atau Email
       }
     }
 
