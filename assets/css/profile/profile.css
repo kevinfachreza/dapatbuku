@@ -4,6 +4,11 @@
 	padding-bottom:30px;
 }
 
+
+.col-xs-12{
+	z-index: 1;
+}
+
 .img-circle{
 	border:solid 3px white;
 }
@@ -63,7 +68,7 @@
     display: block;
 }
 
-.photo-profile-container 
+.photo-profile-container
 {
 	margin-bottom:25px;
 	height:150px;

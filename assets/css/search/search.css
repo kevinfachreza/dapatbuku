@@ -2,6 +2,9 @@
 	padding-top:20px;
 }
 
+.col-xs-12{
+	z-index: 1;
+}
 .search-side-item
 {
 	padding-bottom:10px;
@@ -79,7 +82,7 @@
 }
 
 .book-price{
-	
+
 }
 
 .book-location{
