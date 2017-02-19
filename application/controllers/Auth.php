@@ -44,7 +44,7 @@ class Auth extends CI_Controller {
     $result = $this->M_auth->login($user_in, $pass);
 
 
-    if($result){
+    if(is_array($result)){
 	     $id = $result[0]->id_u;
       $newdata = array(
         'id_u' => $id
@@ -172,15 +172,16 @@ class Auth extends CI_Controller {
       $name = $this->input->post('name');
       $email = $this->input->post('email');
     }
-    $message = $this->input->post('message');
+    $message = nl2br("Name: ".$name."\n"."Email: ".$email."\nMessage: ");
+    $message .= $this->input->post('message');
     // The mail sending protocol.
     $config['protocol'] = 'smtp';
     // SMTP Server Address for Gmail.
-    $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+    $config['smtp_host'] = 'ssl://mail.dapatbuku.com';
     // SMTP Port - the port that you is required
     $config['smtp_port'] = 465;
     // SMTP Username like. (abc@gmail.com)
-    $config['smtp_user'] = 'dapatbuku1@gmail.com';
+    $config['smtp_user'] = 'message@dapatbuku.com';
     // SMTP Password like (abc***##)
     $config['smtp_pass'] = '12log12=1';
 
@@ -190,7 +191,7 @@ class Auth extends CI_Controller {
     $this->load->library('email', $config);
     // Sender email address
     $this->email->set_newline("\r\n");
-    $this->email->from($email, $name);
+    $this->email->from('message@dapatbuku.com', 'message');
     // Receiver email address.for single email
     $this->email->to('dapatbuku1@gmail.com');
     // Subject of email
@@ -204,7 +205,7 @@ class Auth extends CI_Controller {
     }
     else {
       $this->session->set_flashdata('contactus', 2);
-      //show_error($this->email->print_debugger());
+      show_error($this->email->print_debugger());
     }
     redirect('Auth/contact_us');
   }

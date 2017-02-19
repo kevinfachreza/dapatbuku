@@ -49,7 +49,7 @@
 			  	<hr>
 			  	</div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
-		        		<form action="<?php echo base_url(); ?>/auth/do_contact_us" method="post">
+		        		<form action="<?php echo base_url(); ?>auth/do_contact_us" method="post">
 								<?php if($this->session->logged_in != 1) {	?>
 			            	<input name="name" type="text"  class="form-control" placeholder="Nama Lengkap" style="margin-bottom:0.5em" required autofocus>
 										<input name="email" type="text" class="form-control" placeholder="Alamat Emailmu" style="margin-bottom:0.5em" required autofocus>

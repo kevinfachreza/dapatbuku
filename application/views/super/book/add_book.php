@@ -37,7 +37,7 @@
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Berat Buku</span>
-					<input type="text" name="berat" class="form-control" placeholder="Jumlah Halaman" aria-describedby="sizing-addon2">
+					<input type="text" name="berat" class="form-control" placeholder="Berat buku dalam kg" aria-describedby="sizing-addon2">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Tags</span>
